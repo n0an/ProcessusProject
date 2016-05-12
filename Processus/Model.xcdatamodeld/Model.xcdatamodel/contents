@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
-    <entity name="Person" syncable="YES">
+    <entity name="Person" representedClassName=".Person" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,7 +8,7 @@
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="workers" inverseEntity="Project" syncable="YES"/>
     </entity>
-    <entity name="Project" syncable="YES">
+    <entity name="Project" representedClassName=".Project" syncable="YES">
         <attribute name="customer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueDate" optional="YES" attributeType="Date" syncable="YES"/>

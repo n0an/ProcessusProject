@@ -8,24 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988391CE4FA9D00BC5272 /* AppDelegate.swift */; };
-		1829883C1CE4FA9D00BC5272 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829883B1CE4FA9D00BC5272 /* ViewController.swift */; };
 		1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1829883D1CE4FA9D00BC5272 /* Main.storyboard */; };
 		182988411CE4FA9D00BC5272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182988401CE4FA9D00BC5272 /* Assets.xcassets */; };
 		182988441CE4FA9D00BC5272 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182988421CE4FA9D00BC5272 /* LaunchScreen.storyboard */; };
 		1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1829884B1CE4FB9400BC5272 /* Model.xcdatamodeld */; };
 		182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */; };
+		182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988711CE502BF00BC5272 /* ANPeopleViewController.swift */; };
+		182988771CE5052F00BC5272 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988731CE5052F00BC5272 /* Project+CoreDataProperties.swift */; };
+		182988781CE5052F00BC5272 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988741CE5052F00BC5272 /* Project.swift */; };
+		182988791CE5052F00BC5272 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988751CE5052F00BC5272 /* Person+CoreDataProperties.swift */; };
+		1829887A1CE5052F00BC5272 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988761CE5052F00BC5272 /* Person.swift */; };
+		1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */; };
+		182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		182988361CE4FA9D00BC5272 /* Processus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Processus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182988391CE4FA9D00BC5272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1829883B1CE4FA9D00BC5272 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1829883E1CE4FA9D00BC5272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		182988401CE4FA9D00BC5272 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		182988431CE4FA9D00BC5272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		182988451CE4FA9D00BC5272 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1829884C1CE4FB9400BC5272 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANDataManager.swift; sourceTree = "<group>"; };
+		182988711CE502BF00BC5272 /* ANPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ANPeopleViewController.swift; path = ../ANPeopleViewController.swift; sourceTree = "<group>"; };
+		182988731CE5052F00BC5272 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		182988741CE5052F00BC5272 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = ../Project.swift; sourceTree = "<group>"; };
+		182988751CE5052F00BC5272 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		182988761CE5052F00BC5272 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = ../Person.swift; sourceTree = "<group>"; };
+		1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDelegate.swift; sourceTree = "<group>"; };
+		1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDisplayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +70,38 @@
 		182988381CE4FA9D00BC5272 /* Processus */ = {
 			isa = PBXGroup;
 			children = (
+				1829887B1CE5053800BC5272 /* CoreData */,
+				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
 				182988391CE4FA9D00BC5272 /* AppDelegate.swift */,
-				1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */,
-				1829883B1CE4FA9D00BC5272 /* ViewController.swift */,
 				1829883D1CE4FA9D00BC5272 /* Main.storyboard */,
 				182988401CE4FA9D00BC5272 /* Assets.xcassets */,
 				1829884B1CE4FB9400BC5272 /* Model.xcdatamodeld */,
 				182988421CE4FA9D00BC5272 /* LaunchScreen.storyboard */,
 				182988451CE4FA9D00BC5272 /* Info.plist */,
+				1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */,
+				1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */,
 			);
 			path = Processus;
+			sourceTree = "<group>";
+		};
+		1829887B1CE5053800BC5272 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1829887C1CE5128800BC5272 /* Model */,
+				1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		1829887C1CE5128800BC5272 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				182988731CE5052F00BC5272 /* Project+CoreDataProperties.swift */,
+				182988741CE5052F00BC5272 /* Project.swift */,
+				182988751CE5052F00BC5272 /* Person+CoreDataProperties.swift */,
+				182988761CE5052F00BC5272 /* Person.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,10 +176,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1829883C1CE4FA9D00BC5272 /* ViewController.swift in Sources */,
+				182988791CE5052F00BC5272 /* Person+CoreDataProperties.swift in Sources */,
+				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
+				182988771CE5052F00BC5272 /* Project+CoreDataProperties.swift in Sources */,
+				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
+				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
+				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
+				182988781CE5052F00BC5272 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

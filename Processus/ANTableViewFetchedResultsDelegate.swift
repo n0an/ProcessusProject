@@ -1,0 +1,69 @@
+//
+//  ANTableViewFetchedResultsDelegate.swift
+//  Processus
+//
+//  Created by Anton Novoselov on 12/05/16.
+//  Copyright © 2016 Anton Novoselov. All rights reserved.
+//
+
+import UIKit
+import CoreData
+
+
+class ANTableViewFetchedResultsDelegate: NSObject, NSFetchedResultsControllerDelegate {
+
+    private var tableView: UITableView!
+    private var displayer: ANTableViewFetchedResultsDisplayer!
+    
+    init(tableView: UITableView, displayer: ANTableViewFetchedResultsDisplayer) {
+        self.tableView = tableView
+        self.displayer = displayer
+    }
+
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+        switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+            
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+            
+        default:
+            break
+        }
+        
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            
+        case .Update:
+            let cell = tableView.cellForRowAtIndexPath(indexPath!)
+            displayer.configureCell(cell!, atIndexPath: indexPath!)
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            
+        }
+        
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+}

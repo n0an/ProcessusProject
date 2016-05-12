@@ -96,6 +96,29 @@ class ANDataManager {
     }
     
     
+    
+    
+    
+    func addPerson(withFirstName firstName: String, lastName: String, email: String) {
+        
+        let person = NSEntityDescription.insertNewObjectForEntityForName("Person", inManagedObjectContext: context) as! Person
+        
+        person.firstName = firstName
+        person.lastName = lastName
+        person.email = email
+        
+        guard context.hasChanges else { return }
+        
+        do {
+            try context.save()
+        } catch {
+            print("Can't save context")
+            abort()
+        }
+        
+    }
+    
+    
 }
 
 
