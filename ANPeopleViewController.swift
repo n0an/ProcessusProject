@@ -30,7 +30,7 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         
         navigationItem.leftBarButtonItem = editButtonItem()
         
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
@@ -204,6 +204,25 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
 
     
     
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        guard segue.identifier == "showPersonDetails" else {return}
+        
+        guard let indexPath = self.tableView.indexPathForSelectedRow else {return}
+        
+        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
+        
+        let destinationVC = segue.destinationViewController as! ANPersonDetailsViewController
+        
+        destinationVC.person = person
+        
+    }
+    
+    
+    
 }
 
 
@@ -264,6 +283,11 @@ extension ANPeopleViewController: UITableViewDelegate {
             ANDataManager.sharedManager.saveContext()
             
         }
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
   

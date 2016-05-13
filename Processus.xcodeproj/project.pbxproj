@@ -20,6 +20,7 @@
 		1829887A1CE5052F00BC5272 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988761CE5052F00BC5272 /* Person.swift */; };
 		1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */; };
 		182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */; };
+		182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		182988761CE5052F00BC5272 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = ../Person.swift; sourceTree = "<group>"; };
 		1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDelegate.swift; sourceTree = "<group>"; };
 		1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDisplayer.swift; sourceTree = "<group>"; };
+		182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				1829887B1CE5053800BC5272 /* CoreData */,
 				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
+				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
 				182988391CE4FA9D00BC5272 /* AppDelegate.swift */,
 				1829883D1CE4FA9D00BC5272 /* Main.storyboard */,
 				182988401CE4FA9D00BC5272 /* Assets.xcassets */,
@@ -178,6 +181,7 @@
 			files = (
 				182988791CE5052F00BC5272 /* Person+CoreDataProperties.swift in Sources */,
 				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
+				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
 				182988771CE5052F00BC5272 /* Project+CoreDataProperties.swift in Sources */,
