@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ANPeopleViewController: UIViewController, UITextFieldDelegate, ANTableViewFetchedResultsDisplayer {
+class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplayer {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,8 +21,6 @@ class ANPeopleViewController: UIViewController, UITextFieldDelegate, ANTableView
     private var fetchedResultsDelegate: NSFetchedResultsControllerDelegate?
 
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,21 +74,14 @@ class ANPeopleViewController: UIViewController, UITextFieldDelegate, ANTableView
     
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        
-        
-        
-        
+
         guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
         
         guard let firstName = person.firstName else {return}
         
         guard let lastName = person.lastName else {return}
         
-        
-        
         cell.textLabel?.text = "\(firstName) \(lastName)"
-        
-        
         
     }
 
@@ -158,7 +149,7 @@ class ANPeopleViewController: UIViewController, UITextFieldDelegate, ANTableView
             
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .Default, handler: nil)
         
         addColleagueAlert.addAction(addAction)
         addColleagueAlert.addAction(cancelAction)
@@ -170,11 +161,7 @@ class ANPeopleViewController: UIViewController, UITextFieldDelegate, ANTableView
     }
     
     
-    
-    
-    
     // MARK: - Helper Methods
-    
     
     func configureTextFieldNames(textField: UITextField) {
         textField.spellCheckingType = .No
@@ -187,11 +174,38 @@ class ANPeopleViewController: UIViewController, UITextFieldDelegate, ANTableView
     
     // TODO: - emailHandler
     
-
+    func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
+        
+        var illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
+        
+        
+        let currentString = textField.text! as NSString
+        
+        let newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString)
+        
+        if currentString.length == 0 && replacementString == "@" {
+            return false
+        }
+        
+        if currentString .containsString("@") {
+            illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
+        }
+        
+        let components = replacementString.componentsSeparatedByCharactersInSet(illegalCharactersSet)
+        
+        if components.count > 1 {
+            return false
+        }
+        
+        return newString.characters.count <= 40
+        
+    }
+    
+    
 }
 
 
-
+// MARK: - UITableViewDataSource
 extension ANPeopleViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -214,10 +228,6 @@ extension ANPeopleViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath)
         
-//        let colleague = myColleagues[indexPath.row]
-//        
-//        cell.textLabel?.text = colleague.firstName! + colleague.lastName!
-        
         configureCell(cell, atIndexPath: indexPath)
         
         return cell
@@ -225,3 +235,37 @@ extension ANPeopleViewController: UITableViewDataSource {
     }
     
 }
+
+
+extension ANPeopleViewController: UITextFieldDelegate {
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField.tag == 108 {
+            return handleEmailTextField(textField, inRange: range, withReplacementString: string)
+        }
+        
+        return true
+        
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
