@@ -23,10 +23,12 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        navigationItem.leftBarButtonItem = editButtonItem()
         
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
@@ -34,9 +36,11 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         
         
         let fetchRequest = NSFetchRequest(entityName: "Person")
-        let sortDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
+        let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
+        let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
         
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
 
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -68,26 +72,11 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         }
         */
         
-        
     }
     
     
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-
-        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
-        
-        guard let firstName = person.firstName else {return}
-        
-        guard let lastName = person.lastName else {return}
-        
-        cell.textLabel?.text = "\(firstName) \(lastName)"
-        
-    }
-
-    
-    
-    
+    // MARK: - Actions
     
     @IBAction func addColleaguePressed(sender: UIBarButtonItem) {
         
@@ -156,12 +145,29 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         
         self.presentViewController(addColleagueAlert, animated: true, completion: nil)
         
+    }
+    
+    
+    // MARK: - Helper Methods
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        tableView.setEditing(editing, animated: true)
         
         
     }
     
     
-    // MARK: - Helper Methods
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        
+        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
+        guard let firstName = person.firstName else {return}
+        guard let lastName = person.lastName else {return}
+        
+        cell.textLabel?.text = "\(firstName) \(lastName)"
+    }
+    
     
     func configureTextFieldNames(textField: UITextField) {
         textField.spellCheckingType = .No
@@ -171,13 +177,9 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     }
     
     
-    
-    // TODO: - emailHandler
-    
     func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
         
         var illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
-        
         
         let currentString = textField.text! as NSString
         
@@ -190,16 +192,16 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         if currentString .containsString("@") {
             illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
         }
-        
         let components = replacementString.componentsSeparatedByCharactersInSet(illegalCharactersSet)
-        
         if components.count > 1 {
             return false
         }
         
         return newString.characters.count <= 40
-        
     }
+    
+    // TODO: - phoneHandler
+
     
     
 }
@@ -236,6 +238,41 @@ extension ANPeopleViewController: UITableViewDataSource {
     
 }
 
+// MARK: - UITableViewDelegate
+
+extension ANPeopleViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+
+    }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
+        
+        
+        if editingStyle == .Delete {
+            let context = ANDataManager.sharedManager.context
+            context.deleteObject(person)
+            
+            ANDataManager.sharedManager.saveContext()
+            
+        }
+    }
+    
+  
+    
+}
+
+
+
+// MARK: - UITextFieldDelegate
 
 extension ANPeopleViewController: UITextFieldDelegate {
     

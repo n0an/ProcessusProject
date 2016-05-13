@@ -78,8 +78,6 @@
 				1829884B1CE4FB9400BC5272 /* Model.xcdatamodeld */,
 				182988421CE4FA9D00BC5272 /* LaunchScreen.storyboard */,
 				182988451CE4FA9D00BC5272 /* Info.plist */,
-				1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */,
-				1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */,
 			);
 			path = Processus;
 			sourceTree = "<group>";
@@ -87,6 +85,8 @@
 		1829887B1CE5053800BC5272 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */,
+				1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */,
 				1829887C1CE5128800BC5272 /* Model */,
 				1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */,
 			);
@@ -337,6 +337,7 @@
 				1829884A1CE4FA9D00BC5272 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
