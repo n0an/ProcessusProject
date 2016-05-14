@@ -24,6 +24,10 @@
 		182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988851CE7347800BC5272 /* ANPersonProjectCell.swift */; };
 		182988891CE7398D00BC5272 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988881CE7398D00BC5272 /* Project+CoreDataProperties.swift */; };
 		1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */; };
+		1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */; };
+		182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988901CE76B5E00BC5272 /* ANProjectInfoTextCell.swift */; };
+		182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */; };
+		182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		182988851CE7347800BC5272 /* ANPersonProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonProjectCell.swift; sourceTree = "<group>"; };
 		182988881CE7398D00BC5272 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsViewController.swift; sourceTree = "<group>"; };
+		1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNewProjectViewController.swift; sourceTree = "<group>"; };
+		182988901CE76B5E00BC5272 /* ANProjectInfoTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoTextCell.swift; sourceTree = "<group>"; };
+		182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoProgressCell.swift; sourceTree = "<group>"; };
+		182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoStateCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,7 @@
 				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
 				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
 				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
+				1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -136,6 +145,9 @@
 			children = (
 				182988831CE733D600BC5272 /* ANPersonInfoCell.swift */,
 				182988851CE7347800BC5272 /* ANPersonProjectCell.swift */,
+				182988901CE76B5E00BC5272 /* ANProjectInfoTextCell.swift */,
+				182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */,
+				182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -212,18 +224,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */,
 				182988791CE5052F00BC5272 /* Person+CoreDataProperties.swift in Sources */,
 				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
+				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
 				182988891CE7398D00BC5272 /* Project+CoreDataProperties.swift in Sources */,
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
+				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,
 				182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */,
 				1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */,
 				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
 				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
 				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
+				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,
 				182988781CE5052F00BC5272 /* Project.swift in Sources */,
 				182988841CE733D600BC5272 /* ANPersonInfoCell.swift in Sources */,
 			);
