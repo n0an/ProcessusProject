@@ -62,6 +62,10 @@ class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDispl
     }
     
     // MARK: - ACTIONS
+    
+    @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
+        
+    }
 
     @IBAction func addProjectPressed(sender: UIBarButtonItem) {
         

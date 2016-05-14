@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ANNewProjectViewController: UIViewController {
 
@@ -34,6 +35,13 @@ class ANNewProjectViewController: UIViewController {
     var newProject: Project!
     
     var projectInfoTextFields: [UITextField] = []
+    var projectInfoDescriptionTextView: UITextView!
+    
+    var projectProgressCell: ANProjectInfoProgressCell!
+    
+    var projectStateCell: ANProjectInfoStateCell!
+    
+    var dateFormatter: NSDateFormatter!
 
     let projectInfoLabelsPlaceholders: [(label: String, placeholder: String)] = [("Заказчик:", "наименование заказчика"), ("Название проекта:", "название проекта"), ("Срок выполнения:", "срок выполненеия проекта")]
     
@@ -47,12 +55,87 @@ class ANNewProjectViewController: UIViewController {
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         tableView.allowsSelection = false
+        
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
+        
 
         
     }
     
+    // MARK: - ACTIONS
+    
+    @IBAction func saveProject() {
+        
+        let context = ANDataManager.sharedManager.context
+        
+        guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
+
+//        newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as! Project
+        
+        newProject.customer = projectInfoTextFields[0].text
+        newProject.name = projectInfoTextFields[1].text
+        newProject.dueDate = dateFormatter.dateFromString(projectInfoTextFields[2].text!)
+        
+        newProject.completedRatio = projectProgressCell.valueProgressSlider.value
+        newProject.state = projectStateCell.valueStateSegmentedControl.selectedSegmentIndex
+        
+        newProject.descript = projectInfoDescriptionTextView.text!
+        
+        ANDataManager.sharedManager.saveContext()
+        
+        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
+        
+        
+    }
+    
+    
+    @IBAction func actionProgressSliderValueChanged(sender: UISlider) {
+        
+        print("actionProgressSliderValueChanged")
+        
+        updateProgressLabel(projectProgressCell)
+        
+    }
+    
+    
+    @IBAction func actionStateSegmControlValueChanged(sender: UISegmentedControl) {
+        print("actionStateSegmControlValueChanged")
+        
+        updateStateView(projectStateCell)
+
+    }
     
     // MARK: - HELPER METHODS
+    
+    func updateProgressLabel(cell: ANProjectInfoProgressCell) {
+        
+        let value = cell.valueProgressSlider.value
+        let intVal = Int(value)
+        
+        cell.valuePercentLabel.text = "\(intVal) %"
+
+    }
+    
+    func updateStateView(cell: ANProjectInfoStateCell) {
+        let projectState = cell.valueStateSegmentedControl.selectedSegmentIndex
+        
+        var stateColor = UIColor()
+        
+        switch projectState {
+        case ANProjectState.NonActive.rawValue:
+            stateColor = UIColor.redColor()
+        case ANProjectState.Frozen.rawValue:
+            stateColor = UIColor.yellowColor()
+        case ANProjectState.Active.rawValue:
+            stateColor = UIColor.greenColor()
+        default:
+            break
+        }
+        
+        cell.projectStateView.backgroundColor = stateColor
+    }
+    
     
     func configureStandartTextField(textField: UITextField) {
         textField.returnKeyType = .Next
@@ -91,77 +174,25 @@ class ANNewProjectViewController: UIViewController {
     func configureProjectInfoProgressCell(cell: ANProjectInfoProgressCell, forIndexPath indexPath: NSIndexPath) {
         
         cell.keyLabel.text = projectNonTextInfoLabels[indexPath.row]
-        cell.valueProgressSlider.value = 0.53
         
-        let value = cell.valueProgressSlider.value*100
-        let intVal = Int(value)
+        updateProgressLabel(cell)
         
-//        let strValue = String(format: "%2.2f %", value*100)
-//        let strValue = String(format: "%d", intVal)
-        
-        cell.valuePercentLabel.text = "\(intVal) %"
     }
     
     func configureProjectInfoStateCell(cell: ANProjectInfoStateCell, forIndexPath indexPath: NSIndexPath) {
         
         cell.keyLabel.text = projectNonTextInfoLabels[indexPath.row]
         
-        let projectState = cell.valueStateSegmentedControl.selectedSegmentIndex
-        
-        var stateColor = UIColor()
-        
-        switch projectState {
-        case ANProjectState.NonActive.rawValue:
-            stateColor = UIColor.redColor()
-        case ANProjectState.Frozen.rawValue:
-            stateColor = UIColor.yellowColor()
-        case ANProjectState.Active.rawValue:
-            stateColor = UIColor.greenColor()
-        default:
-            break
-        }
-        
-        cell.projectStateView.backgroundColor = stateColor
-        
-
+        updateStateView(cell)
         
     }
     
     func configureProjectInfoDescriptionCell(cell: ANProjectDescriptionCell, forIndexPath indexPath: NSIndexPath) {
         cell.keyLabel.text = projectNonTextInfoLabels[indexPath.row]
         
-        
+        projectInfoDescriptionTextView = cell.valueTextView
     }
     
-    
-//    func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
-//        
-//        let project = personProjects[indexPath.row]
-//        
-//        cell.customerNameLabel.text = project.customer
-//        cell.projectNameLabel.text = project.name
-//        
-//        if let completedRatio = project.completedRatio?.intValue {
-//            cell.completedRatioLabel.text = "\(completedRatio)"
-//        }
-//        
-//        
-//        var stateColor = UIColor()
-//        
-//        switch project.state!.integerValue {
-//        case ANProjectState.NonActive.rawValue:
-//            stateColor = UIColor.redColor()
-//        case ANProjectState.Frozen.rawValue:
-//            stateColor = UIColor.yellowColor()
-//        case ANProjectState.Active.rawValue:
-//            stateColor = UIColor.greenColor()
-//        default:
-//            break
-//        }
-//        
-//        cell.projectStateView.backgroundColor = stateColor
-//        
-//    }
 
 
     
@@ -214,12 +245,18 @@ extension ANNewProjectViewController: UITableViewDataSource {
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier(cellIdProjectProgress, forIndexPath: indexPath) as! ANProjectInfoProgressCell
                 configureProjectInfoProgressCell(cell, forIndexPath: indexPath)
+                
+                projectProgressCell = cell
+                
                 return cell
                 
             case ANRowType.ProjectState.rawValue:
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier(cellIdProjectState, forIndexPath: indexPath) as! ANProjectInfoStateCell
                 configureProjectInfoStateCell(cell, forIndexPath: indexPath)
+                
+                projectStateCell = cell
+                
                 return cell
                 
             case ANRowType.ProjectDescription.rawValue:

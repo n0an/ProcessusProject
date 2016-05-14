@@ -403,8 +403,11 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="y8C-Rd-nOs">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="y8C-Rd-nOs">
                                                     <rect key="frame" x="6" y="36" width="511" height="32.5"/>
+                                                    <connections>
+                                                        <action selector="actionProgressSliderValueChanged:" destination="6Pe-6d-Afa" eventType="valueChanged" id="O1i-K6-14S"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 %" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5m-bM-5wZ">
                                                     <rect key="frame" x="523" y="42" width="69" height="20"/>
@@ -457,10 +460,13 @@
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3HN-gL-tnD">
                                                     <rect key="frame" x="8" y="36" width="248" height="29"/>
                                                     <segments>
-                                                        <segment title="Активно"/>
-                                                        <segment title="Ожидание"/>
                                                         <segment title="Неактивно"/>
+                                                        <segment title="Ожидание"/>
+                                                        <segment title="Активно"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="actionStateSegmControlValueChanged:" destination="6Pe-6d-Afa" eventType="valueChanged" id="azI-04-tEv"/>
+                                                    </connections>
                                                 </segmentedControl>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geN-gx-cmz">
                                                     <rect key="frame" x="572" y="30" width="20" height="20"/>
@@ -572,7 +578,18 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Новый проект" id="HpL-cZ-bhU"/>
+                    <navigationItem key="navigationItem" title="Новый проект" id="HpL-cZ-bhU">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="Jxi-qd-IS8">
+                            <connections>
+                                <segue destination="FOV-LO-ksU" kind="unwind" identifier="unwindBackToHomeScreen" unwindAction="unwindBackToHomeScreen:" id="zt6-Ei-Hg5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="3d6-qq-dxS">
+                            <connections>
+                                <action selector="saveProject" destination="6Pe-6d-Afa" id="e0O-TW-qDb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bottomConstraint" destination="Xni-Y7-Nfb" id="6lS-CV-fbv"/>
                         <outlet property="datePicker" destination="a1P-jb-VeV" id="YqP-b7-id7"/>
@@ -580,6 +597,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJd-Kb-Sex" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FOV-LO-ksU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2133" y="-1260"/>
         </scene>
