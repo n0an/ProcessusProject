@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum ANProjectState: Int {
+    case NonActive = 0, Frozen, Active
+}
+
 class ANPersonDetailsViewController: UITableViewController {
     
     // MARK: - ATTRIBUTES
@@ -22,9 +26,9 @@ class ANPersonDetailsViewController: UITableViewController {
         case FirstName = 0, LastName, Email, PhoneNumber
     }
     
-    enum ANProjectState: Int {
-        case NonActive = 0, Frozen, Active
-    }
+//    enum ANProjectState: Int {
+//        case NonActive = 0, Frozen, Active
+//    }
     
     var person: Person!
     
