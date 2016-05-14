@@ -10,6 +10,11 @@ import UIKit
 
 class ANProjectInfoTextCell: UITableViewCell {
 
+    
+    @IBOutlet weak var keyLabel: UILabel!
+    
+    @IBOutlet weak var valueTextField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

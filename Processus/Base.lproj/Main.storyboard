@@ -120,7 +120,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="OGp-9U-xSD">
                             <connections>
                                 <action selector="addProjectPressed:" destination="RPl-5l-sxh" id="idu-f8-geh"/>
-                                <segue destination="jy9-fJ-XA7" kind="presentation" id="LNB-sg-ofx"/>
+                                <segue destination="ta8-OV-fSV" kind="presentation" id="D0A-So-DR0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -338,7 +338,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Uh-Dt-aQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="-1320"/>
+            <point key="canvasLocation" x="881" y="-1954"/>
         </scene>
         <!--Новый проект-->
         <scene sceneID="vn2-9c-IEc">
@@ -385,69 +385,13 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="8yt-Zf-5Db" secondAttribute="trailing" id="yBA-BJ-TeD"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="xEa-jp-xLi" customClass="ANProjectInfoTextCell" customModule="Processus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="162" width="600" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xEa-jp-xLi" id="6Dr-6e-UHk">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="название проекта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oll-Ga-5CC">
-                                                    <rect key="frame" x="8" y="29" width="584" height="31.5"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название проекта:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfu-2N-jZK">
-                                                    <rect key="frame" x="8" y="8" width="584" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Oll-Ga-5CC" secondAttribute="trailing" id="AAQ-Hz-Xg0"/>
-                                                <constraint firstItem="Oll-Ga-5CC" firstAttribute="top" secondItem="Qfu-2N-jZK" secondAttribute="bottom" constant="1" id="B6m-ce-hS7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Qfu-2N-jZK" secondAttribute="trailing" id="eUu-NP-fYW"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Oll-Ga-5CC" secondAttribute="bottom" constant="0.5" id="fRN-Uy-z00"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="Oll-Ga-5CC" secondAttribute="leading" id="qN0-9Q-LfI"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="Qfu-2N-jZK" secondAttribute="leading" id="sOi-Oz-bDG"/>
-                                                <constraint firstAttribute="topMargin" secondItem="Qfu-2N-jZK" secondAttribute="top" id="wSl-cR-HKN"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="fcj-je-pIH" customClass="ANProjectInfoTextCell" customModule="Processus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="232" width="600" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fcj-je-pIH" id="vYA-G9-tHz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="срок выполнения проекта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D53-Xu-3pW">
-                                                    <rect key="frame" x="8" y="29" width="584" height="31.5"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Срок выполнения:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1T-A4-KPp">
-                                                    <rect key="frame" x="8" y="8" width="584" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="z1T-A4-KPp" secondAttribute="trailing" id="0PU-Wu-6cE"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="z1T-A4-KPp" secondAttribute="leading" id="Mlh-yd-AQw"/>
-                                                <constraint firstAttribute="topMargin" secondItem="z1T-A4-KPp" secondAttribute="top" id="NQF-17-F4v"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="D53-Xu-3pW" secondAttribute="leading" id="Pug-cE-aot"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="D53-Xu-3pW" secondAttribute="bottom" constant="0.5" id="Y9c-Tm-9Ri"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="D53-Xu-3pW" secondAttribute="trailing" id="yCA-rA-Fq6"/>
-                                                <constraint firstItem="D53-Xu-3pW" firstAttribute="top" secondItem="z1T-A4-KPp" secondAttribute="bottom" constant="1" id="zL0-h3-5fZ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="keyLabel" destination="2Jg-KT-LOd" id="t6R-Ol-2Uj"/>
+                                            <outlet property="valueTextField" destination="8yt-Zf-5Db" id="aiG-AF-UFY"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ANProjectInfoProgressCell" rowHeight="80" id="ma4-29-Jyf" customClass="ANProjectInfoProgressCell" customModule="Processus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="302" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="162" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ma4-29-Jyf" id="HAd-fs-s1Q">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
@@ -491,9 +435,14 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="keyLabel" destination="S0e-v9-GwR" id="Ml0-T7-g1T"/>
+                                            <outlet property="valuePercentLabel" destination="u5m-bM-5wZ" id="6QH-v6-9fE"/>
+                                            <outlet property="valueProgressSlider" destination="y8C-Rd-nOs" id="f23-rO-hSt"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ANProjectInfoStateCell" rowHeight="80" id="8nV-Vj-Ux8" customClass="ANProjectInfoStateCell" customModule="Processus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="382" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="242" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8nV-Vj-Ux8" id="FPS-mZ-a2I">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
@@ -538,6 +487,46 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="W7O-I8-6vS" secondAttribute="trailing" id="yCI-Ps-aAB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="keyLabel" destination="W7O-I8-6vS" id="xx1-XU-vCb"/>
+                                            <outlet property="projectStateView" destination="geN-gx-cmz" id="1di-zh-grs"/>
+                                            <outlet property="valueStateSegmentedControl" destination="3HN-gL-tnD" id="RT5-J0-YcC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ANProjectDescriptionCell" rowHeight="120" id="Pav-Nf-yEe" customClass="ANProjectDescriptionCell" customModule="Processus" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="322" width="600" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pav-Nf-yEe" id="U6K-te-NCk">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание проекта:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noc-5o-tP6">
+                                                    <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Введите описание..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bQV-yZ-KOA">
+                                                    <rect key="frame" x="8" y="37" width="584" height="74.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="leadingMargin" secondItem="bQV-yZ-KOA" secondAttribute="leading" id="68R-wJ-jdn"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="noc-5o-tP6" secondAttribute="leading" id="EWE-qg-RBj"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bQV-yZ-KOA" secondAttribute="bottom" id="GzO-C8-ioD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bQV-yZ-KOA" secondAttribute="trailing" id="OCq-cE-2bT"/>
+                                                <constraint firstAttribute="topMargin" secondItem="noc-5o-tP6" secondAttribute="top" id="bSp-Jl-5K4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="noc-5o-tP6" secondAttribute="trailing" id="dKe-FL-8hP"/>
+                                                <constraint firstItem="bQV-yZ-KOA" firstAttribute="top" secondItem="noc-5o-tP6" secondAttribute="bottom" constant="8" id="qcv-FZ-X91"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="keyLabel" destination="noc-5o-tP6" id="nWt-TW-RGT"/>
+                                            <outlet property="valueTextView" destination="bQV-yZ-KOA" id="rPT-7Y-s0Z"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -592,7 +581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJd-Kb-Sex" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2945" y="-2008"/>
+            <point key="canvasLocation" x="2133" y="-1260"/>
         </scene>
         <!--Коллеги-->
         <scene sceneID="ptE-DT-syZ">
@@ -871,7 +860,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WSA-cn-uAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="-1320"/>
+            <point key="canvasLocation" x="183" y="-1954"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QUo-99-haQ">
@@ -889,7 +878,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnh-mI-FNp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="-2008"/>
+            <point key="canvasLocation" x="1321" y="-1260"/>
         </scene>
     </scenes>
 </document>

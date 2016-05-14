@@ -10,6 +10,12 @@ import UIKit
 
 class ANProjectInfoProgressCell: UITableViewCell {
 
+    @IBOutlet weak var keyLabel: UILabel!
+    @IBOutlet weak var valueProgressSlider: UISlider!
+    
+    @IBOutlet weak var valuePercentLabel: UILabel!
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

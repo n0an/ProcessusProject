@@ -1,5 +1,5 @@
 //
-//  ANProjectInfoStateCell.swift
+//  ANProjectDescriptionCell.swift
 //  Processus
 //
 //  Created by Anton Novoselov on 14/05/16.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class ANProjectInfoStateCell: UITableViewCell {
-
+class ANProjectDescriptionCell: UITableViewCell {
     @IBOutlet weak var keyLabel: UILabel!
-    @IBOutlet weak var valueStateSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var projectStateView: UIView!
+    @IBOutlet weak var valueTextView: UITextView!
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
