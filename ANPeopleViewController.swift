@@ -11,8 +11,11 @@ import CoreData
 
 class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplayer {
     
+    // MARK: - OUTLETS
+    
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - ATTRIBUTES
     
     var myColleagues: [Person] = []
     
@@ -20,7 +23,8 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     
     private var fetchedResultsDelegate: NSFetchedResultsControllerDelegate?
 
-    
+    // MARK: - viewDidLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +80,7 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     
     
     
-    // MARK: - Actions
+    // MARK: - ACTIONS
     
     @IBAction func addColleaguePressed(sender: UIBarButtonItem) {
         
@@ -148,7 +152,7 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     }
     
     
-    // MARK: - Helper Methods
+    // MARK: - HELPER METHODS
     
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -205,7 +209,7 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     
     
     
-    // MARK: - Navigation
+    // MARK: - NAVIGATION
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

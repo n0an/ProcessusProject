@@ -10,6 +10,8 @@ import UIKit
 
 class ANPersonDetailsViewController: UITableViewController {
     
+    // MARK: - ATTRIBUTES
+    
     enum ANSectionType: Int {
         case PersonInfo = 0
         case Separator
@@ -31,6 +33,8 @@ class ANPersonDetailsViewController: UITableViewController {
     var personInfoTextFields: [UITextField] = []
     
     let personInfoLabelsPlaceholders: [(label: String, placeholder: String)] = [("Имя:", "Введите имя"), ("Фамилия:", "Введите фамилию"), ("Email:", "Введите Email"), ("Телефон:", "Введите номер телефона")]
+    
+    // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,16 +51,13 @@ class ANPersonDetailsViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        
         navigationItem.rightBarButtonItem = editButtonItem()
         
         tableView.allowsSelection = false
         
-        
-        
     }
     
-    // MARK: - Helper Methods
+    // MARK: - HELPER METHODS
     
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -71,8 +72,6 @@ class ANPersonDetailsViewController: UITableViewController {
                 $0.resignFirstResponder()
             }
         }
-        
-        
         
     }
     
@@ -269,6 +268,7 @@ class ANPersonDetailsViewController: UITableViewController {
 
 }
 
+// MARK: - UITextFieldDelegate
 
 extension ANPersonDetailsViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {

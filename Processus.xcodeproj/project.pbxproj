@@ -77,10 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				1829887B1CE5053800BC5272 /* CoreData */,
-				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
-				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
-				182988831CE733D600BC5272 /* ANPersonInfoCell.swift */,
-				182988851CE7347800BC5272 /* ANPersonProjectCell.swift */,
+				1829888A1CE751B700BC5272 /* Controllers */,
+				1829888B1CE751BF00BC5272 /* Cells */,
 				182988391CE4FA9D00BC5272 /* AppDelegate.swift */,
 				1829883D1CE4FA9D00BC5272 /* Main.storyboard */,
 				182988401CE4FA9D00BC5272 /* Assets.xcassets */,
@@ -119,6 +117,24 @@
 				1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */,
 			);
 			name = "Delegates&Protocols";
+			sourceTree = "<group>";
+		};
+		1829888A1CE751B700BC5272 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
+				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1829888B1CE751BF00BC5272 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				182988831CE733D600BC5272 /* ANPersonInfoCell.swift */,
+				182988851CE7347800BC5272 /* ANPersonProjectCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
