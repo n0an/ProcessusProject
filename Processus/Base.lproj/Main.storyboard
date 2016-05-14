@@ -72,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personInfoCell" id="qdN-dh-Q9J">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personInfoCell" id="qdN-dh-Q9J" customClass="ANPersonInfoCell" customModule="Processus" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qdN-dh-Q9J" id="19a-q9-u3V">
@@ -91,7 +91,7 @@
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9z-HE-pKM">
                                             <rect key="frame" x="126" y="7" width="466" height="30"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -104,6 +104,10 @@
                                         <constraint firstItem="uLn-M9-9r8" firstAttribute="leading" secondItem="19a-q9-u3V" secondAttribute="leading" constant="8" id="pP4-b3-gMU"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="keyLabel" destination="uLn-M9-9r8" id="PWe-dz-WBn"/>
+                                    <outlet property="valueTextField" destination="J9z-HE-pKM" id="cAk-2v-y3s"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="separatorCell" rowHeight="2" id="sAE-JK-dS5">
                                 <rect key="frame" x="0.0" y="136" width="600" height="2"/>
@@ -114,7 +118,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userProjectsCell" rowHeight="80" id="ryH-Rq-ShK">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personProjectsCell" rowHeight="80" id="ryH-Rq-ShK" customClass="ANPersonProjectCell" customModule="Processus" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="138" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ryH-Rq-ShK" id="rGj-Ge-eSh">
@@ -185,6 +189,13 @@
                                         <constraint firstItem="Ngv-zW-DAa" firstAttribute="leading" secondItem="rGj-Ge-eSh" secondAttribute="leading" constant="8" id="wSF-cL-8nR"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="completedRatioLabel" destination="MhN-QJ-Syd" id="77V-CN-jjs"/>
+                                    <outlet property="customerNameLabel" destination="Wsk-UK-i9S" id="31S-Q7-HuW"/>
+                                    <outlet property="projectDueDateLabel" destination="BrZ-e9-GOa" id="JR6-tC-uW6"/>
+                                    <outlet property="projectNameLabel" destination="Ngv-zW-DAa" id="lzv-Si-Sa3"/>
+                                    <outlet property="projectStateView" destination="tes-bv-9zd" id="6fD-n5-FAy"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -192,7 +203,9 @@
                             <outlet property="delegate" destination="Jyg-A5-1OD" id="Q2X-9B-l4O"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Person Details" id="Zr4-Ug-tBw"/>
+                    <navigationItem key="navigationItem" title="Person Details" id="Zr4-Ug-tBw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QLV-hd-kBo"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIO-X2-OsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
