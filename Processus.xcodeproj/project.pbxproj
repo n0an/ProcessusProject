@@ -29,6 +29,7 @@
 		182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */; };
 		182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */; };
 		182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */; };
+		184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoProgressCell.swift; sourceTree = "<group>"; };
 		182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoStateCell.swift; sourceTree = "<group>"; };
 		182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDescriptionCell.swift; sourceTree = "<group>"; };
+		184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNewProjectTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
 				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
 				1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */,
+				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
 				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
+				184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */,
 				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
 				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,
 				182988781CE5052F00BC5272 /* Project.swift in Sources */,
