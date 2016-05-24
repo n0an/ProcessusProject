@@ -18,6 +18,9 @@ class ANNewProjectViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    
+    
+    
     // MARK: - ATTRIBUTES
     
     enum ANSectionType: Int {

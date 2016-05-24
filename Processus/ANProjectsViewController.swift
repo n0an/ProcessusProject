@@ -22,11 +22,16 @@ class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDispl
     
     private var fetchedResultsDelegate: NSFetchedResultsControllerDelegate?
     
+    var dateFormatter: NSDateFormatter!
+
     
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
 
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -82,9 +87,10 @@ class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDispl
         
         cell.customerNameLabel.text = project.customer
         cell.projectNameLabel.text = project.name
+        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
         
         if let completedRatio = project.completedRatio?.intValue {
-            cell.completedRatioLabel.text = "\(completedRatio)"
+            cell.completedRatioLabel.text = "\(completedRatio) %"
         }
         
         var stateColor = UIColor()
