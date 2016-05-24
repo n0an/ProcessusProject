@@ -9,6 +9,15 @@
 import UIKit
 import CoreData
 
+protocol ANNewProjectTableViewControllerDelegate: class {
+    
+    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController)
+    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project)
+    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project)
+    
+}
+
+
 class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - OUTLETS
@@ -35,6 +44,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
 
     
     // MARK: - ATTRIBUTES
+    
+    weak var delegate: ANNewProjectTableViewControllerDelegate?
     
     var itemToEdit: Project?
 
@@ -78,6 +89,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     @IBAction func saveProject() {
         
+        
         if let editingProject = itemToEdit {
             
             editingProject.customer = customerTitleTextField.text
@@ -88,7 +100,9 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             editingProject.state            = stateControl.selectedSegmentIndex
             
             ANDataManager.sharedManager.saveContext()
-
+            
+            delegate?.projectDetailsVC(self, didFinishEditingItem: editingProject)
+            
         } else {
             let context = ANDataManager.sharedManager.context
             
@@ -106,6 +120,9 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             //        newProject.descript = projectInfoDescriptionTextView.text!
             
             ANDataManager.sharedManager.saveContext()
+            
+            delegate?.projectDetailsVC(self, didFinishAddingItem: newProject)
+
 
         }
         
@@ -183,7 +200,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     // MARK: - ACTIONS
     
     @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
-        
+        delegate!.projectDetailsVCDidCancel(self)
     }
     
     @IBAction func actionProgressSliderValueChanged(sender: UISlider) {

@@ -99,6 +99,7 @@
                                             <outlet property="projectDueDateLabel" destination="v9M-BX-gAv" id="FiE-lz-aP1"/>
                                             <outlet property="projectNameLabel" destination="Q6y-Ve-Tew" id="KVJ-yS-OF1"/>
                                             <outlet property="projectStateView" destination="CNw-zz-Mms" id="lvP-sF-Xoh"/>
+                                            <segue destination="ta8-OV-fSV" kind="presentation" identifier="EditItem" id="WRX-jd-ou9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -120,7 +121,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="OGp-9U-xSD">
                             <connections>
                                 <action selector="addProjectPressed:" destination="RPl-5l-sxh" id="idu-f8-geh"/>
-                                <segue destination="ta8-OV-fSV" kind="presentation" id="D0A-So-DR0"/>
+                                <segue destination="ta8-OV-fSV" kind="presentation" identifier="AddItem" id="D0A-So-DR0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -130,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9HN-CO-aoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="-574"/>
+            <point key="canvasLocation" x="2117" y="-574"/>
         </scene>
         <!--New project-->
         <scene sceneID="Xb5-65-d2e">
@@ -741,7 +742,7 @@
             </objects>
             <point key="canvasLocation" x="2133" y="135"/>
         </scene>
-        <!--Person Details-->
+        <!--Add Person-->
         <scene sceneID="0Gx-Ta-ooT">
             <objects>
                 <tableViewController id="Jyg-A5-1OD" customClass="ANPersonDetailsViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
@@ -881,7 +882,7 @@
                             <outlet property="delegate" destination="Jyg-A5-1OD" id="Q2X-9B-l4O"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Person Details" id="Zr4-Ug-tBw">
+                    <navigationItem key="navigationItem" title="Add Person" id="Zr4-Ug-tBw">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QLV-hd-kBo"/>
                     </navigationItem>
                 </tableViewController>
@@ -964,4 +965,7 @@
             <point key="canvasLocation" x="1321" y="-1260"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="WRX-jd-ou9"/>
+    </inferredMetricsTieBreakers>
 </document>
