@@ -153,7 +153,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="наименование заказчика" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khC-k9-HcW">
                                                     <rect key="frame" x="8" y="29.5" width="584" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="eqh-Dx-5DH" id="JSZ-z0-auP"/>
                                                     </connections>
@@ -186,7 +186,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="название проекта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RFh-CU-8Kl">
                                                     <rect key="frame" x="8" y="29.5" width="584" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="eqh-Dx-5DH" id="U2y-EP-2XZ"/>
                                                     </connections>
@@ -297,8 +297,11 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0aX-dV-v8b">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="0aX-dV-v8b">
                                                     <rect key="frame" x="6" y="36" width="511" height="32.5"/>
+                                                    <connections>
+                                                        <action selector="actionProgressSliderValueChanged:" destination="eqh-Dx-5DH" eventType="valueChanged" id="vEA-eH-iUb"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 %" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upI-Rx-BZ6">
                                                     <rect key="frame" x="523" y="42" width="69" height="20"/>
@@ -350,6 +353,9 @@
                                                         <segment title="Ожидание"/>
                                                         <segment title="Неактивно"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="actionStateSegmControlValueChanged:" destination="eqh-Dx-5DH" eventType="valueChanged" id="oT0-Xr-fvy"/>
+                                                    </connections>
                                                 </segmentedControl>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfY-ac-jVb">
                                                     <rect key="frame" x="572" y="30" width="20" height="20"/>
@@ -386,7 +392,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New project" id="OBx-gm-z5D">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eAL-RW-pQr"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eAL-RW-pQr">
+                            <connections>
+                                <segue destination="OpY-18-zWL" kind="unwind" identifier="unwindBackToHomeScreen" unwindAction="unwindBackToHomeScreen:" id="1wV-uA-lmk"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="Nd0-KG-hP7"/>
                     </navigationItem>
                     <connections>
@@ -395,7 +405,9 @@
                         <outlet property="datePickerCell" destination="zlX-yx-4ar" id="40d-AY-CkZ"/>
                         <outlet property="doneBarButton" destination="Nd0-KG-hP7" id="qug-ab-f3G"/>
                         <outlet property="dueDateLabel" destination="ZY0-LA-URl" id="o6a-s9-xIr"/>
+                        <outlet property="progressPercentLabel" destination="upI-Rx-BZ6" id="nVx-nF-zYD"/>
                         <outlet property="progressSlider" destination="0aX-dV-v8b" id="x2c-Ot-Vvq"/>
+                        <outlet property="projectStateView" destination="kfY-ac-jVb" id="EaA-3O-SiT"/>
                         <outlet property="projectTitleTextField" destination="RFh-CU-8Kl" id="mWX-1K-fYY"/>
                         <outlet property="shouldRemindSwitch" destination="2Rx-MZ-t1r" id="Ydn-kK-ZTI"/>
                         <outlet property="stateControl" destination="Uum-Fm-RCQ" id="hlv-iJ-mZL"/>
@@ -427,6 +439,7 @@
                         </constraints>
                     </tableViewCellContentView>
                 </tableViewCell>
+                <exit id="OpY-18-zWL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2117" y="-1260"/>
         </scene>

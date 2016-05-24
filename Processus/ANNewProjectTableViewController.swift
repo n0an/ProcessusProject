@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegate {
     
-    // MARK: - Outlets
+    // MARK: - OUTLETS
     
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -25,23 +26,58 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     @IBOutlet weak var projectTitleTextField: UITextField!
     
     @IBOutlet weak var progressSlider: UISlider!
+    @IBOutlet weak var progressPercentLabel: UILabel!
+
     
     @IBOutlet weak var stateControl: UISegmentedControl!
     
+    @IBOutlet weak var projectStateView: UIView!
+
     
+    // MARK: - ATTRIBUTES
+    
+    var itemToEdit: Project?
+
+
     var dueDate = NSDate()
     var datePickerVisible = false
     
     
+    // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateProgressLabel()
         updateDueDateLabel()
     }
 
     
-    // MARK: - Helper Methods
+    // MARK: - HELPER METHODS
+    
+    @IBAction func saveProject() {
+        
+        let context = ANDataManager.sharedManager.context
+        
+        guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
+        
+        //        newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as! Project
+        
+        newProject.customer         = customerTitleTextField.text
+        newProject.name             = projectTitleTextField.text
+        newProject.dueDate          = dueDate
+        
+        newProject.completedRatio   = progressSlider.value
+        newProject.state            = stateControl.selectedSegmentIndex
+        
+//        newProject.descript = projectInfoDescriptionTextView.text!
+        
+        ANDataManager.sharedManager.saveContext()
+        
+        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
+        
+        
+    }
     
     func showDatePicker() {
         datePickerVisible = true
@@ -76,11 +112,62 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         formatter.timeStyle = .ShortStyle
         dueDateLabel.text = formatter.stringFromDate(dueDate)
     }
+    
+    
+    func updateProgressLabel() {
+        
+        let value = progressSlider.value
+        let intVal = Int(value)
+        
+        progressPercentLabel.text = "\(intVal) %"
+        
+    }
+    
+    func updateStateView() {
+        let projectState = stateControl.selectedSegmentIndex
+        
+        var stateColor = UIColor()
+        
+        switch projectState {
+        case ANProjectState.NonActive.rawValue:
+            stateColor = UIColor.redColor()
+        case ANProjectState.Frozen.rawValue:
+            stateColor = UIColor.yellowColor()
+        case ANProjectState.Active.rawValue:
+            stateColor = UIColor.greenColor()
+        default:
+            break
+        }
+        
+        projectStateView.backgroundColor = stateColor
+    }
 
     
+    // MARK: - ACTIONS
+    
+    @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func actionProgressSliderValueChanged(sender: UISlider) {
+        
+        print("actionProgressSliderValueChanged")
+        
+        updateProgressLabel()
+        
+    }
     
     
-    @IBAction func dateChanged(datePicker: UIDatePicker) { dueDate = datePicker.date
+    @IBAction func actionStateSegmControlValueChanged(sender: UISegmentedControl) {
+        print("actionStateSegmControlValueChanged")
+        
+        updateStateView()
+        
+    }
+    
+    
+    @IBAction func dateChanged(datePicker: UIDatePicker) {
+        dueDate = datePicker.date
         updateDueDateLabel()
     }
 
