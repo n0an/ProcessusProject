@@ -47,9 +47,30 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let item = itemToEdit {
+            title = "Edit Project"
+            customerTitleTextField.text = item.customer
+            projectTitleTextField.text  = item.name
+            
+            dueDate = item.dueDate!
+            
+            //            shouldRemindSwitch.on = item.shouldRemind
+            
+            doneBarButton.enabled = true
 
+        }
+
+        updateStateView()
         updateProgressLabel()
         updateDueDateLabel()
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        customerTitleTextField.becomeFirstResponder()
     }
 
     
@@ -57,22 +78,38 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     @IBAction func saveProject() {
         
-        let context = ANDataManager.sharedManager.context
+        if let editingProject = itemToEdit {
+            
+            editingProject.customer = customerTitleTextField.text
+            editingProject.name             = projectTitleTextField.text
+            editingProject.dueDate          = dueDate
+            
+            editingProject.completedRatio   = progressSlider.value
+            editingProject.state            = stateControl.selectedSegmentIndex
+            
+            ANDataManager.sharedManager.saveContext()
+
+        } else {
+            let context = ANDataManager.sharedManager.context
+            
+            guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
+            
+            //        newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as! Project
+            
+            newProject.customer         = customerTitleTextField.text
+            newProject.name             = projectTitleTextField.text
+            newProject.dueDate          = dueDate
+            
+            newProject.completedRatio   = progressSlider.value
+            newProject.state            = stateControl.selectedSegmentIndex
+            
+            //        newProject.descript = projectInfoDescriptionTextView.text!
+            
+            ANDataManager.sharedManager.saveContext()
+
+        }
         
-        guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
         
-        //        newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as! Project
-        
-        newProject.customer         = customerTitleTextField.text
-        newProject.name             = projectTitleTextField.text
-        newProject.dueDate          = dueDate
-        
-        newProject.completedRatio   = progressSlider.value
-        newProject.state            = stateControl.selectedSegmentIndex
-        
-//        newProject.descript = projectInfoDescriptionTextView.text!
-        
-        ANDataManager.sharedManager.saveContext()
         
         performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
         
@@ -254,6 +291,17 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     func textFieldDidBeginEditing(textField: UITextField) {
         hideDatePicker()
     }
+    
+    
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let oldText: NSString = textField.text!
+        let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
+        
+        doneBarButton.enabled = (newText.length > 0)
+        return true
+    }
+
     
 
 }

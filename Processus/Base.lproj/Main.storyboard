@@ -349,9 +349,9 @@
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uum-Fm-RCQ">
                                                     <rect key="frame" x="8" y="36" width="248" height="29"/>
                                                     <segments>
-                                                        <segment title="Активно"/>
-                                                        <segment title="Ожидание"/>
                                                         <segment title="Неактивно"/>
+                                                        <segment title="Ожидание"/>
+                                                        <segment title="Активно"/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="actionStateSegmControlValueChanged:" destination="eqh-Dx-5DH" eventType="valueChanged" id="oT0-Xr-fvy"/>
@@ -397,7 +397,11 @@
                                 <segue destination="OpY-18-zWL" kind="unwind" identifier="unwindBackToHomeScreen" unwindAction="unwindBackToHomeScreen:" id="1wV-uA-lmk"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="Nd0-KG-hP7"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="Nd0-KG-hP7">
+                            <connections>
+                                <action selector="saveProject" destination="eqh-Dx-5DH" id="5F0-Vy-vxU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="customerTitleTextField" destination="khC-k9-HcW" id="yKv-Y1-lTk"/>
