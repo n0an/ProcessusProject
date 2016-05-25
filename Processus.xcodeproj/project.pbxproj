@@ -31,6 +31,7 @@
 		182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */; };
 		184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */; };
 		184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */; };
+		184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDescriptionCell.swift; sourceTree = "<group>"; };
 		184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNewProjectTableViewController.swift; sourceTree = "<group>"; };
 		184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAddPersonViewController.swift; sourceTree = "<group>"; };
+		184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonAddProjectCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				182988831CE733D600BC5272 /* ANPersonInfoCell.swift */,
+				184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */,
 				182988851CE7347800BC5272 /* ANPersonProjectCell.swift */,
 			);
 			name = PersonCell;
@@ -252,6 +255,7 @@
 				182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */,
 				182988791CE5052F00BC5272 /* Person+CoreDataProperties.swift in Sources */,
 				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
+				184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */,
 				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
 				182988891CE7398D00BC5272 /* Project+CoreDataProperties.swift in Sources */,
 				182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */,

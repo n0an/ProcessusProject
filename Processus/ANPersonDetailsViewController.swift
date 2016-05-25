@@ -19,6 +19,7 @@ class ANPersonDetailsViewController: UITableViewController {
     enum ANSectionType: Int {
         case PersonInfo = 0
         case Separator
+        case Addbutton
         case PersonProject
     }
     
@@ -57,6 +58,14 @@ class ANPersonDetailsViewController: UITableViewController {
         tableView.allowsSelection = false
         
     }
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func addButtonPressed(sender: AnyObject) {
+        print("addButtonPressed")
+        
+    }
+    
     
     // MARK: - HELPER METHODS
     
@@ -153,7 +162,7 @@ class ANPersonDetailsViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -162,6 +171,8 @@ class ANPersonDetailsViewController: UITableViewController {
         case ANSectionType.PersonInfo.rawValue:
             return 3
         case ANSectionType.Separator.rawValue:
+            return 1
+        case ANSectionType.Addbutton.rawValue:
             return 1
         case ANSectionType.PersonProject.rawValue:
             return personProjects.count
@@ -177,6 +188,7 @@ class ANPersonDetailsViewController: UITableViewController {
         let cellIdPersonInfo = "personInfoCell"
         let cellIdSeparator = "separatorCell"
         let cellIdPersonProject = "personProjectsCell"
+        let cellIdAddbutton = "ANPersonAddProjectCell"
         
         switch indexPath.section {
         case ANSectionType.PersonInfo.rawValue:
@@ -186,6 +198,10 @@ class ANPersonDetailsViewController: UITableViewController {
             
         case ANSectionType.Separator.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdSeparator, forIndexPath: indexPath)
+            return cell
+            
+        case ANSectionType.Addbutton.rawValue:
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath)
             return cell
             
         case ANSectionType.PersonProject.rawValue:
@@ -221,6 +237,8 @@ class ANPersonDetailsViewController: UITableViewController {
             return 44
         case ANSectionType.Separator.rawValue:
             return 2
+        case ANSectionType.Addbutton.rawValue:
+            return 44
         case ANSectionType.PersonProject.rawValue:
             return 80
         default:
