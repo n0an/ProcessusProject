@@ -119,6 +119,58 @@ class ANDataManager {
     }
     
     
+    func getAllObjectsForName(name: String) -> [AnyObject] {
+        
+        let request = NSFetchRequest()
+        
+        let description = NSEntityDescription()
+        description.name = name
+        
+        request.entity = description
+        
+        var resultArray: [AnyObject] = []
+        
+        do {
+            resultArray = try context.executeFetchRequest(request)
+        } catch {
+            print("error")
+        }
+        
+        return resultArray
+    }
+    
+    func printArray(array: [AnyObject]) {
+        
+        for object in array {
+            
+            if object is Person {
+                let person = object as! Person
+                print("Person: \(person.firstName)")
+            } else if object is Project {
+                let project = object as! Project
+                print("Project: \(project.customer)")
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    func showAllPeople() {
+        
+        printArray(getAllObjectsForName("Person"))
+        
+        
+    }
+    
+    func showAllProjects() {
+        printArray(getAllObjectsForName("Project"))
+    }
+    
+    
+    
+    
 }
 
 

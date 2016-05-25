@@ -39,6 +39,8 @@ class ANProjectSelectionViewController: UITableViewController {
         
         print("selectedProjects = \(selectedProjects)")
         
+        ANDataManager.sharedManager.showAllProjects()
+        
         
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "savePressed:")
@@ -79,6 +81,14 @@ class ANProjectSelectionViewController: UITableViewController {
         
         cell.projectStateView.backgroundColor = stateColor
         
+        
+        if ((person.projects?.containsObject(project)) != nil) {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.accessoryType = .None
+        }
+        
+        
     }
 
     
@@ -117,6 +127,26 @@ class ANProjectSelectionViewController: UITableViewController {
         return cell
         
         
+        
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        let project = allProjects[indexPath.row]
+        
+        
+        if ((person.projects?.containsObject(project)) != nil) {
+            person.remove(projectObject: project)
+        } else {
+            person.add(projectObject: project)
+        }
+        
+        selectedProjects = person.projects?.allObjects as! [Project]
+        
+        tableView.reloadData()
         
     }
     
