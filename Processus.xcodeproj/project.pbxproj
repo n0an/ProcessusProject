@@ -32,6 +32,7 @@
 		184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */; };
 		184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */; };
 		184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */; };
+		184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNewProjectTableViewController.swift; sourceTree = "<group>"; };
 		184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAddPersonViewController.swift; sourceTree = "<group>"; };
 		184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonAddProjectCell.swift; sourceTree = "<group>"; };
+		184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectSelectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
 				1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */,
 				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
+				184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */,
 				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
 				182988891CE7398D00BC5272 /* Project+CoreDataProperties.swift in Sources */,
+				184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */,
 				182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */,
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,

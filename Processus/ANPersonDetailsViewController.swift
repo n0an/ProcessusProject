@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum ANProjectState: Int {
     case NonActive = 0, Frozen, Active
@@ -63,6 +64,39 @@ class ANPersonDetailsViewController: UITableViewController {
     
     @IBAction func addButtonPressed(sender: AnyObject) {
         print("addButtonPressed")
+        
+        
+        let fetchRequest = NSFetchRequest(entityName: "Project")
+        let dueDateDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
+        let customerDescriptor = NSSortDescriptor(key: "customer", ascending: true)
+        
+        let context = ANDataManager.sharedManager.context
+        
+        fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
+        
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANProjectSelectionViewController") as! ANProjectSelectionViewController
+        
+        vc.person = person
+        vc.selectedProjects = personProjects
+        vc.delegate = self
+        
+        do {
+            let allProjects = try context.executeFetchRequest(fetchRequest) as! [Project]
+            
+            vc.allProjects = allProjects
+            
+            
+        } catch {
+            let error = error as NSError
+            print("Fetch non successful. error occured: \(error.localizedDescription)")
+        }
+
+        
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.presentViewController(navController, animated: true, completion: nil)
+        
+        
         
     }
     
@@ -313,6 +347,16 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
 }
 
 
+extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegate {
+    
+    
+    
+    
+    func projectSelectionDidFinish(selectedProject: [Project]) {
+        print("projectSelectionDidFinish")
+    }
+    
+}
 
 
 
