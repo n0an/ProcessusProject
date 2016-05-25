@@ -83,7 +83,7 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     // MARK: - ACTIONS
     
     @IBAction func addColleaguePressed(sender: UIBarButtonItem) {
-        
+        /*
         let addColleagueAlert = UIAlertController(title: "Добавить коллегу", message: "Введите имя, фамилию, телефон и email", preferredStyle: .Alert)
         
         addColleagueAlert.addTextFieldWithConfigurationHandler { (tField) in
@@ -148,7 +148,7 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         addColleagueAlert.addAction(cancelAction)
         
         self.presentViewController(addColleagueAlert, animated: true, completion: nil)
-        
+        */
     }
     
     

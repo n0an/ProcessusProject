@@ -30,6 +30,7 @@
 		182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */; };
 		182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */; };
 		184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */; };
+		184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoStateCell.swift; sourceTree = "<group>"; };
 		182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDescriptionCell.swift; sourceTree = "<group>"; };
 		184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNewProjectTableViewController.swift; sourceTree = "<group>"; };
+		184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAddPersonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
 				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
+				184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */,
 				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
 				1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */,
 				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
@@ -255,6 +258,7 @@
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
+				184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */,
 				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,
 				182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */,
 				1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */,
