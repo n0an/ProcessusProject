@@ -683,7 +683,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJd-Kb-Sex" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FOV-LO-ksU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3188" y="-1930"/>
+            <point key="canvasLocation" x="3228" y="-1930"/>
         </scene>
         <!--Коллеги-->
         <scene sceneID="ptE-DT-syZ">
@@ -741,7 +741,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4D-EA-ppg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2165" y="871"/>
+            <point key="canvasLocation" x="2093" y="687"/>
         </scene>
         <!--Edit coallegue-->
         <scene sceneID="0Gx-Ta-ooT">
@@ -919,7 +919,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIO-X2-OsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2997" y="871"/>
+            <point key="canvasLocation" x="2925" y="687"/>
         </scene>
         <!--Project Selection View Controller-->
         <scene sceneID="RsS-gt-fEN">
@@ -937,8 +937,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ОАО &quot;ТНК-BP&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAD-ec-m9S">
-                                            <rect key="frame" x="8" y="8" width="414" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ОАО &quot;ТНК-BP&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAD-ec-m9S">
+                                            <rect key="frame" x="8" y="8" width="322" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="glp-Mb-qPV"/>
                                             </constraints>
@@ -992,6 +992,7 @@
                                         <constraint firstItem="y9I-1h-WZD" firstAttribute="leading" secondItem="Ndd-7w-pIA" secondAttribute="leading" constant="8" id="8bx-Id-rRb"/>
                                         <constraint firstItem="a8z-ae-8Ij" firstAttribute="centerY" secondItem="Ndd-7w-pIA" secondAttribute="centerY" id="9Js-ai-o6L"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="GgQ-Aj-lwx" secondAttribute="trailing" constant="163" id="9m9-lZ-2kP"/>
+                                        <constraint firstItem="Pkv-1Q-bli" firstAttribute="leading" secondItem="iAD-ec-m9S" secondAttribute="trailing" constant="8" id="Onv-o2-qfd"/>
                                         <constraint firstItem="Pkv-1Q-bli" firstAttribute="top" secondItem="Ndd-7w-pIA" secondAttribute="topMargin" constant="-1" id="Unn-fJ-Xuh"/>
                                         <constraint firstItem="GgQ-Aj-lwx" firstAttribute="centerY" secondItem="Ndd-7w-pIA" secondAttribute="centerY" constant="3.25" id="Y7L-pk-bSJ"/>
                                         <constraint firstItem="y9I-1h-WZD" firstAttribute="top" secondItem="iAD-ec-m9S" secondAttribute="bottom" constant="4" id="l6B-29-7TY"/>
@@ -1016,7 +1017,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUW-TJ-SZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3793" y="871"/>
+            <point key="canvasLocation" x="3721" y="687"/>
         </scene>
         <!--Add coallegue-->
         <scene sceneID="ACz-xd-X1S">
@@ -1176,7 +1177,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qb-iz-Qam" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3809" y="1597"/>
+            <point key="canvasLocation" x="3737" y="1413"/>
         </scene>
         <!--Коллеги-->
         <scene sceneID="45e-Hu-cH1">
@@ -1195,7 +1196,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsZ-mi-P02" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="871"/>
+            <point key="canvasLocation" x="1281" y="687"/>
         </scene>
         <!--Проекты-->
         <scene sceneID="T2e-pA-XtM">
@@ -1268,7 +1269,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF1-Zm-98U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2997" y="1597"/>
+            <point key="canvasLocation" x="2925" y="1413"/>
         </scene>
         <!--Edit project-->
         <scene sceneID="XUh-dn-9Xq">
@@ -1570,7 +1571,7 @@
                     </tableViewCellContentView>
                 </tableViewCell>
             </objects>
-            <point key="canvasLocation" x="2997" y="176"/>
+            <point key="canvasLocation" x="4447" y="687"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
