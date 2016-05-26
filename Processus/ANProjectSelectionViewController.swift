@@ -43,7 +43,7 @@ class ANProjectSelectionViewController: UITableViewController {
         
         
         
-        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "savePressed:")
+        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
         
         self.navigationItem.rightBarButtonItem = saveButton
@@ -81,8 +81,13 @@ class ANProjectSelectionViewController: UITableViewController {
         
         cell.projectStateView.backgroundColor = stateColor
         
+        for project in person.projects! {
+            print(project.customer)
+        }
         
-        if ((person.projects?.containsObject(project)) != nil) {
+        
+        if (person.projects!.containsObject(project)) {
+            
             cell.accessoryType = .Checkmark
         } else {
             cell.accessoryType = .None
@@ -138,7 +143,7 @@ class ANProjectSelectionViewController: UITableViewController {
         let project = allProjects[indexPath.row]
         
         
-        if ((person.projects?.containsObject(project)) != nil) {
+        if (person.projects!.containsObject(project)) {
             person.remove(projectObject: project)
         } else {
             person.add(projectObject: project)
