@@ -61,7 +61,13 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         
         if let item = itemToEdit {
             title = "Edit Project"
+            
+//            print(item.customer)
+//            print(item.name)
+//            print(item.dueDate)
+            
             customerTitleTextField.text = item.customer
+            
             projectTitleTextField.text  = item.name
             
             dueDate = item.dueDate!

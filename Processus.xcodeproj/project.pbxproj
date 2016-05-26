@@ -142,13 +142,13 @@
 		1829888A1CE751B700BC5272 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				184F5FC41CF76229004DB11D /* _old */,
 				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
 				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
 				184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */,
-				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
-				1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */,
-				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
 				184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */,
+				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
+				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +181,14 @@
 				182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */,
 			);
 			name = ProjectCell;
+			sourceTree = "<group>";
+		};
+		184F5FC41CF76229004DB11D /* _old */ = {
+			isa = PBXGroup;
+			children = (
+				1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */,
+			);
+			name = _old;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -905,6 +905,7 @@
                                     <outlet property="projectDueDateLabel" destination="JeE-qf-hNJ" id="BKT-aQ-3Pe"/>
                                     <outlet property="projectNameLabel" destination="esc-yD-Cua" id="1FR-Fc-bY8"/>
                                     <outlet property="projectStateView" destination="35K-Qh-zqc" id="wiR-YU-0Xa"/>
+                                    <segue destination="ta8-OV-fSV" kind="presentation" identifier="EditProject" trigger="accessoryAction" id="igD-fS-l1a"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1272,6 +1273,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WRX-jd-ou9"/>
+        <segue reference="igD-fS-l1a"/>
     </inferredMetricsTieBreakers>
 </document>
