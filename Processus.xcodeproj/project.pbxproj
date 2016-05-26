@@ -34,6 +34,7 @@
 		184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */; };
 		184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */; };
 		184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */; };
+		184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonAddProjectCell.swift; sourceTree = "<group>"; };
 		184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectSelectionViewController.swift; sourceTree = "<group>"; };
 		184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANEditProjectTableViewController.swift; sourceTree = "<group>"; };
+		184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPeopleSelectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
 				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
 				184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */,
+				184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
 				184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */,
 				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
+				184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */,
 				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,
 				182988781CE5052F00BC5272 /* Project.swift in Sources */,
 				182988841CE733D600BC5272 /* ANPersonInfoCell.swift in Sources */,
