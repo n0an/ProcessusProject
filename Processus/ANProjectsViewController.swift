@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDisplayer {
+class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDisplayer, ANNewProjectTableViewControllerDelegate {
 
     // MARK: - OUTLETS
     
@@ -169,8 +169,70 @@ extension ANProjectsViewController: UITableViewDelegate {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
+        
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        
     }
+    
+    
+    
+    // MARK: - SEGUES
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "AddItem" {
+            
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! ANNewProjectTableViewController
+            
+            controller.delegate = self
+            
+        } else if segue.identifier == "EditItem" {
+            
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! ANNewProjectTableViewController
+            
+            controller.delegate = self
+
+            if let clickedIndexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
+                
+                controller.itemToEdit = project
+            }
+
+            
+        }
+        
+        
+    }
+    
+    
+    
+    // MARK: - ANNewProjectTableViewControllerDelegate
+
+    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
+        print("projectDetailsVCDidCancel")
+    }
+    
+    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
+        print("projectDetailsVC didFinishAddingItem")
+
+    }
+    
+    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
+        print("projectDetailsVC didFinishEditingItem")
+
+    }
+    
+    
+    
+    
     
     
     

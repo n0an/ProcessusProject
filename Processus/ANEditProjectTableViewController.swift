@@ -1,32 +1,26 @@
 //
-//  ANNewProjectTableViewController.swift
+//  ANEditProjectTableViewController.swift
 //  Processus
 //
-//  Created by Anton Novoselov on 24/05/16.
+//  Created by Anton Novoselov on 26/05/16.
 //  Copyright © 2016 Anton Novoselov. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-protocol ANNewProjectTableViewControllerDelegate: class {
+protocol ANEditProjectTableViewControllerDelegate: class {
     
-    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController)
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project)
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project)
+    func projectEditingDidEndForProject(project: Project)
     
 }
 
-
-class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegate {
+class ANEditProjectTableViewController: UITableViewController {
     
     // MARK: - OUTLETS
     
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    
-    @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var shouldRemindSwitch: UISwitch!
     @IBOutlet weak var dueDateLabel: UILabel!
     
@@ -36,7 +30,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     @IBOutlet weak var progressSlider: UISlider!
     @IBOutlet weak var progressPercentLabel: UILabel!
-
+    
     
     @IBOutlet weak var stateControl: UISegmentedControl!
     
@@ -45,14 +39,19 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - ATTRIBUTES
     
-    weak var delegate: ANNewProjectTableViewControllerDelegate?
+    var isEditingMode = false
+    
+    weak var delegate: ANEditProjectTableViewControllerDelegate?
     
     var itemToEdit: Project?
-
-
+    
     var dueDate = NSDate()
     var datePickerVisible = false
     
+    var customerName: String!
+    var projectTitle: String!
+
+
     
     // MARK: - viewDidLoad
 
@@ -61,10 +60,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         
         if let item = itemToEdit {
             title = "Edit Project"
-            
-//            print(item.customer)
-//            print(item.name)
-//            print(item.dueDate)
             
             customerTitleTextField.text = item.customer
             
@@ -75,33 +70,57 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             progressSlider.value = (item.completedRatio?.floatValue)!
             stateControl.selectedSegmentIndex = (item.state?.integerValue)!
             
-            //            shouldRemindSwitch.on = item.shouldRemind
+            // shouldRemindSwitch.on = item.shouldRemind
             
-            doneBarButton.enabled = true
+            // Saving initial credentials
+            customerName    = item.customer
+            projectTitle    = item.name
 
+            
         }
-
+        
         updateStateView()
         updateProgressLabel()
         updateDueDateLabel()
+        
+        
+        let rightButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
+        
+        tableView.userInteractionEnabled = false
+        
+        navigationItem.rightBarButtonItem = rightButton
+
+        
     }
-    
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        customerTitleTextField.becomeFirstResponder()
-    }
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
+    }
+    
+    
+    deinit {
+        
+        print("ANEditProjectTableViewController deinit")
+        
+        delegate?.projectEditingDidEndForProject(itemToEdit!)
+    }
+    
+    
     
     // MARK: - HELPER METHODS
     
-    @IBAction func saveProject() {
-        
-        
+    func resetTextFields() {
+        customerTitleTextField.text = customerName
+        projectTitleTextField.text = projectTitle
+    }
+    
+    
+
+    func save() {
         if let editingProject = itemToEdit {
             
-            editingProject.customer = customerTitleTextField.text
+            editingProject.customer         = customerTitleTextField.text
             editingProject.name             = projectTitleTextField.text
             editingProject.dueDate          = dueDate
             
@@ -110,37 +129,11 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             ANDataManager.sharedManager.saveContext()
             
-            delegate?.projectDetailsVC(self, didFinishEditingItem: editingProject)
-            
-        } else {
-            let context = ANDataManager.sharedManager.context
-            
-            guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
-            
-            //        newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as! Project
-            
-            newProject.customer         = customerTitleTextField.text
-            newProject.name             = projectTitleTextField.text
-            newProject.dueDate          = dueDate
-            
-            newProject.completedRatio   = progressSlider.value
-            newProject.state            = stateControl.selectedSegmentIndex
-            
-            //        newProject.descript = projectInfoDescriptionTextView.text!
-            
-            ANDataManager.sharedManager.saveContext()
-            
-            delegate?.projectDetailsVC(self, didFinishAddingItem: newProject)
-
-
         }
-        
-        
-        
-        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
-        
-        
     }
+    
+    
+    
     
     func showDatePicker() {
         datePickerVisible = true
@@ -204,13 +197,67 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         
         projectStateView.backgroundColor = stateColor
     }
-
+    
     
     // MARK: - ACTIONS
     
-    @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
-        delegate!.projectDetailsVCDidCancel(self)
+    func editPressed(sender: UIBarButtonItem) {
+        
+        isEditingMode = !isEditingMode
+        
+        var buttonItem: UIBarButtonSystemItem
+        
+        if isEditingMode {
+            buttonItem = .Done
+            tableView.userInteractionEnabled = true
+            
+            customerTitleTextField.becomeFirstResponder()
+
+        } else {
+            buttonItem = .Edit
+            tableView.userInteractionEnabled = false
+            
+            customerTitleTextField.resignFirstResponder()
+            projectTitleTextField.resignFirstResponder()
+            
+            hideDatePicker()
+            
+            var error = ""
+            if customerTitleTextField.text == "" {
+                error = "Customer Name"
+            } else if projectTitleTextField.text == "" {
+                error = "Project Title"
+            }
+            
+            
+            if error != "" {
+                
+                let alertController = UIAlertController(title: "Ого!", message: "Сохранение не удалось, так как поле " + error + " не заполнено", preferredStyle: .Alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+                
+                alertController.addAction(okAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                resetTextFields()
+                
+                return
+            }
+            
+            // if no error - save it!
+            save()
+            
+            
+        }
+        
+        
+        let rightButton = UIBarButtonItem(barButtonSystemItem: buttonItem, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
+        
+        navigationItem.rightBarButtonItem = rightButton
+        
     }
+    
     
     @IBAction func actionProgressSliderValueChanged(sender: UISlider) {
         
@@ -233,7 +280,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         dueDate = datePicker.date
         updateDueDateLabel()
     }
-
+    
     
     
     // MARK: - UITableViewDataSource
@@ -248,12 +295,12 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 2
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 && datePickerVisible {
@@ -289,11 +336,11 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
                 showDatePicker()
             } else {
                 hideDatePicker()
-
+                
             }
         }
     }
-
+    
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if indexPath.section == 0 && indexPath.row == 2 {
@@ -310,9 +357,37 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         }
         return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
     }
+    
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+    
+    
+}
 
 
-    // MARK: - UITextFieldDelegate
+
+
+// MARK: - UITextFieldDelegate
+
+extension ANEditProjectTableViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField === projectTitleTextField{
+            textField.resignFirstResponder()
+        } else {
+            projectTitleTextField.becomeFirstResponder()
+        }
+        
+        return false
+    }
+    
     
     func textFieldDidBeginEditing(textField: UITextField) {
         hideDatePicker()
@@ -320,17 +395,10 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let oldText: NSString = textField.text!
-        let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
-        
-        doneBarButton.enabled = (newText.length > 0)
-        return true
-    }
-
-    
-
 }
+
+
+
 
 
 

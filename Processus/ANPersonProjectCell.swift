@@ -18,6 +18,8 @@ class ANPersonProjectCell: UITableViewCell {
     
     @IBOutlet weak var projectStateView: UIView!
     
+    @IBOutlet weak var checkMark: UIView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
