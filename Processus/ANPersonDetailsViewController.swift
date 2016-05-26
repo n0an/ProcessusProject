@@ -64,16 +64,13 @@ class ANPersonDetailsViewController: UITableViewController {
         
         personProjects = person.projects?.allObjects as! [Project]
 
-//        if person.projects?.count > 0 {
-//            personProjects = person.projects?.allObjects as! [Project]
-//            
-//        }
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         navigationItem.rightBarButtonItem = editButtonItem()
         
-//        tableView.allowsSelection = false
         
     }
     
@@ -88,7 +85,14 @@ class ANPersonDetailsViewController: UITableViewController {
     @IBAction func addButtonPressed(sender: AnyObject) {
         print("addButtonPressed")
         
-        
+        transitToProjectSelection()
+    }
+    
+    
+    // MARK: - HELPER METHODS
+    
+    
+    func transitToProjectSelection() {
         let fetchRequest = NSFetchRequest(entityName: "Project")
         let dueDateDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
         let customerDescriptor = NSSortDescriptor(key: "customer", ascending: true)
@@ -113,16 +117,13 @@ class ANPersonDetailsViewController: UITableViewController {
             let error = error as NSError
             print("Fetch non successful. error occured: \(error.localizedDescription)")
         }
-
+        
         
         let navController = UINavigationController(rootViewController: vc)
         
         self.presentViewController(navController, animated: true, completion: nil)
-        
     }
     
-    
-    // MARK: - HELPER METHODS
     
     func resetTextFields() {
         
@@ -380,32 +381,20 @@ class ANPersonDetailsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
-        
+
         if indexPath.section == ANSectionType.PersonProject.rawValue {
             
-            let clickedCell = tableView.cellForRowAtIndexPath(indexPath) as! ANPersonProjectCell
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
             
+            vc.delegate = self
             
-            performSegueWithIdentifier("EditProject", sender: clickedCell)
-
+            vc.itemToEdit = personProjects[indexPath.row] as Project
+            
+            navigationController?.pushViewController(vc, animated: true)
+            
+        } else if indexPath.section == ANSectionType.Addbutton.rawValue {
+            transitToProjectSelection()
         }
-        
-
-        
-        
-        
-//        if indexPath.section == ANSectionType.PersonProject.rawValue {
-//            
-//            let vc = ANNewProjectTableViewController() as ANNewProjectTableViewController
-//            
-//            vc.delegate = self
-//            
-//            vc.itemToEdit = personProjects[indexPath.row] as Project
-//            
-//            navigationController?.pushViewController(vc, animated: true)
-//            
-//        }
         
         
     }
@@ -438,33 +427,6 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
-    
-    // MARK: - SEGUES
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "EditProject" {
-            
-            let navigationController = segue.destinationViewController as! UINavigationController
-            
-            let controller = navigationController.topViewController as! ANNewProjectTableViewController
-            
-            controller.delegate = self
-            
-            
-            
-            
-            if let clickedIndexPath = tableView.indexPathForCell(sender as! ANPersonProjectCell) {
-                guard let project = personProjects[clickedIndexPath.row] as? Project else {return}
-                
-                controller.itemToEdit = project
-            }
-            
-            
-        }
-        
-        
-    }
 
     
     
@@ -515,21 +477,13 @@ extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegat
 }
 
 
-extension ANPersonDetailsViewController: ANNewProjectTableViewControllerDelegate {
+extension ANPersonDetailsViewController: ANEditProjectTableViewControllerDelegate {
     
-    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
-        print("ANPersonDetailsViewController:  projectDetailsVCDidCancel")
+    func projectEditingDidEndForProject(project: Project) {
+        
+        tableView.reloadData()
     }
-    
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
-        print("ANPersonDetailsViewController:  didFinishAddingItem")
 
-    }
-    
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
-        print("ANPersonDetailsViewController:  didFinishEditingItem")
-
-    }
     
     
 }
