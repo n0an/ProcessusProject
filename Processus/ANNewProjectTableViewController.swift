@@ -66,6 +66,9 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             dueDate = item.dueDate!
             
+            progressSlider.value = (item.completedRatio?.floatValue)!
+            stateControl.selectedSegmentIndex = (item.state?.integerValue)!
+            
             //            shouldRemindSwitch.on = item.shouldRemind
             
             doneBarButton.enabled = true

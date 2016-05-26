@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 
-protocol ANProjectSelectionViewControllerDelegate {
+protocol ANProjectSelectionViewControllerDelegate: class {
     
-    func projectSelectionDidFinish(selectedProject: [Project])
+    func projectSelectionDidFinish(selectedProjects: [Project])
     
 }
 
@@ -26,22 +26,22 @@ class ANProjectSelectionViewController: UITableViewController {
     var person: Person!
     
     
-    var delegate: ANProjectSelectionViewControllerDelegate!
+    weak var delegate: ANProjectSelectionViewControllerDelegate!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("incoming person = \(person.firstName) \(person.lastName)")
+//        print("incoming person = \(person.firstName) \(person.lastName)")
+//        
+//        print("allProjects = \(allProjects)")
+//        
+//        print("selectedProjects = \(selectedProjects)")
+//        
+//        ANDataManager.sharedManager.showAllProjects()
         
-        print("allProjects = \(allProjects)")
-        
-        print("selectedProjects = \(selectedProjects)")
-        
-        ANDataManager.sharedManager.showAllProjects()
-        
-        
+        title = "Select Projects"
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
@@ -81,16 +81,15 @@ class ANProjectSelectionViewController: UITableViewController {
         
         cell.projectStateView.backgroundColor = stateColor
         
-        for project in person.projects! {
-            print(project.customer)
-        }
         
         
         if (person.projects!.containsObject(project)) {
             
-            cell.accessoryType = .Checkmark
+//            cell.accessoryType = .Checkmark
+            cell.checkMark.hidden = false
         } else {
-            cell.accessoryType = .None
+//            cell.accessoryType = .None
+            cell.checkMark.hidden = true
         }
         
         
@@ -103,6 +102,9 @@ class ANProjectSelectionViewController: UITableViewController {
     // MARK: - ACTIONS
     
     func savePressed(sender: UIBarButtonItem) {
+        
+        delegate.projectSelectionDidFinish(selectedProjects)
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

@@ -13,6 +13,10 @@ enum ANProjectState: Int {
     case NonActive = 0, Frozen, Active
 }
 
+protocol ANPersonDetailsVCDelegate: class {
+    func personEditingDidEndForPerson(person: Person)
+}
+
 class ANPersonDetailsViewController: UITableViewController {
     
     // MARK: - ATTRIBUTES
@@ -27,6 +31,11 @@ class ANPersonDetailsViewController: UITableViewController {
     enum ANFieldType: Int {
         case FirstName = 0, LastName, Email, PhoneNumber
     }
+    
+    var personFirstName: String!
+    var personLastName: String!
+    var personEmail: String!
+    var personPhoneNumber: String!
 
     
     var person: Person!
@@ -35,6 +44,8 @@ class ANPersonDetailsViewController: UITableViewController {
     
     var personInfoTextFields: [UITextField] = []
     
+    weak var delegate: ANPersonDetailsVCDelegate?
+    
     let personInfoLabelsPlaceholders: [(label: String, placeholder: String)] = [("Имя:", "Введите имя"), ("Фамилия:", "Введите фамилию"), ("Email:", "Введите Email"), ("Телефон:", "Введите номер телефона")]
     
     // MARK: - viewDidLoad
@@ -42,15 +53,21 @@ class ANPersonDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("incoming person = \(person.firstName) \(person.lastName)")
-        
         title = "\(person.firstName!) \(person.email!)"
         
-        if person.projects?.count > 0 {
-            personProjects = person.projects?.allObjects as! [Project]
-            
-            
-        }
+        // Saving initial credentials
+        personFirstName     = person.firstName
+        personLastName      = person.lastName
+        personEmail         = person.email
+        personPhoneNumber   = person.phoneNumber
+        
+        
+        personProjects = person.projects?.allObjects as! [Project]
+
+//        if person.projects?.count > 0 {
+//            personProjects = person.projects?.allObjects as! [Project]
+//            
+//        }
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
@@ -59,6 +76,12 @@ class ANPersonDetailsViewController: UITableViewController {
         tableView.allowsSelection = false
         
     }
+    
+    deinit {
+        print("deinit")
+    }
+    
+    
     
     // MARK: - ACTIONS
     
@@ -96,12 +119,22 @@ class ANPersonDetailsViewController: UITableViewController {
         
         self.presentViewController(navController, animated: true, completion: nil)
         
-        
-        
     }
     
     
     // MARK: - HELPER METHODS
+    
+    func resetTextFields() {
+        
+        personInfoTextFields[0].text = personFirstName
+        personInfoTextFields[1].text = personLastName
+        personInfoTextFields[2].text = personEmail
+//        personInfoTextFields[3].text = personPhoneNumber
+
+        
+    }
+    
+    
     
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -110,22 +143,78 @@ class ANPersonDetailsViewController: UITableViewController {
         
         if editing {
             personInfoTextFields.first?.becomeFirstResponder()
+            
         } else {
             
             personInfoTextFields.forEach{
                 $0.resignFirstResponder()
             }
+            
+            
+            var error = ""
+            if personInfoTextFields[0].text == "" {
+                error = "First Name"
+            } else if personInfoTextFields[1].text == "" {
+                error = "Last Name"
+            } else if personInfoTextFields[2].text == "" {
+                error = "Email"
+            }
+            
+            
+            if error != "" {
+                
+                let alertController = UIAlertController(title: "Ого!", message: "Сохранение не удалось, так как поле " + error + " не заполнено", preferredStyle: .Alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+                
+                alertController.addAction(okAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                resetTextFields()
+                
+                return
+            }
+            
+            ANDataManager.sharedManager.saveContext()
+            
         }
         
     }
+    
+    
+    
+    func actionInfoChanged(sender: UITextField) {
+        
+        switch sender.tag {
+        case ANFieldType.FirstName.rawValue:
+            person.firstName = sender.text
+        case ANFieldType.LastName.rawValue:
+            person.lastName = sender.text
+        case ANFieldType.Email.rawValue:
+            person.email = sender.text
+        case ANFieldType.PhoneNumber.rawValue:
+            person.phoneNumber = sender.text
+        default:
+            break
+        }
+        
+    }
+    
     
     func configureStandartTextField(textField: UITextField) {
         textField.returnKeyType = .Next
         textField.autocapitalizationType = .Words
         textField.keyboardType = .Default
-        personInfoTextFields.append(textField)
+        
+        textField.addTarget(self, action: #selector(ANPersonDetailsViewController.actionInfoChanged(_:)), forControlEvents: .EditingChanged)
+        
+        if !(personInfoTextFields.contains(textField)) {
+            personInfoTextFields.append(textField)
+        }
         
     }
+    
     
     func configurePersonInfoCell(cell: ANPersonInfoCell, forIndexPath indexPath: NSIndexPath) {
         
@@ -138,10 +227,12 @@ class ANPersonDetailsViewController: UITableViewController {
         case ANFieldType.FirstName.rawValue:
             cell.valueTextField.text = person.firstName
             configureStandartTextField(cell.valueTextField)
+            cell.valueTextField.tag = ANFieldType.FirstName.rawValue
             
         case ANFieldType.LastName.rawValue:
             cell.valueTextField.text = person.lastName
             configureStandartTextField(cell.valueTextField)
+            cell.valueTextField.tag = ANFieldType.LastName.rawValue
             
         case ANFieldType.Email.rawValue:
             cell.valueTextField.text = person.email
@@ -149,11 +240,13 @@ class ANPersonDetailsViewController: UITableViewController {
             cell.valueTextField.autocapitalizationType = .None
             cell.valueTextField.keyboardType = .EmailAddress
             personInfoTextFields.append(cell.valueTextField)
+            cell.valueTextField.tag = ANFieldType.Email.rawValue
             
             
         case ANFieldType.PhoneNumber.rawValue:
             // TODO: phone Field
             cell.valueTextField.text = person.phoneNumber
+            cell.valueTextField.tag = ANFieldType.PhoneNumber.rawValue
             
         default:
             break
@@ -174,7 +267,6 @@ class ANPersonDetailsViewController: UITableViewController {
             cell.completedRatioLabel.text = "\(completedRatio)"
         }
         
-        
         var stateColor = UIColor()
         
         switch project.state!.integerValue {
@@ -191,6 +283,7 @@ class ANPersonDetailsViewController: UITableViewController {
         cell.projectStateView.backgroundColor = stateColor
         
     }
+    
 
     
     // MARK: - UITableViewDataSource
@@ -198,6 +291,7 @@ class ANPersonDetailsViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
     }
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -240,7 +334,7 @@ class ANPersonDetailsViewController: UITableViewController {
             
         case ANSectionType.PersonProject.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
-            
+            configurePersonProjectCell(cell, forIndexPath: indexPath)
             return cell
         default:
             
@@ -296,17 +390,9 @@ class ANPersonDetailsViewController: UITableViewController {
             
             let project = personProjects[indexPath.row]
             
-            let tmpWorkers = project.workers as! NSMutableSet
+            person.remove(projectObject: project)
             
-            tmpWorkers.removeObject(person)
-            
-            project.workers = tmpWorkers
-            
-            if person.projects?.count > 0 {
-                personProjects = person.projects?.allObjects as! [Project]
-                
-                
-            }
+            personProjects = person.projects?.allObjects as! [Project]
             
             tableView.beginUpdates()
             
@@ -349,11 +435,15 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
 
 extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegate {
     
-    
-    
-    
-    func projectSelectionDidFinish(selectedProject: [Project]) {
+    func projectSelectionDidFinish(selectedProjects: [Project]) {
         print("projectSelectionDidFinish")
+        
+        personProjects = selectedProjects
+        
+        ANDataManager.sharedManager.saveContext()
+        
+        tableView.reloadData()
+        
     }
     
 }
