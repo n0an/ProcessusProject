@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDisplayer {
 
     // MARK: - OUTLETS
@@ -66,16 +67,6 @@ class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDispl
 
     }
     
-    // MARK: - ACTIONS
-    
-    @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
-        
-    }
-
-    @IBAction func addProjectPressed(sender: UIBarButtonItem) {
-        
-        print("addProjectPressed")
-    }
     
     // MARK: - HELPER METHODS
 
@@ -109,9 +100,20 @@ class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDispl
         cell.projectStateView.backgroundColor = stateColor
 
     }
-
-
     
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func addProjectPressed(sender: UIBarButtonItem) {
+        
+        print("addProjectPressed")
+    }
+
+
 }
 
 
@@ -125,7 +127,6 @@ extension ANProjectsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         
         guard let sections = fetchedResultsController?.sections else {return 0}
         
@@ -143,39 +144,34 @@ extension ANProjectsViewController: UITableViewDataSource {
         configureCell(cell, atIndexPath: indexPath)
         
         return cell
-        
     }
     
 }
+
 
 // MARK: - UITableViewDelegate
 
 extension ANProjectsViewController: UITableViewDelegate {
     
-    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
-        
         
         if editingStyle == .Delete {
             let context = ANDataManager.sharedManager.context
             context.deleteObject(project)
             
             ANDataManager.sharedManager.saveContext()
-            
         }
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
-        
+//        guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        
     }
     
     
@@ -195,16 +191,18 @@ extension ANProjectsViewController: UITableViewDelegate {
         } else if segue.identifier == "showProjectDetails" {
             
             
-//            let navigationController = segue.destinationViewController as! UINavigationController
+            // === Variant - go directly to ANNewProjectTableViewController, withod IntermediateVC ===
+            /*
+            let navigationController = segue.destinationViewController as! UINavigationController
             
-//            let controller = navigationController.topViewController as! ANNewProjectTableViewController
+            let controller = navigationController.topViewController as! ANNewProjectTableViewController
             
-            //            if let clickedIndexPath = tableView.indexPathForCell(sender as! ANPersonProjectCell) {
-            //                guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
-            //
-            //                controller.itemToEdit = project
-            //            }
-
+                        if let clickedIndexPath = tableView.indexPathForCell(sender as! ANPersonProjectCell) {
+                            guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
+            
+                            controller.itemToEdit = project
+                        }
+            */
             
             
             let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
@@ -231,8 +229,8 @@ extension ANProjectsViewController: UITableViewDelegate {
 // MARK: - ANProjectDetailsVCDelegate
 
 extension ANProjectsViewController: ANProjectDetailsVCDelegate {
-    func personEditingDidEndForPerson(person: Person) {
-        print("personEditingDidEndForPerson")
+    func projectEditingDidEndForProject(project: Project) {
+        print("projectEditingDidEndForProject")
     }
 }
 
@@ -243,10 +241,12 @@ extension ANProjectsViewController: ANProjectDetailsVCDelegate {
 extension ANProjectsViewController: ANNewProjectTableViewControllerDelegate {
     func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
         print("projectDetailsVCDidCancel")
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
         print("projectDetailsVC didFinishAddingItem")
+        controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
     

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol ANProjectDetailsVCDelegate: class {
-    func personEditingDidEndForPerson(person: Person)
+    func projectEditingDidEndForProject(project: Project)
 }
 
 class ANProjectDetailsViewController: UITableViewController {
@@ -23,6 +23,8 @@ class ANProjectDetailsViewController: UITableViewController {
         case Addbutton
         case Person
     }
+    
+    var isEditingMode = false
 
     var project: Project!
     
@@ -30,6 +32,8 @@ class ANProjectDetailsViewController: UITableViewController {
     
     weak var delegate: ANProjectDetailsVCDelegate?
     
+    var dateFormatter: NSDateFormatter!
+
     
     // MARK: - viewDidLoad
     
@@ -44,100 +48,32 @@ class ANProjectDetailsViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        navigationItem.rightBarButtonItem = editButtonItem()
+        let rightButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
+        
+        navigationItem.rightBarButtonItem = rightButton
+        
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
         
     }
     
-    
-    
-    // MARK: - ACTIONS
-    
-    @IBAction func addButtonPressed(sender: AnyObject) {
-        print("addButtonPressed")
-        
-        transitToParticipantsSelection()
+    deinit {
+        ANDataManager.sharedManager.saveContext()
     }
+    
     
     
     // MARK: - HELPER METHODS
-    
-    
-    func transitToParticipantsSelection() {
-        let fetchRequest = NSFetchRequest(entityName: "Person")
-        let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
-        let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
-        
-        fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
-        
-        let context = ANDataManager.sharedManager.context
-        
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPeopleSelectionViewController") as! ANPeopleSelectionViewController
-        
-        vc.project = project
-        vc.selectedPeople = projectParticipants
-        vc.delegate = self
-        
-        do {
-            let allPeople = try context.executeFetchRequest(fetchRequest) as! [Person]
-            
-            vc.allPeople = allPeople
-            
-            
-        } catch {
-            let error = error as NSError
-            print("Fetch non successful. error occured: \(error.localizedDescription)")
-        }
-        
-        
-        let navController = UINavigationController(rootViewController: vc)
-        
-        self.presentViewController(navController, animated: true, completion: nil)
-    }
-    
-    
-    override func setEditing(editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        
-        tableView.setEditing(editing, animated: true)
-        
-        ANDataManager.sharedManager.saveContext()
-        
-    }
-    
-    
-    // MARK: - UITableViewDataSource
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
-    }
-    
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch section {
-        case ANSectionType.PersonProject.rawValue:
-            return 1
-        case ANSectionType.Separator.rawValue:
-            return 1
-        case ANSectionType.Addbutton.rawValue:
-            return 1
-        case ANSectionType.Person.rawValue:
-            return projectParticipants.count
-        default:
-            break
-        }
-        
-        return 0
-    }
-    
     
     func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
         
         cell.customerNameLabel.text = project.customer
         cell.projectNameLabel.text = project.name
+        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+
         
         if let completedRatio = project.completedRatio?.intValue {
-            cell.completedRatioLabel.text = "\(completedRatio)"
+            cell.completedRatioLabel.text = "\(completedRatio) %"
         }
         
         var stateColor = UIColor()
@@ -167,9 +103,94 @@ class ANProjectDetailsViewController: UITableViewController {
         cell.textLabel?.text = "\(firstName) \(lastName)"
         
     }
-
     
-
+    func transitToParticipantsSelection() {
+        let fetchRequest = NSFetchRequest(entityName: "Person")
+        let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
+        let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
+        
+        fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
+        
+        let context = ANDataManager.sharedManager.context
+        
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPeopleSelectionViewController") as! ANPeopleSelectionViewController
+        
+        vc.project = project
+        vc.selectedPeople = projectParticipants
+        vc.delegate = self
+        
+        do {
+            let allPeople = try context.executeFetchRequest(fetchRequest) as! [Person]
+            
+            vc.allPeople = allPeople
+            
+        } catch {
+            let error = error as NSError
+            print("Fetch non successful. error occured: \(error.localizedDescription)")
+        }
+        
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.presentViewController(navController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func addButtonPressed(sender: AnyObject) {
+        print("addButtonPressed")
+        
+        transitToParticipantsSelection()
+    }
+    
+    func editPressed(sender: UIBarButtonItem) {
+        
+        tableView.setEditing(!isEditingMode, animated: true)
+        isEditingMode = !isEditingMode
+        
+        var buttonItem: UIBarButtonSystemItem
+        
+        if isEditingMode {
+            buttonItem = .Done
+            
+        } else {
+            buttonItem = .Edit
+            
+            ANDataManager.sharedManager.saveContext()
+        }
+        
+        let rightButton = UIBarButtonItem(barButtonSystemItem: buttonItem, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
+        
+        navigationItem.rightBarButtonItem = rightButton
+        
+    }
+    
+    
+    // MARK: - UITableViewDataSource
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch section {
+        case ANSectionType.PersonProject.rawValue:
+            return 1
+        case ANSectionType.Separator.rawValue:
+            return 1
+        case ANSectionType.Addbutton.rawValue:
+            return 1
+        case ANSectionType.Person.rawValue:
+            return projectParticipants.count
+        default:
+            break
+        }
+        
+        return 0
+    }
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdPersonProject = "personProjectsCell"
         let cellIdSeparator = "separatorCell"
@@ -206,7 +227,6 @@ class ANProjectDetailsViewController: UITableViewController {
     
     
     
-    
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -216,8 +236,8 @@ class ANProjectDetailsViewController: UITableViewController {
         }
         
         return UITableViewAutomaticDimension
-        
     }
+    
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
@@ -238,13 +258,11 @@ class ANProjectDetailsViewController: UITableViewController {
     }
     
     
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         
         if indexPath.section == ANSectionType.PersonProject.rawValue {
             
-            // Variant - instantiate ANEditProjectTableViewController
+            // === Variant - instantiate ANEditProjectTableViewController ===
             /*
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
             
@@ -255,9 +273,7 @@ class ANProjectDetailsViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
             */
             
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! ANPersonProjectCell
-            
-            performSegueWithIdentifier("EditItem", sender: cell)
+            performSegueWithIdentifier("EditItem", sender: self)
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue {
         
@@ -301,9 +317,7 @@ class ANProjectDetailsViewController: UITableViewController {
             
             tableView.endUpdates()
             
-            
         }
-        
     }
     
     
@@ -323,15 +337,15 @@ class ANProjectDetailsViewController: UITableViewController {
             controller.delegate = self
 
         }
-        
     }
-
-
+    
+    
 }
 
 
 
 // MARK: - ANPeopleSelectionViewControllerDelegate
+
 extension ANProjectDetailsViewController: ANPeopleSelectionViewControllerDelegate {
     
     func participantsSelectionDidFinish(selectedParticipants: [Person]) {
@@ -347,6 +361,8 @@ extension ANProjectDetailsViewController: ANPeopleSelectionViewControllerDelegat
 }
 
 
+// === Variant - instantiate ANEditProjectTableViewController ===
+/*
 // MARK: - ANEditProjectTableViewControllerDelegate
 
 extension ANProjectDetailsViewController: ANEditProjectTableViewControllerDelegate {
@@ -357,12 +373,12 @@ extension ANProjectDetailsViewController: ANEditProjectTableViewControllerDelega
     }
     
 }
-
+*/
 
 extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegate {
     
     func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
-        
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
@@ -370,7 +386,9 @@ extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegat
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
         
+        tableView.reloadData()
     }
 
 }
@@ -384,6 +402,8 @@ extension ANProjectDetailsViewController: ANPersonDetailsVCDelegate {
         projectParticipants = project.workers?.allObjects as! [Person]
         
         tableView.reloadData()
+        
+        ANDataManager.sharedManager.saveContext()
         
     }
 

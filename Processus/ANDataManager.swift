@@ -85,6 +85,8 @@ class ANDataManager {
     // MARK: - PUBLIC METHODS
     
     func saveContext () {
+        print("saveContext ()")
+
         if context.hasChanges {
             do {
                 try context.save()

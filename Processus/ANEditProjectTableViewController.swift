@@ -311,6 +311,9 @@ class ANEditProjectTableViewController: UITableViewController {
         
     }
     
+    
+    // MARK: - UITableViewDelegate
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.section == 0 && indexPath.row == 4 {
@@ -318,11 +321,9 @@ class ANEditProjectTableViewController: UITableViewController {
         } else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         }
-        
-        
     }
     
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         

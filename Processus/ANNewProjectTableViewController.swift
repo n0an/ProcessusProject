@@ -25,11 +25,9 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var shouldRemindSwitch: UISwitch!
     @IBOutlet weak var dueDateLabel: UILabel!
-    
     
     @IBOutlet weak var customerTitleTextField: UITextField!
     @IBOutlet weak var projectTitleTextField: UITextField!
@@ -37,15 +35,11 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     @IBOutlet weak var progressSlider: UISlider!
     @IBOutlet weak var progressPercentLabel: UILabel!
 
-    
     @IBOutlet weak var stateControl: UISegmentedControl!
-    
     @IBOutlet weak var projectStateView: UIView!
-    
     @IBOutlet weak var participantsCount: UILabel!
 
 
-    
     // MARK: - ATTRIBUTES
     
     enum ANSectionType: Int {
@@ -72,12 +66,10 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     var itemToEdit: Project?
 
-
     var dueDate = NSDate()
     var datePickerVisible = false
     
     var projectParticipants: [Person] = []
-    
     
     // MARK: - viewDidLoad
 
@@ -121,12 +113,10 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - HELPER METHODS
     
-    
-    
     func showDatePicker() {
         datePickerVisible = true
         
-        let indexPathDatePicker = NSIndexPath(forRow: 4, inSection: 0)
+        let indexPathDatePicker = NSIndexPath(forRow: ANGeneralRowType.DatePicker.rawValue, inSection: ANSectionType.GeneralInfo.rawValue)
         
         tableView.insertRowsAtIndexPaths([indexPathDatePicker], withRowAnimation: .Fade)
         
@@ -137,11 +127,10 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     
     func hideDatePicker() {
-        
         if datePickerVisible {
             datePickerVisible = false
             
-            let indexPathDatePicker = NSIndexPath(forRow: 4, inSection: 0)
+            let indexPathDatePicker = NSIndexPath(forRow: ANGeneralRowType.DatePicker.rawValue, inSection: ANSectionType.GeneralInfo.rawValue)
             
             dueDateLabel.textColor = UIColor.blackColor()
             
@@ -157,6 +146,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         dueDateLabel.text = formatter.stringFromDate(dueDate)
     }
     
+    
     func updateParticipantsCount() {
         
         if let item = itemToEdit {
@@ -164,7 +154,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             participantsCount.text = "\(projectParticipants.count)"
         }
-        
     }
     
     
@@ -203,10 +192,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
         let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
         
-        
         fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
 
-        
         let context = ANDataManager.sharedManager.context
         
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPeopleSelectionViewController") as! ANPeopleSelectionViewController
@@ -215,24 +202,20 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         vc.selectedPeople = projectParticipants
         vc.delegate = self
         
-        
         do {
             let allPeople = try context.executeFetchRequest(fetchRequest) as! [Person]
             
             vc.allPeople = allPeople
-            
             
         } catch {
             let error = error as NSError
             print("Fetch non successful. error occured: \(error.localizedDescription)")
         }
         
-        
         let navController = UINavigationController(rootViewController: vc)
         
         self.presentViewController(navController, animated: true, completion: nil)
     }
-
 
     
     // MARK: - ACTIONS
@@ -242,14 +225,16 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     @IBAction func cancelPressed() {
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        delegate?.projectDetailsVCDidCancel(self)
+        
     }
     
     @IBAction func saveProject() {
         
         if let editingProject = itemToEdit {
             
-            editingProject.customer = customerTitleTextField.text
+            editingProject.customer         = customerTitleTextField.text
             editingProject.name             = projectTitleTextField.text
             editingProject.dueDate          = dueDate
             
@@ -279,27 +264,16 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             delegate?.projectDetailsVC(self, didFinishAddingItem: newProject)
             
         }
-        
-        //        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
-        dismissViewControllerAnimated(true, completion: nil)
-        
-        
     }
     
+    
     @IBAction func actionProgressSliderValueChanged(sender: UISlider) {
-        
-        print("actionProgressSliderValueChanged")
-        
         updateProgressLabel()
-        
     }
     
     
     @IBAction func actionStateSegmControlValueChanged(sender: UISegmentedControl) {
-        print("actionStateSegmControlValueChanged")
-        
         updateStateView()
-        
     }
     
     
@@ -359,11 +333,9 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DueDate.rawValue {
             
             if !datePickerVisible {
-                
                 showDatePicker()
             } else {
                 hideDatePicker()
-
             }
             
         } else if indexPath.section == ANSectionType.AdditionalInfo.rawValue && indexPath.row == ANAdditionalRowType.Participants.rawValue {
@@ -373,7 +345,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             }
             
             transitToParticipantSelection()
-            
         }
     }
 
@@ -383,7 +354,14 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             return indexPath
         
         } else if indexPath.section == ANSectionType.AdditionalInfo.rawValue && indexPath.row == ANAdditionalRowType.Participants.rawValue {
-            return indexPath
+            
+            if itemToEdit != nil {
+                
+                return indexPath
+            } else {
+                return nil
+            }
+            
             
         } else {
             return nil
@@ -414,8 +392,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         doneBarButton.enabled = (newText.length > 0)
         return true
     }
-
-    
 
 }
 
