@@ -81,6 +81,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180D635F1CF8AE1000AAD93A /* Person Branch */ = {
+			isa = PBXGroup;
+			children = (
+				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
+				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
+				184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */,
+				184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */,
+			);
+			name = "Person Branch";
+			sourceTree = "<group>";
+		};
+		180D63601CF8AE1600AAD93A /* Project Branch */ = {
+			isa = PBXGroup;
+			children = (
+				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
+				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
+				184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */,
+				184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */,
+			);
+			name = "Project Branch";
+			sourceTree = "<group>";
+		};
 		1829882D1CE4FA9D00BC5272 = {
 			isa = PBXGroup;
 			children = (
@@ -147,14 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				184F5FC41CF76229004DB11D /* _old */,
-				182988711CE502BF00BC5272 /* ANPeopleViewController.swift */,
-				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
-				184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */,
-				184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */,
-				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
-				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
-				184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */,
-				184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */,
+				180D635F1CF8AE1000AAD93A /* Person Branch */,
+				180D63601CF8AE1600AAD93A /* Project Branch */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
