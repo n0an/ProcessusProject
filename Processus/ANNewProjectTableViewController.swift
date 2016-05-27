@@ -41,9 +41,32 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     @IBOutlet weak var stateControl: UISegmentedControl!
     
     @IBOutlet weak var projectStateView: UIView!
+    
+    @IBOutlet weak var participantsCount: UILabel!
+
 
     
     // MARK: - ATTRIBUTES
+    
+    enum ANSectionType: Int {
+        case GeneralInfo = 0
+        case AdditionalInfo
+    }
+    
+    enum ANGeneralRowType: Int {
+        case CustomerName = 0
+        case Title
+        case DueDate
+        case Remind
+        case DatePicker
+    }
+    
+    enum ANAdditionalRowType: Int {
+        case Participants = 0
+        case Progress
+        case Status
+    }
+    
     
     weak var delegate: ANNewProjectTableViewControllerDelegate?
     
@@ -53,6 +76,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     var dueDate = NSDate()
     var datePickerVisible = false
     
+    var projectParticipants: [Person] = []
+    
     
     // MARK: - viewDidLoad
 
@@ -61,11 +86,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         
         if let item = itemToEdit {
             title = "Edit Project"
-            
-//            print(item.customer)
-//            print(item.name)
-//            print(item.dueDate)
-            
+
             customerTitleTextField.text = item.customer
             
             projectTitleTextField.text  = item.name
@@ -75,9 +96,13 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             progressSlider.value = (item.completedRatio?.floatValue)!
             stateControl.selectedSegmentIndex = (item.state?.integerValue)!
             
-            //            shouldRemindSwitch.on = item.shouldRemind
+            // shouldRemindSwitch.on = item.shouldRemind
             
             doneBarButton.enabled = true
+            
+            projectParticipants = item.workers?.allObjects as! [Person]
+            
+            participantsCount.text = "\(projectParticipants.count)"
 
         }
 
@@ -98,7 +123,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     @IBAction func saveProject() {
         
-        
         if let editingProject = itemToEdit {
             
             editingProject.customer = customerTitleTextField.text
@@ -117,8 +141,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
             
-            //        newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as! Project
-            
             newProject.customer         = customerTitleTextField.text
             newProject.name             = projectTitleTextField.text
             newProject.dueDate          = dueDate
@@ -132,11 +154,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             delegate?.projectDetailsVC(self, didFinishAddingItem: newProject)
 
-
         }
-        
-        
-        
+
         performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
         
         
@@ -176,6 +195,16 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         dueDateLabel.text = formatter.stringFromDate(dueDate)
     }
     
+    func updateParticipantsCount() {
+        
+        if let item = itemToEdit {
+            projectParticipants = item.workers?.allObjects as! [Person]
+            
+            participantsCount.text = "\(projectParticipants.count)"
+        }
+        
+    }
+    
     
     func updateProgressLabel() {
         
@@ -204,6 +233,44 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         
         projectStateView.backgroundColor = stateColor
     }
+    
+    
+    
+    func transitToParticipantSelection() {
+        let fetchRequest = NSFetchRequest(entityName: "Person")
+        let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
+        let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
+        
+        
+        fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
+
+        
+        let context = ANDataManager.sharedManager.context
+        
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPeopleSelectionViewController") as! ANPeopleSelectionViewController
+        
+        vc.project = itemToEdit!
+        vc.selectedPeople = projectParticipants
+        vc.delegate = self
+        
+        
+        do {
+            let allPeople = try context.executeFetchRequest(fetchRequest) as! [Person]
+            
+            vc.allPeople = allPeople
+            
+            
+        } catch {
+            let error = error as NSError
+            print("Fetch non successful. error occured: \(error.localizedDescription)")
+        }
+        
+        
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.presentViewController(navController, animated: true, completion: nil)
+    }
+
 
     
     // MARK: - ACTIONS
@@ -240,7 +307,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 && indexPath.row == 4 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DatePicker.rawValue {
             return datePickerCell
         } else {
             return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -256,7 +323,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 && datePickerVisible {
+        if section == ANSectionType.GeneralInfo.rawValue && datePickerVisible {
             return 5
         } else {
             return super.tableView(tableView, numberOfRowsInSection: section)
@@ -266,7 +333,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.section == 0 && indexPath.row == 4 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DatePicker.rawValue {
             return 217
         } else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
@@ -282,7 +349,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         customerTitleTextField.resignFirstResponder()
         projectTitleTextField.resignFirstResponder()
         
-        if indexPath.section == 0 && indexPath.row == 2 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DueDate.rawValue {
             
             if !datePickerVisible {
                 
@@ -291,13 +358,26 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
                 hideDatePicker()
 
             }
+            
+        } else if indexPath.section == ANSectionType.AdditionalInfo.rawValue && indexPath.row == ANAdditionalRowType.Participants.rawValue {
+            
+            if datePickerVisible {
+                hideDatePicker()
+            }
+            
+            transitToParticipantSelection()
+            
         }
     }
 
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if indexPath.section == 0 && indexPath.row == 2 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DueDate.rawValue {
             return indexPath
+        
+        } else if indexPath.section == ANSectionType.AdditionalInfo.rawValue && indexPath.row == ANAdditionalRowType.Participants.rawValue {
+            return indexPath
+            
         } else {
             return nil
         }
@@ -305,7 +385,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     
     override func tableView(tableView: UITableView, var indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
-        if indexPath.section == 0 && indexPath.row == 4 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DatePicker.rawValue {
             indexPath = NSIndexPath(forRow: 0, inSection: indexPath.section)
         }
         return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
@@ -332,6 +412,21 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
 
 }
 
+
+// MARK: - ANPeopleSelectionViewControllerDelegate
+extension ANNewProjectTableViewController: ANPeopleSelectionViewControllerDelegate {
+    
+    func participantsSelectionDidFinish(selectedParticipants: [Person]) {
+        
+        updateParticipantsCount()
+        
+        tableView.reloadData()
+        
+        
+    }
+
+    
+}
 
 
 
