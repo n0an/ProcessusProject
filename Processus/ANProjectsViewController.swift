@@ -192,21 +192,31 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             controller.delegate = self
             
-        } else if segue.identifier == "EditItem" {
+        } else if segue.identifier == "showProjectDetails" {
             
-            let navigationController = segue.destinationViewController as! UINavigationController
             
-            let controller = navigationController.topViewController as! ANNewProjectTableViewController
+//            let navigationController = segue.destinationViewController as! UINavigationController
             
-            controller.delegate = self
+//            let controller = navigationController.topViewController as! ANNewProjectTableViewController
+            
+            //            if let clickedIndexPath = tableView.indexPathForCell(sender as! ANPersonProjectCell) {
+            //                guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
+            //
+            //                controller.itemToEdit = project
+            //            }
 
-            if let clickedIndexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
-                
-                controller.itemToEdit = project
-            }
-
             
+            
+            let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
+            
+            destinationVC.delegate = self
+            
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+            
+            guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
+            
+            destinationVC.project = project
+ 
         }
         
         
@@ -232,14 +242,14 @@ extension ANProjectsViewController: UITableViewDelegate {
     
     
     
-    
-    
-    
-    
 }
 
 
-
+extension ANProjectsViewController: ANProjectDetailsVCDelegate {
+    func personEditingDidEndForPerson(person: Person) {
+        print("personEditingDidEndForPerson")
+    }
+}
 
 
 
