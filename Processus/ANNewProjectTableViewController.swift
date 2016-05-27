@@ -121,45 +121,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - HELPER METHODS
     
-    @IBAction func saveProject() {
-        
-        if let editingProject = itemToEdit {
-            
-            editingProject.customer = customerTitleTextField.text
-            editingProject.name             = projectTitleTextField.text
-            editingProject.dueDate          = dueDate
-            
-            editingProject.completedRatio   = progressSlider.value
-            editingProject.state            = stateControl.selectedSegmentIndex
-            
-            ANDataManager.sharedManager.saveContext()
-            
-            delegate?.projectDetailsVC(self, didFinishEditingItem: editingProject)
-            
-        } else {
-            let context = ANDataManager.sharedManager.context
-            
-            guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
-            
-            newProject.customer         = customerTitleTextField.text
-            newProject.name             = projectTitleTextField.text
-            newProject.dueDate          = dueDate
-            
-            newProject.completedRatio   = progressSlider.value
-            newProject.state            = stateControl.selectedSegmentIndex
-            
-            //        newProject.descript = projectInfoDescriptionTextView.text!
-            
-            ANDataManager.sharedManager.saveContext()
-            
-            delegate?.projectDetailsVC(self, didFinishAddingItem: newProject)
-
-        }
-
-        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
-        
-        
-    }
+    
     
     func showDatePicker() {
         datePickerVisible = true
@@ -277,6 +239,51 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
         delegate!.projectDetailsVCDidCancel(self)
+    }
+    
+    @IBAction func cancelPressed() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func saveProject() {
+        
+        if let editingProject = itemToEdit {
+            
+            editingProject.customer = customerTitleTextField.text
+            editingProject.name             = projectTitleTextField.text
+            editingProject.dueDate          = dueDate
+            
+            editingProject.completedRatio   = progressSlider.value
+            editingProject.state            = stateControl.selectedSegmentIndex
+            
+            ANDataManager.sharedManager.saveContext()
+            
+            delegate?.projectDetailsVC(self, didFinishEditingItem: editingProject)
+            
+        } else {
+            let context = ANDataManager.sharedManager.context
+            
+            guard let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as? Project else {return}
+            
+            newProject.customer         = customerTitleTextField.text
+            newProject.name             = projectTitleTextField.text
+            newProject.dueDate          = dueDate
+            
+            newProject.completedRatio   = progressSlider.value
+            newProject.state            = stateControl.selectedSegmentIndex
+            
+            //        newProject.descript = projectInfoDescriptionTextView.text!
+            
+            ANDataManager.sharedManager.saveContext()
+            
+            delegate?.projectDetailsVC(self, didFinishAddingItem: newProject)
+            
+        }
+        
+        //        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        
     }
     
     @IBAction func actionProgressSliderValueChanged(sender: UISlider) {

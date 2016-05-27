@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */; };
 		1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988391CE4FA9D00BC5272 /* AppDelegate.swift */; };
 		1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1829883D1CE4FA9D00BC5272 /* Main.storyboard */; };
 		182988411CE4FA9D00BC5272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182988401CE4FA9D00BC5272 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDetailsViewController.swift; sourceTree = "<group>"; };
 		182988361CE4FA9D00BC5272 /* Processus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Processus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182988391CE4FA9D00BC5272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1829883E1CE4FA9D00BC5272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
+				180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */,
 				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
 				184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */,
 				184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */,
@@ -305,6 +308,7 @@
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
 				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
 				184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */,
+				180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */,
 				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
 				184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */,
 				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,

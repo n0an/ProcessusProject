@@ -76,6 +76,7 @@ class ANPersonDetailsViewController: UITableViewController {
     
     deinit {
         print("deinit")
+        delegate?.personEditingDidEndForPerson(person)
     }
     
     
@@ -459,7 +460,7 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
 
 
 
-// MARK: - ANNewProjectTableViewControllerDelegate
+// MARK: - ANProjectSelectionViewControllerDelegate
 
 extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegate {
     
@@ -476,6 +477,8 @@ extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegat
     
 }
 
+
+// MARK: - ANEditProjectTableViewControllerDelegate
 
 extension ANPersonDetailsViewController: ANEditProjectTableViewControllerDelegate {
     
