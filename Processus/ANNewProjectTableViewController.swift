@@ -68,8 +68,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     
-
-    
     weak var delegate: ANNewProjectTableViewControllerDelegate?
     
     var itemToEdit: Project?
@@ -102,10 +100,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             doneBarButton.enabled = true
             
-            
             projectParticipants = item.workers?.allObjects as! [Person]
-            
-//            let partCount = item.workers?.count
             
             participantsCount.text = "\(projectParticipants.count)"
 
@@ -200,6 +195,16 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         dueDateLabel.text = formatter.stringFromDate(dueDate)
     }
     
+    func updateParticipantsCount() {
+        
+        if let item = itemToEdit {
+            projectParticipants = item.workers?.allObjects as! [Person]
+            
+            participantsCount.text = "\(projectParticipants.count)"
+        }
+        
+    }
+    
     
     func updateProgressLabel() {
         
@@ -246,7 +251,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         
         vc.project = itemToEdit!
         vc.selectedPeople = projectParticipants
-//        vc.delegate = self
+        vc.delegate = self
         
         
         do {
@@ -360,7 +365,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
                 hideDatePicker()
             }
             
-            print("test")
+            transitToParticipantSelection()
             
         }
     }
@@ -408,9 +413,12 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
 }
 
 
-extension ANNewProjectViewController: ANPeopleSelectionViewControllerDelegate {
+// MARK: - ANPeopleSelectionViewControllerDelegate
+extension ANNewProjectTableViewController: ANPeopleSelectionViewControllerDelegate {
     
     func participantsSelectionDidFinish(selectedParticipants: [Person]) {
+        
+        updateParticipantsCount()
         
         tableView.reloadData()
         
