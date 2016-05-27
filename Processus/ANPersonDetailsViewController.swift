@@ -76,6 +76,7 @@ class ANPersonDetailsViewController: UITableViewController {
     
     deinit {
         print("deinit")
+        delegate?.personEditingDidEndForPerson(person)
     }
     
     

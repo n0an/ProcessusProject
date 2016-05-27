@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDisplayer, ANNewProjectTableViewControllerDelegate {
+class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDisplayer {
 
     // MARK: - OUTLETS
     
@@ -224,26 +224,11 @@ extension ANProjectsViewController: UITableViewDelegate {
     
     
     
-    // MARK: - ANNewProjectTableViewControllerDelegate
-
-    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
-        print("projectDetailsVCDidCancel")
-    }
-    
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
-        print("projectDetailsVC didFinishAddingItem")
-
-    }
-    
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
-        print("projectDetailsVC didFinishEditingItem")
-
-    }
-    
-    
-    
 }
 
+
+
+// MARK: - ANProjectDetailsVCDelegate
 
 extension ANProjectsViewController: ANProjectDetailsVCDelegate {
     func personEditingDidEndForPerson(person: Person) {
@@ -251,6 +236,25 @@ extension ANProjectsViewController: ANProjectDetailsVCDelegate {
     }
 }
 
+
+
+// MARK: - ANNewProjectTableViewControllerDelegate
+
+extension ANProjectsViewController: ANNewProjectTableViewControllerDelegate {
+    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
+        print("projectDetailsVCDidCancel")
+    }
+    
+    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
+        print("projectDetailsVC didFinishAddingItem")
+        
+    }
+    
+    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
+        print("projectDetailsVC didFinishEditingItem")
+        
+    }
+}
 
 
 

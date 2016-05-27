@@ -261,10 +261,19 @@ class ANProjectDetailsViewController: UITableViewController {
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue {
         
-        
             transitToParticipantsSelection()
+            
+        } else if indexPath.section == ANSectionType.Person.rawValue {
+            
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPersonDetailsViewController") as! ANPersonDetailsViewController
+            
+            vc.person = projectParticipants[indexPath.row] as Person
+            
+            vc.delegate = self
+            
+            navigationController?.pushViewController(vc, animated: true)
+            
         }
-        
         
     }
     
@@ -335,7 +344,6 @@ extension ANProjectDetailsViewController: ANPeopleSelectionViewControllerDelegat
         
     }
     
-    
 }
 
 
@@ -347,8 +355,6 @@ extension ANProjectDetailsViewController: ANEditProjectTableViewControllerDelega
         
         tableView.reloadData()
     }
-    
-    
     
 }
 
@@ -367,13 +373,21 @@ extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegat
         
     }
 
-    
-    
-    
 }
 
 
 
+extension ANProjectDetailsViewController: ANPersonDetailsVCDelegate {
+    
+    func personEditingDidEndForPerson(person: Person) {
+        
+        projectParticipants = project.workers?.allObjects as! [Person]
+        
+        tableView.reloadData()
+        
+    }
+
+}
 
 
 
