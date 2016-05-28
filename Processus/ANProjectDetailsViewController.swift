@@ -388,6 +388,8 @@ extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegat
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
+        projectParticipants = project.workers?.allObjects as! [Person]
+        
         tableView.reloadData()
     }
 
