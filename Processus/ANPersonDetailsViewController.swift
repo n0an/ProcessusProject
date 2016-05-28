@@ -17,7 +17,8 @@ protocol ANPersonDetailsVCDelegate: class {
     func personEditingDidEndForPerson(person: Person)
 }
 
-class ANPersonDetailsViewController: UITableViewController {
+class ANPersonDetailsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     
     // MARK: - ATTRIBUTES
     
@@ -36,6 +37,11 @@ class ANPersonDetailsViewController: UITableViewController {
     var personLastName: String!
     var personEmail: String!
     var personPhoneNumber: String!
+    
+    var newPersonFirstName: String!
+    var newPersonLastName: String!
+    var newPersonEmail: String!
+    var newPersonPhoneNumber: String!
 
     var dateFormatter: NSDateFormatter!
     
@@ -43,11 +49,7 @@ class ANPersonDetailsViewController: UITableViewController {
     
     var personProjects: [Project] = []
     
-    var personInfoTextFields: [UITextField] = []
-    
     weak var delegate: ANPersonDetailsVCDelegate?
-    
-    let personInfoLabelsPlaceholders: [(label: String, placeholder: String)] = [("Имя:", "Введите имя"), ("Фамилия:", "Введите фамилию"), ("Email:", "Введите Email"), ("Телефон:", "Введите номер телефона")]
     
     // MARK: - viewDidLoad
 
@@ -62,6 +64,11 @@ class ANPersonDetailsViewController: UITableViewController {
         personEmail         = person.email
         personPhoneNumber   = person.phoneNumber
         
+        newPersonFirstName     = person.firstName
+        newPersonLastName      = person.lastName
+        newPersonEmail         = person.email
+        newPersonPhoneNumber   = person.phoneNumber
+        
         personProjects = person.projects?.allObjects as! [Project]
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
@@ -72,6 +79,8 @@ class ANPersonDetailsViewController: UITableViewController {
         
         dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY"
+        
+
     }
     
     deinit {
@@ -79,15 +88,6 @@ class ANPersonDetailsViewController: UITableViewController {
         delegate?.personEditingDidEndForPerson(person)
     }
     
-    
-    
-    // MARK: - ACTIONS
-    
-    @IBAction func addButtonPressed(sender: AnyObject) {
-        print("addButtonPressed")
-        
-        transitToProjectSelection()
-    }
     
     
     // MARK: - HELPER METHODS
@@ -125,34 +125,41 @@ class ANPersonDetailsViewController: UITableViewController {
     
     func resetTextFields() {
         
-        personInfoTextFields[0].text = personFirstName
-        personInfoTextFields[1].text = personLastName
-        personInfoTextFields[2].text = personEmail
-//        personInfoTextFields[3].text = personPhoneNumber
+        let indexP = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        
+        cell.textFields[0].text = personFirstName
+        cell.textFields[1].text = personLastName
+        cell.textFields[2].text = personEmail
+//        cell.textFields[3].text = personPhoneNumber
 
     }
     
     
+    // Saving Context
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
         tableView.setEditing(editing, animated: true)
         
+        let indexP = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        
         if editing {
-            personInfoTextFields.first?.becomeFirstResponder()
+            cell.textFields.first?.becomeFirstResponder()
             
         } else {
             
-            personInfoTextFields.forEach{
+            cell.textFields.forEach{
                 $0.resignFirstResponder()
             }
             
             var error = ""
-            if personInfoTextFields[0].text == "" {
+            if cell.textFields[0].text == "" {
                 error = "First Name"
-            } else if personInfoTextFields[1].text == "" {
+            } else if cell.textFields[1].text == "" {
                 error = "Last Name"
-            } else if personInfoTextFields[2].text == "" {
+            } else if cell.textFields[2].text == "" {
                 error = "Email"
             }
             
@@ -171,82 +178,55 @@ class ANPersonDetailsViewController: UITableViewController {
                 return
             }
             
+            person.firstName = newPersonFirstName
+            person.lastName = newPersonLastName
+            person.email = newPersonEmail
+            person.phoneNumber = newPersonPhoneNumber
+            
             ANDataManager.sharedManager.saveContext()
             
         }
         
     }
     
-    
-    func actionInfoChanged(sender: UITextField) {
+    func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
         
-        switch sender.tag {
-        case ANFieldType.FirstName.rawValue:
-            person.firstName = sender.text
-        case ANFieldType.LastName.rawValue:
-            person.lastName = sender.text
-        case ANFieldType.Email.rawValue:
-            person.email = sender.text
-        case ANFieldType.PhoneNumber.rawValue:
-            person.phoneNumber = sender.text
-        default:
-            break
+        var illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
+        
+        let currentString = textField.text! as NSString
+        
+        let newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString)
+        
+        if currentString.length == 0 && replacementString == "@" {
+            return false
         }
         
-    }
-    
-    
-    func configureStandartTextField(textField: UITextField) {
-        textField.returnKeyType = .Next
-        textField.autocapitalizationType = .Words
-        textField.keyboardType = .Default
-        
-        textField.addTarget(self, action: #selector(ANPersonDetailsViewController.actionInfoChanged(_:)), forControlEvents: .EditingChanged)
-        
-        if !(personInfoTextFields.contains(textField)) {
-            personInfoTextFields.append(textField)
+        if currentString .containsString("@") {
+            illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
+        }
+        let components = replacementString.componentsSeparatedByCharactersInSet(illegalCharactersSet)
+        if components.count > 1 {
+            return false
         }
         
+        return newString.characters.count <= 40
     }
+    
     
     
     func configurePersonInfoCell(cell: ANPersonInfoCell, forIndexPath indexPath: NSIndexPath) {
-        
-        let labelPlaceholder = personInfoLabelsPlaceholders[indexPath.row]
-        
-        cell.keyLabel.text = labelPlaceholder.label
-        cell.valueTextField.placeholder = labelPlaceholder.placeholder
 
-        switch indexPath.row {
-        case ANFieldType.FirstName.rawValue:
-            cell.valueTextField.text = person.firstName
-            configureStandartTextField(cell.valueTextField)
-            cell.valueTextField.tag = ANFieldType.FirstName.rawValue
-            
-        case ANFieldType.LastName.rawValue:
-            cell.valueTextField.text = person.lastName
-            configureStandartTextField(cell.valueTextField)
-            cell.valueTextField.tag = ANFieldType.LastName.rawValue
-            
-        case ANFieldType.Email.rawValue:
-            cell.valueTextField.text = person.email
-            cell.valueTextField.returnKeyType = .Done
-            cell.valueTextField.autocapitalizationType = .None
-            cell.valueTextField.keyboardType = .EmailAddress
-            personInfoTextFields.append(cell.valueTextField)
-            cell.valueTextField.tag = ANFieldType.Email.rawValue
-            
-            
-        case ANFieldType.PhoneNumber.rawValue:
-            // TODO: phone Field
-            cell.valueTextField.text = person.phoneNumber
-            cell.valueTextField.tag = ANFieldType.PhoneNumber.rawValue
-            
-        default:
-            break
-        }
+        cell.firstNameTextField.text = person.firstName
+        cell.lastNameTextField.text = person.lastName
+        cell.emailTextField.text = person.email
+        cell.phoneNumberTextField.text = person.phoneNumber
         
-        cell.valueTextField.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ANAddPersonViewController.avatarImageViewTapped(_:)))
+        
+        cell.avatarImageView.userInteractionEnabled = true
+        
+        cell.avatarImageView.addGestureRecognizer(tapGesture)
+
         
     }
     
@@ -280,6 +260,53 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func addButtonPressed(sender: AnyObject) {
+        print("addButtonPressed")
+        
+        transitToProjectSelection()
+    }
+    
+    
+    @IBAction func actionInfoChanged(sender: UITextField) {
+        
+        switch sender.tag {
+        case ANFieldType.FirstName.rawValue:
+            newPersonFirstName = sender.text
+
+        case ANFieldType.LastName.rawValue:
+            newPersonLastName = sender.text
+
+        case ANFieldType.Email.rawValue:
+            newPersonEmail = sender.text
+
+        case ANFieldType.PhoneNumber.rawValue:
+            newPersonPhoneNumber = sender.text
+
+        default:
+            break
+        }
+        
+    }
+    
+    func avatarImageViewTapped(sender: UITapGestureRecognizer) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .PhotoLibrary
+            
+            imagePicker.delegate = self
+            
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+            
+        }
+    }
+
+    
+
 
     
     // MARK: - UITableViewDataSource
@@ -293,7 +320,7 @@ class ANPersonDetailsViewController: UITableViewController {
         
         switch section {
         case ANSectionType.PersonInfo.rawValue:
-            return 3
+            return 1
         case ANSectionType.Separator.rawValue:
             return 1
         case ANSectionType.Addbutton.rawValue:
@@ -348,6 +375,8 @@ class ANPersonDetailsViewController: UITableViewController {
         
         if indexPath.section == ANSectionType.Separator.rawValue {
             return 2
+        } else if indexPath.section == ANSectionType.PersonInfo.rawValue {
+            return 160
         }
         
         return UITableViewAutomaticDimension
@@ -358,7 +387,7 @@ class ANPersonDetailsViewController: UITableViewController {
         
         switch indexPath.section {
         case ANSectionType.PersonInfo.rawValue:
-            return 44
+            return 160
         case ANSectionType.Separator.rawValue:
             return 2
         case ANSectionType.Addbutton.rawValue:
@@ -376,7 +405,6 @@ class ANPersonDetailsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-
         if indexPath.section == ANSectionType.PersonProject.rawValue {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
@@ -422,6 +450,25 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let indexP = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        
+        cell.avatarImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        cell.avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        cell.avatarImageView.clipsToBounds = true
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - UINavigationControllerDelegate
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        //        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
+    
 
 }
 
@@ -433,19 +480,33 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField === personInfoTextFields.last{
+        
+        let indexP = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        
+        if textField === cell.textFields.last{
             
             textField.resignFirstResponder()
             
         } else {
-            let index = personInfoTextFields.indexOf(textField)
-            let textField = personInfoTextFields[index! + 1]
+            let index = cell.textFields.indexOf(textField)
+            let textField = cell.textFields[index! + 1]
             textField.becomeFirstResponder()
             
         }
         
         return false
     }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField.tag == ANFieldType.Email.rawValue {
+            return handleEmailTextField(textField, inRange: range, withReplacementString: string)
+        }
+        
+        return true
+    }
+
     
 }
 
