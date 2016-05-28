@@ -753,7 +753,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANPersonCell" id="eUN-jI-IyQ" customClass="ANPersonCell" customModule="Processus" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANPersonCell" rowHeight="70" id="eUN-jI-IyQ" customClass="ANPersonCell" customModule="Processus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eUN-jI-IyQ" id="GTw-lc-Pw3">
@@ -774,24 +774,35 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anton Novoselov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YY7-qi-N6V">
-                                                    <rect key="frame" x="66" y="10" width="501" height="20"/>
+                                                    <rect key="frame" x="66" y="17" width="501" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects count: 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngE-CG-W2N">
-                                                    <rect key="frame" x="66" y="38" width="501" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects count:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngE-CG-W2N">
+                                                    <rect key="frame" x="66" y="43" width="91" height="17"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBS-Ox-SUG">
+                                                    <rect key="frame" x="165" y="43" width="66" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="66" id="ghY-lg-8kk"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="sBS-Ox-SUG" firstAttribute="centerY" secondItem="ngE-CG-W2N" secondAttribute="centerY" id="Kib-3q-5hI"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="a7U-02-hia" secondAttribute="leading" id="WEo-D4-Nbb"/>
+                                                <constraint firstItem="sBS-Ox-SUG" firstAttribute="leading" secondItem="ngE-CG-W2N" secondAttribute="trailing" constant="8" id="YLu-aJ-NsT"/>
                                                 <constraint firstItem="YY7-qi-N6V" firstAttribute="leading" secondItem="a7U-02-hia" secondAttribute="trailing" constant="8" id="fmG-h7-s64"/>
                                                 <constraint firstItem="ngE-CG-W2N" firstAttribute="leading" secondItem="a7U-02-hia" secondAttribute="trailing" constant="8" id="lFN-b5-xg3"/>
-                                                <constraint firstItem="ngE-CG-W2N" firstAttribute="top" secondItem="YY7-qi-N6V" secondAttribute="bottom" constant="8" id="mZj-da-4B9"/>
-                                                <constraint firstItem="YY7-qi-N6V" firstAttribute="top" secondItem="GTw-lc-Pw3" secondAttribute="topMargin" constant="2" id="rHI-Ka-N7y"/>
+                                                <constraint firstItem="ngE-CG-W2N" firstAttribute="top" secondItem="YY7-qi-N6V" secondAttribute="bottom" constant="6" id="mZj-da-4B9"/>
+                                                <constraint firstItem="YY7-qi-N6V" firstAttribute="top" secondItem="GTw-lc-Pw3" secondAttribute="topMargin" constant="9" id="rHI-Ka-N7y"/>
                                                 <constraint firstItem="a7U-02-hia" firstAttribute="centerY" secondItem="GTw-lc-Pw3" secondAttribute="centerY" id="zLy-zf-9Up"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -799,10 +810,15 @@
                                             <constraint firstAttribute="trailing" secondItem="ngE-CG-W2N" secondAttribute="trailing" constant="33" id="NR0-MM-ORe"/>
                                             <constraint firstAttribute="trailing" secondItem="YY7-qi-N6V" secondAttribute="trailing" constant="33" id="wGa-ri-yBP"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="NR0-MM-ORe"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="avatarImageView" destination="a7U-02-hia" id="UMF-BQ-eUQ"/>
                                             <outlet property="fullNameLabel" destination="YY7-qi-N6V" id="PnO-OH-hqg"/>
-                                            <outlet property="projectsCountLabel" destination="ngE-CG-W2N" id="56B-az-4bi"/>
+                                            <outlet property="projectsCountLabel" destination="sBS-Ox-SUG" id="wqv-Bt-oxG"/>
                                             <segue destination="Jyg-A5-1OD" kind="show" identifier="showPersonDetails" id="1DK-mn-alL"/>
                                         </connections>
                                     </tableViewCell>
