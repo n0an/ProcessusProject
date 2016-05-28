@@ -1427,7 +1427,7 @@
         <scene sceneID="45e-Hu-cH1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pQi-Yx-vn5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Коллеги" id="J2s-zG-Yy2"/>
+                    <tabBarItem key="tabBarItem" title="Коллеги" image="tab_people" id="J2s-zG-Yy2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uRP-Ot-GC2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1446,7 +1446,7 @@
         <scene sceneID="T2e-pA-XtM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FHh-uF-bXr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Проекты" id="VNE-sT-rk7"/>
+                    <tabBarItem key="tabBarItem" title="Проекты" image="tab_projects4" id="VNE-sT-rk7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="25d-H7-Mv8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2351,4 +2351,8 @@
             <point key="canvasLocation" x="3013" y="-1614"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab_people" width="31" height="24"/>
+        <image name="tab_projects4" width="23" height="24"/>
+    </resources>
 </document>
