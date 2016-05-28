@@ -98,14 +98,22 @@ class ANProjectDetailsViewController: UITableViewController {
         
     }
     
-    func configurePersonCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configurePersonCell(cell: ANPersonCell, atIndexPath indexPath: NSIndexPath) {
         
         let person = projectParticipants[indexPath.row]
         
         guard let firstName = person.firstName else {return}
         guard let lastName = person.lastName else {return}
         
-        cell.textLabel?.text = "\(firstName) \(lastName)"
+        if let imageData = person.image {
+            cell.avatarImageView.image = UIImage(data: imageData)
+        }
+        
+        if let projectsCount = person.projects?.allObjects.count {
+            cell.projectsCountLabel.text = "\(projectsCount)"
+        }
+        
+        cell.fullNameLabel.text = "\(firstName) \(lastName)"
         
     }
     
@@ -200,7 +208,7 @@ class ANProjectDetailsViewController: UITableViewController {
         let cellIdPersonProject = "personProjectsCell"
         let cellIdSeparator = "separatorCell"
         let cellIdAddbutton = "AddCell"
-        let cellIdPerson = "PersonCell"
+        let cellIdPerson = "ANPersonCell"
         
         switch indexPath.section {
         case ANSectionType.PersonProject.rawValue:
@@ -217,7 +225,7 @@ class ANProjectDetailsViewController: UITableViewController {
             return cell
             
         case ANSectionType.Person.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)  as! ANPersonCell
             configurePersonCell(cell, atIndexPath: indexPath)
             return cell
             
@@ -238,6 +246,8 @@ class ANProjectDetailsViewController: UITableViewController {
         
         if indexPath.section == ANSectionType.Separator.rawValue {
             return 2
+        } else if indexPath.section == ANSectionType.Person.rawValue {
+            return 70
         }
         
         return UITableViewAutomaticDimension
@@ -254,7 +264,7 @@ class ANProjectDetailsViewController: UITableViewController {
         case ANSectionType.Addbutton.rawValue:
             return 44
         case ANSectionType.Person.rawValue:
-            return 44
+            return 70
         default:
             break
             

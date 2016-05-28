@@ -2136,13 +2136,73 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonCell" id="7sg-Sg-ygS">
-                                <rect key="frame" x="0.0" y="218" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANPersonCell" rowHeight="70" id="wle-FM-CHc" customClass="ANPersonCell" customModule="Processus" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="218" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sg-Sg-ygS" id="0Er-a7-79y">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wle-FM-CHc" id="FXJ-6h-FNO">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImage2" translatesAutoresizingMaskIntoConstraints="NO" id="bwu-a0-WEo">
+                                            <rect key="frame" x="8" y="10" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="GdM-pW-9tw"/>
+                                                <constraint firstAttribute="height" constant="50" id="ueC-k2-PB5"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="25"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anton Novoselov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOa-CQ-fMb">
+                                            <rect key="frame" x="66" y="17" width="501" height="20"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects count:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yX-GA-Yjq">
+                                            <rect key="frame" x="66" y="43" width="91" height="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP7-qy-Rs1">
+                                            <rect key="frame" x="165" y="43" width="66" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="66" id="dlc-0I-is6"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6yX-GA-Yjq" firstAttribute="top" secondItem="qOa-CQ-fMb" secondAttribute="bottom" constant="6" id="QlI-3z-ebL"/>
+                                        <constraint firstItem="BP7-qy-Rs1" firstAttribute="leading" secondItem="6yX-GA-Yjq" secondAttribute="trailing" constant="8" id="Vao-TV-a7n"/>
+                                        <constraint firstItem="qOa-CQ-fMb" firstAttribute="leading" secondItem="bwu-a0-WEo" secondAttribute="trailing" constant="8" id="ZpO-l7-Yif"/>
+                                        <constraint firstItem="6yX-GA-Yjq" firstAttribute="leading" secondItem="bwu-a0-WEo" secondAttribute="trailing" constant="8" id="eYf-IM-GGe"/>
+                                        <constraint firstItem="BP7-qy-Rs1" firstAttribute="centerY" secondItem="6yX-GA-Yjq" secondAttribute="centerY" id="hmW-E7-2M8"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="bwu-a0-WEo" secondAttribute="leading" id="rr2-TO-Fo6"/>
+                                        <constraint firstItem="bwu-a0-WEo" firstAttribute="centerY" secondItem="FXJ-6h-FNO" secondAttribute="centerY" id="tgf-wQ-Aiv"/>
+                                        <constraint firstItem="qOa-CQ-fMb" firstAttribute="top" secondItem="FXJ-6h-FNO" secondAttribute="topMargin" constant="9" id="xI3-Qg-QIe"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6yX-GA-Yjq" secondAttribute="trailing" constant="33" id="FIp-H3-l4e"/>
+                                    <constraint firstAttribute="trailing" secondItem="qOa-CQ-fMb" secondAttribute="trailing" constant="33" id="X3N-jf-SXr"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FIp-H3-l4e"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="avatarImageView" destination="bwu-a0-WEo" id="pa5-ly-bTg"/>
+                                    <outlet property="fullNameLabel" destination="qOa-CQ-fMb" id="21P-uK-jIc"/>
+                                    <outlet property="projectsCountLabel" destination="BP7-qy-Rs1" id="NP2-Cb-ArJ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

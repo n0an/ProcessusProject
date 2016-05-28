@@ -436,7 +436,16 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         hideDatePicker()
     }
     
-    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField === projectTitleTextField{
+            textField.resignFirstResponder()
+        } else {
+            projectTitleTextField.becomeFirstResponder()
+        }
+        
+        return false
+    }
+
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let oldText: NSString = textField.text!
