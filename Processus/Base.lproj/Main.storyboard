@@ -820,7 +820,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bDq-y7-uzG">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImage2" translatesAutoresizingMaskIntoConstraints="NO" id="bDq-y7-uzG">
                                             <rect key="frame" x="8" y="7" width="64" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="64" id="GuX-c9-VbA"/>
@@ -1211,19 +1211,14 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sTL-h6-321">
-                                                    <rect key="frame" x="8" y="7" width="64" height="64"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="0qQ-4I-kdP"/>
-                                                        <constraint firstAttribute="width" constant="64" id="XTq-DS-fDH"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="32"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NhO-Mz-4EQ">
+                                                    <rect key="frame" x="198" y="5" width="394" height="30"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="x3j-vE-Wyf" id="fdD-u2-164"/>
+                                                    </connections>
+                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJm-Dc-CSm">
                                                     <rect key="frame" x="80" y="47.5" width="110" height="18"/>
                                                     <constraints>
@@ -1241,14 +1236,19 @@
                                                         <outlet property="delegate" destination="x3j-vE-Wyf" id="hhg-td-onB"/>
                                                     </connections>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NhO-Mz-4EQ">
-                                                    <rect key="frame" x="198" y="5" width="394" height="30"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="x3j-vE-Wyf" id="fdD-u2-164"/>
-                                                    </connections>
-                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImage2" translatesAutoresizingMaskIntoConstraints="NO" id="sTL-h6-321">
+                                                    <rect key="frame" x="8" y="7" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="0qQ-4I-kdP"/>
+                                                        <constraint firstAttribute="width" constant="64" id="XTq-DS-fDH"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="32"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="NhO-Mz-4EQ" firstAttribute="leading" secondItem="ms1-ex-EnG" secondAttribute="trailing" constant="8" id="1Oq-Q8-LAo"/>
@@ -1427,7 +1427,7 @@
         <scene sceneID="45e-Hu-cH1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pQi-Yx-vn5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Коллеги" image="tab_people" id="J2s-zG-Yy2"/>
+                    <tabBarItem key="tabBarItem" title="Коллеги" image="tab_people2" id="J2s-zG-Yy2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uRP-Ot-GC2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2352,7 +2352,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab_people" width="31" height="24"/>
+        <image name="addImage2" width="76" height="76"/>
+        <image name="tab_people2" width="24" height="24"/>
         <image name="tab_projects4" width="23" height="24"/>
     </resources>
 </document>
