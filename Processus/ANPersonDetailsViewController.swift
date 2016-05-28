@@ -17,7 +17,7 @@ protocol ANPersonDetailsVCDelegate: class {
     func personEditingDidEndForPerson(person: Person)
 }
 
-class ANPersonDetailsViewController: UITableViewController {
+class ANPersonDetailsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     // MARK: - ATTRIBUTES
@@ -79,6 +79,8 @@ class ANPersonDetailsViewController: UITableViewController {
         
         dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY"
+        
+
     }
     
     deinit {
@@ -219,6 +221,12 @@ class ANPersonDetailsViewController: UITableViewController {
         cell.emailTextField.text = person.email
         cell.phoneNumberTextField.text = person.phoneNumber
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ANAddPersonViewController.avatarImageViewTapped(_:)))
+        
+        cell.avatarImageView.userInteractionEnabled = true
+        
+        cell.avatarImageView.addGestureRecognizer(tapGesture)
+
         
     }
     
@@ -282,6 +290,21 @@ class ANPersonDetailsViewController: UITableViewController {
         }
         
     }
+    
+    func avatarImageViewTapped(sender: UITapGestureRecognizer) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .PhotoLibrary
+            
+            imagePicker.delegate = self
+            
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+            
+        }
+    }
+
     
 
 
@@ -425,6 +448,25 @@ class ANPersonDetailsViewController: UITableViewController {
             
         }
         
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let indexP = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        
+        cell.avatarImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        cell.avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        cell.avatarImageView.clipsToBounds = true
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - UINavigationControllerDelegate
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        //        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
     
 
