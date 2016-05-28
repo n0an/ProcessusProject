@@ -58,7 +58,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "\(person.firstName!) \(person.email!)"
+        title = "\(person.firstName!)"
         
         // Saving initial credentials
         personFirstName     = person.firstName
@@ -248,8 +248,12 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
 
         
-        if let completedRatio = project.completedRatio?.intValue {
-            cell.completedRatioLabel.text = "\(completedRatio) %"
+//        if let completedRatio = project.completedRatio?.intValue {
+//            cell.completedRatioLabel.text = "\(completedRatio) %"
+//        }
+        
+        if let participantsCount = project.workers?.allObjects.count {
+            cell.participantsCountLabel.text = "\(participantsCount)"
         }
         
         var stateColor = UIColor()

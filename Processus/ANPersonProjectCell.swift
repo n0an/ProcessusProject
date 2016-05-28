@@ -15,10 +15,12 @@ class ANPersonProjectCell: UITableViewCell {
     @IBOutlet weak var completedRatioLabel: UILabel!
     @IBOutlet weak var projectDueDateLabel: UILabel!
     
+    @IBOutlet weak var participantsCountLabel: UILabel!
+
     
     @IBOutlet weak var projectStateView: UIView!
     
-//    @IBOutlet weak var checkMark: UIView!
+    
     @IBOutlet weak var checkMarkImageView: UIImageView!
 
 

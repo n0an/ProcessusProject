@@ -80,8 +80,12 @@ class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDispl
         cell.projectNameLabel.text = project.name
         cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
         
-        if let completedRatio = project.completedRatio?.intValue {
-            cell.completedRatioLabel.text = "\(completedRatio) %"
+//        if let completedRatio = project.completedRatio?.intValue {
+//            cell.completedRatioLabel.text = "\(completedRatio) %"
+//        }
+        
+        if let participantsCount = project.workers?.allObjects.count {
+            cell.participantsCountLabel.text = "\(participantsCount)"
         }
         
         var stateColor = UIColor()
