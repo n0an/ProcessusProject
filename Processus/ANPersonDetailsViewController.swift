@@ -49,11 +49,7 @@ class ANPersonDetailsViewController: UITableViewController {
     
     var personProjects: [Project] = []
     
-//    var personInfoTextFields: [UITextField] = []
-    
     weak var delegate: ANPersonDetailsVCDelegate?
-    
-//    let personInfoLabelsPlaceholders: [(label: String, placeholder: String)] = [("Имя:", "Введите имя"), ("Фамилия:", "Введите фамилию"), ("Email:", "Введите Email"), ("Телефон:", "Введите номер телефона")]
     
     // MARK: - viewDidLoad
 
@@ -216,64 +212,13 @@ class ANPersonDetailsViewController: UITableViewController {
     
     
     
-    
-//    func configureStandartTextField(textField: UITextField) {
-//        textField.returnKeyType = .Next
-//        textField.autocapitalizationType = .Words
-//        textField.keyboardType = .Default
-//        
-//        textField.addTarget(self, action: #selector(ANPersonDetailsViewController.actionInfoChanged(_:)), forControlEvents: .EditingChanged)
-//        
-//        if !(personInfoTextFields.contains(textField)) {
-//            personInfoTextFields.append(textField)
-//        }
-//        
-//    }
-    
-    
     func configurePersonInfoCell(cell: ANPersonInfoCell, forIndexPath indexPath: NSIndexPath) {
-        
-//        let labelPlaceholder = personInfoLabelsPlaceholders[indexPath.row]
-//        
-//        cell.keyLabel.text = labelPlaceholder.label
-//        cell.valueTextField.placeholder = labelPlaceholder.placeholder
 
         cell.firstNameTextField.text = person.firstName
         cell.lastNameTextField.text = person.lastName
         cell.emailTextField.text = person.email
         cell.phoneNumberTextField.text = person.phoneNumber
         
-        
-//        switch indexPath.row {
-//        case ANFieldType.FirstName.rawValue:
-//            cell.valueTextField.text = person.firstName
-//            configureStandartTextField(cell.valueTextField)
-//            cell.valueTextField.tag = ANFieldType.FirstName.rawValue
-//            
-//        case ANFieldType.LastName.rawValue:
-//            cell.valueTextField.text = person.lastName
-//            configureStandartTextField(cell.valueTextField)
-//            cell.valueTextField.tag = ANFieldType.LastName.rawValue
-//            
-//        case ANFieldType.Email.rawValue:
-//            cell.valueTextField.text = person.email
-//            cell.valueTextField.returnKeyType = .Done
-//            cell.valueTextField.autocapitalizationType = .None
-//            cell.valueTextField.keyboardType = .EmailAddress
-//            personInfoTextFields.append(cell.valueTextField)
-//            cell.valueTextField.tag = ANFieldType.Email.rawValue
-//            
-//            
-//        case ANFieldType.PhoneNumber.rawValue:
-//            // TODO: phone Field
-//            cell.valueTextField.text = person.phoneNumber
-//            cell.valueTextField.tag = ANFieldType.PhoneNumber.rawValue
-//
-//        default:
-//            break
-//        }
-        
-//        cell.valueTextField.delegate = self
         
     }
     
