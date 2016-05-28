@@ -10,9 +10,20 @@ import UIKit
 
 class ANPersonInfoCell: UITableViewCell {
 
-    @IBOutlet weak var keyLabel: UILabel!
+//    @IBOutlet weak var keyLabel: UILabel!
+//    
+//    @IBOutlet weak var valueTextField: UITextField!
     
-    @IBOutlet weak var valueTextField: UITextField!
+    
+    @IBOutlet weak var avatarImageView: UIImageView!
+    
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    
+    @IBOutlet var textFields: [UITextField]!
+
     
     
     override func awakeFromNib() {
