@@ -38,10 +38,12 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
     var personEmail: String!
     var personPhoneNumber: String!
     
+    
     var newPersonFirstName: String!
     var newPersonLastName: String!
     var newPersonEmail: String!
     var newPersonPhoneNumber: String!
+    
 
     var dateFormatter: NSDateFormatter!
     
@@ -80,7 +82,6 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY"
         
-
     }
     
     deinit {
@@ -136,7 +137,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
     }
     
     
-    // Saving Context
+    // MARK: - Saving Context
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
@@ -147,8 +148,11 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         
         if editing {
             cell.textFields.first?.becomeFirstResponder()
+            cell.avatarImageView.userInteractionEnabled = true
             
         } else {
+            
+            cell.avatarImageView.userInteractionEnabled = false
             
             cell.textFields.forEach{
                 $0.resignFirstResponder()
@@ -182,6 +186,8 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             person.lastName = newPersonLastName
             person.email = newPersonEmail
             person.phoneNumber = newPersonPhoneNumber
+            
+            person.image = UIImagePNGRepresentation(cell.avatarImageView.image!)
             
             ANDataManager.sharedManager.saveContext()
             
@@ -221,9 +227,12 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         cell.emailTextField.text = person.email
         cell.phoneNumberTextField.text = person.phoneNumber
         
+        if let imageData = person.image {
+            cell.avatarImageView.image = UIImage(data: imageData)
+        }
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ANAddPersonViewController.avatarImageViewTapped(_:)))
         
-        cell.avatarImageView.userInteractionEnabled = true
         
         cell.avatarImageView.addGestureRecognizer(tapGesture)
 
@@ -460,6 +469,8 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         cell.avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
         
         cell.avatarImageView.clipsToBounds = true
+        
+        
         
         dismissViewControllerAnimated(true, completion: nil)
     }

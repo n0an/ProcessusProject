@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */; };
+		180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */; };
 		1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988391CE4FA9D00BC5272 /* AppDelegate.swift */; };
 		1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1829883D1CE4FA9D00BC5272 /* Main.storyboard */; };
 		182988411CE4FA9D00BC5272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182988401CE4FA9D00BC5272 /* Assets.xcassets */; };
@@ -16,7 +17,6 @@
 		182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */; };
 		182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988711CE502BF00BC5272 /* ANPeopleViewController.swift */; };
 		182988781CE5052F00BC5272 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988741CE5052F00BC5272 /* Project.swift */; };
-		182988791CE5052F00BC5272 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988751CE5052F00BC5272 /* Person+CoreDataProperties.swift */; };
 		1829887A1CE5052F00BC5272 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988761CE5052F00BC5272 /* Person.swift */; };
 		1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */; };
 		182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */; };
@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDetailsViewController.swift; sourceTree = "<group>"; };
+		180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		182988361CE4FA9D00BC5272 /* Processus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Processus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182988391CE4FA9D00BC5272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1829883E1CE4FA9D00BC5272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANDataManager.swift; sourceTree = "<group>"; };
 		182988711CE502BF00BC5272 /* ANPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ANPeopleViewController.swift; path = ../ANPeopleViewController.swift; sourceTree = "<group>"; };
 		182988741CE5052F00BC5272 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = ../Project.swift; sourceTree = "<group>"; };
-		182988751CE5052F00BC5272 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		182988761CE5052F00BC5272 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = ../Person.swift; sourceTree = "<group>"; };
 		1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDelegate.swift; sourceTree = "<group>"; };
 		1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDisplayer.swift; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 			children = (
 				182988741CE5052F00BC5272 /* Project.swift */,
 				182988881CE7398D00BC5272 /* Project+CoreDataProperties.swift */,
-				182988751CE5052F00BC5272 /* Person+CoreDataProperties.swift */,
+				180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */,
 				182988761CE5052F00BC5272 /* Person.swift */,
 			);
 			name = Model;
@@ -289,7 +289,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */,
-				182988791CE5052F00BC5272 /* Person+CoreDataProperties.swift in Sources */,
 				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
 				184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */,
 				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
@@ -299,6 +298,7 @@
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
+				180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */,
 				184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */,
 				184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */,
 				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,

@@ -113,7 +113,18 @@ class ANAddPersonViewController: UITableViewController, UIImagePickerControllerD
             return
         }
         
-        ANDataManager.sharedManager.addPerson(withFirstName: textFields[0].text!, lastName: textFields[1].text!, email: textFields[2].text!)
+        
+        let context = ANDataManager.sharedManager.context
+        
+        let person = NSEntityDescription.insertNewObjectForEntityForName("Person", inManagedObjectContext: context) as! Person
+        
+        person.firstName    = textFields[0].text!
+        person.lastName     = textFields[1].text!
+        person.email        = textFields[2].text!
+        person.image        = UIImagePNGRepresentation(avatarImageView.image!)
+        
+        ANDataManager.sharedManager.saveContext()
+        
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
