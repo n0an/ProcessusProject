@@ -67,9 +67,12 @@ class ANPeopleSelectionViewController: UIViewController {
         
         
         if project.workers!.containsObject(person) {
-            cell.accessoryType = .Checkmark
+//            cell.accessoryType = .Checkmark
+            cell.checkMarkImageView.image = UIImage(named: "box_set")
         } else {
-            cell.accessoryType = .None
+//            cell.accessoryType = .None
+            cell.checkMarkImageView.image = UIImage(named: "box_empty")
+
         }
         
     }

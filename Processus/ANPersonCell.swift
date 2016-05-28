@@ -13,9 +13,13 @@ class ANPersonCell: UITableViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
+    @IBOutlet weak var checkMarkImageView: UIImageView!
+    
     @IBOutlet weak var fullNameLabel: UILabel!
     
     @IBOutlet weak var projectsCountLabel: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

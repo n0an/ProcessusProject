@@ -249,7 +249,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
 
         
         if let completedRatio = project.completedRatio?.intValue {
-            cell.completedRatioLabel.text = "\(completedRatio)"
+            cell.completedRatioLabel.text = "\(completedRatio) %"
         }
         
         var stateColor = UIColor()
