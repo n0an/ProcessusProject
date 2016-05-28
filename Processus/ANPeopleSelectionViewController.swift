@@ -40,10 +40,8 @@ class ANPeopleSelectionViewController: UIViewController {
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
-        
         self.navigationItem.rightBarButtonItem = saveButton
 
-        
     }
     
     // MARK: - HELPER METHODS
@@ -57,13 +55,11 @@ class ANPeopleSelectionViewController: UIViewController {
         
         cell.textLabel?.text = "\(firstName) \(lastName)"
         
-        
         if project.workers!.containsObject(person) {
             cell.accessoryType = .Checkmark
         } else {
             cell.accessoryType = .None
         }
-        
         
     }
     
@@ -104,17 +100,16 @@ class ANPeopleSelectionViewController: UIViewController {
         
         return cell
         
-        
-        
     }
     
     
+    // MARK: - UITableViewDelegate
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
         let person = allPeople[indexPath.row]
-        
         
         if project.workers!.containsObject(person) {
             
