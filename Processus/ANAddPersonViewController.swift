@@ -15,7 +15,6 @@ class ANAddPersonViewController: UITableViewController {
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
 
-    
     // MARK: - ATTRIBUTES
     
     enum ANSectionType: Int {
@@ -28,13 +27,9 @@ class ANAddPersonViewController: UITableViewController {
         case FirstName = 0, LastName, Email, PhoneNumber
     }
     
-    
-    var personToAdd: Person!
-    
-    var personProjects: [Project] = []
+//    var personProjects: [Project] = []
     
     var personInfoTextFields: [UITextField] = []
-
     
     let personInfoLabelsPlaceholders: [(label: String, placeholder: String)] = [("Имя:", "Введите имя"), ("Фамилия:", "Введите фамилию"), ("Email:", "Введите Email"), ("Телефон:", "Введите номер телефона")]
     
@@ -46,10 +41,7 @@ class ANAddPersonViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        
         tableView.allowsSelection = false
-        
-
     }
     
     // MARK: - Helper Methods
@@ -100,34 +92,34 @@ class ANAddPersonViewController: UITableViewController {
         
     }
     
-    func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
-        
-        let project = personProjects[indexPath.row]
-        
-        cell.customerNameLabel.text = project.customer
-        cell.projectNameLabel.text = project.name
-        
-        if let completedRatio = project.completedRatio?.intValue {
-            cell.completedRatioLabel.text = "\(completedRatio)"
-        }
-        
-        
-        var stateColor = UIColor()
-        
-        switch project.state!.integerValue {
-        case ANProjectState.NonActive.rawValue:
-            stateColor = UIColor.redColor()
-        case ANProjectState.Frozen.rawValue:
-            stateColor = UIColor.yellowColor()
-        case ANProjectState.Active.rawValue:
-            stateColor = UIColor.greenColor()
-        default:
-            break
-        }
-        
-        cell.projectStateView.backgroundColor = stateColor
-        
-    }
+//    func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
+//        
+//        let project = personProjects[indexPath.row]
+//        
+//        cell.customerNameLabel.text = project.customer
+//        cell.projectNameLabel.text = project.name
+//        
+//        if let completedRatio = project.completedRatio?.intValue {
+//            cell.completedRatioLabel.text = "\(completedRatio)"
+//        }
+//        
+//        
+//        var stateColor = UIColor()
+//        
+//        switch project.state!.integerValue {
+//        case ANProjectState.NonActive.rawValue:
+//            stateColor = UIColor.redColor()
+//        case ANProjectState.Frozen.rawValue:
+//            stateColor = UIColor.yellowColor()
+//        case ANProjectState.Active.rawValue:
+//            stateColor = UIColor.greenColor()
+//        default:
+//            break
+//        }
+//        
+//        cell.projectStateView.backgroundColor = stateColor
+//        
+//    }
     
     func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
         
@@ -156,8 +148,6 @@ class ANAddPersonViewController: UITableViewController {
     
     
     
-    
-    
     @IBAction func cancel() {
 //        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -177,7 +167,6 @@ class ANAddPersonViewController: UITableViewController {
             error = "Email"
         }
 
-        
         if error != "" {
             
             let alertController = UIAlertController(title: "Ого!", message: "Сохранение не удалось, так как поле " + error + " не заполнено", preferredStyle: .Alert)
@@ -194,12 +183,7 @@ class ANAddPersonViewController: UITableViewController {
         
         ANDataManager.sharedManager.addPerson(withFirstName: personInfoTextFields[0].text!, lastName: personInfoTextFields[1].text!, email: personInfoTextFields[2].text!)
         
-        
-        
-
-        
         self.dismissViewControllerAnimated(true, completion: nil)
-        
         
     }
 
@@ -209,7 +193,7 @@ class ANAddPersonViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -217,10 +201,10 @@ class ANAddPersonViewController: UITableViewController {
         switch section {
         case ANSectionType.PersonInfo.rawValue:
             return 3
-        case ANSectionType.Separator.rawValue:
-            return 1
-        case ANSectionType.PersonProject.rawValue:
-            return personProjects.count
+//        case ANSectionType.Separator.rawValue:
+//            return 1
+//        case ANSectionType.PersonProject.rawValue:
+//            return personProjects.count
         default:
             break
         }
@@ -231,8 +215,8 @@ class ANAddPersonViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdPersonInfo = "personInfoCell"
-        let cellIdSeparator = "separatorCell"
-        let cellIdPersonProject = "personProjectsCell"
+//        let cellIdSeparator = "separatorCell"
+//        let cellIdPersonProject = "personProjectsCell"
         
         switch indexPath.section {
         case ANSectionType.PersonInfo.rawValue:
@@ -240,14 +224,14 @@ class ANAddPersonViewController: UITableViewController {
             configurePersonInfoCell(cell, forIndexPath: indexPath)
             return cell
             
-        case ANSectionType.Separator.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdSeparator, forIndexPath: indexPath)
-            return cell
+//        case ANSectionType.Separator.rawValue:
+//            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdSeparator, forIndexPath: indexPath)
+//            return cell
             
-        case ANSectionType.PersonProject.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
-            
-            return cell
+//        case ANSectionType.PersonProject.rawValue:
+//            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
+//            
+//            return cell
         default:
             
             let cell = UITableViewCell()
@@ -264,9 +248,9 @@ class ANAddPersonViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.section == ANSectionType.Separator.rawValue {
-            return 2
-        }
+//        if indexPath.section == ANSectionType.Separator.rawValue {
+//            return 2
+//        }
         
         return UITableViewAutomaticDimension
         
@@ -277,10 +261,10 @@ class ANAddPersonViewController: UITableViewController {
         switch indexPath.section {
         case ANSectionType.PersonInfo.rawValue:
             return 44
-        case ANSectionType.Separator.rawValue:
-            return 2
-        case ANSectionType.PersonProject.rawValue:
-            return 80
+//        case ANSectionType.Separator.rawValue:
+//            return 2
+//        case ANSectionType.PersonProject.rawValue:
+//            return 80
         default:
             break
             
@@ -288,11 +272,6 @@ class ANAddPersonViewController: UITableViewController {
         return UITableViewAutomaticDimension
     }
     
-    
-
-    
-    
-
 }
 
 
@@ -309,9 +288,8 @@ extension ANAddPersonViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         
-
-        
     }
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField === personInfoTextFields.last{
@@ -333,14 +311,11 @@ extension ANAddPersonViewController: UITextFieldDelegate {
         
         doneBarButton.enabled = (personInfoTextFields[0].text?.characters.count > 0)
 
-        
-        
         if textField.tag == 108 {
             return handleEmailTextField(textField, inRange: range, withReplacementString: string)
         }
         
         return true
-        
     }
     
     
