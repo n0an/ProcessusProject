@@ -98,7 +98,21 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         guard let firstName = person.firstName else {return}
         guard let lastName = person.lastName else {return}
         
-        cell.textLabel?.text = "\(firstName) \(lastName)"
+        guard let cell = cell as? ANPersonCell else {return}
+        
+        
+        if let imageData = person.image {
+            cell.avatarImageView.image = UIImage(data: imageData)
+        }
+        
+        if let projectsCount = person.projects?.allObjects.count {
+            cell.projectsCountLabel.text = "\(projectsCount)"
+        }
+        
+        cell.fullNameLabel.text = "\(firstName) \(lastName)"
+        
+        
+        
     }
     
     
@@ -141,9 +155,9 @@ extension ANPeopleViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cellId = "PersonCell"
+        let cellId = "ANPersonCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonCell
         
         configureCell(cell, atIndexPath: indexPath)
         
@@ -158,7 +172,7 @@ extension ANPeopleViewController: UITableViewDataSource {
 extension ANPeopleViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+        return 70
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

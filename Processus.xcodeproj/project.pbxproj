@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */; };
 		180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */; };
+		180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63671CF9F84000AAD93A /* ANPersonCell.swift */; };
 		1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988391CE4FA9D00BC5272 /* AppDelegate.swift */; };
 		1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1829883D1CE4FA9D00BC5272 /* Main.storyboard */; };
 		182988411CE4FA9D00BC5272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182988401CE4FA9D00BC5272 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDetailsViewController.swift; sourceTree = "<group>"; };
 		180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		180D63671CF9F84000AAD93A /* ANPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonCell.swift; sourceTree = "<group>"; };
 		182988361CE4FA9D00BC5272 /* Processus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Processus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182988391CE4FA9D00BC5272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1829883E1CE4FA9D00BC5272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		182988961CE76E0200BC5272 /* PersonCell */ = {
 			isa = PBXGroup;
 			children = (
+				180D63671CF9F84000AAD93A /* ANPersonCell.swift */,
 				182988831CE733D600BC5272 /* ANPersonInfoCell.swift */,
 				184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */,
 				182988851CE7347800BC5272 /* ANPersonProjectCell.swift */,
@@ -292,6 +295,7 @@
 				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
 				184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */,
 				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
+				180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */,
 				182988891CE7398D00BC5272 /* Project+CoreDataProperties.swift in Sources */,
 				184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */,
 				182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */,

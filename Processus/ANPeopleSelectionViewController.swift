@@ -53,12 +53,26 @@ class ANPeopleSelectionViewController: UIViewController {
         guard let firstName = person.firstName else {return}
         guard let lastName = person.lastName else {return}
         
-        cell.textLabel?.text = "\(firstName) \(lastName)"
+        guard let cell = cell as? ANPersonCell else {return}
+        
+        if let imageData = person.image {
+            cell.avatarImageView.image = UIImage(data: imageData)
+        }
+        
+        if let projectsCount = person.projects?.allObjects.count {
+            cell.projectsCountLabel.text = "\(projectsCount)"
+        }
+        
+        cell.fullNameLabel.text = "\(firstName) \(lastName)"
+        
         
         if project.workers!.containsObject(person) {
-            cell.accessoryType = .Checkmark
+//            cell.accessoryType = .Checkmark
+            cell.checkMarkImageView.image = UIImage(named: "box_set")
         } else {
-            cell.accessoryType = .None
+//            cell.accessoryType = .None
+            cell.checkMarkImageView.image = UIImage(named: "box_empty")
+
         }
         
     }
@@ -92,9 +106,9 @@ class ANPeopleSelectionViewController: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cellId = "PersonCell"
+        let cellId = "ANPersonCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonCell
         
         configureCell(cell, atIndexPath: indexPath)
         
@@ -104,7 +118,13 @@ class ANPeopleSelectionViewController: UIViewController {
     
     
     // MARK: - UITableViewDelegate
-
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70
+    }
+    
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -124,6 +144,8 @@ class ANPeopleSelectionViewController: UIViewController {
         tableView.reloadData()
         
     }
+    
+    
     
     
 

@@ -29,7 +29,8 @@ class ANProjectSelectionViewController: UITableViewController {
     
     weak var delegate: ANProjectSelectionViewControllerDelegate!
     
-    
+    var dateFormatter: NSDateFormatter!
+
     
     // MARK: - viewDidLoad
     
@@ -37,6 +38,9 @@ class ANProjectSelectionViewController: UITableViewController {
         super.viewDidLoad()
         
         title = "Select Projects"
+        
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
@@ -53,10 +57,8 @@ class ANProjectSelectionViewController: UITableViewController {
         
         cell.customerNameLabel.text = project.customer
         cell.projectNameLabel.text = project.name
-        
-        if let completedRatio = project.completedRatio?.intValue {
-//            cell.completedRatioLabel.text = "10"
-        }
+        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+
         
         var stateColor = UIColor()
         
@@ -74,12 +76,13 @@ class ANProjectSelectionViewController: UITableViewController {
         cell.projectStateView.backgroundColor = stateColor
         
         if (person.projects!.containsObject(project)) {
+
+            cell.checkMarkImageView.image = UIImage(named: "box_set")
             
-//            cell.accessoryType = .Checkmark
-            cell.checkMark.hidden = false
         } else {
-//            cell.accessoryType = .None
-            cell.checkMark.hidden = true
+
+            cell.checkMarkImageView.image = UIImage(named: "box_empty")
+
         }
         
     }
