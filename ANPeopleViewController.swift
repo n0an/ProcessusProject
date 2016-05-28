@@ -28,7 +28,6 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -38,11 +37,9 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        
         let fetchRequest = NSFetchRequest(entityName: "Person")
         let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
         let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
-        
         
         fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
 
@@ -58,7 +55,6 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         } catch {
             print("There was a problem fetching.")
         }
-        
         
         /*
         let fetchRequest = NSFetchRequest(entityName: "Person")
@@ -79,76 +75,10 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     }
     
     
-    
     // MARK: - ACTIONS
     
     @IBAction func addColleaguePressed(sender: UIBarButtonItem) {
-        /*
-        let addColleagueAlert = UIAlertController(title: "Добавить коллегу", message: "Введите имя, фамилию, телефон и email", preferredStyle: .Alert)
         
-        addColleagueAlert.addTextFieldWithConfigurationHandler { (tField) in
-            tField.placeholder = "Введите имя"
-            tField.delegate = self
-            self.configureTextFieldNames(tField)
-        }
-        
-        addColleagueAlert.addTextFieldWithConfigurationHandler { (tField) in
-            tField.placeholder = "Введите фамилию"
-            tField.delegate = self
-            self.configureTextFieldNames(tField)
-
-        }
-        
-        addColleagueAlert.addTextFieldWithConfigurationHandler { (tField) in
-            tField.placeholder = "Введите email"
-            tField.delegate = self
-            tField.tag = 108
-            
-            tField.returnKeyType = .Done
-            
-            tField.spellCheckingType = .No
-            tField.autocorrectionType = .No
-            tField.autocapitalizationType = .None
-            tField.keyboardType = .EmailAddress
-            
-        }
-        
-//        addColleagueAlert.addTextFieldWithConfigurationHandler { (tField) in
-//            tField.placeholder = "Введите номер телефона"
-//            tField.delegate = self
-//        }
-        
-        
-        let addAction = UIAlertAction(title: "Добавить", style: .Default) { action in
-            
-            let textFieldFirstName = addColleagueAlert.textFields?[0]
-            let colleagueFirstName = textFieldFirstName?.text
-            
-            let textFieldLastName = addColleagueAlert.textFields?[1]
-            let colleagueLastName = textFieldLastName?.text
-            
-            let textFieldEmail = addColleagueAlert.textFields?[2]
-            let colleagueEmail = textFieldEmail?.text
-            
-            
-            if colleagueFirstName?.characters.count > 0 && colleagueLastName?.characters.count > 0 && colleagueEmail?.characters.count > 0 {
-                
-                ANDataManager.sharedManager.addPerson(withFirstName: colleagueFirstName!, lastName: colleagueLastName!, email: colleagueEmail!)
-                
-            } else {
-                print("Empty fields")
-            }
-            
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Default, handler: nil)
-        
-        addColleagueAlert.addAction(addAction)
-        addColleagueAlert.addAction(cancelAction)
-        
-        self.presentViewController(addColleagueAlert, animated: true, completion: nil)
-        */
     }
     
     
@@ -158,7 +88,6 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         super.setEditing(editing, animated: animated)
         
         tableView.setEditing(editing, animated: true)
-        
         
     }
     
@@ -171,42 +100,6 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         
         cell.textLabel?.text = "\(firstName) \(lastName)"
     }
-    
-    
-    func configureTextFieldNames(textField: UITextField) {
-        textField.spellCheckingType = .No
-        textField.autocorrectionType = .No
-        textField.autocapitalizationType = .Words
-        textField.keyboardType = .Default
-    }
-    
-    
-    func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
-        
-        var illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
-        
-        let currentString = textField.text! as NSString
-        
-        let newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString)
-        
-        if currentString.length == 0 && replacementString == "@" {
-            return false
-        }
-        
-        if currentString .containsString("@") {
-            illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
-        }
-        let components = replacementString.componentsSeparatedByCharactersInSet(illegalCharactersSet)
-        if components.count > 1 {
-            return false
-        }
-        
-        return newString.characters.count <= 40
-    }
-    
-    // TODO: - phoneHandler
-
-    
     
     
     // MARK: - NAVIGATION
@@ -225,8 +118,6 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         
     }
     
-    
-    
 }
 
 
@@ -238,7 +129,6 @@ extension ANPeopleViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         
         guard let sections = fetchedResultsController?.sections else {return 0}
         
@@ -256,10 +146,10 @@ extension ANPeopleViewController: UITableViewDataSource {
         configureCell(cell, atIndexPath: indexPath)
         
         return cell
-        
     }
     
 }
+
 
 // MARK: - UITableViewDelegate
 
@@ -271,58 +161,25 @@ extension ANPeopleViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-
     }
-    
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
-        
         
         if editingStyle == .Delete {
             let context = ANDataManager.sharedManager.context
             context.deleteObject(person)
             
             ANDataManager.sharedManager.saveContext()
-            
         }
     }
-    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-  
-    
 }
-
-
-
-// MARK: - UITextFieldDelegate
-
-extension ANPeopleViewController: UITextFieldDelegate {
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        if textField.tag == 108 {
-            return handleEmailTextField(textField, inRange: range, withReplacementString: string)
-        }
-        
-        return true
-        
-    }
-    
-    
-    
-}
-
-
-
-
-
-
 
 
 
