@@ -237,6 +237,32 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         }
         
     }
+    
+    func checkForSave() -> Bool {
+        var error = ""
+        if customerTitleTextField.text == "" {
+            error = "Customer Name"
+        } else if projectTitleTextField.text == "" {
+            error = "Project Title"
+        }
+        
+        if error != "" {
+            
+            let alertController = UIAlertController(title: "Ого!", message: "Сохранение не удалось, так как поле " + error + " не заполнено", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return false
+        }
+        
+        return true
+    }
+    
+    
 
     
     // MARK: - ACTIONS
@@ -261,6 +287,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     @IBAction func saveProject() {
+        
+        guard checkForSave() else {return}
         
         if let editingProject = itemToEdit {
             

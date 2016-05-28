@@ -24,20 +24,35 @@ class ANEditProjectTableViewController: UITableViewController {
     @IBOutlet weak var shouldRemindSwitch: UISwitch!
     @IBOutlet weak var dueDateLabel: UILabel!
     
-    
     @IBOutlet weak var customerTitleTextField: UITextField!
     @IBOutlet weak var projectTitleTextField: UITextField!
     
     @IBOutlet weak var progressSlider: UISlider!
     @IBOutlet weak var progressPercentLabel: UILabel!
     
-    
     @IBOutlet weak var stateControl: UISegmentedControl!
-    
     @IBOutlet weak var projectStateView: UIView!
 
     
     // MARK: - ATTRIBUTES
+    
+    enum ANSectionType: Int {
+        case GeneralInfo = 0
+        case AdditionalInfo
+    }
+    
+    enum ANGeneralRowType: Int {
+        case CustomerName = 0
+        case Title
+        case DueDate
+        case Remind
+        case DatePicker
+    }
+    
+    enum ANAdditionalRowType: Int {
+        case Progress
+        case Status
+    }
     
     var isEditingMode = false
     
@@ -50,7 +65,6 @@ class ANEditProjectTableViewController: UITableViewController {
     
     var customerName: String!
     var projectTitle: String!
-
 
     
     // MARK: - viewDidLoad
@@ -76,7 +90,6 @@ class ANEditProjectTableViewController: UITableViewController {
             customerName    = item.customer
             projectTitle    = item.name
 
-            
         }
         
         updateStateView()
@@ -90,14 +103,12 @@ class ANEditProjectTableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = rightButton
 
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
     }
-    
     
     deinit {
         
@@ -116,7 +127,6 @@ class ANEditProjectTableViewController: UITableViewController {
     }
     
     
-
     func save() {
         if let editingProject = itemToEdit {
             
@@ -131,8 +141,6 @@ class ANEditProjectTableViewController: UITableViewController {
             
         }
     }
-    
-    
     
     
     func showDatePicker() {
@@ -198,6 +206,15 @@ class ANEditProjectTableViewController: UITableViewController {
         projectStateView.backgroundColor = stateColor
     }
     
+    func isItDatePickerCellForSection(section: Int, andRow row: Int) -> Bool {
+        if section == ANSectionType.GeneralInfo.rawValue && row == ANGeneralRowType.DueDate.rawValue {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
     
     // MARK: - ACTIONS
     
@@ -248,7 +265,6 @@ class ANEditProjectTableViewController: UITableViewController {
             // if no error - save it!
             save()
             
-            
         }
         
         
@@ -287,7 +303,7 @@ class ANEditProjectTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 && indexPath.row == 4 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DatePicker.rawValue {
             return datePickerCell
         } else {
             return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -303,7 +319,7 @@ class ANEditProjectTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 && datePickerVisible {
+        if section == ANSectionType.GeneralInfo.rawValue && datePickerVisible {
             return 5
         } else {
             return super.tableView(tableView, numberOfRowsInSection: section)
@@ -316,7 +332,7 @@ class ANEditProjectTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.section == 0 && indexPath.row == 4 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DatePicker.rawValue {
             return 217
         } else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
@@ -330,7 +346,7 @@ class ANEditProjectTableViewController: UITableViewController {
         customerTitleTextField.resignFirstResponder()
         projectTitleTextField.resignFirstResponder()
         
-        if indexPath.section == 0 && indexPath.row == 2 {
+        if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             
             if !datePickerVisible {
                 
@@ -344,16 +360,15 @@ class ANEditProjectTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if indexPath.section == 0 && indexPath.row == 2 {
+        if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             return indexPath
         } else {
             return nil
         }
     }
     
-    
     override func tableView(tableView: UITableView, var indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
-        if indexPath.section == 0 && indexPath.row == 4 {
+        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DatePicker.rawValue {
             indexPath = NSIndexPath(forRow: 0, inSection: indexPath.section)
         }
         return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
@@ -389,11 +404,9 @@ extension ANEditProjectTableViewController: UITextFieldDelegate {
         return false
     }
     
-    
     func textFieldDidBeginEditing(textField: UITextField) {
         hideDatePicker()
     }
-    
     
     
 }

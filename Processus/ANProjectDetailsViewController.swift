@@ -40,7 +40,7 @@ class ANProjectDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "\(project.name!)"
+        refreshVCTitle()
         
         projectParticipants = project.workers?.allObjects as! [Person]
         
@@ -64,6 +64,11 @@ class ANProjectDetailsViewController: UITableViewController {
     
     
     // MARK: - HELPER METHODS
+    
+    func refreshVCTitle() {
+        title = "\(project.name!)"
+
+    }
     
     func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
         
@@ -402,6 +407,8 @@ extension ANProjectDetailsViewController: ANPersonDetailsVCDelegate {
     func personEditingDidEndForPerson(person: Person) {
         
         projectParticipants = project.workers?.allObjects as! [Person]
+        
+        refreshVCTitle()
         
         tableView.reloadData()
         

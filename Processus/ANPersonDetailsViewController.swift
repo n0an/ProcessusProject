@@ -37,6 +37,7 @@ class ANPersonDetailsViewController: UITableViewController {
     var personEmail: String!
     var personPhoneNumber: String!
 
+    var dateFormatter: NSDateFormatter!
     
     var person: Person!
     
@@ -71,7 +72,8 @@ class ANPersonDetailsViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = editButtonItem()
         
-        
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
     }
     
     deinit {
@@ -91,7 +93,6 @@ class ANPersonDetailsViewController: UITableViewController {
     
     
     // MARK: - HELPER METHODS
-    
     
     func transitToProjectSelection() {
         let fetchRequest = NSFetchRequest(entityName: "Project")
@@ -137,7 +138,6 @@ class ANPersonDetailsViewController: UITableViewController {
     }
     
     
-    
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
@@ -152,7 +152,6 @@ class ANPersonDetailsViewController: UITableViewController {
                 $0.resignFirstResponder()
             }
             
-            
             var error = ""
             if personInfoTextFields[0].text == "" {
                 error = "First Name"
@@ -161,7 +160,6 @@ class ANPersonDetailsViewController: UITableViewController {
             } else if personInfoTextFields[2].text == "" {
                 error = "Email"
             }
-            
             
             if error != "" {
                 
@@ -264,6 +262,8 @@ class ANPersonDetailsViewController: UITableViewController {
         
         cell.customerNameLabel.text = project.customer
         cell.projectNameLabel.text = project.name
+        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+
         
         if let completedRatio = project.completedRatio?.intValue {
             cell.completedRatioLabel.text = "\(completedRatio)"
