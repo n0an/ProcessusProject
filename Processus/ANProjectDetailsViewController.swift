@@ -245,7 +245,7 @@ class ANProjectDetailsViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.section == ANSectionType.Separator.rawValue {
-            return 2
+            return 20
         } else if indexPath.section == ANSectionType.Person.rawValue {
             return 70
         }
@@ -260,7 +260,7 @@ class ANProjectDetailsViewController: UITableViewController {
         case ANSectionType.PersonProject.rawValue:
             return 80
         case ANSectionType.Separator.rawValue:
-            return 2
+            return 20
         case ANSectionType.Addbutton.rawValue:
             return 44
         case ANSectionType.Person.rawValue:

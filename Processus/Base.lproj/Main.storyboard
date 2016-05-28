@@ -1043,17 +1043,28 @@
                                     <outletCollection property="textFields" destination="RWQ-Xj-QpR" collectionClass="NSMutableArray" id="hvn-hh-fGI"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separatorCell" rowHeight="2" id="sAE-JK-dS5">
-                                <rect key="frame" x="0.0" y="252" width="600" height="2"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separatorCell" rowHeight="20" id="sAE-JK-dS5">
+                                <rect key="frame" x="0.0" y="252" width="600" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sAE-JK-dS5" id="x4S-HJ-dWy">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="19.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects of coallegue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK1-v1-62w">
+                                            <rect key="frame" x="237" y="2" width="126.5" height="16"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="nK1-v1-62w" firstAttribute="centerY" secondItem="x4S-HJ-dWy" secondAttribute="centerY" id="FQ5-IA-213"/>
+                                        <constraint firstItem="nK1-v1-62w" firstAttribute="centerX" secondItem="x4S-HJ-dWy" secondAttribute="centerX" id="pe1-zH-rkY"/>
+                                    </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ANPersonAddProjectCell" id="ryH-Rq-ShK" customClass="ANPersonAddProjectCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="254" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="272" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ryH-Rq-ShK" id="rGj-Ge-eSh">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1083,7 +1094,7 @@
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personProjectsCell" rowHeight="80" id="d56-f0-SIo" customClass="ANPersonProjectCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="298" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="316" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d56-f0-SIo" id="VnS-FJ-wpE">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
@@ -2206,17 +2217,28 @@
                                     <outlet property="projectStateView" destination="TB7-Ij-VpN" id="lxq-nb-zOg"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separatorCell" rowHeight="2" id="Td2-Yu-yi8">
-                                <rect key="frame" x="0.0" y="172" width="600" height="2"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separatorCell" rowHeight="20" id="Td2-Yu-yi8">
+                                <rect key="frame" x="0.0" y="172" width="600" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Td2-Yu-yi8" id="hvu-0O-lN7">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="19.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project Participants" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgc-9K-gtd">
+                                            <rect key="frame" x="241" y="2" width="118.5" height="16"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mgc-9K-gtd" firstAttribute="centerY" secondItem="hvu-0O-lN7" secondAttribute="centerY" id="QT4-zb-Dxh"/>
+                                        <constraint firstItem="mgc-9K-gtd" firstAttribute="centerX" secondItem="hvu-0O-lN7" secondAttribute="centerX" id="aNO-Tv-MRU"/>
+                                    </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddCell" id="X0T-th-RMu" customClass="ANPersonAddProjectCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="174" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="192" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0T-th-RMu" id="ZH8-en-6Dr">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -2246,7 +2268,7 @@
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANPersonCell" rowHeight="70" id="wle-FM-CHc" customClass="ANPersonCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="218" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="236" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wle-FM-CHc" id="FXJ-6h-FNO">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="69.5"/>

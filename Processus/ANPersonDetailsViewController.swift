@@ -387,7 +387,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.section == ANSectionType.Separator.rawValue {
-            return 2
+            return 20
         } else if indexPath.section == ANSectionType.PersonInfo.rawValue {
             return 160
         }
@@ -402,7 +402,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         case ANSectionType.PersonInfo.rawValue:
             return 160
         case ANSectionType.Separator.rawValue:
-            return 2
+            return 20
         case ANSectionType.Addbutton.rawValue:
             return 44
         case ANSectionType.PersonProject.rawValue:
