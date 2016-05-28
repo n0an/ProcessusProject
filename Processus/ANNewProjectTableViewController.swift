@@ -70,6 +70,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     var datePickerVisible = false
     
     var projectParticipants: [Person] = []
+    var initialParticipants: NSSet?
+
     
     // MARK: - viewDidLoad
 
@@ -93,6 +95,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             doneBarButton.enabled = true
             
             projectParticipants = item.workers?.allObjects as! [Person]
+            initialParticipants = item.workers?.copy() as? NSSet
             
             participantsCount.text = "\(projectParticipants.count)"
 
@@ -239,10 +242,19 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     // MARK: - ACTIONS
     
     @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
+        
+        if let item = itemToEdit {
+            item.workers = initialParticipants
+        }
+
         delegate!.projectDetailsVCDidCancel(self)
     }
     
     @IBAction func cancelPressed() {
+        
+        if let item = itemToEdit {
+            item.workers = initialParticipants
+        }
         
         delegate?.projectDetailsVCDidCancel(self)
         
