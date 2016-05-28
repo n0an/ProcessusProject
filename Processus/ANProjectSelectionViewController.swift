@@ -19,35 +19,28 @@ protocol ANProjectSelectionViewControllerDelegate: class {
 
 class ANProjectSelectionViewController: UITableViewController {
 
+    // MARK: - ATTRIBUTES
+    
     var allProjects: [Project]!
     
     var selectedProjects: [Project]!
     
     var person: Person!
     
-    
     weak var delegate: ANProjectSelectionViewControllerDelegate!
     
     
     
+    // MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print("incoming person = \(person.firstName) \(person.lastName)")
-//        
-//        print("allProjects = \(allProjects)")
-//        
-//        print("selectedProjects = \(selectedProjects)")
-//        
-//        ANDataManager.sharedManager.showAllProjects()
         
         title = "Select Projects"
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
-        
         self.navigationItem.rightBarButtonItem = saveButton
-        
         
     }
     
@@ -65,7 +58,6 @@ class ANProjectSelectionViewController: UITableViewController {
 //            cell.completedRatioLabel.text = "10"
         }
         
-        
         var stateColor = UIColor()
         
         switch project.state!.integerValue {
@@ -81,8 +73,6 @@ class ANProjectSelectionViewController: UITableViewController {
         
         cell.projectStateView.backgroundColor = stateColor
         
-        
-        
         if (person.projects!.containsObject(project)) {
             
 //            cell.accessoryType = .Checkmark
@@ -92,12 +82,8 @@ class ANProjectSelectionViewController: UITableViewController {
             cell.checkMark.hidden = true
         }
         
-        
     }
 
-    
-    
-    
     
     // MARK: - ACTIONS
     
@@ -122,7 +108,6 @@ class ANProjectSelectionViewController: UITableViewController {
     }
 
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdPersonProject = "personProjectsCell"
@@ -132,8 +117,6 @@ class ANProjectSelectionViewController: UITableViewController {
         configurePersonProjectCell(cell, forIndexPath: indexPath)
         
         return cell
-        
-        
         
     }
     
