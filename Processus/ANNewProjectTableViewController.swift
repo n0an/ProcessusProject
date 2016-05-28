@@ -216,6 +216,24 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         
         self.presentViewController(navController, animated: true, completion: nil)
     }
+    
+    func isItDatePickerCellForSection(section: Int, andRow row: Int) -> Bool {
+        if section == ANSectionType.GeneralInfo.rawValue && row == ANGeneralRowType.DueDate.rawValue {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    func isItParticipantsCellForSection(section: Int, andRow row: Int) -> Bool {
+        if itemToEdit != nil && section == ANSectionType.AdditionalInfo.rawValue && row == ANAdditionalRowType.Participants.rawValue {
+            return true
+        } else {
+            return false
+        }
+        
+    }
 
     
     // MARK: - ACTIONS
@@ -330,7 +348,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         customerTitleTextField.resignFirstResponder()
         projectTitleTextField.resignFirstResponder()
         
-        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DueDate.rawValue {
+        if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             
             if !datePickerVisible {
                 showDatePicker()
@@ -338,7 +356,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
                 hideDatePicker()
             }
             
-        } else if indexPath.section == ANSectionType.AdditionalInfo.rawValue && indexPath.row == ANAdditionalRowType.Participants.rawValue {
+        } else if isItParticipantsCellForSection(indexPath.section, andRow: indexPath.row) {
             
             if datePickerVisible {
                 hideDatePicker()
@@ -347,21 +365,16 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             transitToParticipantSelection()
         }
     }
-
+    
+    
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DueDate.rawValue {
+        if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             return indexPath
         
-        } else if indexPath.section == ANSectionType.AdditionalInfo.rawValue && indexPath.row == ANAdditionalRowType.Participants.rawValue {
+        } else if isItParticipantsCellForSection(indexPath.section, andRow: indexPath.row) {
             
-            if itemToEdit != nil {
-                
-                return indexPath
-            } else {
-                return nil
-            }
-            
+            return indexPath
             
         } else {
             return nil
