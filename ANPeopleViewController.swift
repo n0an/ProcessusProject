@@ -114,6 +114,8 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         
         let destinationVC = segue.destinationViewController as! ANPersonDetailsViewController
         
+        destinationVC.delegate = self
+        
         destinationVC.person = person
         
     }
@@ -177,12 +179,23 @@ extension ANPeopleViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        
+        
     }
     
 }
 
 
 
+extension ANPeopleViewController: ANPersonDetailsVCDelegate {
+    func personEditingDidEndForPerson(person: Person) {
+        ANDataManager.sharedManager.saveContext()
+        
+        tableView.reloadData()
+    }
+
+}
 
 
 

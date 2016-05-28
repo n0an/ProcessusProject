@@ -62,10 +62,8 @@ class ANPersonDetailsViewController: UITableViewController {
         personEmail         = person.email
         personPhoneNumber   = person.phoneNumber
         
-        
         personProjects = person.projects?.allObjects as! [Project]
 
-        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -114,12 +112,10 @@ class ANPersonDetailsViewController: UITableViewController {
             
             vc.allProjects = allProjects
             
-            
         } catch {
             let error = error as NSError
             print("Fetch non successful. error occured: \(error.localizedDescription)")
         }
-        
         
         let navController = UINavigationController(rootViewController: vc)
         
@@ -134,7 +130,6 @@ class ANPersonDetailsViewController: UITableViewController {
         personInfoTextFields[2].text = personEmail
 //        personInfoTextFields[3].text = personPhoneNumber
 
-        
     }
     
     
@@ -181,7 +176,6 @@ class ANPersonDetailsViewController: UITableViewController {
         }
         
     }
-    
     
     
     func actionInfoChanged(sender: UITextField) {
@@ -429,8 +423,6 @@ class ANPersonDetailsViewController: UITableViewController {
     }
     
 
-    
-    
 }
 
 // MARK: - UITextFieldDelegate
@@ -455,7 +447,6 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
         return false
     }
     
-    
 }
 
 
@@ -472,9 +463,7 @@ extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegat
         ANDataManager.sharedManager.saveContext()
         
         tableView.reloadData()
-        
     }
-    
 }
 
 
