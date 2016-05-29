@@ -35,9 +35,11 @@ class ANCoalleguesTableViewController: UITableViewController, NSFetchedResultsCo
         // Loading data from DB
         
         let fetchRequest = NSFetchRequest(entityName: "Person")
-        let sortDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
         
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
+        let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
+        
+        fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
         
         
         let managedObjectContext = ANDataManager.sharedManager.context
@@ -77,13 +79,13 @@ class ANCoalleguesTableViewController: UITableViewController, NSFetchedResultsCo
     }
     
     
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
     }
     
     
+    // MARK: - SEARCH CONTROLLER METHODS
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
@@ -104,6 +106,9 @@ class ANCoalleguesTableViewController: UITableViewController, NSFetchedResultsCo
     }
     
     
+    
+    // MARK: - NSFetchedResultsController
+
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         tableView.beginUpdates()
     }
@@ -131,11 +136,6 @@ class ANCoalleguesTableViewController: UITableViewController, NSFetchedResultsCo
     }
     
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     // MARK: - UITableViewDataSource

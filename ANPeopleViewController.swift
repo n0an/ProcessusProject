@@ -25,7 +25,6 @@ class ANPeopleViewController: UIViewController {
     
     private var fetchedResultsController: NSFetchedResultsController!
     
-
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
@@ -38,7 +37,7 @@ class ANPeopleViewController: UIViewController {
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
-//        tableView.tableFooterView = UIView(frame: CGRectZero) // FAIL WITH SEARCHBAR
+//        tableView.tableFooterView = UIView(frame: CGRectZero) // FAIL WITH SEARCHCONTROLLER
         
         
         
@@ -51,8 +50,6 @@ class ANPeopleViewController: UIViewController {
         fetchRequest.sortDescriptors = [firstNameDescriptor, lastNameDescriptor]
 
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: nil, cacheName: nil)
-        
-//        fetchedResultsDelegate = ANTableViewFetchedResultsDelegate(tableView: tableView, displayer: self)
         
         fetchedResultsController.delegate = self
         
@@ -90,10 +87,7 @@ class ANPeopleViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.tintColor = UIColor.greenColor()
-        
-        
-        
+        searchController.searchBar.tintColor = UIColor.whiteColor()
         
         
     }
@@ -116,42 +110,6 @@ class ANPeopleViewController: UIViewController {
     }
     
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        
-        
-        let person = searchController.active ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
-        
-//        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
-        
-        guard let firstName = person.firstName else {return}
-        guard let lastName = person.lastName else {return}
-        
-        guard let cell = cell as? ANPersonCell else {return}
-        
-        
-        if let imageData = person.image {
-            cell.avatarImageView.image = UIImage(data: imageData)
-        }
-        
-        if let projectsCount = person.projects?.allObjects.count {
-            cell.projectsCountLabel.text = "\(projectsCount)"
-        }
-        
-        cell.fullNameLabel.text = "\(firstName) \(lastName)"
-    }
-    
-    
-    
-    func filterContentFor(searchText: String) {
-        
-        searchResultsArray = myColleagues.filter({ (person: Person) -> Bool in
-            let matchedFName = person.firstName!.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)
-            
-            return matchedFName != nil
-        })
-        
-    }
-    
     
     // MARK: - NAVIGATION
     
@@ -161,13 +119,12 @@ class ANPeopleViewController: UIViewController {
         
         guard let indexPath = self.tableView.indexPathForSelectedRow else {return}
         
-        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
-        
         let destinationVC = segue.destinationViewController as! ANPersonDetailsViewController
-        
+
+ 
         destinationVC.delegate = self
         
-        destinationVC.person = person
+        destinationVC.person = searchController.active ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
         
     }
     
@@ -183,9 +140,9 @@ extension ANPeopleViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        if searchController.active {
-//            return searchResultsArray.count
-//        }
+        if searchController.active {
+            return searchResultsArray.count
+        }
         
         return myColleagues.count
     }
@@ -207,7 +164,6 @@ extension ANPeopleViewController: UITableViewDataSource {
 
         }
         
-        
         if let imageData = person.image {
             cell.avatarImageView.image = UIImage(data: imageData)
         }
@@ -215,7 +171,6 @@ extension ANPeopleViewController: UITableViewDataSource {
         if let projectsCount = person.projects?.allObjects.count {
             cell.projectsCountLabel.text = "\(projectsCount)"
         }
-        
         
         
         return cell
@@ -237,21 +192,72 @@ extension ANPeopleViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
-        
-        if editingStyle == .Delete {
-            let context = ANDataManager.sharedManager.context
-            context.deleteObject(person)
-            
-            ANDataManager.sharedManager.saveContext()
-        }
+
     }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
+        if searchController.active {
+            return false
+        }
+        
+        return true
+    }
+    
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let allShareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Contact") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+            
+            let allShareActionMenu = UIAlertController(title: nil, message: "Contact with", preferredStyle: .ActionSheet)
+            
+            let emailShareAction = UIAlertAction(title: "Email", style: .Default, handler: nil)
+            let facebookShareAction = UIAlertAction(title: "Facebook", style: .Default, handler: nil)
+            let vkShareAction = UIAlertAction(title: "VK", style: .Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            
+            allShareActionMenu.addAction(emailShareAction)
+            allShareActionMenu.addAction(facebookShareAction)
+            allShareActionMenu.addAction(vkShareAction)
+            allShareActionMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(allShareActionMenu, animated: true, completion: nil)
+        }
+        
+        // Creating our own Delete button
+        
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+            
+            let personToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+            
+            
+            let managedObjectContext = ANDataManager.sharedManager.context
+            
+            managedObjectContext.deleteObject(personToRemove)
+            
+            if managedObjectContext.hasChanges {
+                do {
+                    try managedObjectContext.save()
+                } catch {
+                    let nserror = error as NSError
+                    NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
+                    abort()
+                }
+            }
+            
+        }
+        
+        allShareAction.backgroundColor = UIColor(red: 184/255, green: 226/255, blue: 181/255, alpha: 1.0)
+        deleteAction.backgroundColor = UIColor.redColor()
+        
+        return [deleteAction, allShareAction]
         
     }
     
@@ -299,9 +305,20 @@ extension ANPeopleViewController: UISearchResultsUpdating {
         filterContentFor(searchText!)
         
         tableView.reloadData()
+    }
+    
+    func filterContentFor(searchText: String) {
         
+        searchResultsArray = myColleagues.filter({ (person: Person) -> Bool in
+            let matchedFName = person.fullName.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)
+            
+            return matchedFName != nil
+        })
         
     }
+
+    
+    
 }
 
 // MARK: - ANPersonDetailsVCDelegate
