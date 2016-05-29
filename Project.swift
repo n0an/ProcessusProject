@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 
@@ -22,6 +23,35 @@ class Project: NSManagedObject {
     func add(workerObject person: Person) {
         mutableSetValueForKey("workers").addObject(person)
     }
+    
+    
+    func scheduleNotification() {
+        if shouldRemind!.boolValue && dueDate!.compare(NSDate()) != .OrderedAscending {
+            
+            let localNotification = UILocalNotification()
+            localNotification.fireDate = dueDate
+            
+            localNotification.timeZone = NSTimeZone.defaultTimeZone()
+            
+            localNotification.alertBody = name
+            
+            localNotification.soundName = UILocalNotificationDefaultSoundName
+            
+            localNotification.userInfo = ["ProjectID": projectId!.integerValue]
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            
+            print("Scheduled notification \(localNotification) for projectId \(projectId!.integerValue)")
+            
+            
+            
+            
+            
+        }
+        
+        
+    }
+    
     
     
 }

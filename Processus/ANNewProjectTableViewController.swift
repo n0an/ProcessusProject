@@ -302,6 +302,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             editingProject.completedRatio   = progressSlider.value
             editingProject.state            = stateControl.selectedSegmentIndex
             
+            editingProject.scheduleNotification()
             
             ANDataManager.sharedManager.saveContext()
             
@@ -324,6 +325,9 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             newProject.projectId        = newId
             
+            newProject.scheduleNotification()
+
+            
             //        newProject.descript = projectInfoDescriptionTextView.text!
             
             ANDataManager.sharedManager.saveContext()
@@ -333,6 +337,14 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         }
     }
     
+    @IBAction func actionShouldRemindToggled(switchControl: UISwitch) {
+        
+        if shouldRemindSwitch.on {
+            let notificationsSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(notificationsSettings)
+        }
+        
+    }
     
     @IBAction func actionProgressSliderValueChanged(sender: UISlider) {
         updateProgressLabel()
