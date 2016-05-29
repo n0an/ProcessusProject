@@ -221,29 +221,6 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         
     }
     
-    func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
-        
-        var illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
-        
-        let currentString = textField.text! as NSString
-        
-        let newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString)
-        
-        if currentString.length == 0 && replacementString == "@" {
-            return false
-        }
-        
-        if currentString .containsString("@") {
-            illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
-        }
-        let components = replacementString.componentsSeparatedByCharactersInSet(illegalCharactersSet)
-        if components.count > 1 {
-            return false
-        }
-        
-        return newString.characters.count <= 40
-    }
-    
     
     
     func configurePersonInfoCell(cell: ANPersonInfoCell, forIndexPath indexPath: NSIndexPath) {
@@ -563,9 +540,23 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        if textField.tag == ANFieldType.Email.rawValue {
-            return handleEmailTextField(textField, inRange: range, withReplacementString: string)
+//        if textField.tag == ANFieldType.Email.rawValue {
+//            return handleEmailTextField(textField, inRange: range, withReplacementString: string)
+//        }
+        
+        switch textField.tag {
+        case ANFieldType.Email.rawValue:
+            let checkResult = ANTextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
+            
+            return checkResult
+            
+        case ANFieldType.PhoneNumber.rawValue:
+            return ANTextFieldsChecker.sharedChecker.handlePhoneNumberForTextField(textField, inRange: range, withReplacementString: string)
+            
+        default:
+            break
         }
+
         
         return true
     }

@@ -37,6 +37,7 @@
 		184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */; };
 		184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */; };
 		184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */; };
+		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectSelectionViewController.swift; sourceTree = "<group>"; };
 		184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANEditProjectTableViewController.swift; sourceTree = "<group>"; };
 		184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPeopleSelectionViewController.swift; sourceTree = "<group>"; };
+		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		182988381CE4FA9D00BC5272 /* Processus */ = {
 			isa = PBXGroup;
 			children = (
+				18E9818B1CFAE7EC002C390D /* Utils */,
 				1829887B1CE5053800BC5272 /* CoreData */,
 				1829888A1CE751B700BC5272 /* Controllers */,
 				1829888B1CE751BF00BC5272 /* Cells */,
@@ -219,6 +222,14 @@
 			name = _old;
 			sourceTree = "<group>";
 		};
+		18E9818B1CFAE7EC002C390D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -295,6 +306,7 @@
 				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
 				184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */,
 				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
+				18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */,
 				180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */,
 				182988891CE7398D00BC5272 /* Project+CoreDataProperties.swift in Sources */,
 				184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */,

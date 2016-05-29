@@ -9,6 +9,12 @@
 import UIKit
 import CoreData
 
+
+
+//let localNumberMaxLength = 7
+//let areaCodeMaxLength = 3
+//let countryCodeMaxLength = 3
+
 class ANAddPersonViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - OUTLETS
@@ -39,31 +45,7 @@ class ANAddPersonViewController: UITableViewController, UIImagePickerControllerD
         tableView.allowsSelection = false
     }
     
- 
-    // MARK: - HELPER METHODS
     
-    func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
-        
-        var illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
-        
-        let currentString = textField.text! as NSString
-        
-        let newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString)
-        
-        if currentString.length == 0 && replacementString == "@" {
-            return false
-        }
-        
-        if currentString .containsString("@") {
-            illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
-        }
-        let components = replacementString.componentsSeparatedByCharactersInSet(illegalCharactersSet)
-        if components.count > 1 {
-            return false
-        }
-        
-        return newString.characters.count <= 40
-    }
     
     // MARK: - Actions
     
@@ -186,9 +168,20 @@ extension ANAddPersonViewController: UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         doneBarButton.enabled = (textFields[0].text?.characters.count > 0)
-
-        if textField.tag == 108 {
-            return handleEmailTextField(textField, inRange: range, withReplacementString: string)
+        
+        switch textField.tag {
+        case 108:
+            
+            let checkResult = ANTextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
+            
+            return checkResult
+            
+        case 109:
+            
+            return ANTextFieldsChecker.sharedChecker.handlePhoneNumberForTextField(textField, inRange: range, withReplacementString: string)
+            
+        default:
+            break
         }
         
         return true
