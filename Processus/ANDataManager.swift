@@ -17,7 +17,6 @@ class ANDataManager {
     
     static let sharedManager = ANDataManager()
     
-    
     lazy var storesDirectory: NSURL = {
         
         let fm = NSFileManager.defaultManager()
@@ -28,14 +27,10 @@ class ANDataManager {
 
     }()
     
-    
-    
-    
     lazy var localStoreURL: NSURL = {
         let url = self.storesDirectory.URLByAppendingPathComponent("Processus.sqlite")
         return url
     }()
-    
     
     
     lazy var modelURL: NSURL = {
@@ -55,7 +50,6 @@ class ANDataManager {
     lazy var model: NSManagedObjectModel = {
         return NSManagedObjectModel(contentsOfURL:self.modelURL)!
     }()
-    
     
     
     
@@ -81,6 +75,45 @@ class ANDataManager {
         return mainContext
     }()
     
+    
+    // MARK: - PRIVATE METHODS
+    
+    private func getAllObjectsForName(name: String) -> [AnyObject] {
+        
+        let request = NSFetchRequest()
+        
+        let description = NSEntityDescription()
+        description.name = name
+        
+        request.entity = description
+        
+        var resultArray: [AnyObject] = []
+        
+        do {
+            resultArray = try context.executeFetchRequest(request)
+        } catch {
+            print("error")
+        }
+        
+        return resultArray
+    }
+    
+    private func printArray(array: [AnyObject]) {
+        
+        for object in array {
+            
+            if object is Person {
+                let person = object as! Person
+                print("Person: \(person.firstName)")
+            } else if object is Project {
+                let project = object as! Project
+                print("Project: \(project.customer)")
+            }
+            
+        }
+        
+    }
+
     
     // MARK: - PUBLIC METHODS
     
@@ -121,54 +154,15 @@ class ANDataManager {
 //    }
     
     
-    func getAllObjectsForName(name: String) -> [AnyObject] {
-        
-        let request = NSFetchRequest()
-        
-        let description = NSEntityDescription()
-        description.name = name
-        
-        request.entity = description
-        
-        var resultArray: [AnyObject] = []
-        
-        do {
-            resultArray = try context.executeFetchRequest(request)
-        } catch {
-            print("error")
-        }
-        
-        return resultArray
-    }
-    
-    func printArray(array: [AnyObject]) {
-        
-        for object in array {
-            
-            if object is Person {
-                let person = object as! Person
-                print("Person: \(person.firstName)")
-            } else if object is Project {
-                let project = object as! Project
-                print("Project: \(project.customer)")
-            }
-            
-            
-        }
-        
-    }
-    
     
     func showAllPeople() {
-        
         printArray(getAllObjectsForName("Person"))
-        
-        
     }
     
     func showAllProjects() {
         printArray(getAllObjectsForName("Project"))
     }
+    
     
     func nextProjectItemID() -> Int {
         
@@ -186,24 +180,9 @@ class ANDataManager {
             }
         }
         
-        
         return itemID + 1
-        
     }
-
     
-    
-//    func nextProjectItemID() -> Int {
-//        let userDefaults = NSUserDefaults.standardUserDefaults()
-//        let itemID = userDefaults.integerForKey("ProjectItemID")
-//        
-//        userDefaults.setInteger(itemID + 1, forKey: "ProjectItemID")
-//        
-//        userDefaults.synchronize()
-//        
-//        return itemID
-//        
-//    }
     
     
     

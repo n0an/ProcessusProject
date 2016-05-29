@@ -13,16 +13,7 @@ import CoreData
 
 class Project: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
-    
-    override func prepareForDeletion() {
-        if let notification = notificationForThisItem() {
-            print("Removing existing notification \(notification)")
-            
-            UIApplication.sharedApplication().cancelLocalNotification(notification)
-        }
-    }
-    
+    // MARK: - CORE DATA ADDON FOR RELATIONSHIPS MANIPULATION
     
     func remove(workerObject person: Person) {
         mutableSetValueForKey("workers").removeObject(person)
@@ -31,9 +22,11 @@ class Project: NSManagedObject {
     func add(workerObject person: Person) {
         mutableSetValueForKey("workers").addObject(person)
     }
+
     
+    // MARK: - PRIVATE METHODS
     
-    func notificationForThisItem() -> UILocalNotification? {
+    private func notificationForThisItem() -> UILocalNotification? {
         let allNotifications = UIApplication.sharedApplication().scheduledLocalNotifications!
         
         for notification in allNotifications {
@@ -44,7 +37,20 @@ class Project: NSManagedObject {
         
         return nil
     }
+
     
+    // Deleting local notification before delete object
+    override func prepareForDeletion() {
+        if let notification = notificationForThisItem() {
+            print("Removing existing notification \(notification)")
+            
+            UIApplication.sharedApplication().cancelLocalNotification(notification)
+        }
+    }
+    
+    
+    
+    // MARK: - PUBLIC METHODS
     
     func scheduleNotification() {
         
@@ -53,7 +59,6 @@ class Project: NSManagedObject {
             print("Found an existing notification \(notification)")
             UIApplication.sharedApplication().cancelLocalNotification(notification)
         }
-        
         
         if shouldRemind!.boolValue && dueDate!.compare(NSDate()) != .OrderedAscending {
             
@@ -71,7 +76,6 @@ class Project: NSManagedObject {
             UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
             
             print("Scheduled notification \(localNotification) for projectId \(projectId!.integerValue)")
-            
 
         }
         
