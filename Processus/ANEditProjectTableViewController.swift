@@ -84,6 +84,9 @@ class ANEditProjectTableViewController: UITableViewController {
             progressSlider.value = (item.completedRatio?.floatValue)!
             stateControl.selectedSegmentIndex = (item.state?.integerValue)!
             
+            shouldRemindSwitch.on = (item.shouldRemind?.boolValue)!
+
+            
             // shouldRemindSwitch.on = item.shouldRemind
             
             // Saving initial credentials
@@ -136,6 +139,8 @@ class ANEditProjectTableViewController: UITableViewController {
             
             editingProject.completedRatio   = progressSlider.value
             editingProject.state            = stateControl.selectedSegmentIndex
+            
+            editingProject.shouldRemind     = shouldRemindSwitch.on
             
             ANDataManager.sharedManager.saveContext()
             
