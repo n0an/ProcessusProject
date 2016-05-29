@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplayer {
+class ANPeopleViewController: UIViewController {
     
     // MARK: - OUTLETS
     
@@ -17,25 +17,32 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     
     // MARK: - ATTRIBUTES
     
+    var searchController: UISearchController!
+    
+    var searchResultsArray: [Person] = []
+    
     var myColleagues: [Person] = []
     
-    private var fetchedResultsController: NSFetchedResultsController?
+    private var fetchedResultsController: NSFetchedResultsController!
     
-    private var fetchedResultsDelegate: NSFetchedResultsControllerDelegate?
 
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 44
+        tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        navigationItem.leftBarButtonItem = editButtonItem()
+//        navigationItem.leftBarButtonItem = editButtonItem()
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+//        tableView.tableFooterView = UIView(frame: CGRectZero) // FAIL WITH SEARCHBAR
+        
+        
+        
+        // Loading data from DB
         
         let fetchRequest = NSFetchRequest(entityName: "Person")
         let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
@@ -45,12 +52,12 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
 
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
-        fetchedResultsDelegate = ANTableViewFetchedResultsDelegate(tableView: tableView, displayer: self)
+//        fetchedResultsDelegate = ANTableViewFetchedResultsDelegate(tableView: tableView, displayer: self)
         
-        fetchedResultsController?.delegate = fetchedResultsDelegate
+        fetchedResultsController.delegate = self
         
         do {
-            try fetchedResultsController?.performFetch()
+            try fetchedResultsController.performFetch()
             
         } catch {
             print("There was a problem fetching.")
@@ -71,6 +78,23 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
             print("Fetch non successful. error occured: \(error.localizedDescription)")
         }
         */
+        
+        myColleagues = fetchedResultsController.fetchedObjects as! [Person]
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.sizeToFit()
+        
+        tableView.tableHeaderView = searchController.searchBar
+        
+        definesPresentationContext = true 
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.tintColor = UIColor.greenColor()
+        
+        
+        
+        
         
     }
     
@@ -94,7 +118,11 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         
-        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
+        
+        let person = searchController.active ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
+        
+//        guard let person = fetchedResultsController?.objectAtIndexPath(indexPath) as? Person else {return}
+        
         guard let firstName = person.firstName else {return}
         guard let lastName = person.lastName else {return}
         
@@ -110,8 +138,17 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
         }
         
         cell.fullNameLabel.text = "\(firstName) \(lastName)"
+    }
+    
+    
+    
+    func filterContentFor(searchText: String) {
         
-        
+        searchResultsArray = myColleagues.filter({ (person: Person) -> Bool in
+            let matchedFName = person.firstName!.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)
+            
+            return matchedFName != nil
+        })
         
     }
     
@@ -141,17 +178,19 @@ class ANPeopleViewController: UIViewController, ANTableViewFetchedResultsDisplay
 extension ANPeopleViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 0
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let sections = fetchedResultsController?.sections else {return 0}
+//        if searchController.active {
+//            return searchResultsArray.count
+//        }
         
-        let currentSection = sections[section]
-        
-        return currentSection.numberOfObjects
+        return myColleagues.count
     }
+    
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -159,7 +198,25 @@ extension ANPeopleViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonCell
         
-        configureCell(cell, atIndexPath: indexPath)
+        
+        let person = searchController.active ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
+        
+        
+        if let firstName = person.firstName, lastName = person.lastName {
+            cell.fullNameLabel.text = "\(firstName) \(lastName)"
+
+        }
+        
+        
+        if let imageData = person.image {
+            cell.avatarImageView.image = UIImage(data: imageData)
+        }
+        
+        if let projectsCount = person.projects?.allObjects.count {
+            cell.projectsCountLabel.text = "\(projectsCount)"
+        }
+        
+        
         
         return cell
     }
@@ -202,18 +259,61 @@ extension ANPeopleViewController: UITableViewDelegate {
 
 
 
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension ANPeopleViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
+        switch type {
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        default:
+            tableView.reloadData()
+        }
+        
+        myColleagues = controller.fetchedObjects as! [Person]
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+}
+
+
+// MARK: - UISearchResultsUpdating
+
+extension ANPeopleViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        let searchText = searchController.searchBar.text
+        filterContentFor(searchText!)
+        
+        tableView.reloadData()
+        
+        
+    }
+}
+
+// MARK: - ANPersonDetailsVCDelegate
+
 extension ANPeopleViewController: ANPersonDetailsVCDelegate {
     func personEditingDidEndForPerson(person: Person) {
         ANDataManager.sharedManager.saveContext()
         
         tableView.reloadData()
     }
-
+    
 }
-
-
-
-
 
 
 
