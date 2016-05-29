@@ -142,6 +142,8 @@ class ANEditProjectTableViewController: UITableViewController {
             
             editingProject.shouldRemind     = shouldRemindSwitch.on
             
+            editingProject.scheduleNotification()
+            
             ANDataManager.sharedManager.saveContext()
             
         }
@@ -268,6 +270,8 @@ class ANEditProjectTableViewController: UITableViewController {
             }
             
             // if no error - save it!
+            
+
             save()
             
         }
