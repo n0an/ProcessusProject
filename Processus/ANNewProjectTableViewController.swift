@@ -302,6 +302,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             editingProject.completedRatio   = progressSlider.value
             editingProject.state            = stateControl.selectedSegmentIndex
             
+            
             ANDataManager.sharedManager.saveContext()
             
             delegate?.projectDetailsVC(self, didFinishEditingItem: editingProject)
@@ -318,6 +319,10 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             newProject.completedRatio   = progressSlider.value
             newProject.state            = stateControl.selectedSegmentIndex
+            
+            let newId = ANDataManager.sharedManager.nextProjectItemID()
+            
+            newProject.projectId        = newId
             
             //        newProject.descript = projectInfoDescriptionTextView.text!
             

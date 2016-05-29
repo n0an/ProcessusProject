@@ -19,7 +19,7 @@ extension Project {
     @NSManaged var descript: String?
     @NSManaged var dueDate: NSDate?
     @NSManaged var name: String?
-    @NSManaged var projectId: String?
+    @NSManaged var projectId: NSNumber?
     @NSManaged var state: NSNumber?
     @NSManaged var shouldRemind: NSNumber?
     @NSManaged var workers: NSSet?
