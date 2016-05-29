@@ -103,6 +103,7 @@ class ANAddPersonViewController: UITableViewController, UIImagePickerControllerD
         person.firstName    = textFields[0].text!
         person.lastName     = textFields[1].text!
         person.email        = textFields[2].text!
+        person.phoneNumber  = textFields[3].text!
         person.image        = UIImagePNGRepresentation(avatarImageView.image!)
         
         ANDataManager.sharedManager.saveContext()

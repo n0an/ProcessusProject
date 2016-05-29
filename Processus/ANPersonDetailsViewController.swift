@@ -137,7 +137,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         cell.textFields[0].text = personFirstName
         cell.textFields[1].text = personLastName
         cell.textFields[2].text = personEmail
-//        cell.textFields[3].text = personPhoneNumber
+        cell.textFields[3].text = personPhoneNumber
 
     }
     
@@ -285,6 +285,19 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         transitToProjectSelection()
     }
     
+    @IBAction func actionEditingDidEnd(sender: UITextField) {
+        
+        switch sender.tag {
+                    
+        case ANFieldType.PhoneNumber.rawValue:
+            newPersonPhoneNumber = sender.text
+            
+        default:
+            break
+        }
+
+        
+    }
     
     @IBAction func actionInfoChanged(sender: UITextField) {
         
@@ -551,6 +564,9 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
             return checkResult
             
         case ANFieldType.PhoneNumber.rawValue:
+            
+            newPersonPhoneNumber = textField.text
+            
             return ANTextFieldsChecker.sharedChecker.handlePhoneNumberForTextField(textField, inRange: range, withReplacementString: string)
             
         default:
@@ -560,6 +576,8 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    
 
     
 }

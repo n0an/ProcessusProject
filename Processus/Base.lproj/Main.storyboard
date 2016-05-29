@@ -972,6 +972,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="done"/>
                                             <connections>
+                                                <action selector="actionEditingDidEnd:" destination="Jyg-A5-1OD" eventType="editingDidEnd" id="6rS-Bm-Z5J"/>
                                                 <action selector="actionInfoChanged:" destination="Jyg-A5-1OD" eventType="editingChanged" id="PoX-GF-0rH"/>
                                                 <outlet property="delegate" destination="Jyg-A5-1OD" id="lrt-Ye-KmG"/>
                                             </connections>
