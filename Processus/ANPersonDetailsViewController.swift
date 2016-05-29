@@ -63,16 +63,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         
         title = "\(person.firstName!)"
         
-        // Saving initial credentials
-        personFirstName     = person.firstName
-        personLastName      = person.lastName
-        personEmail         = person.email
-        personPhoneNumber   = person.phoneNumber
-        
-        newPersonFirstName     = person.firstName
-        newPersonLastName      = person.lastName
-        newPersonEmail         = person.email
-        newPersonPhoneNumber   = person.phoneNumber
+        updateInitialCredentials()
         
         personProjects = person.projects?.allObjects as! [Project]
 
@@ -97,6 +88,19 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
     
     
     // MARK: - HELPER METHODS
+    
+    func updateInitialCredentials() {
+        // Saving initial credentials
+        personFirstName     = person.firstName
+        personLastName      = person.lastName
+        personEmail         = person.email
+        personPhoneNumber   = person.phoneNumber
+        
+        newPersonFirstName     = person.firstName
+        newPersonLastName      = person.lastName
+        newPersonEmail         = person.email
+        newPersonPhoneNumber   = person.phoneNumber
+    }
     
     func transitToProjectSelection() {
         let fetchRequest = NSFetchRequest(entityName: "Project")
@@ -208,14 +212,16 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
                 return
             }
             
-            person.firstName = newPersonFirstName
-            person.lastName = newPersonLastName
-            person.email = newPersonEmail
-            person.phoneNumber = newPersonPhoneNumber
+            person.firstName    = newPersonFirstName
+            person.lastName     = newPersonLastName
+            person.email        = newPersonEmail
+            person.phoneNumber  = newPersonPhoneNumber
             
             person.image = UIImagePNGRepresentation(cell.avatarImageView.image!)
             
             ANDataManager.sharedManager.saveContext()
+            
+            updateInitialCredentials()
             
         }
         
