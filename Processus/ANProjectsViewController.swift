@@ -35,7 +35,7 @@ class ANProjectsViewController: UIViewController, ANTableViewFetchedResultsDispl
         dateFormatter.dateFormat = "dd.MM.YYYY"
 
         tableView.estimatedRowHeight = 80
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 80
         
         
         navigationItem.leftBarButtonItem = editButtonItem()
