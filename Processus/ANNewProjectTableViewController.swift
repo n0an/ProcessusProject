@@ -87,6 +87,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             dueDate = item.dueDate!
             
+            shouldRemindSwitch.on = (item.shouldRemind?.boolValue)!
+            
             progressSlider.value = (item.completedRatio?.floatValue)!
             stateControl.selectedSegmentIndex = (item.state?.integerValue)!
             
@@ -295,9 +297,12 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             editingProject.customer         = customerTitleTextField.text
             editingProject.name             = projectTitleTextField.text
             editingProject.dueDate          = dueDate
+            editingProject.shouldRemind     = shouldRemindSwitch.on
             
             editingProject.completedRatio   = progressSlider.value
             editingProject.state            = stateControl.selectedSegmentIndex
+            
+            editingProject.scheduleNotification()
             
             ANDataManager.sharedManager.saveContext()
             
@@ -311,9 +316,17 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             newProject.customer         = customerTitleTextField.text
             newProject.name             = projectTitleTextField.text
             newProject.dueDate          = dueDate
+            newProject.shouldRemind     = shouldRemindSwitch.on
             
             newProject.completedRatio   = progressSlider.value
             newProject.state            = stateControl.selectedSegmentIndex
+            
+            let newId = ANDataManager.sharedManager.nextProjectItemID()
+            
+            newProject.projectId        = newId
+            
+            newProject.scheduleNotification()
+
             
             //        newProject.descript = projectInfoDescriptionTextView.text!
             
@@ -324,6 +337,14 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         }
     }
     
+    @IBAction func actionShouldRemindToggled(switchControl: UISwitch) {
+        
+        if shouldRemindSwitch.on {
+            let notificationsSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(notificationsSettings)
+        }
+        
+    }
     
     @IBAction func actionProgressSliderValueChanged(sender: UISlider) {
         updateProgressLabel()

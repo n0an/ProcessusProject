@@ -170,6 +170,40 @@ class ANDataManager {
         printArray(getAllObjectsForName("Project"))
     }
     
+    func nextProjectItemID() -> Int {
+        
+        let allProjects = getAllObjectsForName("Project") as! [Project]
+        
+        var itemID = 0
+        
+        for project in allProjects {
+
+            if let numProjectID = project.projectId?.integerValue {
+                
+                if numProjectID > itemID {
+                    itemID = numProjectID
+                }
+            }
+        }
+        
+        
+        return itemID + 1
+        
+    }
+
+    
+    
+//    func nextProjectItemID() -> Int {
+//        let userDefaults = NSUserDefaults.standardUserDefaults()
+//        let itemID = userDefaults.integerForKey("ProjectItemID")
+//        
+//        userDefaults.setInteger(itemID + 1, forKey: "ProjectItemID")
+//        
+//        userDefaults.synchronize()
+//        
+//        return itemID
+//        
+//    }
     
     
     

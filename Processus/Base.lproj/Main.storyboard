@@ -2482,6 +2482,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-Ro-maM">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
                                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="actionShouldRemindToggled:" destination="iU9-bt-hzT" eventType="valueChanged" id="9QE-z1-QdF"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
