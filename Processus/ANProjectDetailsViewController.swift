@@ -33,7 +33,9 @@ class ANProjectDetailsViewController: UITableViewController {
     weak var delegate: ANProjectDetailsVCDelegate?
     
     var dateFormatter: NSDateFormatter!
-
+    
+    var sectionsCount = 3
+    var selectCellShowed = false
     
     // MARK: - viewDidLoad
     
@@ -54,6 +56,8 @@ class ANProjectDetailsViewController: UITableViewController {
         
         dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY"
+        
+        tableView.allowsSelectionDuringEditing = true
         
     }
     
@@ -166,8 +170,27 @@ class ANProjectDetailsViewController: UITableViewController {
         if isEditingMode {
             buttonItem = .Done
             
+            selectCellShowed = true
+            sectionsCount = 4
+            
+            tableView.beginUpdates()
+            
+            tableView.insertSections(NSIndexSet(index: 2), withRowAnimation: .Fade)
+            
+            tableView.endUpdates()
+
+            
         } else {
             buttonItem = .Edit
+            
+            selectCellShowed = false
+            sectionsCount = 3
+            
+            tableView.beginUpdates()
+            
+            tableView.deleteSections(NSIndexSet(index: 2), withRowAnimation: .Fade)
+            
+            tableView.endUpdates()
             
             ANDataManager.sharedManager.saveContext()
         }
@@ -182,7 +205,7 @@ class ANProjectDetailsViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return sectionsCount
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -192,8 +215,10 @@ class ANProjectDetailsViewController: UITableViewController {
             return 1
         case ANSectionType.Separator.rawValue:
             return 1
-        case ANSectionType.Addbutton.rawValue:
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
             return 1
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
+            return projectParticipants.count
         case ANSectionType.Person.rawValue:
             return projectParticipants.count
         default:
@@ -220,10 +245,15 @@ class ANProjectDetailsViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdSeparator, forIndexPath: indexPath)
             return cell
             
-        case ANSectionType.Addbutton.rawValue:
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath)
             return cell
             
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)  as! ANPersonCell
+            configurePersonCell(cell, atIndexPath: indexPath)
+            return cell
+
         case ANSectionType.Person.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)  as! ANPersonCell
             configurePersonCell(cell, atIndexPath: indexPath)
@@ -243,13 +273,24 @@ class ANProjectDetailsViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
         
-        if indexPath.section == ANSectionType.Separator.rawValue {
+        switch indexPath.section {
+        case ANSectionType.PersonProject.rawValue:
+            return 80
+        case ANSectionType.Separator.rawValue:
             return 20
-        } else if indexPath.section == ANSectionType.Person.rawValue {
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
+            return 44
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
             return 70
+        case ANSectionType.Person.rawValue:
+            return 70
+        default:
+            break
+            
         }
-        
+
         return UITableViewAutomaticDimension
     }
     
@@ -261,8 +302,10 @@ class ANProjectDetailsViewController: UITableViewController {
             return 80
         case ANSectionType.Separator.rawValue:
             return 20
-        case ANSectionType.Addbutton.rawValue:
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
             return 44
+        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
+            return 70
         case ANSectionType.Person.rawValue:
             return 70
         default:
@@ -290,11 +333,12 @@ class ANProjectDetailsViewController: UITableViewController {
             
             performSegueWithIdentifier("EditItem", sender: self)
             
-        } else if indexPath.section == ANSectionType.Addbutton.rawValue {
+        } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
         
             transitToParticipantsSelection()
             
-        } else if indexPath.section == ANSectionType.Person.rawValue {
+        
+        } else if indexPath.section == ANSectionType.Person.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPersonDetailsViewController") as! ANPersonDetailsViewController
             
