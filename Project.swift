@@ -12,6 +12,10 @@ import CoreData
 
 
 class Project: NSManagedObject {
+    
+    var fullName: String {
+        return "\(customer!) \(name!)"
+    }
 
     // MARK: - CORE DATA ADDON FOR RELATIONSHIPS MANIPULATION
     

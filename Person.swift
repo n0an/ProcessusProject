@@ -11,6 +11,10 @@ import CoreData
 
 
 class Person: NSManagedObject {
+    
+    var fullName: String {
+        return "\(firstName!) \(lastName!)"
+    }
 
     // MARK: - CORE DATA ADDON FOR RELATIONSHIPS MANIPULATION
 
