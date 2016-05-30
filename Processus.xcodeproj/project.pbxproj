@@ -38,7 +38,6 @@
 		184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
-		18E981911CFB64B0002C390D /* ANCoalleguesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981901CFB64B0002C390D /* ANCoalleguesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +74,6 @@
 		184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPeopleSelectionViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		18E981901CFB64B0002C390D /* ANCoalleguesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCoalleguesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +94,6 @@
 				182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */,
 				184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */,
 				184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */,
-				18E981901CFB64B0002C390D /* ANCoalleguesTableViewController.swift */,
 			);
 			name = "Person Branch";
 			sourceTree = "<group>";
@@ -311,7 +308,6 @@
 				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
 				18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */,
 				180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */,
-				18E981911CFB64B0002C390D /* ANCoalleguesTableViewController.swift in Sources */,
 				184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */,
 				182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */,
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
