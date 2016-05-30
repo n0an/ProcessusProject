@@ -92,14 +92,6 @@ class ANPeopleViewController: UIViewController {
         
     }
     
-    
-    // MARK: - ACTIONS
-    
-    @IBAction func addColleaguePressed(sender: UIBarButtonItem) {
-        
-    }
-    
-    
     // MARK: - HELPER METHODS
     
     override func setEditing(editing: Bool, animated: Bool) {
@@ -108,6 +100,14 @@ class ANPeopleViewController: UIViewController {
         tableView.setEditing(editing, animated: true)
         
     }
+    
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func addColleaguePressed(sender: UIBarButtonItem) {
+        
+    }
+    
     
     
     
