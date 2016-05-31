@@ -2308,25 +2308,23 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOk-6L-W5u">
                                             <rect key="frame" x="120" y="4" width="360" height="35"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0F-uZ-tR6">
-                                                    <rect key="frame" x="108.5" y="7" width="22" height="22"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWl-2b-T7F">
+                                                    <rect key="frame" x="100.5" y="2" width="159" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="159" id="k9z-Xv-76l"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Add Participants" image="SelectParticipants"/>
                                                     <connections>
-                                                        <action selector="addButtonPressed:" destination="OUZ-hg-uXL" eventType="touchUpInside" id="msh-YI-EVK"/>
+                                                        <action selector="addButtonPressed:" destination="OUZ-hg-uXL" eventType="touchUpInside" id="C3z-Cw-3rV"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Participants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80f-fH-y8w">
-                                                    <rect key="frame" x="139" y="9" width="112" height="18"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="O0F-uZ-tR6" firstAttribute="centerY" secondItem="80f-fH-y8w" secondAttribute="centerY" id="BCV-vn-WEg"/>
-                                                <constraint firstItem="80f-fH-y8w" firstAttribute="centerY" secondItem="pOk-6L-W5u" secondAttribute="centerY" id="Bax-qx-uJ5"/>
-                                                <constraint firstItem="80f-fH-y8w" firstAttribute="leading" secondItem="O0F-uZ-tR6" secondAttribute="trailing" constant="8.5" id="SMf-Kb-0VC"/>
-                                                <constraint firstItem="80f-fH-y8w" firstAttribute="centerX" secondItem="pOk-6L-W5u" secondAttribute="centerX" constant="15" id="Y8B-AI-OlP"/>
+                                                <constraint firstItem="yWl-2b-T7F" firstAttribute="centerY" secondItem="pOk-6L-W5u" secondAttribute="centerY" id="0NF-5h-xDy"/>
+                                                <constraint firstItem="yWl-2b-T7F" firstAttribute="centerX" secondItem="pOk-6L-W5u" secondAttribute="centerX" id="GBG-sY-0Yr"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -2767,6 +2765,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SelectParticipants" width="28" height="31"/>
         <image name="SelectProjects" width="28" height="31"/>
         <image name="addImage2" width="76" height="76"/>
         <image name="box_set" width="64" height="55"/>
