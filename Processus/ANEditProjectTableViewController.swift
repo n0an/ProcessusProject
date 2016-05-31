@@ -105,6 +105,25 @@ class ANEditProjectTableViewController: UITableViewController {
         tableView.userInteractionEnabled = false
         
         navigationItem.rightBarButtonItem = rightButton
+        
+        
+        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")
+        progressSlider.setThumbImage(thumbImageNormal, forState: .Normal)
+        
+        let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")
+        progressSlider.setThumbImage(thumbImageHighlighted, forState: .Highlighted)
+        
+        let insets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        
+        if let trackLeftImage = UIImage(named: "SliderTrackLeft") {
+            let trackLeftResizable = trackLeftImage.resizableImageWithCapInsets(insets)
+            progressSlider.setMinimumTrackImage(trackLeftResizable, forState: .Normal)
+        }
+        if let trackRightImage = UIImage(named: "SliderTrackRight") {
+            let trackRightResizable = trackRightImage.resizableImageWithCapInsets(insets)
+            progressSlider.setMaximumTrackImage(trackRightResizable, forState: .Normal)
+        }
+
 
     }
     
