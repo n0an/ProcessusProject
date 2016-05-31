@@ -360,7 +360,7 @@ class ANProjectDetailsViewController: UITableViewController {
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
         
-            transitToParticipantsSelection()
+//            transitToParticipantsSelection()
             
         
         } else if indexPath.section == ANSectionType.Person.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {

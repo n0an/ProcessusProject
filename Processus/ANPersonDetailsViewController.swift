@@ -497,7 +497,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             navigationController?.pushViewController(vc, animated: true)
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
-            transitToProjectSelection()
+//            transitToProjectSelection()
         }
         
         
