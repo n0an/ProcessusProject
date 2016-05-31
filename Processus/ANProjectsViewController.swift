@@ -83,12 +83,31 @@ class ANProjectsViewController: UIViewController {
     }
     
     
+    
+    
     // MARK: - HELPER METHODS
     
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
         tableView.setEditing(editing, animated: true)
+        
+    }
+    
+    
+    func dueDateSoonForProject(project: Project) -> Bool {
+        
+        let currentDate = NSDate()
+        
+        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
+        print(timeLeft)
+        
+        // If there're less than 5 days befor deadline - activate warning sign
+        if timeLeft < 5 * 24 * 3600 {
+            return true
+        }
+        
+        return false
         
     }
 
@@ -211,7 +230,13 @@ extension ANProjectsViewController: UITableViewDataSource {
         
         cell.projectStateView.backgroundColor = stateColor
         
-        
+        if dueDateSoonForProject(project) {
+            cell.dueDateSoonLabel.hidden = false
+            cell.projectDueDateLabel.textColor = UIColor(red: 170.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        } else {
+            cell.dueDateSoonLabel.hidden = true
+            cell.projectDueDateLabel.textColor = UIColor.blackColor()
+        }
         
         return cell
     }

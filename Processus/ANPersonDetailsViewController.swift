@@ -89,6 +89,23 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
     
     // MARK: - HELPER METHODS
     
+    func dueDateSoonForProject(project: Project) -> Bool {
+        
+        let currentDate = NSDate()
+        
+        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
+        print(timeLeft)
+        
+        // If there're less than 5 days befor deadline - activate warning sign
+        if timeLeft < 5 * 24 * 3600 {
+            return true
+        }
+        
+        return false
+        
+    }
+
+    
     func updateInitialCredentials() {
         // Saving initial credentials
         personFirstName     = person.firstName
@@ -279,6 +296,15 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         }
         
         cell.projectStateView.backgroundColor = stateColor
+        
+        if dueDateSoonForProject(project) {
+            cell.dueDateSoonLabel.hidden = false
+            cell.projectDueDateLabel.textColor = UIColor(red: 170.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        } else {
+            cell.dueDateSoonLabel.hidden = true
+            cell.projectDueDateLabel.textColor = UIColor.blackColor()
+        }
+
         
     }
     
