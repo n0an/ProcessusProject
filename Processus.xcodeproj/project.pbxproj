@@ -36,6 +36,7 @@
 		184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */; };
 		184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */; };
 		184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */; };
+		185B0B7A1CFE112C002E8AA8 /* ANConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		184898561CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectSelectionViewController.swift; sourceTree = "<group>"; };
 		184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANEditProjectTableViewController.swift; sourceTree = "<group>"; };
 		184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPeopleSelectionViewController.swift; sourceTree = "<group>"; };
+		185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANConfigurator.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */,
+				185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */,
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
+				185B0B7A1CFE112C002E8AA8 /* ANConfigurator.swift in Sources */,
 				18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
 				180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */,

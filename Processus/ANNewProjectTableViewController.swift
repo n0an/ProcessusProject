@@ -100,32 +100,15 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             initialParticipants = item.workers?.copy() as? NSSet
             
             participantsCount.text = "\(projectParticipants.count)"
-
         }
 
         updateStateView()
         updateProgressLabel()
         updateDueDateLabel()
+    
         
-        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")
-        progressSlider.setThumbImage(thumbImageNormal, forState: .Normal)
-        
-        let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")
-        progressSlider.setThumbImage(thumbImageHighlighted, forState: .Highlighted)
-        
-        let insets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        ANConfigurator.sharedConfigurator.customizeSlider(progressSlider)
 
-        if let trackLeftImage = UIImage(named: "SliderTrackLeft1") {
-            let trackLeftResizable = trackLeftImage.resizableImageWithCapInsets(insets)
-            progressSlider.setMinimumTrackImage(trackLeftResizable, forState: .Normal)
-        }
-        if let trackRightImage = UIImage(named: "SliderTrackRight1") {
-            let trackRightResizable = trackRightImage.resizableImageWithCapInsets(insets)
-            progressSlider.setMaximumTrackImage(trackRightResizable, forState: .Normal)
-        }
-
-        
-        
     }
     
     
