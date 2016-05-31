@@ -100,12 +100,15 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             initialParticipants = item.workers?.copy() as? NSSet
             
             participantsCount.text = "\(projectParticipants.count)"
-
         }
 
         updateStateView()
         updateProgressLabel()
         updateDueDateLabel()
+    
+        
+        ANConfigurator.sharedConfigurator.customizeSlider(progressSlider)
+
     }
     
     

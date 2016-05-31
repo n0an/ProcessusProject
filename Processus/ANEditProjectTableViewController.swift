@@ -99,12 +99,18 @@ class ANEditProjectTableViewController: UITableViewController {
         updateProgressLabel()
         updateDueDateLabel()
         
+        ANConfigurator.sharedConfigurator.customizeSlider(progressSlider)
+
+        
         
         let rightButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
         
         tableView.userInteractionEnabled = false
         
         navigationItem.rightBarButtonItem = rightButton
+        
+
+
 
     }
     

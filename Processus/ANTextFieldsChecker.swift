@@ -72,7 +72,7 @@ class ANTextFieldsChecker {
         
         // **  MAKING SCHEME FOR ENTERING PHONE NUMBER
         
-        var resultString: NSMutableString = ""
+        let resultString: NSMutableString = ""
         
         
         /* FOR LOCAL NUMBER
