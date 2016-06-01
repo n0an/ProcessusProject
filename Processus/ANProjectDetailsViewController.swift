@@ -209,26 +209,8 @@ class ANProjectDetailsViewController: UITableViewController {
             
             let selectCell = tableView.cellForRowAtIndexPath(selectCellIndexP) as! ANProjectAddPersonCell
             
-            let scaleAnimation = CGAffineTransformMakeScale(0.0, 0.0)
-            let translationAntimation = CGAffineTransformMakeTranslation(600.0, 0.0)
-            
-            selectCell.addPersonView.transform = CGAffineTransformConcat(scaleAnimation, translationAntimation)
-            
-            UIView.animateWithDuration(0.7,
-                                       delay: 0.1,
-                                       usingSpringWithDamping: 0.7,
-                                       initialSpringVelocity: 0.5,
-                                       options: UIViewAnimationOptions.CurveEaseInOut,
-                                       animations: {
-                                        let scaleAnimation = CGAffineTransformMakeScale(1.0, 1.0)
-                                        
-                                        let translationAnimation = CGAffineTransformMakeTranslation(0, 0)
-                                        
-                                        selectCell.addPersonView.transform = CGAffineTransformConcat(scaleAnimation, translationAnimation)
-                                        
-                                        
-                },
-                                       completion: nil)
+            ANAnimator.sharedAnimator.animateSelectRowView(selectCell.addPersonView)
+
 
 
             
