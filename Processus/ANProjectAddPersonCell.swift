@@ -1,17 +1,17 @@
 //
-//  ANPersonAddProjectCell.swift
+//  ANProjectAddPersonCell.swift
 //  Processus
 //
-//  Created by Anton Novoselov on 25/05/16.
+//  Created by Anton Novoselov on 01/06/16.
 //  Copyright © 2016 Anton Novoselov. All rights reserved.
 //
 
 import UIKit
 
-class ANPersonAddProjectCell: UITableViewCell {
+class ANProjectAddPersonCell: UITableViewCell {
 
-    @IBOutlet weak var addProjectsView: UIView!
-    
+    @IBOutlet weak var addPersonView: UIView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +24,4 @@ class ANPersonAddProjectCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    
 }

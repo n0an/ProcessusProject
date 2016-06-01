@@ -20,6 +20,7 @@ protocol ANPersonDetailsVCDelegate: class {
 class ANPersonDetailsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    
     // MARK: - ATTRIBUTES
     
     enum ANSectionType: Int {
@@ -77,6 +78,10 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         dateFormatter.dateFormat = "dd.MM.YYYY"
         
         tableView.allowsSelectionDuringEditing = true
+        
+        
+        
+        
         
     }
     
@@ -186,6 +191,18 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             
             cell.textFields.first?.becomeFirstResponder()
             cell.avatarImageView.userInteractionEnabled = true
+            
+            
+            let selectCellIndexP = NSIndexPath(forRow: 0, inSection: 2)
+            
+            let selectCell = tableView.cellForRowAtIndexPath(selectCellIndexP) as! ANPersonAddProjectCell
+
+            
+            ANAnimator.sharedAnimator.animateSelectRowView(selectCell.addProjectsView)
+            
+
+            
+            
             
         } else {
             
@@ -415,7 +432,9 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             return cell
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath) as! ANPersonAddProjectCell
+            
+            
             return cell
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
@@ -497,7 +516,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             navigationController?.pushViewController(vc, animated: true)
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
-            transitToProjectSelection()
+//            transitToProjectSelection()
         }
         
         

@@ -203,6 +203,15 @@ class ANProjectDetailsViewController: UITableViewController {
             tableView.insertSections(NSIndexSet(index: 2), withRowAnimation: .Fade)
             
             tableView.endUpdates()
+            
+            
+            let selectCellIndexP = NSIndexPath(forRow: 0, inSection: 2)
+            
+            let selectCell = tableView.cellForRowAtIndexPath(selectCellIndexP) as! ANProjectAddPersonCell
+            
+            ANAnimator.sharedAnimator.animateSelectRowView(selectCell.addPersonView)
+
+
 
             
         } else {
@@ -271,7 +280,8 @@ class ANProjectDetailsViewController: UITableViewController {
             return cell
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath) as! ANProjectAddPersonCell
+            
             return cell
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
@@ -360,7 +370,7 @@ class ANProjectDetailsViewController: UITableViewController {
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
         
-            transitToParticipantsSelection()
+//            transitToParticipantsSelection()
             
         
         } else if indexPath.section == ANSectionType.Person.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {

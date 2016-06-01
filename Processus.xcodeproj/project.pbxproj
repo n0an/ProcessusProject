@@ -37,6 +37,8 @@
 		184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */; };
 		184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */; };
 		185B0B7A1CFE112C002E8AA8 /* ANConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */; };
+		185B0B7C1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */; };
+		185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANEditProjectTableViewController.swift; sourceTree = "<group>"; };
 		184F5FC71CF789F6004DB11D /* ANPeopleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPeopleSelectionViewController.swift; sourceTree = "<group>"; };
 		185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANConfigurator.swift; sourceTree = "<group>"; };
+		185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectAddPersonCell.swift; sourceTree = "<group>"; };
+		185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAnimator.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,7 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				182988901CE76B5E00BC5272 /* ANProjectInfoTextCell.swift */,
-				182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */,
+				185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */,
 				182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */,
 				182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */,
 			);
@@ -220,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				1829888E1CE76A2F00BC5272 /* ANNewProjectViewController.swift */,
+				182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */,
 			);
 			name = _old;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */,
+				185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */,
 				185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */,
 			);
 			name = Utils;
@@ -320,12 +326,14 @@
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
 				180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */,
 				184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */,
+				185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */,
 				184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */,
 				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,
 				182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */,
 				1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */,
 				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
+				185B0B7C1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift in Sources */,
 				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
 				184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */,
 				180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */,
