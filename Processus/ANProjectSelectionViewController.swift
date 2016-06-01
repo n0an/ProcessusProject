@@ -59,7 +59,7 @@ class ANProjectSelectionViewController: UITableViewController {
         print(timeLeft)
         
         // If there're less than 5 days befor deadline - activate warning sign
-        if timeLeft < 5 * 24 * 3600 {
+        if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {
             return true
         }
         
@@ -104,10 +104,12 @@ class ANProjectSelectionViewController: UITableViewController {
         
         
         if dueDateSoonForProject(project) {
-            cell.dueDateSoonLabel.hidden = false
+            
+            cell.dueDateSoonImageView.hidden = false
             cell.projectDueDateLabel.textColor = UIColor(red: 170.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
         } else {
-            cell.dueDateSoonLabel.hidden = true
+            
+            cell.dueDateSoonImageView.hidden = true
             cell.projectDueDateLabel.textColor = UIColor.blackColor()
         }
 

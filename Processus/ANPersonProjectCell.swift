@@ -16,6 +16,9 @@ class ANPersonProjectCell: UITableViewCell {
     @IBOutlet weak var projectDueDateLabel: UILabel!
     @IBOutlet weak var dueDateSoonLabel: UILabel!
     
+    @IBOutlet weak var dueDateSoonImageView: UIImageView!
+
+    
     @IBOutlet weak var participantsCountLabel: UILabel!
 
     
