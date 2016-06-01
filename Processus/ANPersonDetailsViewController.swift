@@ -451,14 +451,6 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath) as! ANPersonAddProjectCell
             
-//            if !editing {
-//                
-//                let scaleAnimation = CGAffineTransformMakeScale(0.0, 0.0)
-//                let translationAntimation = CGAffineTransformMakeTranslation(1000.0, 0.0)
-//                
-//                cell.addProjectsView.transform = CGAffineTransformConcat(scaleAnimation, translationAntimation)
-//
-//            }
             
             return cell
             

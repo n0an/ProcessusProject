@@ -2301,7 +2301,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddCell" id="X0T-th-RMu" customClass="ANPersonAddProjectCell" customModule="Processus" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddCell" id="X0T-th-RMu" customClass="ANProjectAddPersonCell" customModule="Processus" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="192" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0T-th-RMu" id="ZH8-en-6Dr">
@@ -2344,6 +2344,9 @@
                                         <constraint firstAttribute="bottom" secondItem="pOk-6L-W5u" secondAttribute="bottom" constant="4.5" id="sbi-g7-YFk"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addPersonView" destination="pOk-6L-W5u" id="E4C-rh-6Qw"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANPersonCell" rowHeight="70" id="wle-FM-CHc" customClass="ANPersonCell" customModule="Processus" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="236" width="600" height="70"/>
