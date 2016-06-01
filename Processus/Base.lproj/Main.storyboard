@@ -1124,6 +1124,9 @@
                                         <constraint firstItem="s0b-uD-BCa" firstAttribute="top" secondItem="rGj-Ge-eSh" secondAttribute="top" constant="4" id="hlp-zb-eQk"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addProjectsView" destination="s0b-uD-BCa" id="MJq-3J-GAR"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personProjectsCell" rowHeight="80" id="d56-f0-SIo" customClass="ANPersonProjectCell" customModule="Processus" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="316" width="600" height="80"/>

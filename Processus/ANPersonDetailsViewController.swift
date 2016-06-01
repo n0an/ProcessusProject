@@ -20,6 +20,7 @@ protocol ANPersonDetailsVCDelegate: class {
 class ANPersonDetailsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    
     // MARK: - ATTRIBUTES
     
     enum ANSectionType: Int {
@@ -77,6 +78,10 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         dateFormatter.dateFormat = "dd.MM.YYYY"
         
         tableView.allowsSelectionDuringEditing = true
+        
+        
+        
+        
         
     }
     
@@ -186,6 +191,35 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             
             cell.textFields.first?.becomeFirstResponder()
             cell.avatarImageView.userInteractionEnabled = true
+            
+            
+            let selectCellIndexP = NSIndexPath(forRow: 0, inSection: 2)
+            
+            let selectCell = tableView.cellForRowAtIndexPath(selectCellIndexP) as! ANPersonAddProjectCell
+            
+            let scaleAnimation = CGAffineTransformMakeScale(0.0, 0.0)
+            let translationAntimation = CGAffineTransformMakeTranslation(600.0, 0.0)
+            
+            selectCell.addProjectsView.transform = CGAffineTransformConcat(scaleAnimation, translationAntimation)
+
+            
+            UIView.animateWithDuration(0.7,
+                                       delay: 0.1,
+                                       usingSpringWithDamping: 0.7,
+                                       initialSpringVelocity: 0.5,
+                                       options: UIViewAnimationOptions.CurveEaseInOut,
+                                       animations: {
+                                        let scaleAnimation = CGAffineTransformMakeScale(1.0, 1.0)
+                                        
+                                        let translationAnimation = CGAffineTransformMakeTranslation(0, 0)
+                                        
+                                        selectCell.addProjectsView.transform = CGAffineTransformConcat(scaleAnimation, translationAnimation)
+                                        
+                                        
+                },
+                                       completion: nil)
+            
+            
             
         } else {
             
@@ -415,7 +449,17 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             return cell
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath) as! ANPersonAddProjectCell
+            
+//            if !editing {
+//                
+//                let scaleAnimation = CGAffineTransformMakeScale(0.0, 0.0)
+//                let translationAntimation = CGAffineTransformMakeTranslation(1000.0, 0.0)
+//                
+//                cell.addProjectsView.transform = CGAffineTransformConcat(scaleAnimation, translationAntimation)
+//
+//            }
+            
             return cell
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == false:

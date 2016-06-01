@@ -10,6 +10,9 @@ import UIKit
 
 class ANPersonAddProjectCell: UITableViewCell {
 
+    @IBOutlet weak var addProjectsView: UIView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

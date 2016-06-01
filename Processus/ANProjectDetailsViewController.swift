@@ -272,6 +272,7 @@ class ANProjectDetailsViewController: UITableViewController {
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath)
+            
             return cell
             
         case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
