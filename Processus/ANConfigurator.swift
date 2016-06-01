@@ -13,6 +13,70 @@ import UIKit
 class ANConfigurator {
     
     static let sharedConfigurator = ANConfigurator()
+    
+    // MARK: - PRIVATE METHODS
+    
+    private func dueDateSoonForProject(project: Project) -> Bool {
+        
+        let currentDate = NSDate()
+        
+        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
+        print(timeLeft)
+        
+        
+        // If there're less than 5 days befor deadline - activate warning sign
+        if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {
+            return true
+        }
+        
+        return false
+        
+    }
+    
+    
+    private func coloredImage(image: UIImage, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIImage! {
+        
+        let rect = CGRect(origin: CGPointZero, size: image.size)
+        
+        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        image.drawInRect(rect)
+        
+        
+        CGContextSetRGBFillColor(context, red, green, blue, alpha)
+        CGContextSetBlendMode(context, CGBlendMode.SourceAtop)
+        
+        CGContextFillRect(context, rect)
+        
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return result
+        
+        
+    }
+
+    
+    
+    
+
+    lazy var dateFormatter: NSDateFormatter = {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateFormat = "dd.MM.YYYY"
+        
+        return dateFormatter
+    }()
+
+    
+
+    
+    
+    // MARK: - PUBLIC METHODS
 
     func customizeSlider(slider: UISlider) {
         // Custom Slider
@@ -35,6 +99,61 @@ class ANConfigurator {
 
     }
     
+    
+    func configureProjectCell(cell: ANPersonProjectCell, forProject project: Project) {
+        
+        
+        cell.customerNameLabel.text = project.customer
+        cell.projectNameLabel.text = project.name
+        
+        
+        var stateColor = UIColor()
+        
+        switch project.state!.integerValue {
+        case ANProjectState.NonActive.rawValue:
+            stateColor = UIColor.redColor()
+        case ANProjectState.Frozen.rawValue:
+            stateColor = UIColor.yellowColor()
+        case ANProjectState.Active.rawValue:
+            stateColor = UIColor.greenColor()
+        default:
+            break
+        }
+        
+        
+        
+        cell.projectStateView.backgroundColor = stateColor
+        
+        if dueDateSoonForProject(project) {
+            
+            cell.dueDateSoonImageView.hidden = false
+            cell.projectDueDateLabel.textColor = UIColor(red: 170.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        } else {
+            
+            cell.dueDateSoonImageView.hidden = true
+            cell.projectDueDateLabel.textColor = UIColor.blackColor()
+        }
+        
+        if project.shouldRemind!.boolValue {
+            cell.alarmImageView.hidden = false
+            
+            if dueDateSoonForProject(project) {
+                
+                let alarmImage = UIImage(named: "AlarmSign")!
+            
+                let coloredImage = self.coloredImage(alarmImage, red: 170.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                
+                cell.alarmImageView.image = coloredImage
+                
+            }
+            
+        } else {
+            cell.alarmImageView.hidden = true
+        }
+
+        
+        
+    }
     
     
     

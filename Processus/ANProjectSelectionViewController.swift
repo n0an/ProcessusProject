@@ -71,26 +71,8 @@ class ANProjectSelectionViewController: UITableViewController {
     func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
         
         let project = allProjects[indexPath.row]
-        
-        cell.customerNameLabel.text = project.customer
-        cell.projectNameLabel.text = project.name
-        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
 
-        
-        var stateColor = UIColor()
-        
-        switch project.state!.integerValue {
-        case ANProjectState.NonActive.rawValue:
-            stateColor = UIColor.redColor()
-        case ANProjectState.Frozen.rawValue:
-            stateColor = UIColor.yellowColor()
-        case ANProjectState.Active.rawValue:
-            stateColor = UIColor.greenColor()
-        default:
-            break
-        }
-        
-        cell.projectStateView.backgroundColor = stateColor
+        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
         
         if (person.projects!.containsObject(project)) {
 
@@ -102,16 +84,7 @@ class ANProjectSelectionViewController: UITableViewController {
 
         }
         
-        
-        if dueDateSoonForProject(project) {
-            
-            cell.dueDateSoonImageView.hidden = false
-            cell.projectDueDateLabel.textColor = UIColor(red: 170.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        } else {
-            
-            cell.dueDateSoonImageView.hidden = true
-            cell.projectDueDateLabel.textColor = UIColor.blackColor()
-        }
+        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
 
         
     }
