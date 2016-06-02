@@ -2175,7 +2175,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personProjectsCell" rowHeight="80" id="atU-AE-JSR" customClass="ANPersonProjectCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atU-AE-JSR" id="61u-ut-s5y">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
@@ -2311,7 +2311,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separatorCell" rowHeight="20" id="Td2-Yu-yi8">
-                                <rect key="frame" x="0.0" y="172" width="600" height="20"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Td2-Yu-yi8" id="hvu-0O-lN7">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="19.5"/>
@@ -2331,7 +2331,7 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddCell" id="X0T-th-RMu" customClass="ANProjectAddPersonCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="192" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="128" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0T-th-RMu" id="ZH8-en-6Dr">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -2378,7 +2378,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANPersonCell" rowHeight="70" id="wle-FM-CHc" customClass="ANPersonCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="236" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="172" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wle-FM-CHc" id="FXJ-6h-FNO">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="69.5"/>
@@ -2634,6 +2634,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaT-T6-cuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2925" y="-63"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Vrq-d0-tca">
+            <objects>
+                <viewController id="aqg-ej-cUQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aXi-wb-afp"/>
+                        <viewControllerLayoutGuide type="bottom" id="iSk-cQ-1hv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sp7-To-OEd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No projects due with selected date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWU-3f-0qh">
+                                <rect key="frame" x="163" y="289" width="274" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IWU-3f-0qh" firstAttribute="centerX" secondItem="Sp7-To-OEd" secondAttribute="centerX" id="5xg-RD-tus"/>
+                            <constraint firstItem="IWU-3f-0qh" firstAttribute="centerY" secondItem="Sp7-To-OEd" secondAttribute="centerY" id="u1g-r6-T3T"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Egl-qP-psP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3721" y="-63"/>
         </scene>
         <!--New project-->
         <scene sceneID="Od5-vx-cdc">
@@ -3023,7 +3053,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actToolBarButton" destination="42O-K8-MQl" id="xN2-eM-qb8"/>
+                        <outlet property="showButton" destination="OA9-hB-eDf" id="Nfk-1P-gBy"/>
                         <segue destination="RPl-5l-sxh" kind="show" identifier="showDate" id="Yaf-0R-uXO"/>
+                        <segue destination="aqg-ej-cUQ" kind="show" identifier="showNoProjectsForDate" id="YAi-MV-a5h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezK-9K-H3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3080,6 +3113,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Yaf-0R-uXO"/>
-        <segue reference="s2E-Es-V8L"/>
+        <segue reference="kCB-mu-F0F"/>
     </inferredMetricsTieBreakers>
 </document>

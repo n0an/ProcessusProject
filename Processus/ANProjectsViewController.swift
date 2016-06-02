@@ -103,7 +103,6 @@ class ANProjectsViewController: UIViewController {
         let currentDate = NSDate()
         
         let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        print(timeLeft)
         
         
         

@@ -12,29 +12,46 @@ import CoreData
 
 class ANCalendarViewController: UIViewController {
     
+    // MARK: - OUTLETS
+
+    @IBOutlet weak var showButton: UIBarButtonItem!
+    @IBOutlet weak var actToolBarButton: UIToolbar!
+    
+    
     // MARK: - ATTRIBUTES
     
-    var fakeDate: NSDate!
     var allDueDates: [NSDate] = []
     var allProjects: [Project] = []
+    
+    var projectsForSegue: [Project] = []
+    
     var selectedDate: NSDate?
     
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        fakeDate = NSDate(timeIntervalSinceNow: 3600*24)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        getAllProjectsDueDates()
+        getAllProjectsAndDueDates()
         
-        
+        if selectedDate == nil {
+            showButton.enabled = false
+            actToolBarButton.hidden = true
+        }
+
+
     }
     
     
     // MARK: - HELPER METHODS
     
-    func getAllProjectsDueDates() {
+    func getAllProjectsAndDueDates() {
         
         let fetchRequest = NSFetchRequest(entityName: "Project")
         
@@ -62,12 +79,12 @@ class ANCalendarViewController: UIViewController {
     }
     
     
+    
+    
     func isEventForDate(date: NSDate) -> Bool {
         
         let calend = NSCalendar.currentCalendar()
         let components = calend.components([.Month, .Day], fromDate: date)
-        
-        
         
         for dueDate in allDueDates {
             
@@ -87,7 +104,32 @@ class ANCalendarViewController: UIViewController {
     // MARK: - ACTIONS
 
     @IBAction func showButtonPressed(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("showDate", sender: nil)
+        
+        var selectedProjects: [Project] = []
+        
+        let calend = NSCalendar.currentCalendar()
+        let components = calend.components([.Month, .Day], fromDate: selectedDate!)
+        
+        for project in allProjects {
+            
+            let dueDateComponents = calend.components([.Month, .Day], fromDate: project.dueDate!)
+            
+            if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
+                selectedProjects.append(project)
+            }
+            
+        }
+        
+        
+        if selectedProjects.isEmpty {
+            performSegueWithIdentifier("showNoProjectsForDate", sender: nil)
+        } else {
+            projectsForSegue = selectedProjects
+            performSegueWithIdentifier("showDate", sender: nil)
+
+        }
+        
+        
         
     }
     
@@ -95,8 +137,6 @@ class ANCalendarViewController: UIViewController {
     
     @IBAction func actionToolBarButtonPressed(sender: UIBarButtonItem) {
         
-        performSegueWithIdentifier("showDate", sender: nil)
-
     }
     
     
@@ -106,27 +146,9 @@ class ANCalendarViewController: UIViewController {
         
         if segue.identifier == "showDate" {
             
-            var selectedProjects: [Project] = []
-            
             let destinationVC = segue.destinationViewController as! ANProjectsViewController
             
-            let calend = NSCalendar.currentCalendar()
-            let components = calend.components([.Month, .Day], fromDate: selectedDate!)
-            
-            
-            for project in allProjects {
-                
-                let dueDateComponents = calend.components([.Month, .Day], fromDate: project.dueDate!)
-                
-                if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
-                    selectedProjects.append(project)
-                }
-                
-            }
-            
-
-            destinationVC.projectsSelectedByDate = selectedProjects
-            
+            destinationVC.projectsSelectedByDate = projectsForSegue
             
         }
         
@@ -174,7 +196,8 @@ extension ANCalendarViewController: FSCalendarDelegate {
         
         selectedDate = date
         
-        
+        showButton.enabled = true
+        actToolBarButton.hidden = false
         
     }
     
