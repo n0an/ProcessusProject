@@ -2620,38 +2620,8 @@
                                     <outlet property="delegate" destination="sGJ-AL-uaP" id="bdQ-HF-Gpf"/>
                                 </connections>
                             </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="FPJ-n7-68l" firstAttribute="top" secondItem="CpZ-eU-fgP" secondAttribute="bottom" id="Vsa-VP-OFQ"/>
-                            <constraint firstItem="CpZ-eU-fgP" firstAttribute="leading" secondItem="7Ko-PV-8Da" secondAttribute="leading" id="XOB-1I-cGA"/>
-                            <constraint firstAttribute="trailing" secondItem="CpZ-eU-fgP" secondAttribute="trailing" id="fmz-n5-JdC"/>
-                            <constraint firstItem="CpZ-eU-fgP" firstAttribute="top" secondItem="9fp-jK-lmO" secondAttribute="bottom" id="g94-U1-mVT"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Date" id="Fnw-PP-1eL"/>
-                    <connections>
-                        <outlet property="tableView" destination="CpZ-eU-fgP" id="jL0-Wl-Kmh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oaT-T6-cuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2925" y="-63"/>
-        </scene>
-        <!--Selected Date-->
-        <scene sceneID="Vrq-d0-tca">
-            <objects>
-                <viewController id="aqg-ej-cUQ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aXi-wb-afp"/>
-                        <viewControllerLayoutGuide type="bottom" id="iSk-cQ-1hv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Sp7-To-OEd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No projects due with selected date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWU-3f-0qh">
-                                <rect key="frame" x="163" y="289" width="274" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No projects due with selected date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiS-yd-IH3">
+                                <rect key="frame" x="163" y="290" width="274" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -2659,15 +2629,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IWU-3f-0qh" firstAttribute="centerX" secondItem="Sp7-To-OEd" secondAttribute="centerX" id="5xg-RD-tus"/>
-                            <constraint firstItem="IWU-3f-0qh" firstAttribute="centerY" secondItem="Sp7-To-OEd" secondAttribute="centerY" id="u1g-r6-T3T"/>
+                            <constraint firstItem="YiS-yd-IH3" firstAttribute="centerX" secondItem="7Ko-PV-8Da" secondAttribute="centerX" id="QWx-dm-dvU"/>
+                            <constraint firstItem="FPJ-n7-68l" firstAttribute="top" secondItem="CpZ-eU-fgP" secondAttribute="bottom" id="Vsa-VP-OFQ"/>
+                            <constraint firstItem="YiS-yd-IH3" firstAttribute="centerY" secondItem="7Ko-PV-8Da" secondAttribute="centerY" id="WwD-Uu-cn5"/>
+                            <constraint firstItem="CpZ-eU-fgP" firstAttribute="leading" secondItem="7Ko-PV-8Da" secondAttribute="leading" id="XOB-1I-cGA"/>
+                            <constraint firstAttribute="trailing" secondItem="CpZ-eU-fgP" secondAttribute="trailing" id="fmz-n5-JdC"/>
+                            <constraint firstItem="CpZ-eU-fgP" firstAttribute="top" secondItem="9fp-jK-lmO" secondAttribute="bottom" id="g94-U1-mVT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Selected Date" id="EkF-h1-xnU"/>
+                    <navigationItem key="navigationItem" title="Date" id="Fnw-PP-1eL"/>
+                    <connections>
+                        <outlet property="noProjectsLabel" destination="YiS-yd-IH3" id="ajb-ft-FFV"/>
+                        <outlet property="tableView" destination="CpZ-eU-fgP" id="jL0-Wl-Kmh"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Egl-qP-psP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oaT-T6-cuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3721" y="-63"/>
+            <point key="canvasLocation" x="2925" y="-63"/>
         </scene>
         <!--New project-->
         <scene sceneID="Od5-vx-cdc">
@@ -3059,7 +3037,6 @@
                     <connections>
                         <outlet property="actToolBarButton" destination="42O-K8-MQl" id="xN2-eM-qb8"/>
                         <outlet property="showButton" destination="OA9-hB-eDf" id="Nfk-1P-gBy"/>
-                        <segue destination="aqg-ej-cUQ" kind="show" identifier="showNoProjectsForDate" id="YAi-MV-a5h"/>
                         <segue destination="sGJ-AL-uaP" kind="show" identifier="showDate" id="bBc-T9-an3"/>
                     </connections>
                 </viewController>

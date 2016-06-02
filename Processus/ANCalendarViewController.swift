@@ -121,18 +121,10 @@ class ANCalendarViewController: UIViewController {
             }
             
         }
-        
-        
-        if selectedProjects.isEmpty {
-            performSegueWithIdentifier("showNoProjectsForDate", sender: nil)
-        } else {
-            projectsForSegue = selectedProjects
-            performSegueWithIdentifier("showDate", sender: nil)
+        projectsForSegue = selectedProjects
+        performSegueWithIdentifier("showDate", sender: nil)
 
-        }
-        
-        
-        
+
     }
     
     
@@ -157,18 +149,8 @@ class ANCalendarViewController: UIViewController {
             destinationVC.myProjects = projectsForSegue
             
         }
-        
-        if segue.identifier == "showNoProjectsForDate" {
-            let destinationVC = segue.destinationViewController
-            
-            destinationVC.title = "\(stringDate)"
-        }
-        
-        
-        
+
     }
-    
-    
     
     
 }

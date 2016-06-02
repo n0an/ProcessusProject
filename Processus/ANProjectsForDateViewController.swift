@@ -14,12 +14,13 @@ class ANProjectsForDateViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var noProjectsLabel: UILabel!
+    
     
     // MARK: - ATTRIBUTES
 
     var myProjects: [Project]!
     
-//    var projectsSelectedByDate: [Project]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,20 @@ class ANProjectsForDateViewController: UIViewController {
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 80
         
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if myProjects.isEmpty {
+            noProjectsLabel.hidden = false
+            tableView.hidden = true
+        } else {
+            noProjectsLabel.hidden = true
+            tableView.hidden = false
+        }
     }
 
     
