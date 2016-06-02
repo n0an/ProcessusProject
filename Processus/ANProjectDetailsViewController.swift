@@ -63,6 +63,8 @@ class ANProjectDetailsViewController: UITableViewController {
     
     deinit {
         ANDataManager.sharedManager.saveContext()
+        
+        delegate?.projectEditingDidEndForProject(project)
     }
     
     
