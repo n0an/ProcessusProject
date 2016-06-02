@@ -40,6 +40,7 @@
 		185B0B7C1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */; };
 		185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */; };
 		185B0BA51CFF6E71002E8AA8 /* ANCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */; };
+		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
 		8FF50206C970CBDDF21EBDD9 /* Pods_Processus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */; };
@@ -81,6 +82,7 @@
 		185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectAddPersonCell.swift; sourceTree = "<group>"; };
 		185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAnimator.swift; sourceTree = "<group>"; };
 		185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCalendarViewController.swift; sourceTree = "<group>"; };
+		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4B6220E0DF4F1853631F8E9B /* Pods-Processus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Processus/Pods-Processus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,7 +204,7 @@
 				184F5FC41CF76229004DB11D /* _old */,
 				180D635F1CF8AE1000AAD93A /* Person Branch */,
 				180D63601CF8AE1600AAD93A /* Project Branch */,
-				185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */,
+				18E032941D00BD65004E6371 /* Calendar Branch */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -245,6 +247,15 @@
 				182988981CE7710D00BC5272 /* ANProjectDescriptionCell.swift */,
 			);
 			name = _old;
+			sourceTree = "<group>";
+		};
+		18E032941D00BD65004E6371 /* Calendar Branch */ = {
+			isa = PBXGroup;
+			children = (
+				185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */,
+				18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */,
+			);
+			name = "Calendar Branch";
 			sourceTree = "<group>";
 		};
 		18E9818B1CFAE7EC002C390D /* Utils */ = {
@@ -397,6 +408,7 @@
 				18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */,
 				180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */,
 				184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */,
+				18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */,
 				182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */,
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,

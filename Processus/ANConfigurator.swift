@@ -21,7 +21,6 @@ class ANConfigurator {
         let currentDate = NSDate()
         
         let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        print(timeLeft)
         
         
         // If there're less than 5 days befor deadline - activate warning sign

@@ -29,8 +29,6 @@ class ANProjectsViewController: UIViewController {
     
     var dateFormatter: NSDateFormatter!
 
-    var projectsSelectedByDate: [Project]?
-
     
     // MARK: - viewDidLoad
 
@@ -103,8 +101,6 @@ class ANProjectsViewController: UIViewController {
         let currentDate = NSDate()
         
         let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        
-        
         
         // If there're less than 5 days befor deadline - activate warning sign
         if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {

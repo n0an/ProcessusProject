@@ -2175,7 +2175,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personProjectsCell" rowHeight="80" id="atU-AE-JSR" customClass="ANPersonProjectCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atU-AE-JSR" id="61u-ut-s5y">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
@@ -2311,7 +2311,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separatorCell" rowHeight="20" id="Td2-Yu-yi8">
-                                <rect key="frame" x="0.0" y="108" width="600" height="20"/>
+                                <rect key="frame" x="0.0" y="172" width="600" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Td2-Yu-yi8" id="hvu-0O-lN7">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="19.5"/>
@@ -2331,7 +2331,7 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddCell" id="X0T-th-RMu" customClass="ANProjectAddPersonCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="192" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0T-th-RMu" id="ZH8-en-6Dr">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -2378,7 +2378,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANPersonCell" rowHeight="70" id="wle-FM-CHc" customClass="ANPersonCell" customModule="Processus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="172" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="236" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wle-FM-CHc" id="FXJ-6h-FNO">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="69.5"/>
@@ -2466,7 +2466,7 @@
         <!--Date-->
         <scene sceneID="gWj-7a-inE">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sGJ-AL-uaP" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sGJ-AL-uaP" customClass="ANProjectsForDateViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9fp-jK-lmO"/>
                         <viewControllerLayoutGuide type="bottom" id="FPJ-n7-68l"/>
@@ -2475,7 +2475,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CpZ-eU-fgP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CpZ-eU-fgP">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2630,6 +2630,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Date" id="Fnw-PP-1eL"/>
+                    <connections>
+                        <outlet property="tableView" destination="CpZ-eU-fgP" id="jL0-Wl-Kmh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaT-T6-cuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3056,8 +3059,8 @@
                     <connections>
                         <outlet property="actToolBarButton" destination="42O-K8-MQl" id="xN2-eM-qb8"/>
                         <outlet property="showButton" destination="OA9-hB-eDf" id="Nfk-1P-gBy"/>
-                        <segue destination="RPl-5l-sxh" kind="show" identifier="showDate" id="Yaf-0R-uXO"/>
                         <segue destination="aqg-ej-cUQ" kind="show" identifier="showNoProjectsForDate" id="YAi-MV-a5h"/>
+                        <segue destination="sGJ-AL-uaP" kind="show" identifier="showDate" id="bBc-T9-an3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezK-9K-H3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3113,7 +3116,6 @@
         <image name="tab_projects4" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yaf-0R-uXO"/>
         <segue reference="kCB-mu-F0F"/>
     </inferredMetricsTieBreakers>
 </document>
