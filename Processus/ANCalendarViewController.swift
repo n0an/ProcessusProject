@@ -16,6 +16,7 @@ class ANCalendarViewController: UIViewController {
     
     var fakeDate: NSDate!
     var allDueDates: [NSDate] = []
+    var allProjects: [Project] = []
     var selectedDate: NSDate?
     
     // MARK: - viewDidLoad
@@ -27,51 +28,11 @@ class ANCalendarViewController: UIViewController {
         
         getAllProjectsDueDates()
         
-    }
-    
-
-}
-
-
-extension ANCalendarViewController: FSCalendarDelegate {
-    
-    func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
-        print("date selected = \(date)")
-        
-        
-        
-        
-    }
-    
-}
-
-extension ANCalendarViewController: FSCalendarDataSource {
-    
-    func calendar(calendar: FSCalendar, hasEventForDate date: NSDate) -> Bool {
-        
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Month, .Day], fromDate: date)
-
-        for dueDate in allDueDates {
-            
-            let dueDateComponents = calendar.components([.Month, .Day], fromDate: dueDate)
-            
-            if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
-                return true
-            }
-            
-        }
-        
-        return false
         
     }
     
     
-    func calendarCurrentMonthDidChange(calendar: FSCalendar) {
-        print("calendarCurrentMonthDidChange")
-    }
-    
-    
+    // MARK: - HELPER METHODS
     
     func getAllProjectsDueDates() {
         
@@ -83,11 +44,12 @@ extension ANCalendarViewController: FSCalendarDataSource {
         let context = ANDataManager.sharedManager.context
         
         fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
-
+        
         do {
-            let allProjects = try context.executeFetchRequest(fetchRequest) as! [Project]
+            let allProj = try context.executeFetchRequest(fetchRequest) as! [Project]
+            allProjects = allProj
             
-            for project in allProjects {
+            for project in allProj {
                 let dueDate = project.dueDate!
                 allDueDates.append(dueDate)
             }
@@ -96,13 +58,128 @@ extension ANCalendarViewController: FSCalendarDataSource {
             let error = error as NSError
             print("Fetch non successful. error occured: \(error.localizedDescription)")
         }
+        
+    }
+    
+    
+    func isEventForDate(date: NSDate) -> Bool {
+        
+        let calend = NSCalendar.currentCalendar()
+        let components = calend.components([.Month, .Day], fromDate: date)
+        
+        
+        
+        for dueDate in allDueDates {
+            
+            let dueDateComponents = calend.components([.Month, .Day], fromDate: dueDate)
+            
+            if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
+                return true
+            }
+            
+        }
+        
+        return false
+    }
+    
+    
+    
+    // MARK: - ACTIONS
 
+    @IBAction func showButtonPressed(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("showDate", sender: nil)
+        
+    }
+    
+    
+    
+    @IBAction func actionToolBarButtonPressed(sender: UIBarButtonItem) {
+        
+        performSegueWithIdentifier("showDate", sender: nil)
+
+    }
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showDate" {
+            
+            var selectedProjects: [Project] = []
+            
+            let destinationVC = segue.destinationViewController as! ANProjectsViewController
+            
+            let calend = NSCalendar.currentCalendar()
+            let components = calend.components([.Month, .Day], fromDate: selectedDate!)
+            
+            
+            for project in allProjects {
+                
+                let dueDateComponents = calend.components([.Month, .Day], fromDate: project.dueDate!)
+                
+                if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
+                    selectedProjects.append(project)
+                }
+                
+            }
+            
+
+            destinationVC.projectsSelectedByDate = selectedProjects
+            
+            
+        }
+        
+        
+        
     }
     
     
     
     
 }
+
+
+
+// MARK: - FSCalendarDataSource
+
+extension ANCalendarViewController: FSCalendarDataSource {
+    
+    func calendar(calendar: FSCalendar, hasEventForDate date: NSDate) -> Bool {
+        
+        return isEventForDate(date)
+    }
+    
+    
+    func calendarCurrentMonthDidChange(calendar: FSCalendar) {
+        print("calendarCurrentMonthDidChange")
+    }
+    
+    
+}
+
+// MARK: - FSCalendarDelegate
+
+extension ANCalendarViewController: FSCalendarDelegate {
+    
+    func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
+        print("date selected = \(date)")
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Month, .Day], fromDate: date)
+        
+        print("components.day = \(components.day)")
+        print("components.month = \(components.month)")
+
+        
+        selectedDate = date
+        
+        
+        
+    }
+    
+}
+
 
 
 

@@ -29,6 +29,8 @@ class ANProjectsViewController: UIViewController {
     
     var dateFormatter: NSDateFormatter!
 
+    var projectsSelectedByDate: [Project]?
+
     
     // MARK: - viewDidLoad
 
@@ -54,6 +56,7 @@ class ANProjectsViewController: UIViewController {
         
         
         fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
+        
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
