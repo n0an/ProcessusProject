@@ -2635,7 +2635,7 @@
             </objects>
             <point key="canvasLocation" x="2925" y="-63"/>
         </scene>
-        <!--View Controller-->
+        <!--Selected Date-->
         <scene sceneID="Vrq-d0-tca">
             <objects>
                 <viewController id="aqg-ej-cUQ" sceneMemberID="viewController">
@@ -2660,6 +2660,7 @@
                             <constraint firstItem="IWU-3f-0qh" firstAttribute="centerY" secondItem="Sp7-To-OEd" secondAttribute="centerY" id="u1g-r6-T3T"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Selected Date" id="EkF-h1-xnU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egl-qP-psP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

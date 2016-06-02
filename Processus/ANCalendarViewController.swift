@@ -32,7 +32,9 @@ class ANCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -150,6 +152,14 @@ class ANCalendarViewController: UIViewController {
             
             destinationVC.projectsSelectedByDate = projectsForSegue
             
+        }
+        
+        if segue.identifier == "showNoProjectsForDate" {
+            let destinationVC = segue.destinationViewController
+            
+            let stringDate = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(selectedDate!)
+            
+            destinationVC.title = "\(stringDate)"
         }
         
         
