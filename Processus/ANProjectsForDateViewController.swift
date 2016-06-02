@@ -10,6 +10,12 @@ import UIKit
 
 class ANProjectsForDateViewController: UIViewController {
     
+    
+    // TODO: - cycle through dates and refresh ANProjectsForDateVC
+    // TODO: - add Project ftr
+    
+    
+    
     // MARK: - OUTLETS
     
     @IBOutlet weak var tableView: UITableView!
