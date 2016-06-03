@@ -2476,7 +2476,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CpZ-eU-fgP">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="personProjectsCell" rowHeight="80" id="XhD-nO-hSA" customClass="ANPersonProjectCell" customModule="Processus" customModuleProvider="target">
@@ -2620,6 +2620,24 @@
                                     <outlet property="delegate" destination="sGJ-AL-uaP" id="bdQ-HF-Gpf"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpW-Vc-nFT">
+                                <rect key="frame" x="0.0" y="507" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="pUT-AO-Cb8"/>
+                                    <barButtonItem image="arrowLeft03" id="qOw-7v-ib0">
+                                        <connections>
+                                            <action selector="actionPreviousPressed:" destination="sGJ-AL-uaP" id="Lby-8Q-Ma5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="88" style="plain" systemItem="fixedSpace" id="1oK-ro-sxH"/>
+                                    <barButtonItem image="arrowRight03" id="krO-5v-GHc">
+                                        <connections>
+                                            <action selector="actionNextPressed:" destination="sGJ-AL-uaP" id="rWg-Tc-rwP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="o9E-LZ-gaE"/>
+                                </items>
+                            </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No projects due with selected date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiS-yd-IH3">
                                 <rect key="frame" x="163" y="290" width="274" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
@@ -2630,12 +2648,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YiS-yd-IH3" firstAttribute="centerX" secondItem="7Ko-PV-8Da" secondAttribute="centerX" id="QWx-dm-dvU"/>
+                            <constraint firstItem="rpW-Vc-nFT" firstAttribute="leading" secondItem="7Ko-PV-8Da" secondAttribute="leading" id="S3z-UA-Hzk"/>
                             <constraint firstItem="FPJ-n7-68l" firstAttribute="top" secondItem="CpZ-eU-fgP" secondAttribute="bottom" id="Vsa-VP-OFQ"/>
                             <constraint firstItem="YiS-yd-IH3" firstAttribute="centerY" secondItem="7Ko-PV-8Da" secondAttribute="centerY" id="WwD-Uu-cn5"/>
                             <constraint firstItem="CpZ-eU-fgP" firstAttribute="leading" secondItem="7Ko-PV-8Da" secondAttribute="leading" id="XOB-1I-cGA"/>
                             <constraint firstAttribute="trailing" secondItem="CpZ-eU-fgP" secondAttribute="trailing" id="fmz-n5-JdC"/>
                             <constraint firstItem="CpZ-eU-fgP" firstAttribute="top" secondItem="9fp-jK-lmO" secondAttribute="bottom" id="g94-U1-mVT"/>
+                            <constraint firstItem="rpW-Vc-nFT" firstAttribute="top" secondItem="CpZ-eU-fgP" secondAttribute="bottom" id="gyG-XD-PYZ"/>
+                            <constraint firstAttribute="trailing" secondItem="rpW-Vc-nFT" secondAttribute="trailing" id="ktx-e4-W67"/>
+                            <constraint firstItem="FPJ-n7-68l" firstAttribute="top" secondItem="rpW-Vc-nFT" secondAttribute="bottom" id="n3U-dO-47p"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Vsa-VP-OFQ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Date" id="Fnw-PP-1eL"/>
                     <connections>
@@ -3089,6 +3116,8 @@
         <image name="SelectProjects" width="28" height="31"/>
         <image name="WarningSign" width="20" height="20"/>
         <image name="addImage2" width="76" height="76"/>
+        <image name="arrowLeft03" width="14" height="24"/>
+        <image name="arrowRight03" width="14" height="24"/>
         <image name="box_set" width="64" height="55"/>
         <image name="tab_people2" width="24" height="24"/>
         <image name="tab_projects4" width="23" height="24"/>

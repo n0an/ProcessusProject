@@ -54,12 +54,12 @@ class ANProjectsForDateViewController: UIViewController {
         tableView.rowHeight = 80
         
         
-        let nextButton = UIBarButtonItem(image: UIImage(named: "arrowDescRight32"), landscapeImagePhone: UIImage(named: "arrowDescRight24"), style: .Plain, target: self, action: #selector(ANProjectsForDateViewController.actionNextPressed(_:)))
-        
-        let previousButton = UIBarButtonItem(image: UIImage(named: "arrowDescLeft32"), landscapeImagePhone: UIImage(named: "arrowDescLeft24"), style: .Plain, target: self, action: #selector(ANProjectsForDateViewController.actionPreviousPressed(_:)))
-        
-        
-        self.navigationItem.rightBarButtonItems = [nextButton, previousButton]
+//        let nextButton = UIBarButtonItem(image: UIImage(named: "arrowDescRight32"), landscapeImagePhone: UIImage(named: "arrowDescRight24"), style: .Plain, target: self, action: #selector(ANProjectsForDateViewController.actionNextPressed(_:)))
+//        
+//        let previousButton = UIBarButtonItem(image: UIImage(named: "arrowDescLeft32"), landscapeImagePhone: UIImage(named: "arrowDescLeft24"), style: .Plain, target: self, action: #selector(ANProjectsForDateViewController.actionPreviousPressed(_:)))
+//        
+//        
+//        self.navigationItem.rightBarButtonItems = [nextButton, previousButton]
         
         
     }
@@ -132,11 +132,11 @@ class ANProjectsForDateViewController: UIViewController {
     
     // MARK: - ACTIONS
     
-    func actionNextPressed(button: UIBarButtonItem) {
+    @IBAction func actionNextPressed(button: UIBarButtonItem) {
         iterateDateWithDirection(.Next)
     }
     
-    func actionPreviousPressed(button: UIBarButtonItem) {
+    @IBAction func actionPreviousPressed(button: UIBarButtonItem) {
         iterateDateWithDirection(.Previous)
     }
 
