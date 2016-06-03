@@ -12,11 +12,9 @@ import CoreData
 
 class ANCalendarViewController: UIViewController {
     
-    
     // MARK: - OUTLETS
 
     @IBOutlet weak var showButton: UIBarButtonItem!
-    @IBOutlet weak var actToolBarButton: UIToolbar!
     
     @IBOutlet weak var fsCalendar: FSCalendar!
     
@@ -32,7 +30,6 @@ class ANCalendarViewController: UIViewController {
     var selectedDate: NSDate!
     
     
-    
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
@@ -40,7 +37,6 @@ class ANCalendarViewController: UIViewController {
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,9 +48,7 @@ class ANCalendarViewController: UIViewController {
         
         if selectedDate == nil {
             showButton.enabled = false
-            actToolBarButton.hidden = true
         }
-
 
     }
     
@@ -90,8 +84,6 @@ class ANCalendarViewController: UIViewController {
         }
         
     }
-    
-    
     
     
     func isEventForDate(date: NSDate) -> Bool {
@@ -202,11 +194,9 @@ extension ANCalendarViewController: FSCalendarDelegate {
         print("components.day = \(components.day)")
         print("components.month = \(components.month)")
 
-        
         selectedDate = date
         
         showButton.enabled = true
-        actToolBarButton.hidden = false
         
     }
     

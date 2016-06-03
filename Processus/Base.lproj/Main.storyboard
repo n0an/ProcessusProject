@@ -3010,7 +3010,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bje-FA-nBf" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="64" width="600" height="443"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
@@ -3028,30 +3028,13 @@
                                     <outlet property="delegate" destination="4XB-80-ZTu" id="AKh-lJ-HqG"/>
                                 </connections>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42O-K8-MQl">
-                                <rect key="frame" x="0.0" y="507" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem systemItem="flexibleSpace" id="cXC-FQ-n6v"/>
-                                    <barButtonItem systemItem="flexibleSpace" id="xW8-ZZ-yu1"/>
-                                    <barButtonItem systemItem="flexibleSpace" id="abW-gm-9Eg"/>
-                                    <barButtonItem systemItem="action" id="b7D-sE-rbG">
-                                        <connections>
-                                            <action selector="actionToolBarButtonPressed:" destination="4XB-80-ZTu" id="M7D-p2-0rm"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem systemItem="flexibleSpace" id="geG-kE-cbE"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bje-FA-nBf" firstAttribute="top" secondItem="0eF-3B-QSQ" secondAttribute="bottom" id="7Aa-3F-Lyr"/>
+                            <constraint firstItem="0a0-DY-QrF" firstAttribute="top" secondItem="bje-FA-nBf" secondAttribute="bottom" id="9hp-Jw-Iq7"/>
                             <constraint firstItem="bje-FA-nBf" firstAttribute="leading" secondItem="I6t-ZN-hZH" secondAttribute="leading" id="9iB-IU-rLr"/>
                             <constraint firstItem="0a0-DY-QrF" firstAttribute="top" secondItem="bje-FA-nBf" secondAttribute="bottom" id="FDH-kA-oLe"/>
-                            <constraint firstItem="42O-K8-MQl" firstAttribute="top" secondItem="bje-FA-nBf" secondAttribute="bottom" id="HZ2-1x-CiQ"/>
-                            <constraint firstItem="42O-K8-MQl" firstAttribute="leading" secondItem="I6t-ZN-hZH" secondAttribute="leading" id="XV1-Kt-uVR"/>
-                            <constraint firstItem="0a0-DY-QrF" firstAttribute="top" secondItem="42O-K8-MQl" secondAttribute="bottom" id="bgD-Nj-EWC"/>
-                            <constraint firstAttribute="trailing" secondItem="42O-K8-MQl" secondAttribute="trailing" id="gSt-1A-HfO"/>
                             <constraint firstAttribute="trailing" secondItem="bje-FA-nBf" secondAttribute="trailing" id="ngJ-gO-0h5"/>
                         </constraints>
                         <variation key="default">
@@ -3068,7 +3051,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="actToolBarButton" destination="42O-K8-MQl" id="xN2-eM-qb8"/>
                         <outlet property="fsCalendar" destination="bje-FA-nBf" id="yFi-6C-cUT"/>
                         <outlet property="showButton" destination="OA9-hB-eDf" id="Nfk-1P-gBy"/>
                         <segue destination="sGJ-AL-uaP" kind="show" identifier="showDate" id="bBc-T9-an3"/>
