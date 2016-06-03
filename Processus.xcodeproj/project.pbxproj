@@ -39,8 +39,11 @@
 		185B0B7A1CFE112C002E8AA8 /* ANConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */; };
 		185B0B7C1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */; };
 		185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */; };
+		185B0BA51CFF6E71002E8AA8 /* ANCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */; };
+		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
+		8FF50206C970CBDDF21EBDD9 /* Pods_Processus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,8 +81,13 @@
 		185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANConfigurator.swift; sourceTree = "<group>"; };
 		185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectAddPersonCell.swift; sourceTree = "<group>"; };
 		185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAnimator.swift; sourceTree = "<group>"; };
+		185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCalendarViewController.swift; sourceTree = "<group>"; };
+		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4B6220E0DF4F1853631F8E9B /* Pods-Processus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Processus/Pods-Processus.debug.xcconfig"; sourceTree = "<group>"; };
+		73A8B6E5BE6165A0BA4FF65F /* Pods-Processus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Processus/Pods-Processus.release.xcconfig"; sourceTree = "<group>"; };
+		FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Processus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +95,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FF50206C970CBDDF21EBDD9 /* Pods_Processus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03703A2B664B33C90A43854D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		180D635F1CF8AE1000AAD93A /* Person Branch */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +138,8 @@
 			children = (
 				182988381CE4FA9D00BC5272 /* Processus */,
 				182988371CE4FA9D00BC5272 /* Products */,
+				C37C72206AD985304BFE68A2 /* Pods */,
+				03703A2B664B33C90A43854D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +204,7 @@
 				184F5FC41CF76229004DB11D /* _old */,
 				180D635F1CF8AE1000AAD93A /* Person Branch */,
 				180D63601CF8AE1600AAD93A /* Project Branch */,
+				18E032941D00BD65004E6371 /* Calendar Branch */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -229,6 +249,15 @@
 			name = _old;
 			sourceTree = "<group>";
 		};
+		18E032941D00BD65004E6371 /* Calendar Branch */ = {
+			isa = PBXGroup;
+			children = (
+				185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */,
+				18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */,
+			);
+			name = "Calendar Branch";
+			sourceTree = "<group>";
+		};
 		18E9818B1CFAE7EC002C390D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +268,15 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		C37C72206AD985304BFE68A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4B6220E0DF4F1853631F8E9B /* Pods-Processus.debug.xcconfig */,
+				73A8B6E5BE6165A0BA4FF65F /* Pods-Processus.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -246,9 +284,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 182988481CE4FA9D00BC5272 /* Build configuration list for PBXNativeTarget "Processus" */;
 			buildPhases = (
+				478172DE3EF2EDE130D5A7CE /* 📦 Check Pods Manifest.lock */,
 				182988321CE4FA9D00BC5272 /* Sources */,
 				182988331CE4FA9D00BC5272 /* Frameworks */,
 				182988341CE4FA9D00BC5272 /* Resources */,
+				D3D3DA3DD72E395110C6C37E /* 📦 Embed Pods Frameworks */,
+				D2BD50E578BB3FE441AB4F4F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,18 +347,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		478172DE3EF2EDE130D5A7CE /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2BD50E578BB3FE441AB4F4F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Processus/Pods-Processus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3D3DA3DD72E395110C6C37E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Processus/Pods-Processus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		182988321CE4FA9D00BC5272 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */,
+				185B0BA51CFF6E71002E8AA8 /* ANCalendarViewController.swift in Sources */,
 				1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */,
 				184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */,
 				1829888F1CE76A2F00BC5272 /* ANNewProjectViewController.swift in Sources */,
 				18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */,
 				180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */,
 				184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */,
+				18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */,
 				182988991CE7710D00BC5272 /* ANProjectDescriptionCell.swift in Sources */,
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
@@ -454,6 +545,7 @@
 		};
 		182988491CE4FA9D00BC5272 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B6220E0DF4F1853631F8E9B /* Pods-Processus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Processus/Info.plist;
@@ -465,6 +557,7 @@
 		};
 		1829884A1CE4FA9D00BC5272 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73A8B6E5BE6165A0BA4FF65F /* Pods-Processus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Processus/Info.plist;

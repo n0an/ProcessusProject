@@ -63,6 +63,8 @@ class ANProjectDetailsViewController: UITableViewController {
     
     deinit {
         ANDataManager.sharedManager.saveContext()
+        
+        delegate?.projectEditingDidEndForProject(project)
     }
     
     
@@ -462,6 +464,10 @@ extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegat
         projectParticipants = project.workers?.allObjects as! [Person]
         
         tableView.reloadData()
+        
+        
+        delegate?.projectEditingDidEndForProject(project)
+
     }
 
 }
