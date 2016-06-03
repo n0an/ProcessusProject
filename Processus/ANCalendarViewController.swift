@@ -210,6 +210,8 @@ extension ANCalendarViewController: FSCalendarDelegate {
 extension ANCalendarViewController: ANProjectsForDateViewControllerDelegate {
     func iterateDateWithDirection(direction: ANDateIterationDirection) -> (date: NSDate, projects: [Project]) {
         
+        getAllProjectsAndDueDates()
+        
         let iteratedDate: NSDate
         
         if direction == .Next {
@@ -230,6 +232,8 @@ extension ANCalendarViewController: ANProjectsForDateViewControllerDelegate {
     
     
     func refreshDate() -> [Project] {
+        
+        getAllProjectsAndDueDates()
         
         let selectedProjects = getSelectedProjectsForDate(selectedDate)
 

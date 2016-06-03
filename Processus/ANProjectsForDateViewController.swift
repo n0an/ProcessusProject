@@ -252,6 +252,8 @@ extension ANProjectsForDateViewController: UITableViewDelegate {
             
             tableView.endUpdates()
             
+            updateView()
+            
         }
     }
     
