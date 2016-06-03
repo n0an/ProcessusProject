@@ -132,29 +132,12 @@ class ANCalendarViewController: UIViewController {
 
     @IBAction func showButtonPressed(sender: UIBarButtonItem) {
         
-//        var selectedProjects: [Project] = []
-//        
-//        let calend = NSCalendar.currentCalendar()
-//        let components = calend.components([.Month, .Day], fromDate: selectedDate!)
-//        
-//        for project in allProjects {
-//            
-//            let dueDateComponents = calend.components([.Month, .Day], fromDate: project.dueDate!)
-//            
-//            if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
-//                selectedProjects.append(project)
-//            }
-//            
-//        }
-        
         let selectedProjects = getSelectedProjectsForDate(selectedDate)
         
         projectsForSegue = selectedProjects
         performSegueWithIdentifier("showDate", sender: nil)
 
-
     }
-    
     
     
     @IBAction func actionToolBarButtonPressed(sender: UIBarButtonItem) {
