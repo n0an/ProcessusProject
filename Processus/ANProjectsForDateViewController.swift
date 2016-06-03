@@ -14,6 +14,10 @@ class ANProjectsForDateViewController: UIViewController {
     // TODO: - cycle through dates and refresh ANProjectsForDateVC
     // TODO: - add Project ftr
     
+    enum ANDateIterationDirection {
+        case Previous
+        case Next
+    }
     
     
     // MARK: - OUTLETS
@@ -27,6 +31,8 @@ class ANProjectsForDateViewController: UIViewController {
 
     var myProjects: [Project]!
     
+    var displayedDate: NSDate!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +41,23 @@ class ANProjectsForDateViewController: UIViewController {
         tableView.rowHeight = 80
         
         
+        let nextButton = UIBarButtonItem(image: UIImage(named: "arrowDescRight32"), landscapeImagePhone: UIImage(named: "arrowDescRight24"), style: .Plain, target: self, action: #selector(ANProjectsForDateViewController.actionNextPressed(_:)))
+        
+        let previousButton = UIBarButtonItem(image: UIImage(named: "arrowDescLeft32"), landscapeImagePhone: UIImage(named: "arrowDescLeft24"), style: .Plain, target: self, action: #selector(ANProjectsForDateViewController.actionPreviousPressed(_:)))
+        
+        
+        self.navigationItem.rightBarButtonItems = [nextButton, previousButton]
+        
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let stringDate = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(displayedDate)
+        
+        title = "\(stringDate)"
+        
         
         if myProjects.isEmpty {
             noProjectsLabel.hidden = false
@@ -68,6 +86,26 @@ class ANProjectsForDateViewController: UIViewController {
         
     }
     
+    func iterateDateWithDirection(direction: ANDateIterationDirection) {
+        
+        
+        
+        
+        
+    }
+    
+    
+    // MARK: - ACTIONS
+    
+    func actionNextPressed(button: UIBarButtonItem) {
+        iterateDateWithDirection(.Next)
+    }
+    
+    func actionPreviousPressed(button: UIBarButtonItem) {
+        iterateDateWithDirection(.Previous)
+    }
+
+
     
     // MARK: - NAVIGATION
     

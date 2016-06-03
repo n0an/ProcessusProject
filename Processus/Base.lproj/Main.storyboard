@@ -2511,8 +2511,8 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="ed4-Ia-lrl"/>
                                                             <exclude reference="Zxk-C8-SzK"/>
+                                                            <exclude reference="ed4-Ia-lrl"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -2592,11 +2592,11 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="jYm-ta-I1t"/>
-                                                    <exclude reference="mLQ-F3-el6"/>
-                                                    <exclude reference="idv-1w-aIv"/>
-                                                    <exclude reference="le7-of-olt"/>
                                                     <exclude reference="XfG-SV-XmJ"/>
+                                                    <exclude reference="idv-1w-aIv"/>
+                                                    <exclude reference="jYm-ta-I1t"/>
+                                                    <exclude reference="le7-of-olt"/>
+                                                    <exclude reference="mLQ-F3-el6"/>
                                                     <exclude reference="zV2-Wi-RNI"/>
                                                     <exclude reference="Bue-l4-d9t"/>
                                                     <exclude reference="sNi-sB-pbD"/>

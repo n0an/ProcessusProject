@@ -139,13 +139,11 @@ class ANCalendarViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let stringDate = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(selectedDate!)
-        
         if segue.identifier == "showDate" {
             
             let destinationVC = segue.destinationViewController as! ANProjectsForDateViewController
             
-            destinationVC.title = "\(stringDate)"
+            destinationVC.displayedDate = selectedDate!
             
             destinationVC.myProjects = projectsForSegue
             
