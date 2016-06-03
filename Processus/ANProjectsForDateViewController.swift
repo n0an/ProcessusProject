@@ -356,6 +356,10 @@ extension ANProjectsForDateViewController: ANNewProjectTableViewControllerDelega
         print("projectDetailsVC didFinishAddingItem")
         controller.dismissViewControllerAnimated(true, completion: nil)
         
+        myProjects = delegate.refreshDate()
+
+        updateView()
+
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {

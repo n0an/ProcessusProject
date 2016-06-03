@@ -2664,7 +2664,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Date" id="Fnw-PP-1eL"/>
+                    <navigationItem key="navigationItem" title="Date" id="Fnw-PP-1eL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="G3g-gO-0Qb">
+                            <connections>
+                                <segue destination="Dt0-yp-ZZ1" kind="presentation" identifier="AddItem" id="HAq-02-e0h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="noProjectsLabel" destination="YiS-yd-IH3" id="ajb-ft-FFV"/>
                         <outlet property="tableView" destination="CpZ-eU-fgP" id="jL0-Wl-Kmh"/>
@@ -3124,5 +3130,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kCB-mu-F0F"/>
+        <segue reference="HAq-02-e0h"/>
     </inferredMetricsTieBreakers>
 </document>
