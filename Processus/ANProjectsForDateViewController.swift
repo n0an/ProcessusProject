@@ -17,12 +17,13 @@ protocol ANProjectsForDateViewControllerDelegate: class {
     
     func iterateDateWithDirection(direction: ANDateIterationDirection) -> (date: NSDate, projects: [Project])
     
+    func refreshDate() -> [Project]
+    
 }
 
 class ANProjectsForDateViewController: UIViewController {
     
     
-    // TODO: - cycle through dates and refresh ANProjectsForDateVC
     // TODO: - add Project ftr
     
     
@@ -332,7 +333,11 @@ extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
     func projectEditingDidEndForProject(project: Project) {
         print("projectEditingDidEndForProject")
         
-        tableView.reloadData()
+        myProjects = delegate.refreshDate()
+        
+        updateView()
+        
+//        tableView.reloadData()
     }
 }
 

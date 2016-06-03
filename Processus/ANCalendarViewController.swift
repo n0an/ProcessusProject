@@ -227,6 +227,16 @@ extension ANCalendarViewController: ANProjectsForDateViewControllerDelegate {
         return (iteratedDate, selectedProjects)
         
     }
+    
+    
+    func refreshDate() -> [Project] {
+        
+        let selectedProjects = getSelectedProjectsForDate(selectedDate)
+
+        return selectedProjects
+        
+    }
+
 }
 
 
