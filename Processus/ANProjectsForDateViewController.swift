@@ -8,16 +8,22 @@
 
 import UIKit
 
+enum ANDateIterationDirection {
+    case Previous
+    case Next
+}
+
+protocol ANProjectsForDateViewControllerDelegate: class {
+    
+    func iterateDateWithDirection(direction: ANDateIterationDirection) -> (date: NSDate, projects: [Project])
+    
+}
+
 class ANProjectsForDateViewController: UIViewController {
     
     
     // TODO: - cycle through dates and refresh ANProjectsForDateVC
     // TODO: - add Project ftr
-    
-    enum ANDateIterationDirection {
-        case Previous
-        case Next
-    }
     
     
     // MARK: - OUTLETS
@@ -28,11 +34,17 @@ class ANProjectsForDateViewController: UIViewController {
     
     
     // MARK: - ATTRIBUTES
+    
+    let calend = ANConfigurator.sharedConfigurator.calendar
 
     var myProjects: [Project]!
     
     var displayedDate: NSDate!
     
+    weak var delegate: ANProjectsForDateViewControllerDelegate!
+    
+    
+    // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,18 +66,7 @@ class ANProjectsForDateViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let stringDate = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(displayedDate)
-        
-        title = "\(stringDate)"
-        
-        
-        if myProjects.isEmpty {
-            noProjectsLabel.hidden = false
-            tableView.hidden = true
-        } else {
-            noProjectsLabel.hidden = true
-            tableView.hidden = false
-        }
+        updateView()
     }
 
     
@@ -89,9 +90,42 @@ class ANProjectsForDateViewController: UIViewController {
     func iterateDateWithDirection(direction: ANDateIterationDirection) {
         
         
+        let dateProjectsTuple = self.delegate.iterateDateWithDirection(direction)
+        
+        let components = calend.components([.Month, .Day], fromDate: dateProjectsTuple.date)
+        
+        print("dateProjectsTuple.date = \(dateProjectsTuple.date)")
         
         
+        print("dateProjectsTuple.day = \(components.day)")
+        print("dateProjectsTuple.month = \(components.month)")
         
+        print("dateProjectsTuple.projects.count = \(dateProjectsTuple.projects.count)")
+        
+        
+        myProjects = dateProjectsTuple.projects
+        displayedDate = dateProjectsTuple.date
+        
+        updateView()
+
+    }
+    
+    func updateView() {
+        
+        let stringDate = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(displayedDate)
+        
+        title = "\(stringDate)"
+        
+        
+        if myProjects.isEmpty {
+            noProjectsLabel.hidden = false
+            tableView.hidden = true
+        } else {
+            noProjectsLabel.hidden = true
+            tableView.hidden = false
+            tableView.reloadData()
+        }
+
     }
     
     

@@ -21,12 +21,16 @@ class ANCalendarViewController: UIViewController {
     
     // MARK: - ATTRIBUTES
     
+    let calend = ANConfigurator.sharedConfigurator.calendar
+    
     var allDueDates: [NSDate] = []
     var allProjects: [Project] = []
     
     var projectsForSegue: [Project] = []
     
-    var selectedDate: NSDate?
+    var selectedDate: NSDate!
+    
+    
     
     // MARK: - viewDidLoad
 
@@ -86,7 +90,6 @@ class ANCalendarViewController: UIViewController {
     
     func isEventForDate(date: NSDate) -> Bool {
         
-        let calend = NSCalendar.currentCalendar()
         let components = calend.components([.Month, .Day], fromDate: date)
         
         for dueDate in allDueDates {
@@ -103,15 +106,11 @@ class ANCalendarViewController: UIViewController {
     }
     
     
-    
-    // MARK: - ACTIONS
-
-    @IBAction func showButtonPressed(sender: UIBarButtonItem) {
+    func getSelectedProjectsForDate(date: NSDate) -> [Project] {
         
         var selectedProjects: [Project] = []
         
-        let calend = NSCalendar.currentCalendar()
-        let components = calend.components([.Month, .Day], fromDate: selectedDate!)
+        let components = calend.components([.Month, .Day], fromDate: date)
         
         for project in allProjects {
             
@@ -122,6 +121,34 @@ class ANCalendarViewController: UIViewController {
             }
             
         }
+        
+        return selectedProjects
+
+    }
+    
+    
+    
+    // MARK: - ACTIONS
+
+    @IBAction func showButtonPressed(sender: UIBarButtonItem) {
+        
+//        var selectedProjects: [Project] = []
+//        
+//        let calend = NSCalendar.currentCalendar()
+//        let components = calend.components([.Month, .Day], fromDate: selectedDate!)
+//        
+//        for project in allProjects {
+//            
+//            let dueDateComponents = calend.components([.Month, .Day], fromDate: project.dueDate!)
+//            
+//            if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
+//                selectedProjects.append(project)
+//            }
+//            
+//        }
+        
+        let selectedProjects = getSelectedProjectsForDate(selectedDate)
+        
         projectsForSegue = selectedProjects
         performSegueWithIdentifier("showDate", sender: nil)
 
@@ -143,10 +170,11 @@ class ANCalendarViewController: UIViewController {
             
             let destinationVC = segue.destinationViewController as! ANProjectsForDateViewController
             
-            destinationVC.displayedDate = selectedDate!
+            destinationVC.displayedDate = selectedDate
             
             destinationVC.myProjects = projectsForSegue
             
+            destinationVC.delegate = self
         }
 
     }
@@ -180,8 +208,7 @@ extension ANCalendarViewController: FSCalendarDelegate {
     func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
         print("date selected = \(date)")
         
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Month, .Day], fromDate: date)
+        let components = calend.components([.Month, .Day], fromDate: date)
         
         print("components.day = \(components.day)")
         print("components.month = \(components.month)")
@@ -197,6 +224,27 @@ extension ANCalendarViewController: FSCalendarDelegate {
 }
 
 
+extension ANCalendarViewController: ANProjectsForDateViewControllerDelegate {
+    func iterateDateWithDirection(direction: ANDateIterationDirection) -> (date: NSDate, projects: [Project]) {
+        
+        let iteratedDate: NSDate
+        
+        if direction == .Next {
+            
+            iteratedDate = NSDate(timeInterval: 24*3600, sinceDate: selectedDate)
+        
+        } else {
+            iteratedDate = NSDate(timeInterval: -24*3600, sinceDate: selectedDate)
+        }
+        
+        selectedDate = iteratedDate
+        
+        let selectedProjects = getSelectedProjectsForDate(iteratedDate)
+
+        return (iteratedDate, selectedProjects)
+        
+    }
+}
 
 
 

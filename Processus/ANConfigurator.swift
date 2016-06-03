@@ -70,9 +70,15 @@ class ANConfigurator {
         
         return dateFormatter
     }()
-
     
 
+    lazy var calendar: NSCalendar = {
+        let calendar = NSCalendar.currentCalendar()
+
+        return calendar
+    }()
+    
+    
     
     
     // MARK: - PUBLIC METHODS
