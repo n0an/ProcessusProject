@@ -18,6 +18,7 @@ class ANCalendarViewController: UIViewController {
     @IBOutlet weak var showButton: UIBarButtonItem!
     @IBOutlet weak var actToolBarButton: UIToolbar!
     
+    @IBOutlet weak var fsCalendar: FSCalendar!
     
     // MARK: - ATTRIBUTES
     
@@ -47,6 +48,8 @@ class ANCalendarViewController: UIViewController {
         
         getAllProjectsAndDueDates()
         
+        fsCalendar.reloadData()
+        
         if selectedDate == nil {
             showButton.enabled = false
             actToolBarButton.hidden = true
@@ -59,6 +62,9 @@ class ANCalendarViewController: UIViewController {
     // MARK: - HELPER METHODS
     
     func getAllProjectsAndDueDates() {
+        
+        allProjects = []
+        allDueDates = []
         
         let fetchRequest = NSFetchRequest(entityName: "Project")
         
