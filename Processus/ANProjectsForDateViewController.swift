@@ -337,7 +337,6 @@ extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
         
         updateView()
         
-//        tableView.reloadData()
     }
 }
 

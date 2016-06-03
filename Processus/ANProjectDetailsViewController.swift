@@ -464,6 +464,10 @@ extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegat
         projectParticipants = project.workers?.allObjects as! [Person]
         
         tableView.reloadData()
+        
+        
+        delegate?.projectEditingDidEndForProject(project)
+
     }
 
 }
