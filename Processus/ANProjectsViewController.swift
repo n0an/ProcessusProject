@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Parse
 
 
 class ANProjectsViewController: UIViewController {
@@ -34,6 +35,15 @@ class ANProjectsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+//        let testObject = PFObject(className: "TestObject")
+//        testObject["foo"] = "xxx"
+//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+//            print("Object has been saved.")
+//        }
+        
+        
         
         dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY"

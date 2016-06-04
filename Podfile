@@ -3,4 +3,5 @@ use_frameworks!
 
 target 'Processus' do
   pod 'FSCalendar'
+  pod 'Parse'
 end
