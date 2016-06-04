@@ -41,6 +41,8 @@
 		185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */; };
 		185B0BA51CFF6E71002E8AA8 /* ANCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */; };
 		186B7C8E1D02EF6900C039C0 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7C8D1D02EF6900C039C0 /* SweetAlert.swift */; };
+		186B7C901D0319AA00C039C0 /* ANLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7C8F1D0319AA00C039C0 /* ANLoginViewController.swift */; };
+		186B7C921D031F1300C039C0 /* ANSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7C911D031F1300C039C0 /* ANSignUpViewController.swift */; };
 		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
@@ -84,6 +86,8 @@
 		185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAnimator.swift; sourceTree = "<group>"; };
 		185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCalendarViewController.swift; sourceTree = "<group>"; };
 		186B7C8D1D02EF6900C039C0 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
+		186B7C8F1D0319AA00C039C0 /* ANLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANLoginViewController.swift; sourceTree = "<group>"; };
+		186B7C911D031F1300C039C0 /* ANSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANSignUpViewController.swift; sourceTree = "<group>"; };
 		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				180D635F1CF8AE1000AAD93A /* Person Branch */,
 				180D63601CF8AE1600AAD93A /* Project Branch */,
 				18E032941D00BD65004E6371 /* Calendar Branch */,
+				186B7C8F1D0319AA00C039C0 /* ANLoginViewController.swift */,
+				186B7C911D031F1300C039C0 /* ANSignUpViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				185B0B7A1CFE112C002E8AA8 /* ANConfigurator.swift in Sources */,
 				18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
+				186B7C921D031F1300C039C0 /* ANSignUpViewController.swift in Sources */,
 				180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */,
 				184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */,
 				185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */,
@@ -433,6 +440,7 @@
 				184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */,
 				180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */,
 				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
+				186B7C901D0319AA00C039C0 /* ANLoginViewController.swift in Sources */,
 				184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */,
 				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,
 				182988781CE5052F00BC5272 /* Project.swift in Sources */,
