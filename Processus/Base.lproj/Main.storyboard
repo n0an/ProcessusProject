@@ -36,10 +36,10 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTS-y4-DOH">
-                                <rect key="frame" x="229" y="78" width="142" height="142"/>
+                                <rect key="frame" x="250" y="120" width="100" height="100"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="Yct-oH-wkl">
-                                        <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,8 +48,15 @@
                                     <constraint firstItem="Yct-oH-wkl" firstAttribute="leading" secondItem="xTS-y4-DOH" secondAttribute="leading" id="7ZI-fc-zlk"/>
                                     <constraint firstAttribute="width" secondItem="xTS-y4-DOH" secondAttribute="height" multiplier="1:1" id="GK7-tX-Y8H"/>
                                     <constraint firstAttribute="bottom" secondItem="Yct-oH-wkl" secondAttribute="bottom" id="IU2-aV-meS"/>
+                                    <constraint firstAttribute="width" constant="100" id="pz9-3C-zPE"/>
                                     <constraint firstAttribute="trailing" secondItem="Yct-oH-wkl" secondAttribute="trailing" id="vn0-t2-nF4"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="coallegues group (company)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E5C-pU-nEw">
                                 <rect key="frame" x="90" y="385" width="420" height="30"/>
@@ -93,6 +100,12 @@
                             <constraint firstItem="0RV-Ns-Q8Y" firstAttribute="centerX" secondItem="HIm-Tf-DjS" secondAttribute="centerX" id="snS-WO-5yS"/>
                             <constraint firstItem="0RV-Ns-Q8Y" firstAttribute="top" secondItem="E5C-pU-nEw" secondAttribute="bottom" constant="25" id="zeq-IJ-uLj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="T0h-hC-4PG"/>
+                                <exclude reference="U3w-fI-zLD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="r2P-hg-k3T"/>
                     <connections>
@@ -3513,6 +3526,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dKJ-np-hQ8"/>
         <segue reference="s2E-Es-V8L"/>
-        <segue reference="ecb-Py-8p9"/>
+        <segue reference="5MO-Qd-CZF"/>
     </inferredMetricsTieBreakers>
 </document>

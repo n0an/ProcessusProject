@@ -205,8 +205,6 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
                     
                     if self.senderArray[i] == currentUserName {
                         
-                        // !!!IMPORTANT!!!
-                        // ** CREATING UILABEL MANUALLY
                         let messageLabel = UILabel()
                         messageLabel.text = self.messageArray[i]
                         messageLabel.frame = CGRectMake(0, 0, self.chatScrollView.frame.size.width - 90, CGFloat.max)
@@ -227,7 +225,6 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
                         
                         self.chatScrollView.addSubview(messageLabel)
                         
-                        
                         let bubbleLabel = UILabel()
                         bubbleLabel.frame.size = CGSizeMake(messageLabel.frame.size.width + 10, messageLabel.frame.height + 10)
                         bubbleLabel.frame.origin.x = self.chatScrollView.frame.size.width - bubbleMarginX - bubbleLabel.frame.size.width
@@ -235,19 +232,16 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
                         bubbleMarginY +=  bubbleLabel.frame.size.height + 20
                         
                         bubbleLabel.layer.cornerRadius = 10
-                        // !!!IMPORTANT!!!
+                        
                         bubbleLabel.clipsToBounds = true
                         bubbleLabel.backgroundColor = UIColor(red: CGFloat(176 / 255), green: CGFloat(255 / 255), blue: CGFloat(215 / 255), alpha: 1.0)
                         
                         self.chatScrollView.addSubview(bubbleLabel)
                         
-                        
-                        // !!!IMPORTANT
                         // ** SETTING SCROLLVIEW SIZE
                         let width = self.view.frame.size.width
                         self.chatScrollView.contentSize = CGSizeMake(width, messageMarginY)
                         
-                        // !!!IMPORTANT
                         self.chatScrollView.bringSubviewToFront(messageLabel)
                         
                         let senderImage = UIImageView()
@@ -292,14 +286,13 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
                         bubbleMarginY += bubbleLabel.frame.size.height + 20
                         
                         bubbleLabel.layer.cornerRadius = 10
-                        // !!!IMPORTANT!!!
+                        
                         bubbleLabel.clipsToBounds = true
                         bubbleLabel.backgroundColor = UIColor.whiteColor()
                         
                         self.chatScrollView.addSubview(bubbleLabel)
                         
                         
-                        // !!!IMPORTANT
                         // ** SETTING SCROLLVIEW SIZE
                         let width = self.view.frame.size.width
                         self.chatScrollView.contentSize = CGSizeMake(width, messageMarginY)
