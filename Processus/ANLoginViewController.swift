@@ -33,8 +33,7 @@ class ANLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollVIew.scrollEnabled = false
-
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANLoginViewController.didTapView))
         tapGestureRecognizer.numberOfTapsRequired = 1
         
@@ -46,6 +45,19 @@ class ANLoginViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
         
+    }
+    
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
+            scrollVIew.scrollEnabled = true
+        } else {
+            scrollVIew.scrollEnabled = false
+            
+        }
     }
     
     // MARK: - NOTIFICATIONS
