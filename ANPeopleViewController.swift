@@ -235,22 +235,38 @@ extension ANPeopleViewController: UITableViewDelegate {
         
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
-            let personToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Person
             
             
-            let managedObjectContext = ANDataManager.sharedManager.context
             
-            managedObjectContext.deleteObject(personToRemove)
-            
-            if managedObjectContext.hasChanges {
-                do {
-                    try managedObjectContext.save()
-                } catch {
-                    let nserror = error as NSError
-                    NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
-                    abort()
+            SweetAlert().showAlert("Are you sure?", subTitle: "Contact will be permanently removed!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, remove please", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+                if isOtherButton == true {
+                    
+                    print("Cancel Button  Pressed", terminator: "")
+                }
+                else {
+                    
+                    let personToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+                    
+                    
+                    let managedObjectContext = ANDataManager.sharedManager.context
+                    
+                    managedObjectContext.deleteObject(personToRemove)
+                    
+                    if managedObjectContext.hasChanges {
+                        do {
+                            try managedObjectContext.save()
+                        } catch {
+                            let nserror = error as NSError
+                            NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
+                            abort()
+                        }
+                    }
+
+                    
+                    SweetAlert().showAlert("Deleted!", subTitle: "Contact has been removed", style: AlertStyle.Success)
                 }
             }
+
             
         }
         
