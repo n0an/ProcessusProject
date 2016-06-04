@@ -82,7 +82,7 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
                 
                 print("SUCCESS SIGN UP!!")
                 
-//                self.performSegueWithIdentifier("toUsersSegue2", sender: self)
+                self.performSegueWithIdentifier("toUsersSegue2", sender: self)
                 
             } else {
                 return
