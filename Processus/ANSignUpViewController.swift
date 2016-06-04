@@ -20,6 +20,8 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var groupTextField: UITextField!
 
+    @IBOutlet weak var scrollVIew: UIScrollView!
+
 
     // MARK: - viewDidLoad
 
