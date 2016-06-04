@@ -40,6 +40,7 @@
 		185B0B7C1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */; };
 		185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */; };
 		185B0BA51CFF6E71002E8AA8 /* ANCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */; };
+		186B7C8E1D02EF6900C039C0 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7C8D1D02EF6900C039C0 /* SweetAlert.swift */; };
 		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
@@ -82,6 +83,7 @@
 		185B0B7B1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectAddPersonCell.swift; sourceTree = "<group>"; };
 		185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAnimator.swift; sourceTree = "<group>"; };
 		185B0BA41CFF6E70002E8AA8 /* ANCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCalendarViewController.swift; sourceTree = "<group>"; };
+		186B7C8D1D02EF6900C039C0 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
 		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		03703A2B664B33C90A43854D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				186B7C8D1D02EF6900C039C0 /* SweetAlert.swift */,
 				FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */,
 			);
 			name = Frameworks;
@@ -421,6 +424,7 @@
 				184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */,
 				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,
 				182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */,
+				186B7C8E1D02EF6900C039C0 /* SweetAlert.swift in Sources */,
 				1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */,
 				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,

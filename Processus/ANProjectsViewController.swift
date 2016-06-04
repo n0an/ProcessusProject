@@ -278,19 +278,32 @@ extension ANProjectsViewController: UITableViewDelegate {
         
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
-            let projectToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
             
-            let managedObjectContext = ANDataManager.sharedManager.context
-            
-            managedObjectContext.deleteObject(projectToRemove)
-            
-            if managedObjectContext.hasChanges {
-                do {
-                    try managedObjectContext.save()
-                } catch {
-                    let nserror = error as NSError
-                    NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
-                    abort()
+            SweetAlert().showAlert("Are you sure?", subTitle: "Project will be permanently deleted!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, delete it!", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+                if isOtherButton == true {
+                    
+                    print("Cancel Button  Pressed", terminator: "")
+                }
+                else {
+                    
+                    let projectToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                    
+                    
+                    let managedObjectContext = ANDataManager.sharedManager.context
+                    
+                    managedObjectContext.deleteObject(projectToRemove)
+                    
+                    if managedObjectContext.hasChanges {
+                        do {
+                            try managedObjectContext.save()
+                        } catch {
+                            let nserror = error as NSError
+                            NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
+                            abort()
+                        }
+                    }
+                    
+                    SweetAlert().showAlert("Deleted!", subTitle: "Project has been deleted!", style: AlertStyle.Success)
                 }
             }
             
