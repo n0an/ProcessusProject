@@ -140,14 +140,16 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
             UIView.animateWithDuration(animationDuration, animations: {
                 self.view.layoutIfNeeded()
                 
-                let scrollViewOffset: CGPoint = CGPointMake(0, self.chatScrollView.contentSize.height - self.chatScrollView.bounds.height)
-                
-                self.chatScrollView.setContentOffset(scrollViewOffset, animated: true)
+                if showing {
+                    let scrollViewOffset: CGPoint = CGPointMake(0, self.chatScrollView.contentSize.height - self.chatScrollView.bounds.height)
+                    
+                    self.chatScrollView.setContentOffset(scrollViewOffset, animated: true)
+                }
                 
                 
             })
             
-           // tableView.scrollToBottom()
+           
         }
         
     }
