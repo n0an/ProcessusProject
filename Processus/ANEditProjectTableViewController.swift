@@ -382,9 +382,10 @@ class ANEditProjectTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, var indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
         if indexPath.section == ANSectionType.GeneralInfo.rawValue && indexPath.row == ANGeneralRowType.DatePicker.rawValue {
-            indexPath = NSIndexPath(forRow: 0, inSection: indexPath.section)
+            let indexP = NSIndexPath(forRow: 0, inSection: indexPath.section)
+            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexP)
         }
         return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
     }
