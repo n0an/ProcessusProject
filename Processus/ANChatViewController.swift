@@ -23,6 +23,7 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var messageView: UIView!
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // MARK: - ATTRIBUTES
 
@@ -42,8 +43,10 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
         messageTextView.addSubview(promptLabel)
         self.title = recipientNickname
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANChatViewController.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANChatViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANChatViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANChatViewController.updateChat), name: "updateChatNow", object: nil)
         
@@ -58,7 +61,6 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
     
     
     override func viewDidAppear(animated: Bool) {
-        
         
         var userImageArray = [PFFile]()
         
@@ -104,49 +106,53 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
     
     // MARK: - NOTIFICATIONS
     
-    func keyboardDidShow(notificaton: NSNotification) {
-        
-        let dict: NSDictionary = notificaton.userInfo!
-        let keyboardSize: NSValue = dict.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
-        let frameKeyboardSize: CGRect = keyboardSize.CGRectValue()
-        
-        UIView.animateWithDuration(0.3, animations: {
-            
-            self.chatScrollView.frame.size.height -= frameKeyboardSize.height
-            self.messageView.frame.origin.y -= frameKeyboardSize.height
-            
-            let scrollViewOffset: CGPoint = CGPointMake(0, self.chatScrollView.contentSize.height - self.chatScrollView.bounds.height)
-            
-            self.chatScrollView.setContentOffset(scrollViewOffset, animated: true)
-            
-            
-        }) { (finished: Bool) in
-            
-        }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        updateBottomConstraint(notification, showing: true)
+     
         
     }
     
-    
-    func keyboardWillHide(notificaton: NSNotification) {
-        
-        let dict: NSDictionary = notificaton.userInfo!
-        let keyboardSize: NSValue = dict.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
-        let frameKeyboardSize: CGRect = keyboardSize.CGRectValue()
-        
-        UIView.animateWithDuration(0.3, animations: {
-            
-            self.chatScrollView.frame.size.height += frameKeyboardSize.height
-            self.messageView.frame.origin.y += frameKeyboardSize.height
-            
-        }) { (finished: Bool) in
-            
-        }
-        
+    func keyboardWillHide(notification: NSNotification) {
+        updateBottomConstraint(notification, showing: false)
     }
+
+    
     
     
     
     // MARK: - HELPER METHODS
+    
+    func updateBottomConstraint(notification: NSNotification, showing: Bool) {
+        
+        
+        if let
+            userInfo = notification.userInfo,
+            frame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue,
+            animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
+            
+            let newFrame = view.convertRect(frame, fromView: (UIApplication.sharedApplication().delegate?.window)!)
+            
+            let diff = showing ? 49 : 0
+            
+            bottomConstraint.constant = CGRectGetHeight(view.frame) - newFrame.origin.y - CGFloat(diff)
+            
+            UIView.animateWithDuration(animationDuration, animations: {
+                self.view.layoutIfNeeded()
+                
+                let scrollViewOffset: CGPoint = CGPointMake(0, self.chatScrollView.contentSize.height - self.chatScrollView.bounds.height)
+                
+                self.chatScrollView.setContentOffset(scrollViewOffset, animated: true)
+                
+                
+            })
+            
+           // tableView.scrollToBottom()
+        }
+        
+    }
+    
+    
     
     func textViewDidChange(textView: UITextView) {
         self.promptLabel.hidden = messageTextView.hasText() ? true : false

@@ -1892,12 +1892,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lk8-rz-wTY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lk8-rz-wTY">
                                 <rect key="frame" x="90" y="235" width="420" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xxg-fy-ujm">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xxg-fy-ujm">
                                 <rect key="frame" x="90" y="285" width="420" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
@@ -3401,7 +3401,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ef7-Wp-LrF">
-                                <rect key="frame" x="0.0" y="491" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="495" width="600" height="56"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egp-H0-OUP">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
@@ -3410,8 +3410,8 @@
                                             <constraint firstAttribute="height" constant="1" id="oet-va-Ea2"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TYI-qS-Ahp">
-                                        <rect key="frame" x="8" y="5" width="506" height="50"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TYI-qS-Ahp">
+                                        <rect key="frame" x="8" y="5" width="506" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -3419,8 +3419,8 @@
                                             <outlet property="delegate" destination="uL4-bw-ZkE" id="xCY-ME-mzQ"/>
                                         </connections>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-b6-0eI">
-                                        <rect key="frame" x="522" y="8" width="62" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-b6-0eI">
+                                        <rect key="frame" x="522" y="8" width="62" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3435,7 +3435,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsh-GK-emd">
-                                        <rect key="frame" x="8" y="22" width="381" height="21"/>
+                                        <rect key="frame" x="8" y="22" width="381" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -3461,7 +3461,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7td-cL-ufU">
-                                <rect key="frame" x="0.0" y="64" width="600" height="427"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="431"/>
                                 <color key="backgroundColor" red="0.3294117647" green="0.55294117649999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                         </subviews>
@@ -3477,9 +3477,15 @@
                             <constraint firstItem="7td-cL-ufU" firstAttribute="top" secondItem="kTZ-qH-H8g" secondAttribute="bottom" id="oy7-Fy-Nhc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ef7-Wp-LrF" secondAttribute="trailing" constant="-20" id="ten-gs-0Uz"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5iU-PO-Oj1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="uIV-Ex-3AQ"/>
                     <connections>
+                        <outlet property="bottomConstraint" destination="l2Y-yh-5Am" id="1iF-lR-Z7y"/>
                         <outlet property="chatScrollView" destination="7td-cL-ufU" id="jbf-ZZ-ApU"/>
                         <outlet property="messageTextView" destination="TYI-qS-Ahp" id="13E-hQ-5eg"/>
                         <outlet property="messageView" destination="Ef7-Wp-LrF" id="mJw-bB-aeC"/>
@@ -3507,6 +3513,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dKJ-np-hQ8"/>
         <segue reference="s2E-Es-V8L"/>
-        <segue reference="5MO-Qd-CZF"/>
+        <segue reference="ecb-Py-8p9"/>
     </inferredMetricsTieBreakers>
 </document>
