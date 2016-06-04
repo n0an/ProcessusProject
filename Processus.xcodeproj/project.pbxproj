@@ -44,6 +44,7 @@
 		186B7C901D0319AA00C039C0 /* ANLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7C8F1D0319AA00C039C0 /* ANLoginViewController.swift */; };
 		186B7C921D031F1300C039C0 /* ANSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7C911D031F1300C039C0 /* ANSignUpViewController.swift */; };
 		186B7C951D03267900C039C0 /* ANUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7C941D03267900C039C0 /* ANUsersViewController.swift */; };
+		186B7CA11D03404B00C039C0 /* ANChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA01D03404B00C039C0 /* ANChatViewController.swift */; };
 		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
@@ -90,6 +91,7 @@
 		186B7C8F1D0319AA00C039C0 /* ANLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANLoginViewController.swift; sourceTree = "<group>"; };
 		186B7C911D031F1300C039C0 /* ANSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANSignUpViewController.swift; sourceTree = "<group>"; };
 		186B7C941D03267900C039C0 /* ANUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANUsersViewController.swift; sourceTree = "<group>"; };
+		186B7CA01D03404B00C039C0 /* ANChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANChatViewController.swift; sourceTree = "<group>"; };
 		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				186B7C8F1D0319AA00C039C0 /* ANLoginViewController.swift */,
 				186B7C911D031F1300C039C0 /* ANSignUpViewController.swift */,
 				186B7C941D03267900C039C0 /* ANUsersViewController.swift */,
+				186B7CA01D03404B00C039C0 /* ANChatViewController.swift */,
 			);
 			name = "Chats feauture";
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				186B7C901D0319AA00C039C0 /* ANLoginViewController.swift in Sources */,
 				184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */,
 				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,
+				186B7CA11D03404B00C039C0 /* ANChatViewController.swift in Sources */,
 				182988781CE5052F00BC5272 /* Project.swift in Sources */,
 				182988841CE733D600BC5272 /* ANPersonInfoCell.swift in Sources */,
 			);

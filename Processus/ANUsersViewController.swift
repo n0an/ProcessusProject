@@ -118,9 +118,9 @@ extension ANUsersViewController: UITableViewDelegate {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ANPersonCell
         
-//        recipientNickname = cell.fullNameLabel.text!
+        recipientNickname = cell.fullNameLabel.text!
 
-//        self.performSegueWithIdentifier("toChatSegue", sender: self)
+        self.performSegueWithIdentifier("toChatSegue", sender: self)
 
     }
 
