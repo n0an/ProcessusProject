@@ -35,6 +35,16 @@ class ANLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // ** REGISTERING FOR PUSH NOTIFICATIONS
+        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+
+        
+        
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANLoginViewController.didTapView))
