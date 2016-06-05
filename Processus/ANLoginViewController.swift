@@ -46,9 +46,6 @@ class ANLoginViewController: UIViewController {
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
-        UIApplication.sharedApplication().registerForRemoteNotifications()
-
-        
         
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)

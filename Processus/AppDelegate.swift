@@ -29,9 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // ** register push user notification migrated to ANLoginVC viewDidLoad
         
+//        application.applicationIconBadgeNumber = 0;
         
         return true
     }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+
     
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
