@@ -28,12 +28,15 @@ class ANLoginViewController: UIViewController {
 
     @IBOutlet weak var scrollVIew: UIScrollView!
     
+    @IBOutlet weak var contentView: UIView!
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANLoginViewController.didTapView))
         tapGestureRecognizer.numberOfTapsRequired = 1
         
@@ -52,12 +55,18 @@ class ANLoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
             scrollVIew.scrollEnabled = true
         } else {
             scrollVIew.scrollEnabled = false
             
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setScrollViewContentSize()
     }
     
     // MARK: - NOTIFICATIONS
@@ -68,6 +77,9 @@ class ANLoginViewController: UIViewController {
             
             scrollVIew.scrollEnabled = true
             updateBottomConstraint(notification, showing: true)
+            
+            setScrollViewContentSize()
+
         }
         
     }
@@ -78,12 +90,26 @@ class ANLoginViewController: UIViewController {
             scrollVIew.scrollEnabled = false
             updateBottomConstraint(notification, showing: false)
 
+            setScrollViewContentSize()
+
         }
         
     }
 
     
     // MARK: - HELPER METHODS
+    
+    func setScrollViewContentSize() {
+        
+        var contentRect = CGRectZero
+        
+        for view in contentView.subviews {
+            contentRect = CGRectUnion(contentRect, view.frame)
+        }
+        
+        scrollVIew.contentSize = CGSizeMake(CGRectGetWidth(view.frame), CGRectGetHeight(contentRect))
+        
+    }
     
     func updateBottomConstraint(notification: NSNotification, showing: Bool) {
         
@@ -180,6 +206,7 @@ class ANLoginViewController: UIViewController {
     }
     
 
+    
     
 }
 

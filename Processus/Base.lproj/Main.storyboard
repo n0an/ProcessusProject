@@ -1647,6 +1647,7 @@
                     <navigationItem key="navigationItem" id="PyA-2C-8AX"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="dKn-ZA-0HE" id="OEM-vI-mgF"/>
+                        <outlet property="contentView" destination="yyl-1e-QUn" id="8JW-59-YJp"/>
                         <outlet property="loginTextField" destination="Lk8-rz-wTY" id="dnp-8a-db6"/>
                         <outlet property="passwordTextField" destination="xxg-fy-ujm" id="Dtg-18-W1l"/>
                         <outlet property="scrollVIew" destination="dhL-Hf-h9h" id="5dT-Dq-fu4"/>
@@ -3284,6 +3285,7 @@
                                         <constraints>
                                             <constraint firstItem="f2Z-Yx-qFs" firstAttribute="top" secondItem="AEH-bG-IWQ" secondAttribute="top" constant="4" id="0Cb-d6-GC8"/>
                                             <constraint firstItem="dqI-73-9nI" firstAttribute="top" secondItem="Fnx-MV-Wql" secondAttribute="bottom" constant="20" id="3ha-61-v6e"/>
+                                            <constraint firstItem="HyY-ci-5o9" firstAttribute="top" secondItem="AEH-bG-IWQ" secondAttribute="top" constant="4" id="8Ab-S7-dBp"/>
                                             <constraint firstItem="w5p-Xo-qm1" firstAttribute="top" secondItem="sWy-b4-Jel" secondAttribute="bottom" constant="20" id="9ig-VD-BNo"/>
                                             <constraint firstItem="Fnx-MV-Wql" firstAttribute="width" secondItem="AEH-bG-IWQ" secondAttribute="width" multiplier="0.7" id="Hxi-Kb-FH5"/>
                                             <constraint firstItem="Fnx-MV-Wql" firstAttribute="centerX" secondItem="AEH-bG-IWQ" secondAttribute="centerX" id="Lye-IW-odJ"/>
@@ -3302,6 +3304,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="0Cb-d6-GC8"/>
                                                 <exclude reference="zcj-ZH-Y1k"/>
                                             </mask>
                                         </variation>
@@ -3328,6 +3331,7 @@
                     <navigationItem key="navigationItem" id="xlA-c9-dpS"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="SsC-0m-hS5" id="j8c-AY-82D"/>
+                        <outlet property="contentView" destination="AEH-bG-IWQ" id="ffp-rg-tu3"/>
                         <outlet property="emailTextField" destination="sWy-b4-Jel" id="ezf-7y-rzI"/>
                         <outlet property="groupTextField" destination="w5p-Xo-qm1" id="knl-Rg-FNE"/>
                         <outlet property="imageView" destination="f2Z-Yx-qFs" id="WPL-tk-SXn"/>

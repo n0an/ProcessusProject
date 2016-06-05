@@ -26,6 +26,7 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet var textFields: [UITextField]!
     
+    @IBOutlet weak var contentView: UIView!
     
     // MARK: - ATTRIBUTES
     
@@ -62,12 +63,18 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
             scrollVIew.scrollEnabled = true
         } else {
             scrollVIew.scrollEnabled = false
             
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setScrollViewContentSize()
     }
 
     
@@ -79,6 +86,9 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
             
             scrollVIew.scrollEnabled = true
             updateBottomConstraint(notification, showing: true)
+            
+            setScrollViewContentSize()
+
         }
         
     }
@@ -89,6 +99,8 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
             scrollVIew.scrollEnabled = false
             updateBottomConstraint(notification, showing: false)
             
+            setScrollViewContentSize()
+
         }
         
     }
@@ -96,8 +108,20 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: - HELPER METHODS
     
-    func updateBottomConstraint(notification: NSNotification, showing: Bool) {
+    func setScrollViewContentSize() {
         
+        var contentRect = CGRectZero
+        
+        for view in contentView.subviews {
+            contentRect = CGRectUnion(contentRect, view.frame)
+        }
+        
+        scrollVIew.contentSize = CGSizeMake(CGRectGetWidth(view.frame), CGRectGetHeight(contentRect))
+        
+    }
+    
+    
+    func updateBottomConstraint(notification: NSNotification, showing: Bool) {
         
         if let
             userInfo = notification.userInfo,
@@ -213,6 +237,8 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
         }
 
     }
+    
+    
 
 }
 
