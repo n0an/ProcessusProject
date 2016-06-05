@@ -15,7 +15,7 @@ import CoreData
 //let areaCodeMaxLength = 3
 //let countryCodeMaxLength = 3
 
-class ANAddPersonViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ANAddPersonViewController: UITableViewController {
 
     // MARK: - OUTLETS
 
@@ -52,13 +52,13 @@ class ANAddPersonViewController: UITableViewController, UIImagePickerControllerD
     func avatarImageViewTapped(sender: UITapGestureRecognizer) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             
-            let imagePicker = UIImagePickerController()
-            imagePicker.allowsEditing = true
-            imagePicker.sourceType = .PhotoLibrary
+            let navController = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingNavController") as! UINavigationController
             
-            imagePicker.delegate = self
+            let destVC = navController.viewControllers[0] as! ANPhotoAddingViewController
             
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            destVC.delegate = self
+            
+            presentViewController(navController, animated: true, completion: nil)
             
         }
     }
@@ -112,23 +112,6 @@ class ANAddPersonViewController: UITableViewController, UIImagePickerControllerD
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
-
-    
-    // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        avatarImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        
-        avatarImageView.clipsToBounds = true
-        
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: - UINavigationControllerDelegate
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-//        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
-    }
-
 
     
 }
@@ -194,6 +177,16 @@ extension ANAddPersonViewController: UITextFieldDelegate {
 
 
 
+// MARK: - ANPhotoAddingVCDelegate
+
+extension ANAddPersonViewController: ANPhotoAddingVCDelegate {
+    func photoSelectionDidEnd(photo: UIImage) {
+        
+        avatarImageView.image = photo
+        
+        
+    }
+}
 
 
 

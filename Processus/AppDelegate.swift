@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,21 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-//        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
-//        
-//        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-//        
-//        
-//        
-//        let date = NSDate(timeIntervalSinceNow: 10)
-//        let localNotification = UILocalNotification()
-//        localNotification.fireDate = date
-//        localNotification.timeZone = NSTimeZone.defaultTimeZone()
-//        localNotification.alertBody = "I am a local notification!"
-//        localNotification.soundName = UILocalNotificationDefaultSoundName
-//        
-//        UIApplication.sharedApplication().scheduleLocalNotification( localNotification)
-//        
+   
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "processusAppIdId"
+            $0.server = "http://162.243.201.223:1337/parse"
+        }
+        Parse.initializeWithConfiguration(configuration)
         
         
         return true
