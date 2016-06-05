@@ -161,12 +161,22 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
     
     func didTapImageView(sender: UITapGestureRecognizer) {
         
-        let imageVC = UIImagePickerController()
-        imageVC.delegate = self
-        imageVC.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        imageVC.allowsEditing = true
         
-        presentViewController(imageVC, animated: true, completion: nil)
+        
+        let destinationVC = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingViewController") as! ANPhotoAddingViewController
+        
+        let navController = UINavigationController(rootViewController: destinationVC)
+        
+        presentViewController(navController, animated: true, completion: nil)
+        
+        
+        
+//        let imageVC = UIImagePickerController()
+//        imageVC.delegate = self
+//        imageVC.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        imageVC.allowsEditing = true
+//        
+//        presentViewController(imageVC, animated: true, completion: nil)
         
     }
 

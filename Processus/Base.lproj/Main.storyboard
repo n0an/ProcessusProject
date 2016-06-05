@@ -671,7 +671,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4D-EA-ppg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2093" y="687"/>
+            <point key="canvasLocation" x="2905" y="687"/>
         </scene>
         <!--Edit coallegue-->
         <scene sceneID="0Gx-Ta-ooT">
@@ -1036,7 +1036,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIO-X2-OsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2925" y="687"/>
+            <point key="canvasLocation" x="3737" y="687"/>
         </scene>
         <!--Project Selection View Controller-->
         <scene sceneID="RsS-gt-fEN">
@@ -1175,7 +1175,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUW-TJ-SZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3721" y="687"/>
+            <point key="canvasLocation" x="4533" y="687"/>
         </scene>
         <!--Add coallegue-->
         <scene sceneID="ACz-xd-X1S">
@@ -1433,7 +1433,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsZ-mi-P02" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="687"/>
+            <point key="canvasLocation" x="2093" y="687"/>
         </scene>
         <!--Проекты-->
         <scene sceneID="T2e-pA-XtM">
@@ -2014,7 +2014,7 @@
                     </tableViewCellContentView>
                 </tableViewCell>
             </objects>
-            <point key="canvasLocation" x="4501" y="687"/>
+            <point key="canvasLocation" x="5313" y="687"/>
         </scene>
         <!--Коллеги-->
         <scene sceneID="2D7-zD-7Jr">
@@ -3348,6 +3348,140 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yoo-24-nfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2111" y="-1679"/>
+        </scene>
+        <!--Photo preview-->
+        <scene sceneID="AGQ-QB-1Yl">
+            <objects>
+                <viewController storyboardIdentifier="ANPhotoAddingViewController" id="esb-nH-wq5" customClass="ANPhotoAddingViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OcZ-F1-W5t"/>
+                        <viewControllerLayoutGuide type="bottom" id="2xm-r8-Bjp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vab-zS-BJZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmN-Qi-7ob">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="flexibleSpace" id="vk0-gf-q9D"/>
+                                    <barButtonItem systemItem="camera" id="rjM-Sa-HXC">
+                                        <color key="tintColor" red="0.12494860200000001" green="0.12322676809999999" blue="0.58627158720000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="actionCameraButtonPressed:" destination="esb-nH-wq5" id="KHv-0B-y1p"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="99" systemItem="fixedSpace" id="8mJ-3i-Ayu"/>
+                                    <barButtonItem systemItem="organize" id="jAk-hz-aLS">
+                                        <color key="tintColor" red="0.12494860200000001" green="0.12322676809999999" blue="0.58627158720000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="actionFolderButtonPressed:" destination="esb-nH-wq5" id="rxP-zU-bFw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="dES-Qq-KHn"/>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JIN-cu-NW7">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, choose a photo from the library, or make a new shot" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43w-ar-Tc1">
+                                <rect key="frame" x="60" y="286" width="480" height="48.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="3Sx-PS-tJD"/>
+                                    <constraint firstAttribute="width" constant="336" id="azb-6k-14H"/>
+                                    <constraint firstAttribute="width" constant="298" id="je7-hr-tw7"/>
+                                    <constraint firstAttribute="height" constant="156" id="tmi-ah-DhG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="21"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3Sx-PS-tJD"/>
+                                        <exclude reference="je7-hr-tw7"/>
+                                        <exclude reference="azb-6k-14H"/>
+                                        <exclude reference="tmi-ah-DhG"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerY" secondItem="JIN-cu-NW7" secondAttribute="centerY" id="0Sd-Gm-sRX"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerY" secondItem="vab-zS-BJZ" secondAttribute="centerY" id="9hI-qI-3GC"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="width" secondItem="vab-zS-BJZ" secondAttribute="width" multiplier="0.8" id="9hf-WB-s7O"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerX" secondItem="JIN-cu-NW7" secondAttribute="centerX" id="GO2-lf-JfU"/>
+                            <constraint firstItem="JIN-cu-NW7" firstAttribute="leading" secondItem="vab-zS-BJZ" secondAttribute="leading" id="OsN-Cs-Ibd"/>
+                            <constraint firstItem="JIN-cu-NW7" firstAttribute="top" secondItem="vab-zS-BJZ" secondAttribute="top" id="VUD-8G-SYt"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerX" secondItem="vab-zS-BJZ" secondAttribute="centerX" id="VzF-Yq-kbR"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerX" secondItem="vab-zS-BJZ" secondAttribute="centerX" id="W0l-ad-Jc8"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerY" secondItem="vab-zS-BJZ" secondAttribute="centerY" id="XyD-0A-y87"/>
+                            <constraint firstItem="bmN-Qi-7ob" firstAttribute="top" secondItem="JIN-cu-NW7" secondAttribute="bottom" id="YfU-3Q-JpI"/>
+                            <constraint firstAttribute="trailing" secondItem="bmN-Qi-7ob" secondAttribute="trailing" id="a3d-ru-Umt"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerY" secondItem="JIN-cu-NW7" secondAttribute="centerY" id="adC-v6-MWi"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerX" secondItem="JIN-cu-NW7" secondAttribute="centerX" id="gNj-XG-ocX"/>
+                            <constraint firstItem="2xm-r8-Bjp" firstAttribute="top" secondItem="bmN-Qi-7ob" secondAttribute="bottom" id="gQf-fx-c0J"/>
+                            <constraint firstItem="bmN-Qi-7ob" firstAttribute="leading" secondItem="vab-zS-BJZ" secondAttribute="leading" id="mQ7-Gw-zrl"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerY" secondItem="vab-zS-BJZ" secondAttribute="centerY" id="oK3-9n-cnP"/>
+                            <constraint firstAttribute="trailing" secondItem="JIN-cu-NW7" secondAttribute="trailing" id="rci-k7-4Ku"/>
+                            <constraint firstItem="43w-ar-Tc1" firstAttribute="centerX" secondItem="vab-zS-BJZ" secondAttribute="centerX" id="tn7-6R-5b1"/>
+                            <constraint firstItem="JIN-cu-NW7" firstAttribute="top" secondItem="OcZ-F1-W5t" secondAttribute="bottom" id="xpm-4K-aUU"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VUD-8G-SYt"/>
+                                <exclude reference="0Sd-Gm-sRX"/>
+                                <exclude reference="9hI-qI-3GC"/>
+                                <exclude reference="GO2-lf-JfU"/>
+                                <exclude reference="VzF-Yq-kbR"/>
+                                <exclude reference="W0l-ad-Jc8"/>
+                                <exclude reference="XyD-0A-y87"/>
+                                <exclude reference="oK3-9n-cnP"/>
+                                <exclude reference="tn7-6R-5b1"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo preview" id="T5I-KI-7Ti">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HnU-hy-YH7">
+                            <connections>
+                                <action selector="actionCancelPressed:" destination="esb-nH-wq5" id="iQ6-OY-s4j"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="eww-nz-52l">
+                            <connections>
+                                <action selector="actionDonePressed:" destination="esb-nH-wq5" id="oke-Sz-7Vg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraButton" destination="rjM-Sa-HXC" id="z84-xk-ic8"/>
+                        <outlet property="doneButton" destination="eww-nz-52l" id="0va-0L-1qQ"/>
+                        <outlet property="hintLabel" destination="43w-ar-Tc1" id="zad-am-PNv"/>
+                        <outlet property="photoPreviewImageView" destination="JIN-cu-NW7" id="gOW-sA-Fiw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jeJ-hr-msK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1321" y="750"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="R1O-cj-NuS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wLf-Va-02Y" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9PM-nL-az9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="esb-nH-wq5" kind="relationship" relationship="rootViewController" id="S5r-5G-HQe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Okr-Vz-yoR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="509" y="750"/>
         </scene>
     </scenes>
     <resources>
