@@ -43,6 +43,9 @@ class ANSignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        groupInfoButton.hidden = true
+
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANSignUpViewController.didTapImageView(_:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         
@@ -50,7 +53,7 @@ class ANSignUpViewController: UIViewController {
         tapGestureRecognizer.numberOfTapsRequired = 1
         
         
-        self.view.addGestureRecognizer(tapViewGestureRecognizer)
+        contentView.addGestureRecognizer(tapViewGestureRecognizer)
         
         imageView.addGestureRecognizer(tapGestureRecognizer)
 
@@ -64,6 +67,8 @@ class ANSignUpViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        groupInfoButton.hidden = true
         
         if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
             scrollVIew.scrollEnabled = true
@@ -158,6 +163,8 @@ class ANSignUpViewController: UIViewController {
     // MARK: - ACTIONS
     
     func didTapView() {
+        groupInfoButton.hidden = true
+
         self.view.endEditing(true)
     }
     
@@ -264,10 +271,19 @@ class ANSignUpViewController: UIViewController {
 
 extension ANSignUpViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        if textField == textFields.last {
+            groupInfoButton.hidden = false
+        }
+        
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         if textField == textFields.last {
             textField.resignFirstResponder()
+            groupInfoButton.hidden = true
         } else {
             
             let index = textFields.indexOf(textField)
