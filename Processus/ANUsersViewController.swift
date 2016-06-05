@@ -106,7 +106,7 @@ extension ANUsersViewController: UITableViewDataSource {
 
 extension ANUsersViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
     }
     
