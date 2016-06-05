@@ -343,7 +343,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     @IBAction func actionShouldRemindToggled(switchControl: UISwitch) {
         
         if shouldRemindSwitch.on {
-            let notificationsSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+            let notificationsSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(notificationsSettings)
         }
         

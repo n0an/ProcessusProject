@@ -351,27 +351,41 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
                 
                 if success {
                     
-                    let userQuery: PFQuery = PFUser.query()!
-                    userQuery.whereKey("username", equalTo: recipientNickname)
-                    
-                    let pushQuery = PFInstallation.query()!
-                    pushQuery.whereKey("user", matchesQuery: userQuery)
-                    
-                    let push: PFPush = PFPush()
-                    push.setQuery(pushQuery)
-                    push.setMessage("Processus: New message!")
-                    
-                    do {
-                        try push.sendPush()
-                        print("notification has sent")
-                        
-                    } catch let error as NSError {
-                        print("notification error: \(error.localizedDescription)")
-                    }
+//                    let userQuery: PFQuery = PFUser.query()!
+//                    userQuery.whereKey("username", equalTo: recipientNickname)
+//                    
+//                    let pushQuery = PFInstallation.query()!
+//                    pushQuery.whereKey("user", matchesQuery: userQuery)
+//                    
+//                    let push: PFPush = PFPush()
+//                    push.setQuery(pushQuery)
+//                    push.setMessage("Processus: New message!")
+//                    
+//                    do {
+//                        try push.sendPush()
+//                        print("notification has sent")
+//                        
+//                    } catch let error as NSError {
+//                        print("notification error: \(error.localizedDescription)")
+//                    }
                     
                     print("message saved")
+                    
+                    
+                    
+                    
+                    
+                    PFCloud.callFunctionInBackground("hello", withParameters: nil)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     self.messageTextView.text = ""
                     self.promptLabel.hidden = false
+                    
                     self.updateChat()
                     
                 } else {
