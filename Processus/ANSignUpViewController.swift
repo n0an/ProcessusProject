@@ -163,20 +163,14 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
         
         
         
-        let destinationVC = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingViewController") as! ANPhotoAddingViewController
+        let navController = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingNavController") as! UINavigationController
         
-        let navController = UINavigationController(rootViewController: destinationVC)
+        let destVC = navController.viewControllers[0] as! ANPhotoAddingViewController
         
+        destVC.delegate = self
+            
         presentViewController(navController, animated: true, completion: nil)
         
-        
-        
-//        let imageVC = UIImagePickerController()
-//        imageVC.delegate = self
-//        imageVC.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-//        imageVC.allowsEditing = true
-//        
-//        presentViewController(imageVC, animated: true, completion: nil)
         
     }
 
@@ -306,6 +300,20 @@ extension ANSignUpViewController: UITextFieldDelegate {
     
     
 }
+
+
+
+extension ANSignUpViewController: ANPhotoAddingVCDelegate {
+    func photoSelectionDidEnd(photo: UIImage) {
+        
+        imageView.image = photo
+        
+    }
+}
+
+
+
+
 
 
 
