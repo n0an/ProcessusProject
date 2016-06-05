@@ -1565,14 +1565,20 @@
                                                 <rect key="frame" x="90" y="108" width="420" height="30"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="WSZ-SZ-OlU" id="dUO-W8-eBJ"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xxg-fy-ujm">
-                                                <rect key="frame" x="90" y="163" width="420" height="30"/>
+                                                <rect key="frame" x="90" y="153" width="420" height="30"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="WSZ-SZ-OlU" id="kkv-si-mgN"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyk-0G-IPw">
-                                                <rect key="frame" x="232" y="228" width="136" height="30"/>
+                                                <rect key="frame" x="232" y="203" width="136" height="30"/>
                                                 <color key="backgroundColor" red="0.054901960784313725" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="136" id="Ayf-jJ-rgZ"/>
@@ -1592,7 +1598,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XB-qm-VVo">
-                                                <rect key="frame" x="279" y="288" width="42" height="26"/>
+                                                <rect key="frame" x="279" y="248" width="42" height="26"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                 <state key="normal" title="Sign up">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1608,13 +1614,13 @@
                                             <constraint firstItem="Lk8-rz-wTY" firstAttribute="width" secondItem="yyl-1e-QUn" secondAttribute="width" multiplier="0.7" id="0yk-m0-IVn"/>
                                             <constraint firstItem="Lk8-rz-wTY" firstAttribute="centerX" secondItem="yyl-1e-QUn" secondAttribute="centerX" id="2TI-fR-dbi"/>
                                             <constraint firstItem="Lk8-rz-wTY" firstAttribute="top" secondItem="f4v-L0-sk8" secondAttribute="bottom" constant="35" id="6UB-99-egN"/>
-                                            <constraint firstItem="Jyk-0G-IPw" firstAttribute="top" secondItem="xxg-fy-ujm" secondAttribute="bottom" constant="35" id="HBh-KN-TND"/>
+                                            <constraint firstItem="Jyk-0G-IPw" firstAttribute="top" secondItem="xxg-fy-ujm" secondAttribute="bottom" constant="20" id="HBh-KN-TND"/>
                                             <constraint firstItem="f4v-L0-sk8" firstAttribute="centerX" secondItem="yyl-1e-QUn" secondAttribute="centerX" id="KOo-Fz-zVv"/>
                                             <constraint firstItem="xxg-fy-ujm" firstAttribute="width" secondItem="Lk8-rz-wTY" secondAttribute="width" id="QFs-nR-e8w"/>
                                             <constraint firstItem="xxg-fy-ujm" firstAttribute="centerX" secondItem="Lk8-rz-wTY" secondAttribute="centerX" id="cZ1-yV-yLt"/>
                                             <constraint firstItem="Jyk-0G-IPw" firstAttribute="centerX" secondItem="xxg-fy-ujm" secondAttribute="centerX" id="dXl-24-0h1"/>
-                                            <constraint firstItem="xxg-fy-ujm" firstAttribute="top" secondItem="Lk8-rz-wTY" secondAttribute="bottom" constant="25" id="gcP-NT-rxo"/>
-                                            <constraint firstItem="6XB-qm-VVo" firstAttribute="top" secondItem="Jyk-0G-IPw" secondAttribute="bottom" constant="30" id="gcc-qy-eVs"/>
+                                            <constraint firstItem="xxg-fy-ujm" firstAttribute="top" secondItem="Lk8-rz-wTY" secondAttribute="bottom" constant="15" id="gcP-NT-rxo"/>
+                                            <constraint firstItem="6XB-qm-VVo" firstAttribute="top" secondItem="Jyk-0G-IPw" secondAttribute="bottom" constant="15" id="gcc-qy-eVs"/>
                                             <constraint firstItem="f4v-L0-sk8" firstAttribute="top" secondItem="yyl-1e-QUn" secondAttribute="top" constant="53" id="mDl-VK-GJt"/>
                                             <constraint firstItem="6XB-qm-VVo" firstAttribute="centerX" secondItem="Jyk-0G-IPw" secondAttribute="centerX" id="rF2-lf-Z9t"/>
                                         </constraints>
@@ -3356,6 +3362,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dKJ-np-hQ8"/>
         <segue reference="s2E-Es-V8L"/>
-        <segue reference="Z4j-hi-3cz"/>
+        <segue reference="ecb-Py-8p9"/>
     </inferredMetricsTieBreakers>
 </document>

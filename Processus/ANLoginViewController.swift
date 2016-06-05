@@ -124,11 +124,42 @@ class ANLoginViewController: UIViewController {
 
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
+        loginTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        
+        // Show alert with error, if any field is empty when SignUp pressed
+        var error = ""
+        
+        if loginTextField.text == "" {
+            error = "Login"
+            
+        } else if passwordTextField.text == "" {
+            error = "Password"
+            
+        }
+        
+        if error != "" {
+            
+            let alertController = UIAlertController(title: "Error", message: "Please fill " + error + " field", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            
+            return
+        }
+        
         PFUser.logInWithUsernameInBackground(loginTextField.text!, password: passwordTextField.text!) { (user: PFUser?, error: NSError?) in
             
             guard error == nil else {
                 print("Can't login")
                 print("error: \(error?.localizedDescription)")
+                
+                SweetAlert().showAlert("Error!", subTitle: error!.localizedDescription, style: AlertStyle.Error)
+                
                 return
             }
             
@@ -143,8 +174,6 @@ class ANLoginViewController: UIViewController {
         }
         
         
-        
-        
     }
     
     @IBAction func createAccButtonPressed(sender: AnyObject) {
@@ -153,3 +182,42 @@ class ANLoginViewController: UIViewController {
 
     
 }
+
+
+// MARK: - UITextFieldDelegate
+
+extension ANLoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if textField == passwordTextField {
+            textField.resignFirstResponder()
+        } else {
+            
+            passwordTextField.becomeFirstResponder()
+        }
+        return true
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

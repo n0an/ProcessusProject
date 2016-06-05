@@ -448,6 +448,8 @@ extension ANProjectDetailsViewController: ANEditProjectTableViewControllerDelega
 }
 */
 
+// MARK: - ANNewProjectTableViewControllerDelegate
+
 extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegate {
     
     func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
@@ -473,6 +475,7 @@ extension ANProjectDetailsViewController: ANNewProjectTableViewControllerDelegat
 }
 
 
+// MARK: - ANPersonDetailsVCDelegate
 
 extension ANProjectDetailsViewController: ANPersonDetailsVCDelegate {
     

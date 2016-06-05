@@ -205,6 +205,9 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
                 self.performSegueWithIdentifier("toUsersSegue2", sender: self)
                 
             } else {
+                
+                SweetAlert().showAlert("Error!", subTitle: error!.localizedDescription, style: AlertStyle.Error)
+                
                 return
             }
         }
@@ -235,7 +238,7 @@ extension ANSignUpViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        if textField === textFields.last {
+        if textField == textFields.last {
             textField.resignFirstResponder()
         } else {
             
