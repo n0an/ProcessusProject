@@ -17,8 +17,7 @@ protocol ANPersonDetailsVCDelegate: class {
     func personEditingDidEndForPerson(person: Person)
 }
 
-class ANPersonDetailsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+class ANPersonDetailsViewController: UITableViewController {
     
     
     // MARK: - ATTRIBUTES
@@ -79,10 +78,7 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         
         tableView.allowsSelectionDuringEditing = true
         
-        
-        
-        
-        
+   
     }
     
     deinit {
@@ -337,22 +333,19 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
     }
     
     func avatarImageViewTapped(sender: UITapGestureRecognizer) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-            
-            let imagePicker = UIImagePickerController()
-            imagePicker.allowsEditing = true
-            imagePicker.sourceType = .PhotoLibrary
-            
-            imagePicker.delegate = self
-            
-            self.presentViewController(imagePicker, animated: true, completion: nil)
-            
-        }
+        
+        
+        let navController = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingNavController") as! UINavigationController
+        
+        let destVC = navController.viewControllers[0] as! ANPhotoAddingViewController
+        
+        destVC.delegate = self
+        
+        presentViewController(navController, animated: true, completion: nil)
+
     }
 
     
-
-
     
     // MARK: - UITableViewDataSource
     
@@ -519,27 +512,6 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
         
     }
     
-    // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        let indexP = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
-        
-        cell.avatarImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        cell.avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        
-        cell.avatarImageView.clipsToBounds = true
-        
-        
-        
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: - UINavigationControllerDelegate
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-        //        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
-    }
-    
 
 }
 
@@ -570,10 +542,7 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-//        if textField.tag == ANFieldType.Email.rawValue {
-//            return handleEmailTextField(textField, inRange: range, withReplacementString: string)
-//        }
+
         
         switch textField.tag {
         case ANFieldType.Email.rawValue:
@@ -632,6 +601,19 @@ extension ANPersonDetailsViewController: ANEditProjectTableViewControllerDelegat
 }
 
 
+// MARK: - ANPhotoAddingVCDelegate
+
+extension ANPersonDetailsViewController: ANPhotoAddingVCDelegate {
+    func photoSelectionDidEnd(photo: UIImage) {
+        
+        let indexP = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        
+        cell.avatarImageView.image = photo
+        
+        
+    }
+}
 
 
 

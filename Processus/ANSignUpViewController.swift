@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
+class ANSignUpViewController: UIViewController {
     
     // MARK: - OUTLETS
     
@@ -161,8 +161,6 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
     
     func didTapImageView(sender: UITapGestureRecognizer) {
         
-        
-        
         let navController = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingNavController") as! UINavigationController
         
         let destVC = navController.viewControllers[0] as! ANPhotoAddingViewController
@@ -247,20 +245,6 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
 }
 
 
-// MARK: - UIImagePickerControllerDelegate
-
-extension ANSignUpViewController: UIImagePickerControllerDelegate {
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        imageView.image = image
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
-    
-}
 
 // MARK: - UITextFieldDelegate
 
@@ -302,6 +286,7 @@ extension ANSignUpViewController: UITextFieldDelegate {
 }
 
 
+// MARK: - ANPhotoAddingVCDelegate
 
 extension ANSignUpViewController: ANPhotoAddingVCDelegate {
     func photoSelectionDidEnd(photo: UIImage) {

@@ -3260,7 +3260,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyY-ci-5o9">
                                                 <rect key="frame" x="250" y="4" width="100" height="100"/>
                                                 <subviews>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="f2Z-Yx-qFs">
+                                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="f2Z-Yx-qFs">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     </imageView>
                                                 </subviews>
@@ -3525,6 +3525,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dKJ-np-hQ8"/>
         <segue reference="s2E-Es-V8L"/>
-        <segue reference="ecb-Py-8p9"/>
+        <segue reference="Z4j-hi-3cz"/>
     </inferredMetricsTieBreakers>
 </document>
