@@ -3280,10 +3280,22 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROq-lJ-Hif">
+                                                <rect key="frame" x="518" y="274" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="pG2-Nn-JTi"/>
+                                                    <constraint firstAttribute="width" constant="30" id="u2i-Lc-1Jg"/>
+                                                </constraints>
+                                                <state key="normal" image="questionMark"/>
+                                                <connections>
+                                                    <action selector="actionGroupIDInfoButtonPressed:" destination="Nlz-fx-HNG" eventType="touchUpInside" id="DkL-BP-3DA"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.40000000000000002" green="0.63529411759999999" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="f2Z-Yx-qFs" firstAttribute="top" secondItem="AEH-bG-IWQ" secondAttribute="top" constant="4" id="0Cb-d6-GC8"/>
+                                            <constraint firstItem="ROq-lJ-Hif" firstAttribute="centerY" secondItem="w5p-Xo-qm1" secondAttribute="centerY" id="2qH-SK-RUn"/>
                                             <constraint firstItem="dqI-73-9nI" firstAttribute="top" secondItem="Fnx-MV-Wql" secondAttribute="bottom" constant="20" id="3ha-61-v6e"/>
                                             <constraint firstItem="HyY-ci-5o9" firstAttribute="top" secondItem="AEH-bG-IWQ" secondAttribute="top" constant="4" id="8Ab-S7-dBp"/>
                                             <constraint firstItem="w5p-Xo-qm1" firstAttribute="top" secondItem="sWy-b4-Jel" secondAttribute="bottom" constant="20" id="9ig-VD-BNo"/>
@@ -3293,6 +3305,7 @@
                                             <constraint firstItem="sWy-b4-Jel" firstAttribute="top" secondItem="dqI-73-9nI" secondAttribute="bottom" constant="20" id="WxS-XX-uev"/>
                                             <constraint firstItem="w5p-Xo-qm1" firstAttribute="centerX" secondItem="sWy-b4-Jel" secondAttribute="centerX" id="ZrM-0W-w53"/>
                                             <constraint firstItem="dqI-73-9nI" firstAttribute="width" secondItem="Fnx-MV-Wql" secondAttribute="width" id="g5z-aj-8ti"/>
+                                            <constraint firstItem="ROq-lJ-Hif" firstAttribute="leading" secondItem="w5p-Xo-qm1" secondAttribute="trailing" constant="8" id="gpf-cA-Z7C"/>
                                             <constraint firstItem="DmK-46-CiU" firstAttribute="centerX" secondItem="dqI-73-9nI" secondAttribute="centerX" id="qCV-Xd-kFu"/>
                                             <constraint firstItem="sWy-b4-Jel" firstAttribute="width" secondItem="dqI-73-9nI" secondAttribute="width" id="rSC-Bl-sXj"/>
                                             <constraint firstItem="w5p-Xo-qm1" firstAttribute="width" secondItem="sWy-b4-Jel" secondAttribute="width" id="tHZ-SE-I75"/>
@@ -3333,6 +3346,7 @@
                         <outlet property="bottomConstraint" destination="SsC-0m-hS5" id="j8c-AY-82D"/>
                         <outlet property="contentView" destination="AEH-bG-IWQ" id="ffp-rg-tu3"/>
                         <outlet property="emailTextField" destination="sWy-b4-Jel" id="ezf-7y-rzI"/>
+                        <outlet property="groupInfoButton" destination="ROq-lJ-Hif" id="jNx-KV-bIv"/>
                         <outlet property="groupTextField" destination="w5p-Xo-qm1" id="knl-Rg-FNE"/>
                         <outlet property="imageView" destination="f2Z-Yx-qFs" id="WPL-tk-SXn"/>
                         <outlet property="loginTextField" destination="Fnx-MV-Wql" id="4qV-5x-uTM"/>
@@ -3348,6 +3362,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yoo-24-nfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2111" y="-1679"/>
+        </scene>
+        <!--Group Info View Controller-->
+        <scene sceneID="t3T-Zi-Be9">
+            <objects>
+                <viewController storyboardIdentifier="ANGroupInfoViewController" id="fG5-y0-3l7" customClass="ANGroupInfoViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zVD-tU-h4o"/>
+                        <viewControllerLayoutGuide type="bottom" id="YGV-Ne-ftm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ydE-hx-6kt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Identifier" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNm-gx-pf3">
+                                <rect key="frame" x="20" y="84" width="560" height="23"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you know Group Identifier of your coallegues group - enter it to this field" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id5-KW-M21">
+                                <rect key="frame" x="20" y="115" width="560" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7EP-VL-0HO">
+                                <rect key="frame" x="20" y="143" width="560" height="59.5"/>
+                                <string key="text">Otherwise, you may create new Group Identifier and encourage your coallegues for using it. It this case your coallegues should enter created Group Identifier to corresponding field during their signing up process.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEa-8p-S7v">
+                                <rect key="frame" x="20" y="211" width="560" height="59.5"/>
+                                <string key="text">You may create as many accounts as you need. You man create accounts with different Group Identifiers - to have possibility to collaborate with various coallegues groups</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.63529411764705879" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="TEa-8p-S7v" secondAttribute="leading" id="4Qz-Tq-6Oo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WNm-gx-pf3" secondAttribute="trailing" id="6G9-Ju-QYh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="id5-KW-M21" secondAttribute="trailing" id="9R2-zG-k40"/>
+                            <constraint firstItem="WNm-gx-pf3" firstAttribute="top" secondItem="zVD-tU-h4o" secondAttribute="bottom" constant="64" id="9vt-mz-9e8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TEa-8p-S7v" secondAttribute="trailing" id="BSN-7n-Ncx"/>
+                            <constraint firstAttribute="trailing" secondItem="WNm-gx-pf3" secondAttribute="trailing" constant="20" id="D0H-VD-65L"/>
+                            <constraint firstItem="TEa-8p-S7v" firstAttribute="top" secondItem="7EP-VL-0HO" secondAttribute="bottom" constant="8.5" id="JFr-ES-0x5"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="7EP-VL-0HO" secondAttribute="leading" id="MPj-X4-76S"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="WNm-gx-pf3" secondAttribute="leading" id="YWI-Fl-0Gm"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="id5-KW-M21" secondAttribute="leading" id="YaF-gK-KXe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7EP-VL-0HO" secondAttribute="trailing" id="gXy-95-fpk"/>
+                            <constraint firstItem="7EP-VL-0HO" firstAttribute="top" secondItem="id5-KW-M21" secondAttribute="bottom" constant="8" id="o4Y-dn-Yoc"/>
+                            <constraint firstItem="WNm-gx-pf3" firstAttribute="leading" secondItem="ydE-hx-6kt" secondAttribute="leading" constant="20" id="oAn-3x-MVG"/>
+                            <constraint firstItem="id5-KW-M21" firstAttribute="top" secondItem="WNm-gx-pf3" secondAttribute="bottom" constant="8" id="oFA-Rk-01T"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="D0H-VD-65L"/>
+                                <exclude reference="oAn-3x-MVG"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IIK-eb-h8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2863" y="-1679"/>
         </scene>
         <!--Photo preview-->
         <scene sceneID="AGQ-QB-1Yl">
@@ -3468,12 +3550,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Photo preview" id="T5I-KI-7Ti">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HnU-hy-YH7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HnU-hy-YH7">
                             <connections>
                                 <action selector="actionCancelPressed:" destination="esb-nH-wq5" id="iQ6-OY-s4j"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="eww-nz-52l">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="eww-nz-52l">
                             <connections>
                                 <action selector="actionDonePressed:" destination="esb-nH-wq5" id="oke-Sz-7Vg"/>
                             </connections>
@@ -3519,6 +3601,7 @@
         <image name="arrowLeft03" width="14" height="24"/>
         <image name="arrowRight03" width="14" height="24"/>
         <image name="box_set" width="64" height="55"/>
+        <image name="questionMark" width="30" height="30"/>
         <image name="tab_people2" width="24" height="24"/>
         <image name="tab_projects4" width="23" height="24"/>
     </resources>

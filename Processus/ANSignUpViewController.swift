@@ -28,6 +28,8 @@ class ANSignUpViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet weak var groupInfoButton: UIButton!
+    
     // MARK: - ATTRIBUTES
     
     enum ANSignUpFieldType: Int {
@@ -168,6 +170,18 @@ class ANSignUpViewController: UIViewController {
         destVC.delegate = self
             
         presentViewController(navController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    @IBAction func actionGroupIDInfoButtonPressed(sender: UIButton) {
+        
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANGroupInfoViewController")
+        
+        let navController = UINavigationController(rootViewController: vc!)
+        
+        self.presentViewController(navController, animated: true, completion: nil)
         
         
     }
