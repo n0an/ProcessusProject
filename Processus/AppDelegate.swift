@@ -27,13 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initializeWithConfiguration(configuration)
         
         
-        
-//        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
-//        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-//        application.registerUserNotificationSettings(settings)
-//        
-//        application.registerForRemoteNotifications()
-        
+        // ** register push user notification migrated to ANLoginVC viewDidLoad
         
         
         return true
@@ -55,10 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
+        
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("updateChatNow", object: nil)
     }
     
     
+    
+    
+    
+    // ** For remind dueDate feature
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         print("didReceiveLocalNotification \(notification)")
         
