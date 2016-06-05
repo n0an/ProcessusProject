@@ -27,6 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initializeWithConfiguration(configuration)
         
         
+        // ** Transition to Collaboration Tab after notification receiving
+        if let notification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [String: AnyObject] {
+            print("\(notification)")
+            (window?.rootViewController as? UITabBarController)?.selectedIndex = 3
+        }
+
+        
+        
         // ** register push user notification migrated to ANLoginVC viewDidLoad
         
 //        application.applicationIconBadgeNumber = 0;
@@ -35,7 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+        if notificationSettings.types != .None {
+            application.registerForRemoteNotifications()
+        }
     }
 
     
