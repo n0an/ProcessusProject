@@ -200,9 +200,6 @@ class ANPersonDetailsViewController: UITableViewController, UIImagePickerControl
             
             ANAnimator.sharedAnimator.animateSelectRowView(selectCell.addProjectsView)
             
-
-            
-            
             
         } else {
             

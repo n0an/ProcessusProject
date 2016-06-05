@@ -62,7 +62,6 @@ class ANLoginViewController: UIViewController {
     
     // MARK: - NOTIFICATIONS
     
-    
     func keyboardWillShow(notification: NSNotification) {
         
         if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {

@@ -21,7 +21,19 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var groupTextField: UITextField!
 
     @IBOutlet weak var scrollVIew: UIScrollView!
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
+    @IBOutlet var textFields: [UITextField]!
+    
+    
+    // MARK: - ATTRIBUTES
+    
+    enum ANSignUpFieldType: Int {
+        case Login = 0, Password, Email, Group
+    }
+
+   
 
     // MARK: - viewDidLoad
 
@@ -31,22 +43,97 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANSignUpViewController.didTapImageView(_:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         
+        let tapViewGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANSignUpViewController.didTapView))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        
+        
+        self.view.addGestureRecognizer(tapViewGestureRecognizer)
+        
         imageView.addGestureRecognizer(tapGestureRecognizer)
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
         
     }
     
-    // MARK: - HELPER METHODS
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        // !!!IMPORTANT!!!
-        self.view.endEditing(true)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
+            scrollVIew.scrollEnabled = true
+        } else {
+            scrollVIew.scrollEnabled = false
+            
+        }
+    }
+
+    
+    // MARK: - NOTIFICATIONS
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
+            
+            scrollVIew.scrollEnabled = true
+            updateBottomConstraint(notification, showing: true)
+        }
+        
     }
     
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
+            scrollVIew.scrollEnabled = false
+            updateBottomConstraint(notification, showing: false)
+            
+        }
+        
+    }
+
     
+    // MARK: - HELPER METHODS
+    
+    func updateBottomConstraint(notification: NSNotification, showing: Bool) {
+        
+        
+        if let
+            userInfo = notification.userInfo,
+            frame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue,
+            animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
+            
+            let newFrame = view.convertRect(frame, fromView: (UIApplication.sharedApplication().delegate?.window)!)
+            
+            let diff = showing ? 49 : 0
+            
+            bottomConstraint.constant = CGRectGetHeight(view.frame) - newFrame.origin.y - CGFloat(diff)
+            
+            UIView.animateWithDuration(animationDuration, animations: {
+                self.view.layoutIfNeeded()
+                
+                if showing {
+                    let scrollViewOffset: CGPoint = CGPointMake(0, self.scrollVIew.contentSize.height - self.scrollVIew.bounds.height)
+                    
+                    self.scrollVIew.setContentOffset(scrollViewOffset, animated: true)
+                }
+                
+                
+            })
+            
+        }
+        
+    }
+
+
     
     
     // MARK: - ACTIONS
+    
+    func didTapView() {
+        self.view.endEditing(true)
+    }
     
     func didTapImageView(sender: UITapGestureRecognizer) {
         
@@ -61,6 +148,37 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBAction func signUpButtonPressed(sender: AnyObject) {
         
+        textFields.forEach {
+            $0.resignFirstResponder()
+        }
+        
+        
+        // Show alert with error, if any field is empty when SignUp pressed
+        var error = ""
+        if textFields[0].text == "" {
+            error = "Login"
+        } else if textFields[1].text == "" {
+            error = "Password"
+        } else if textFields[2].text == "" {
+            error = "Email"
+        } else if textFields[3].text == "" {
+            error = "Group"
+        }
+        
+        if error != "" {
+            
+            let alertController = UIAlertController(title: "Can't sign up", message: "Please fill " + error + " field", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return
+        }
+
+        // If all fields are filled - save to Parse
         let user = PFUser()
         
         user.username = loginTextField.text
@@ -91,14 +209,12 @@ class ANSignUpViewController: UIViewController, UINavigationControllerDelegate {
             }
         }
 
-        
-        
-        
     }
 
 }
 
 
+// MARK: - UIImagePickerControllerDelegate
 
 extension ANSignUpViewController: UIImagePickerControllerDelegate {
     
@@ -113,15 +229,41 @@ extension ANSignUpViewController: UIImagePickerControllerDelegate {
     
 }
 
+// MARK: - UITextFieldDelegate
 
 extension ANSignUpViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        // TODO: resign become
+        
+        if textField === textFields.last {
+            textField.resignFirstResponder()
+        } else {
+            
+            let index = textFields.indexOf(textField)
+            let nextTextField = textFields[index! + 1]
+            nextTextField.becomeFirstResponder()
+            
+        }
+        
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        switch textField.tag {
+        case ANSignUpFieldType.Email.rawValue:
+            let checkResult = ANTextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
+            
+            return checkResult
+            
+        default:
+            break
+        }
         
         
         return true
     }
+
     
     
 }
