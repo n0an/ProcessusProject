@@ -35,6 +35,12 @@ class ANLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let user = PFUser.currentUser() {
+            if user.authenticated {
+                self.performSegueWithIdentifier("toUsersSegue1", sender: nil)
+            }
+        }
+        
         // ** REGISTERING FOR PUSH NOTIFICATIONS
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
