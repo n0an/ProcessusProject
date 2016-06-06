@@ -3071,11 +3071,11 @@
             </objects>
             <point key="canvasLocation" x="1321" y="-63"/>
         </scene>
-        <!--Item-->
+        <!--Collaboration-->
         <scene sceneID="a6L-vL-SR6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4Bz-mr-N8o" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="NQL-Kz-P0a"/>
+                    <tabBarItem key="tabBarItem" title="Collaboration" image="tab_collab" selectedImage="tab_collab_f" id="NQL-Kz-P0a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="goa-aQ-h8g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3613,6 +3613,8 @@
         <image name="arrowRight03" width="14" height="24"/>
         <image name="box_set" width="64" height="55"/>
         <image name="questionMark" width="30" height="30"/>
+        <image name="tab_collab" width="25" height="24"/>
+        <image name="tab_collab_f" width="25" height="24"/>
         <image name="tab_people2" width="24" height="24"/>
         <image name="tab_projects4" width="23" height="24"/>
     </resources>
