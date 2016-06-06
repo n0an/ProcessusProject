@@ -2945,7 +2945,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="216.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3kJ-Jr-gZI">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="3kJ-Jr-gZI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="217"/>
                                 <date key="date" timeIntervalSinceReferenceDate="485798894.17975599">
                                     <!--2016-05-24 16:08:14 +0000-->
