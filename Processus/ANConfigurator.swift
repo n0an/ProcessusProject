@@ -173,7 +173,12 @@ class ANConfigurator {
         progressView.backgroundColor = UIColor(red: 208/255, green: 208/255, blue: 208/255, alpha: 0.27)
         
         
+        if let viewToRemove = cell.contentView.viewWithTag(111) {
+            viewToRemove.removeFromSuperview()
+        }
+        
         cell.contentView.insertSubview(progressView, atIndex: 0)
+        progressView.tag = 111
         
         
     }
