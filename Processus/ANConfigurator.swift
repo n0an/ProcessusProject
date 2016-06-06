@@ -162,13 +162,10 @@ class ANConfigurator {
         
         // Progress View
         
-        
-        
         let progressRectWidth = (CGFloat)(project.completedRatio!.floatValue/100) * viewWidth
 
         let progressRect = CGRect(x: 0, y: 0, width: progressRectWidth, height: 80)
 
-        
         let progressView = UIView(frame: progressRect)
         progressView.backgroundColor = UIColor(red: 208/255, green: 208/255, blue: 208/255, alpha: 0.27)
         

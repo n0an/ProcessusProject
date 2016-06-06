@@ -45,9 +45,11 @@
 		186B7CA11D03404B00C039C0 /* ANChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA01D03404B00C039C0 /* ANChatViewController.swift */; };
 		186B7CA31D042D3500C039C0 /* ANPhotoAddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA21D042D3400C039C0 /* ANPhotoAddingViewController.swift */; };
 		186B7CA51D0452E500C039C0 /* ANGroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA41D0452E500C039C0 /* ANGroupInfoViewController.swift */; };
+		18C16B291D0610BD002E188C /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C16B261D0610BD002E188C /* Project+CoreDataProperties.swift */; };
+		18C16B2A1D0610BD002E188C /* FinishedStatus+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C16B271D0610BD002E188C /* FinishedStatus+CoreDataProperties.swift */; };
+		18C16B2B1D0610BD002E188C /* FinishedStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C16B281D0610BD002E188C /* FinishedStatus.swift */; };
 		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
-		18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */; };
 		8FF50206C970CBDDF21EBDD9 /* Pods_Processus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,9 +94,11 @@
 		186B7CA01D03404B00C039C0 /* ANChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANChatViewController.swift; sourceTree = "<group>"; };
 		186B7CA21D042D3400C039C0 /* ANPhotoAddingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPhotoAddingViewController.swift; sourceTree = "<group>"; };
 		186B7CA41D0452E500C039C0 /* ANGroupInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANGroupInfoViewController.swift; sourceTree = "<group>"; };
+		18C16B261D0610BD002E188C /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		18C16B271D0610BD002E188C /* FinishedStatus+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FinishedStatus+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		18C16B281D0610BD002E188C /* FinishedStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedStatus.swift; sourceTree = "<group>"; };
 		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
-		18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4B6220E0DF4F1853631F8E9B /* Pods-Processus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Processus/Pods-Processus.debug.xcconfig"; sourceTree = "<group>"; };
 		73A8B6E5BE6165A0BA4FF65F /* Pods-Processus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Processus/Pods-Processus.release.xcconfig"; sourceTree = "<group>"; };
 		FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Processus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,8 +196,10 @@
 		1829887C1CE5128800BC5272 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18E9818E1CFB1C36002C390D /* Project+CoreDataProperties.swift */,
 				182988741CE5052F00BC5272 /* Project.swift */,
+				18C16B261D0610BD002E188C /* Project+CoreDataProperties.swift */,
+				18C16B271D0610BD002E188C /* FinishedStatus+CoreDataProperties.swift */,
+				18C16B281D0610BD002E188C /* FinishedStatus.swift */,
 				180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */,
 				182988761CE5052F00BC5272 /* Person.swift */,
 			);
@@ -432,7 +438,6 @@
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
 				1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */,
 				185B0B7A1CFE112C002E8AA8 /* ANConfigurator.swift in Sources */,
-				18E9818F1CFB1C36002C390D /* Project+CoreDataProperties.swift in Sources */,
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
 				186B7C951D03267900C039C0 /* ANUsersViewController.swift in Sources */,
 				186B7C921D031F1300C039C0 /* ANSignUpViewController.swift in Sources */,
@@ -444,16 +449,19 @@
 				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,
 				182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */,
 				186B7C8E1D02EF6900C039C0 /* SweetAlert.swift in Sources */,
+				18C16B291D0610BD002E188C /* Project+CoreDataProperties.swift in Sources */,
 				1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */,
 				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
 				185B0B7C1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift in Sources */,
 				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
 				184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */,
+				18C16B2B1D0610BD002E188C /* FinishedStatus.swift in Sources */,
 				186B7CA31D042D3500C039C0 /* ANPhotoAddingViewController.swift in Sources */,
 				180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */,
 				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
 				186B7C901D0319AA00C039C0 /* ANLoginViewController.swift in Sources */,
+				18C16B2A1D0610BD002E188C /* FinishedStatus+CoreDataProperties.swift in Sources */,
 				184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */,
 				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,
 				186B7CA11D03404B00C039C0 /* ANChatViewController.swift in Sources */,
