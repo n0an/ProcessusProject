@@ -676,7 +676,7 @@
         <!--Edit coallegue-->
         <scene sceneID="0Gx-Ta-ooT">
             <objects>
-                <tableViewController storyboardIdentifier="ANPersonDetailsViewController" id="Jyg-A5-1OD" customClass="ANPersonDetailsViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ANPersonDetailsViewController" hidesBottomBarWhenPushed="YES" id="Jyg-A5-1OD" customClass="ANPersonDetailsViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kUv-DI-7H2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2142,7 +2142,7 @@
         <!--Edit project-->
         <scene sceneID="tlD-VS-wOe">
             <objects>
-                <tableViewController id="OUZ-hg-uXL" userLabel="Edit project" customClass="ANProjectDetailsViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="OUZ-hg-uXL" userLabel="Edit project" customClass="ANProjectDetailsViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9G9-VR-aOH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3620,7 +3620,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ecb-Py-8p9"/>
-        <segue reference="dKJ-np-hQ8"/>
-        <segue reference="s2E-Es-V8L"/>
+        <segue reference="kCB-mu-F0F"/>
+        <segue reference="HAq-02-e0h"/>
     </inferredMetricsTieBreakers>
 </document>
