@@ -210,7 +210,7 @@ extension ANProjectsViewController: UITableViewDataSource {
         
         
         let project = searchController.active ? searchResultsArray[indexPath.row] : myProjects[indexPath.row]
-
+        
         
         cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
         
@@ -220,7 +220,13 @@ extension ANProjectsViewController: UITableViewDataSource {
         }
         
         
-        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
+        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
+        
+        
+        
+        
+        
+        
         
         return cell
     }

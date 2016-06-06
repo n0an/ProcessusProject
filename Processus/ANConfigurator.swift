@@ -105,7 +105,7 @@ class ANConfigurator {
     }
     
     
-    func configureProjectCell(cell: ANPersonProjectCell, forProject project: Project) {
+    func configureProjectCell(cell: ANPersonProjectCell, forProject project: Project, viewWidth: CGFloat) {
         
         
         cell.customerNameLabel.text = project.customer
@@ -124,6 +124,8 @@ class ANConfigurator {
         default:
             break
         }
+        
+        
         
         
         
@@ -156,6 +158,16 @@ class ANConfigurator {
             cell.alarmImageView.hidden = true
         }
 
+        
+        
+        // Progress View
+        let progressRectWidth = (CGFloat)(project.completedRatio!.floatValue/100) * viewWidth
+        let progressRect = CGRect(x: 0, y: 70, width: progressRectWidth, height: 10)
+        
+        let progressView = UIView(frame: progressRect)
+        progressView.backgroundColor = UIColor(red: 208/255, green: 208/255, blue: 208/255, alpha: 1.0)
+        
+        cell.contentView.addSubview(progressView)
         
         
     }

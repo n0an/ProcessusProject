@@ -84,7 +84,9 @@ class ANProjectSelectionViewController: UITableViewController {
 
         }
         
-        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
+//        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
+        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
+
 
         
     }

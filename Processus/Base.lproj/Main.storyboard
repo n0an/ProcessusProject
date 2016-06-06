@@ -3462,8 +3462,8 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="3Sx-PS-tJD"/>
-                                        <exclude reference="je7-hr-tw7"/>
                                         <exclude reference="azb-6k-14H"/>
+                                        <exclude reference="je7-hr-tw7"/>
                                         <exclude reference="tmi-ah-DhG"/>
                                     </mask>
                                 </variation>
@@ -3576,7 +3576,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Y93-dQ-xFv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3ox-lH-BMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ANPhotoAddingNavController" automaticallyAdjustsScrollViewInsets="NO" id="QEJ-A1-F5l" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4qu-Rp-Aup">
@@ -3588,6 +3587,7 @@
                         <segue destination="esb-nH-wq5" kind="relationship" relationship="rootViewController" id="acx-G5-2Gk"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ox-lH-BMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1321" y="750"/>
         </scene>
@@ -3607,8 +3607,8 @@
         <image name="tab_projects4" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HAq-02-e0h"/>
-        <segue reference="s2E-Es-V8L"/>
         <segue reference="Z4j-hi-3cz"/>
+        <segue reference="dKJ-np-hQ8"/>
+        <segue reference="s2E-Es-V8L"/>
     </inferredMetricsTieBreakers>
 </document>

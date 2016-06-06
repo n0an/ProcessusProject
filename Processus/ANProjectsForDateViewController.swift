@@ -216,7 +216,9 @@ extension ANProjectsForDateViewController: UITableViewDataSource {
             cell.participantsCountLabel.text = "\(participantsCount)"
         }
         
-        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
+//        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
+        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
+
         
         return cell
     }
