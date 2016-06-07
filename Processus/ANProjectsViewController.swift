@@ -65,6 +65,10 @@ class ANProjectsViewController: UIViewController {
         
         fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
         
+        let predicate = NSPredicate(format: "finished == false")
+        
+        fetchRequest.predicate = predicate
+        
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -119,6 +123,11 @@ class ANProjectsViewController: UIViewController {
         
         return false
         
+    }
+    
+    
+    func finishSuccess() {
+        print("finishSuccess")
     }
 
 
@@ -275,9 +284,31 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             let finishActionMenu = UIAlertController(title: nil, message: "Project finished:", preferredStyle: .ActionSheet)
             
-            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default, handler: nil)
+            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+                print("FINISH TEST")
+                
+                let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                
+                projectToFinish.finished = true
+                projectToFinish.finishedSuccess = true
+                
+                ANDataManager.sharedManager.saveContext()
+            }
             
-            let finishFailureAction = UIAlertAction(title: "Failure", style: .Default, handler: nil)
+            
+
+            let finishFailureAction = UIAlertAction(title: "Failure", style: .Default, handler: { (action: UIAlertAction) in
+                print("FAILURE TEST")
+                
+                let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                
+                projectToFinish.finished = true
+                projectToFinish.finishedSuccess = false
+                
+                ANDataManager.sharedManager.saveContext()
+            })
+            
+            
 
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             

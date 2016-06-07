@@ -324,6 +324,8 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             newProject.completedRatio   = progressSlider.value
             newProject.state            = stateControl.selectedSegmentIndex
             
+            newProject.finished         = false
+            
             let newId = ANDataManager.sharedManager.nextProjectItemID()
             
             newProject.projectId        = newId
