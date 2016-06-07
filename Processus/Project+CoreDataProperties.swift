@@ -2,7 +2,7 @@
 //  Project+CoreDataProperties.swift
 //  
 //
-//  Created by Anton Novoselov on 06/06/16.
+//  Created by Anton Novoselov on 07/06/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -22,7 +22,8 @@ extension Project {
     @NSManaged var projectId: NSNumber?
     @NSManaged var shouldRemind: NSNumber?
     @NSManaged var state: NSNumber?
+    @NSManaged var finished: NSNumber?
+    @NSManaged var finishedSuccess: NSNumber?
     @NSManaged var workers: NSSet?
-    
 
 }

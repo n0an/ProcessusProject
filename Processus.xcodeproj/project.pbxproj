@@ -10,6 +10,7 @@
 		180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */; };
 		180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */; };
 		180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63671CF9F84000AAD93A /* ANPersonCell.swift */; };
+		18248E071D073B0900162633 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18248E061D073B0900162633 /* Project+CoreDataProperties.swift */; };
 		1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988391CE4FA9D00BC5272 /* AppDelegate.swift */; };
 		1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1829883D1CE4FA9D00BC5272 /* Main.storyboard */; };
 		182988411CE4FA9D00BC5272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182988401CE4FA9D00BC5272 /* Assets.xcassets */; };
@@ -45,7 +46,6 @@
 		186B7CA11D03404B00C039C0 /* ANChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA01D03404B00C039C0 /* ANChatViewController.swift */; };
 		186B7CA31D042D3500C039C0 /* ANPhotoAddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA21D042D3400C039C0 /* ANPhotoAddingViewController.swift */; };
 		186B7CA51D0452E500C039C0 /* ANGroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA41D0452E500C039C0 /* ANGroupInfoViewController.swift */; };
-		18C16B291D0610BD002E188C /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C16B261D0610BD002E188C /* Project+CoreDataProperties.swift */; };
 		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		8FF50206C970CBDDF21EBDD9 /* Pods_Processus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */; };
@@ -55,6 +55,7 @@
 		180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDetailsViewController.swift; sourceTree = "<group>"; };
 		180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		180D63671CF9F84000AAD93A /* ANPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonCell.swift; sourceTree = "<group>"; };
+		18248E061D073B0900162633 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		182988361CE4FA9D00BC5272 /* Processus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Processus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182988391CE4FA9D00BC5272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1829883E1CE4FA9D00BC5272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		186B7CA01D03404B00C039C0 /* ANChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANChatViewController.swift; sourceTree = "<group>"; };
 		186B7CA21D042D3400C039C0 /* ANPhotoAddingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPhotoAddingViewController.swift; sourceTree = "<group>"; };
 		186B7CA41D0452E500C039C0 /* ANGroupInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANGroupInfoViewController.swift; sourceTree = "<group>"; };
-		18C16B261D0610BD002E188C /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		4B6220E0DF4F1853631F8E9B /* Pods-Processus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Processus/Pods-Processus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				182988741CE5052F00BC5272 /* Project.swift */,
-				18C16B261D0610BD002E188C /* Project+CoreDataProperties.swift */,
+				18248E061D073B0900162633 /* Project+CoreDataProperties.swift */,
 				180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */,
 				182988761CE5052F00BC5272 /* Person.swift */,
 			);
@@ -443,7 +443,7 @@
 				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,
 				182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */,
 				186B7C8E1D02EF6900C039C0 /* SweetAlert.swift in Sources */,
-				18C16B291D0610BD002E188C /* Project+CoreDataProperties.swift in Sources */,
+				18248E071D073B0900162633 /* Project+CoreDataProperties.swift in Sources */,
 				1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */,
 				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
