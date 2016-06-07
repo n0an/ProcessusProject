@@ -76,29 +76,15 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
         cell.projectNameLabel.text = project.name
         cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
         
-        //        if let completedRatio = project.completedRatio?.intValue {
-        //            cell.completedRatioLabel.text = "\(completedRatio) %"
-        //        }
+        let cellColor: UIColor
         
-        if let participantsCount = project.workers?.allObjects.count {
-            cell.participantsCountLabel.text = "\(participantsCount)"
+        if project.finishedSuccess == true {
+            cellColor = UIColor(red: 143/255, green: 255/255, blue: 146/255, alpha: 0.3)
+        } else {
+            cellColor = UIColor(red: 255/255, green: 82/255, blue: 52/255, alpha: 0.3)
         }
         
-        var stateColor = UIColor()
-        
-        switch project.state!.integerValue {
-        case ANProjectState.NonActive.rawValue:
-            stateColor = UIColor.redColor()
-        case ANProjectState.Frozen.rawValue:
-            stateColor = UIColor.yellowColor()
-        case ANProjectState.Active.rawValue:
-            stateColor = UIColor.greenColor()
-        default:
-            break
-        }
-        
-        cell.projectStateView.backgroundColor = stateColor
-        
+        cell.backgroundColor = cellColor
     }
     
     
@@ -144,11 +130,11 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
         
         if let sectionInfo = fetchedResultsController?.sections?[section] {
             
-            if sectionInfo.name == "0" {
+            if sectionInfo.indexTitle == "0" {
                 return "Failure"
             }
             
-            if sectionInfo.name == "1" {
+            if sectionInfo.indexTitle == "1" {
                 return "Success"
             }
             
@@ -189,33 +175,11 @@ extension ANFinishedProjetsViewController: UITableViewDelegate {
     
     
     
-    // MARK: - SEGUES
+    // MARK: - NAVIGATION
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "AddItem" {
-            
-            let navigationController = segue.destinationViewController as! UINavigationController
-            
-            let controller = navigationController.topViewController as! ANNewProjectTableViewController
-            
-            controller.delegate = self
-            
-        } else if segue.identifier == "showProjectDetails" {
-            
-            
-            // === Variant - go directly to ANNewProjectTableViewController, withod IntermediateVC ===
-            /*
-             let navigationController = segue.destinationViewController as! UINavigationController
-             
-             let controller = navigationController.topViewController as! ANNewProjectTableViewController
-             
-             if let clickedIndexPath = tableView.indexPathForCell(sender as! ANPersonProjectCell) {
-             guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
-             
-             controller.itemToEdit = project
-             }
-             */
+        if segue.identifier == "showProjectDetails" {
             
             
             let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
@@ -230,10 +194,7 @@ extension ANFinishedProjetsViewController: UITableViewDelegate {
             
         }
         
-        
     }
-    
-    
     
 }
 
@@ -249,25 +210,6 @@ extension ANFinishedProjetsViewController: ANProjectDetailsVCDelegate {
 
 
 
-// MARK: - ANNewProjectTableViewControllerDelegate
-
-extension ANFinishedProjetsViewController: ANNewProjectTableViewControllerDelegate {
-    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
-        print("projectDetailsVCDidCancel")
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
-        print("projectDetailsVC didFinishAddingItem")
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
-        print("projectDetailsVC didFinishEditingItem")
-        
-    }
-}
 
 
 

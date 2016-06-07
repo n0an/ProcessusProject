@@ -28,25 +28,12 @@ class ANProjectsViewController: UIViewController {
     
     var myProjects: [Project] = []
     
-    var dateFormatter: NSDateFormatter!
-
     
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        let testObject = PFObject(className: "TestObject")
-//        testObject["foo"] = "xxx"
-//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            print("Object has been saved.")
-//        }
-        
-        
-        
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YYYY"
 
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 80
@@ -108,29 +95,6 @@ class ANProjectsViewController: UIViewController {
         tableView.setEditing(editing, animated: true)
         
     }
-    
-    
-    func dueDateSoonForProject(project: Project) -> Bool {
-        
-        let currentDate = NSDate()
-        
-        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        
-        // If there're less than 5 days befor deadline - activate warning sign
-        if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {
-            return true
-        }
-        
-        return false
-        
-    }
-    
-    
-    func finishSuccess() {
-        print("finishSuccess")
-    }
-
-
     
     
     // MARK: - ACTIONS
@@ -221,7 +185,7 @@ extension ANProjectsViewController: UITableViewDataSource {
         let project = searchController.active ? searchResultsArray[indexPath.row] : myProjects[indexPath.row]
         
         
-        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
         
         
         if let participantsCount = project.workers?.allObjects.count {
@@ -231,11 +195,7 @@ extension ANProjectsViewController: UITableViewDataSource {
         
         ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
         
-        
-        
-        
-        
-        
+     
         
         return cell
     }
