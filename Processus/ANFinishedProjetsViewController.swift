@@ -130,18 +130,70 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
         
         if let sectionInfo = fetchedResultsController?.sections?[section] {
             
-//            if sectionInfo.name == ProjectFinishedStatus.Failure.rawValue {
-//                return "Failure"
-//            }
-//            
-//            if sectionInfo.name == ProjectFinishedStatus.Success.rawValue {
-//                return "Success"
-//            }
             return sectionInfo.name
         }
         
         return nil
         
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        let paddingView = UIView()
+        
+        view.addSubview(paddingView)
+        
+        paddingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let statusLabel = UILabel()
+        paddingView.addSubview(statusLabel)
+        
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints:[NSLayoutConstraint] = [
+            
+            paddingView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
+            paddingView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor),
+            
+            statusLabel.centerXAnchor.constraintEqualToAnchor(paddingView.centerXAnchor),
+            statusLabel.centerYAnchor.constraintEqualToAnchor(paddingView.centerYAnchor),
+            
+            paddingView.heightAnchor.constraintEqualToAnchor(statusLabel.heightAnchor, constant: 5),
+            paddingView.widthAnchor.constraintEqualToAnchor(statusLabel.widthAnchor, constant: 10),
+            
+            view.heightAnchor.constraintEqualToAnchor(paddingView.heightAnchor)
+            
+        ]
+        
+        NSLayoutConstraint.activateConstraints(constraints)
+        
+        guard let sectionInfo = fetchedResultsController?.sections?[section] else {return nil}
+
+        
+        statusLabel.text = sectionInfo.name
+        
+        paddingView.layer.cornerRadius = 10
+        paddingView.layer.masksToBounds = true
+        
+        
+        
+        let paddingViewBGColor: UIColor
+        
+        if sectionInfo.name == ProjectFinishedStatus.Success.rawValue {
+            paddingViewBGColor = UIColor(red: 143/255, green: 255/255, blue: 146/255, alpha: 0.6)
+        } else {
+            paddingViewBGColor = UIColor(red: 255/255, green: 82/255, blue: 52/255, alpha: 0.6)
+
+        }
+        
+        
+        paddingView.backgroundColor = paddingViewBGColor
+
+        
+        return view
         
     }
     
