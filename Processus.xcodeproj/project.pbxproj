@@ -11,6 +11,7 @@
 		180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */; };
 		180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63671CF9F84000AAD93A /* ANPersonCell.swift */; };
 		18248E071D073B0900162633 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18248E061D073B0900162633 /* Project+CoreDataProperties.swift */; };
+		18248E091D073CD900162633 /* ANFinishedProjetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18248E081D073CD900162633 /* ANFinishedProjetsViewController.swift */; };
 		1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988391CE4FA9D00BC5272 /* AppDelegate.swift */; };
 		1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1829883D1CE4FA9D00BC5272 /* Main.storyboard */; };
 		182988411CE4FA9D00BC5272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182988401CE4FA9D00BC5272 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		180D63671CF9F84000AAD93A /* ANPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonCell.swift; sourceTree = "<group>"; };
 		18248E061D073B0900162633 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		18248E081D073CD900162633 /* ANFinishedProjetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANFinishedProjetsViewController.swift; sourceTree = "<group>"; };
 		182988361CE4FA9D00BC5272 /* Processus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Processus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182988391CE4FA9D00BC5272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1829883E1CE4FA9D00BC5272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				1829888C1CE7547300BC5272 /* ANProjectsViewController.swift */,
+				18248E081D073CD900162633 /* ANFinishedProjetsViewController.swift */,
 				180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */,
 				184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */,
 				184F5FC51CF76878004DB11D /* ANEditProjectTableViewController.swift */,
@@ -427,6 +430,7 @@
 				184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */,
 				18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */,
 				180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */,
+				18248E091D073CD900162633 /* ANFinishedProjetsViewController.swift in Sources */,
 				184898571CF61F8E00EA2EC5 /* ANProjectSelectionViewController.swift in Sources */,
 				18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */,
 				182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */,
