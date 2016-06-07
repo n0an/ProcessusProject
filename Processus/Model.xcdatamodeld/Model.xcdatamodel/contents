@@ -15,7 +15,7 @@
         <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="finished" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="finishedSuccess" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="finishedStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="projectId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="shouldRemind" optional="YES" attributeType="Boolean" syncable="YES"/>

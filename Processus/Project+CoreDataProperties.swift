@@ -23,7 +23,7 @@ extension Project {
     @NSManaged var shouldRemind: NSNumber?
     @NSManaged var state: NSNumber?
     @NSManaged var finished: NSNumber?
-    @NSManaged var finishedSuccess: NSNumber?
+    @NSManaged var finishedStatus: String?
     @NSManaged var workers: NSSet?
 
 }

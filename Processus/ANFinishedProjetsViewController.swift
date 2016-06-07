@@ -37,18 +37,17 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
         
         
         let fetchRequest = NSFetchRequest(entityName: "Project")
-        let dueDateDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
-        let customerDescriptor = NSSortDescriptor(key: "customer", ascending: true)
         
+        let finishedStatusDescriptor = NSSortDescriptor(key: "finishedStatus", ascending: false)
         
-        fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
+        fetchRequest.sortDescriptors = [finishedStatusDescriptor]
         
         let predicate = NSPredicate(format: "finished == true")
         
         fetchRequest.predicate = predicate
         
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: "finishedSuccess", cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: "finishedStatus", cacheName: nil)
         
         fetchedResultsDelegate = ANTableViewFetchedResultsDelegate(tableView: tableView, displayer: self)
         
@@ -78,7 +77,7 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
         
         let cellColor: UIColor
         
-        if project.finishedSuccess == true {
+        if project.finishedStatus == ProjectFinishedStatus.Success.rawValue {
             cellColor = UIColor(red: 143/255, green: 255/255, blue: 146/255, alpha: 0.3)
         } else {
             cellColor = UIColor(red: 255/255, green: 82/255, blue: 52/255, alpha: 0.3)
@@ -128,16 +127,17 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
+        
         if let sectionInfo = fetchedResultsController?.sections?[section] {
             
-            if sectionInfo.indexTitle == "0" {
-                return "Failure"
-            }
-            
-            if sectionInfo.indexTitle == "1" {
-                return "Success"
-            }
-            
+//            if sectionInfo.name == ProjectFinishedStatus.Failure.rawValue {
+//                return "Failure"
+//            }
+//            
+//            if sectionInfo.name == ProjectFinishedStatus.Success.rawValue {
+//                return "Success"
+//            }
+            return sectionInfo.name
         }
         
         return nil

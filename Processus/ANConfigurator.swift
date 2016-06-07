@@ -10,6 +10,11 @@
 import UIKit
 
 
+enum ProjectFinishedStatus: String {
+    case Success = "Success"
+    case Failure = "Failure"
+}
+
 class ANConfigurator {
     
     static let sharedConfigurator = ANConfigurator()

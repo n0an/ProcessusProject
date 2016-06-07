@@ -250,7 +250,7 @@ extension ANProjectsViewController: UITableViewDelegate {
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 
                 projectToFinish.finished = true
-                projectToFinish.finishedSuccess = true
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
                 
                 ANDataManager.sharedManager.saveContext()
             }
@@ -263,7 +263,7 @@ extension ANProjectsViewController: UITableViewDelegate {
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 
                 projectToFinish.finished = true
-                projectToFinish.finishedSuccess = false
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
                 
                 ANDataManager.sharedManager.saveContext()
             })
