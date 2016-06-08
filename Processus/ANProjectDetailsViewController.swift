@@ -167,42 +167,82 @@ class ANProjectDetailsViewController: UIViewController {
     
     @IBAction func actionButtonPressed(sender: UIBarButtonItem) {
         
-        let finishActionMenu = UIAlertController(title: nil, message: "Project finished", preferredStyle: .ActionSheet)
         
-        let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+        if self.project.finished?.boolValue == false {
+            let finishActionMenu = UIAlertController(title: nil, message: "Project finished", preferredStyle: .ActionSheet)
             
-            let projectToFinish = self.project
+            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+                
+                let projectToFinish = self.project
+                
+                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.finished = true
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
+                
+                ANDataManager.sharedManager.saveContext()
+            }
             
-            projectToFinish.state = ANProjectState.NonActive.rawValue
-            projectToFinish.finished = true
-            projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
             
-            ANDataManager.sharedManager.saveContext()
+            let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
+                
+                let projectToFinish = self.project
+                
+                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.finished = true
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
+                
+                ANDataManager.sharedManager.saveContext()
+            })
+            
+            
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            
+            finishActionMenu.addAction(finishSuccessAction)
+            finishActionMenu.addAction(finishFailureAction)
+            
+            finishActionMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(finishActionMenu, animated: true, completion: nil)
         }
         
         
-        let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
-            
-            let projectToFinish = self.project
+        
+        
+        
+        if self.project.finished?.boolValue == true {
 
-            projectToFinish.state = ANProjectState.NonActive.rawValue
-            projectToFinish.finished = true
-            projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
+            let finishActionMenu = UIAlertController(title: nil, message: "Start project", preferredStyle: .ActionSheet)
             
-            ANDataManager.sharedManager.saveContext()
-        })
+            let finishSuccessAction = UIAlertAction(title: "Start", style: .Default) { (action: UIAlertAction) in
+                
+                let projectToStart = self.project
+                
+                projectToStart.state = ANProjectState.NonActive.rawValue
+                projectToStart.finished = false
+                projectToStart.finishedStatus = nil
+                
+                ANDataManager.sharedManager.saveContext()
+            }
+            
+            
+            
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            
+            finishActionMenu.addAction(finishSuccessAction)
+            
+            finishActionMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(finishActionMenu, animated: true, completion: nil)
+            
+            
+            
+        }
         
         
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        
-        finishActionMenu.addAction(finishSuccessAction)
-        finishActionMenu.addAction(finishFailureAction)
-        
-        finishActionMenu.addAction(cancelAction)
-        
-        
-        self.presentViewController(finishActionMenu, animated: true, completion: nil)
         
         
     }
@@ -361,6 +401,13 @@ extension ANProjectDetailsViewController: UITableViewDataSource {
         case ANSectionType.PersonProject.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
             configurePersonProjectCell(cell, forIndexPath: indexPath)
+            
+            if project.finished?.boolValue == true {
+                cell.selectionStyle = .None
+            } else {
+                cell.selectionStyle = .Default
+            }
+            
             return cell
             
         case ANSectionType.Separator.rawValue:
@@ -445,7 +492,7 @@ extension ANProjectDetailsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == ANSectionType.PersonProject.rawValue {
+        if indexPath.section == ANSectionType.PersonProject.rawValue && project.finished?.boolValue == false {
             
             // === Variant - instantiate ANEditProjectTableViewController ===
             /*
