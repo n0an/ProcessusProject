@@ -209,8 +209,6 @@ class ANProjectDetailsViewController: UIViewController {
         
         
         
-        
-        
         if self.project.finished?.boolValue == true {
 
             let finishActionMenu = UIAlertController(title: nil, message: "Start project", preferredStyle: .ActionSheet)
@@ -228,7 +226,6 @@ class ANProjectDetailsViewController: UIViewController {
             
             
             
-            
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             
             finishActionMenu.addAction(finishSuccessAction)
@@ -243,9 +240,49 @@ class ANProjectDetailsViewController: UIViewController {
         }
         
         
+    }
+    
+    
+    @IBAction func clearParticipants(sender: UIBarButtonItem) {
         
+        SweetAlert().showAlert("Are you sure?", subTitle: "Participants list will be cleared", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, clear list", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                
+                print("Cancel Button  Pressed", terminator: "")
+            }
+            else {
+                
+                let projectToClear = self.project
+                
+                let participants = projectToClear.workers?.allObjects as! [Person]
+                
+                for person in participants {
+                    projectToClear.remove(workerObject: person)
+                }
+                
+                let managedObjectContext = ANDataManager.sharedManager.context
+
+                
+                if managedObjectContext.hasChanges {
+                    do {
+                        try managedObjectContext.save()
+                    } catch {
+                        let nserror = error as NSError
+                        NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
+                        abort()
+                    }
+                }
+                
+                SweetAlert().showAlert("Deleted!", subTitle: "Participants list was cleared", style: AlertStyle.Success)
+                
+                self.projectParticipants = self.project.workers?.allObjects as! [Person]
+
+                self.tableView.reloadData()
+            }
+        }
         
     }
+    
     
     
     @IBAction func deleteButtonPressed(sender: UIBarButtonItem) {

@@ -2334,6 +2334,9 @@
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" title="Add Participants" image="SelectParticipants"/>
+                                                            <connections>
+                                                                <action selector="addButtonPressed:" destination="f6H-xJ-Shf" eventType="touchUpInside" id="wBR-b5-YTa"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -2444,6 +2447,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="A9s-Wz-Xv0"/>
+                                    <barButtonItem systemItem="stop" id="4aY-Zm-zzA">
+                                        <connections>
+                                            <action selector="clearParticipants:" destination="f6H-xJ-Shf" id="170-w9-8PC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JBL-fd-S14"/>
                                     <barButtonItem systemItem="trash" id="L0m-Rz-ykI">
                                         <connections>
                                             <action selector="deleteButtonPressed:" destination="f6H-xJ-Shf" id="npk-QI-uf5"/>
