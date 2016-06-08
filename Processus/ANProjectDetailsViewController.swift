@@ -18,6 +18,7 @@ class ANProjectDetailsViewController: UIViewController {
     // MARK: - OUTLETS
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var clearParticipantsButton: UIBarButtonItem!
 
     // MARK: - ATTRIBUTES
     
@@ -71,9 +72,26 @@ class ANProjectDetailsViewController: UIViewController {
         delegate?.projectEditingDidEndForProject(project)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshClearParticipantsButton()
+        
+    }
+    
     
     
     // MARK: - HELPER METHODS
+    
+    func refreshClearParticipantsButton() {
+        let participants = project.workers?.allObjects
+        
+        if participants!.isEmpty {
+            clearParticipantsButton.enabled = false
+        } else {
+            clearParticipantsButton.enabled = true
+        }
+    }
     
     func refreshVCTitle() {
         title = "\(project.name!)"
@@ -276,6 +294,8 @@ class ANProjectDetailsViewController: UIViewController {
                 SweetAlert().showAlert("Deleted!", subTitle: "Participants list was cleared", style: AlertStyle.Success)
                 
                 self.projectParticipants = self.project.workers?.allObjects as! [Person]
+                
+                self.refreshClearParticipantsButton()
 
                 self.tableView.reloadData()
             }

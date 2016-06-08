@@ -2192,8 +2192,8 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="nfN-me-OUb"/>
                                                             <exclude reference="hXE-lN-gAM"/>
+                                                            <exclude reference="nfN-me-OUb"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -2278,9 +2278,9 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="nRi-dT-uTa"/>
-                                                    <exclude reference="du9-au-f2y"/>
                                                     <exclude reference="FxQ-fW-hVY"/>
+                                                    <exclude reference="du9-au-f2y"/>
+                                                    <exclude reference="nRi-dT-uTa"/>
                                                     <exclude reference="T0w-cm-JqA"/>
                                                     <exclude reference="3rl-Ig-15o"/>
                                                 </mask>
@@ -2491,6 +2491,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="clearParticipantsButton" destination="4aY-Zm-zzA" id="EZD-N7-BXW"/>
                         <outlet property="tableView" destination="M41-QT-Mzf" id="2jB-Sp-DRd"/>
                     </connections>
                 </viewController>
