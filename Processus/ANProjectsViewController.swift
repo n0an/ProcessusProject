@@ -245,7 +245,6 @@ extension ANProjectsViewController: UITableViewDelegate {
             let finishActionMenu = UIAlertController(title: nil, message: "Project finished:", preferredStyle: .ActionSheet)
             
             let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
-                print("FINISH TEST")
                 
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 
@@ -257,8 +256,7 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             
 
-            let finishFailureAction = UIAlertAction(title: "Failure", style: .Default, handler: { (action: UIAlertAction) in
-                print("FAILURE TEST")
+            let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
                 
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 

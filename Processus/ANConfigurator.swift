@@ -12,7 +12,7 @@ import UIKit
 
 enum ProjectFinishedStatus: String {
     case Success = "Success"
-    case Failure = "Failure"
+    case Failure = "Stopped"
 }
 
 class ANConfigurator {
