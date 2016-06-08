@@ -109,6 +109,11 @@ class ANEditProjectTableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = rightButton
         
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANNewProjectTableViewController.didTapView))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        
+        self.view.addGestureRecognizer(tapGestureRecognizer)
 
 
 
@@ -129,6 +134,10 @@ class ANEditProjectTableViewController: UITableViewController {
     
     
     // MARK: - HELPER METHODS
+    
+    func didTapView() {
+        self.view.endEditing(true)
+    }
     
     func resetTextFields() {
         customerTitleTextField.text = customerName

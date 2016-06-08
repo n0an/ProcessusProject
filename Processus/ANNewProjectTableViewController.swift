@@ -108,6 +108,12 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
         
         ANConfigurator.sharedConfigurator.customizeSlider(progressSlider)
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANNewProjectTableViewController.didTapView))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        
+        self.view.addGestureRecognizer(tapGestureRecognizer)
 
     }
     
@@ -120,6 +126,10 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
 
     
     // MARK: - HELPER METHODS
+    
+    func didTapView() {
+        view.endEditing(true)
+    }
     
     func showDatePicker() {
         datePickerVisible = true
