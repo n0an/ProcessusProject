@@ -13,7 +13,11 @@ protocol ANProjectDetailsVCDelegate: class {
     func projectEditingDidEndForProject(project: Project)
 }
 
-class ANProjectDetailsViewController: UITableViewController {
+class ANProjectDetailsViewController: UIViewController {
+    
+    // MARK: - OUTLETS
+    
+    @IBOutlet weak var tableView: UITableView!
 
     // MARK: - ATTRIBUTES
     
@@ -217,13 +221,38 @@ class ANProjectDetailsViewController: UITableViewController {
     }
     
     
-    // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    // MARK: - NAVIGATION
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "EditItem" {
+            
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! ANNewProjectTableViewController
+            
+            controller.itemToEdit = project
+            
+            controller.delegate = self
+
+        }
+    }
+    
+    
+}
+
+
+
+// MARK: - UITableViewDataSource
+
+extension ANProjectDetailsViewController: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sectionsCount
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
         case ANSectionType.PersonProject.rawValue:
@@ -244,7 +273,7 @@ class ANProjectDetailsViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdPersonProject = "personProjectsCell"
         let cellIdSeparator = "separatorCell"
         let cellIdAddbutton = "AddCell"
@@ -269,7 +298,7 @@ class ANProjectDetailsViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)  as! ANPersonCell
             configurePersonCell(cell, atIndexPath: indexPath)
             return cell
-
+            
         case ANSectionType.Person.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)  as! ANPersonCell
             configurePersonCell(cell, atIndexPath: indexPath)
@@ -284,12 +313,16 @@ class ANProjectDetailsViewController: UITableViewController {
         
     }
     
-    
-    
-    // MARK: - UITableViewDelegate
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+}
 
+
+
+// MARK: - UITableViewDelegate
+
+extension ANProjectDetailsViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         
         switch indexPath.section {
         case ANSectionType.PersonProject.rawValue:
@@ -306,12 +339,12 @@ class ANProjectDetailsViewController: UITableViewController {
             break
             
         }
-
+        
         return UITableViewAutomaticDimension
     }
     
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         switch indexPath.section {
         case ANSectionType.PersonProject.rawValue:
@@ -332,28 +365,28 @@ class ANProjectDetailsViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.section == ANSectionType.PersonProject.rawValue {
             
             // === Variant - instantiate ANEditProjectTableViewController ===
             /*
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
-            
-            vc.delegate = self
-            
-            vc.itemToEdit = project
-            
-            navigationController?.pushViewController(vc, animated: true)
-            */
+             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
+             
+             vc.delegate = self
+             
+             vc.itemToEdit = project
+             
+             navigationController?.pushViewController(vc, animated: true)
+             */
             
             performSegueWithIdentifier("EditItem", sender: self)
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
-        
-//            transitToParticipantsSelection()
             
-        
+            //            transitToParticipantsSelection()
+            
+            
         } else if indexPath.section == ANSectionType.Person.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPersonDetailsViewController") as! ANPersonDetailsViewController
@@ -368,7 +401,7 @@ class ANProjectDetailsViewController: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if indexPath.section != ANSectionType.Person.rawValue  {
             return false
         } else {
@@ -376,7 +409,7 @@ class ANProjectDetailsViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
             
@@ -394,27 +427,6 @@ class ANProjectDetailsViewController: UITableViewController {
             
         }
     }
-    
-    
-    
-    // MARK: - SEGUES
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "EditItem" {
-            
-            let navigationController = segue.destinationViewController as! UINavigationController
-            
-            let controller = navigationController.topViewController as! ANNewProjectTableViewController
-            
-            controller.itemToEdit = project
-            
-            controller.delegate = self
-
-        }
-    }
-    
-    
 }
 
 

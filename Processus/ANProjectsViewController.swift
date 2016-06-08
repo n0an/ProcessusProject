@@ -248,6 +248,7 @@ extension ANProjectsViewController: UITableViewDelegate {
                 
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 
+                projectToFinish.state = ANProjectState.NonActive.rawValue
                 projectToFinish.finished = true
                 projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
                 
@@ -260,6 +261,7 @@ extension ANProjectsViewController: UITableViewDelegate {
                 
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 
+                projectToFinish.state = ANProjectState.NonActive.rawValue
                 projectToFinish.finished = true
                 projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
                 
