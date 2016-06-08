@@ -3678,6 +3678,7 @@
                                             <outlet property="customerNameLabel" destination="J55-54-Y9P" id="xLs-kj-tct"/>
                                             <outlet property="projectDueDateLabel" destination="cCy-GJ-kPG" id="KQE-Sr-h5w"/>
                                             <outlet property="projectNameLabel" destination="YsB-jf-klI" id="15L-g1-ExC"/>
+                                            <segue destination="OUZ-hg-uXL" kind="show" identifier="showProjectDetails" id="vkj-Xx-6oT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3722,8 +3723,8 @@
         <image name="tab_projects4" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ecb-Py-8p9"/>
-        <segue reference="s2E-Es-V8L"/>
         <segue reference="dKJ-np-hQ8"/>
+        <segue reference="vkj-Xx-6oT"/>
+        <segue reference="ecb-Py-8p9"/>
     </inferredMetricsTieBreakers>
 </document>
