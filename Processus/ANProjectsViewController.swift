@@ -28,25 +28,12 @@ class ANProjectsViewController: UIViewController {
     
     var myProjects: [Project] = []
     
-    var dateFormatter: NSDateFormatter!
-
     
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        let testObject = PFObject(className: "TestObject")
-//        testObject["foo"] = "xxx"
-//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            print("Object has been saved.")
-//        }
-        
-        
-        
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YYYY"
 
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 80
@@ -64,6 +51,10 @@ class ANProjectsViewController: UIViewController {
         
         
         fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
+        
+        let predicate = NSPredicate(format: "finished == false")
+        
+        fetchRequest.predicate = predicate
         
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ANDataManager.sharedManager.context, sectionNameKeyPath: nil, cacheName: nil)
@@ -104,24 +95,6 @@ class ANProjectsViewController: UIViewController {
         tableView.setEditing(editing, animated: true)
         
     }
-    
-    
-    func dueDateSoonForProject(project: Project) -> Bool {
-        
-        let currentDate = NSDate()
-        
-        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        
-        // If there're less than 5 days befor deadline - activate warning sign
-        if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {
-            return true
-        }
-        
-        return false
-        
-    }
-
-
     
     
     // MARK: - ACTIONS
@@ -212,7 +185,7 @@ extension ANProjectsViewController: UITableViewDataSource {
         let project = searchController.active ? searchResultsArray[indexPath.row] : myProjects[indexPath.row]
         
         
-        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
         
         
         if let participantsCount = project.workers?.allObjects.count {
@@ -222,11 +195,7 @@ extension ANProjectsViewController: UITableViewDataSource {
         
         ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
         
-        
-        
-        
-        
-        
+     
         
         return cell
     }
@@ -275,9 +244,31 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             let finishActionMenu = UIAlertController(title: nil, message: "Project finished:", preferredStyle: .ActionSheet)
             
-            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default, handler: nil)
+            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+                
+                let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                
+                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.finished = true
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
+                
+                ANDataManager.sharedManager.saveContext()
+            }
             
-            let finishFailureAction = UIAlertAction(title: "Failure", style: .Default, handler: nil)
+            
+
+            let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
+                
+                let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                
+                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.finished = true
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
+                
+                ANDataManager.sharedManager.saveContext()
+            })
+            
+            
 
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             

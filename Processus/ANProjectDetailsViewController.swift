@@ -13,7 +13,11 @@ protocol ANProjectDetailsVCDelegate: class {
     func projectEditingDidEndForProject(project: Project)
 }
 
-class ANProjectDetailsViewController: UITableViewController {
+class ANProjectDetailsViewController: UIViewController {
+    
+    // MARK: - OUTLETS
+    
+    @IBOutlet weak var tableView: UITableView!
 
     // MARK: - ATTRIBUTES
     
@@ -160,6 +164,161 @@ class ANProjectDetailsViewController: UITableViewController {
     
     // MARK: - ACTIONS
     
+    
+    @IBAction func actionButtonPressed(sender: UIBarButtonItem) {
+        
+        
+        if self.project.finished?.boolValue == false {
+            let finishActionMenu = UIAlertController(title: nil, message: "Project finished", preferredStyle: .ActionSheet)
+            
+            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+                
+                let projectToFinish = self.project
+                
+                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.finished = true
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
+                
+                ANDataManager.sharedManager.saveContext()
+            }
+            
+            
+            let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
+                
+                let projectToFinish = self.project
+                
+                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.finished = true
+                projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
+                
+                ANDataManager.sharedManager.saveContext()
+            })
+            
+            
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            
+            finishActionMenu.addAction(finishSuccessAction)
+            finishActionMenu.addAction(finishFailureAction)
+            
+            finishActionMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(finishActionMenu, animated: true, completion: nil)
+        }
+        
+        
+        
+        if self.project.finished?.boolValue == true {
+
+            let finishActionMenu = UIAlertController(title: nil, message: "Start project", preferredStyle: .ActionSheet)
+            
+            let finishSuccessAction = UIAlertAction(title: "Start", style: .Default) { (action: UIAlertAction) in
+                
+                let projectToStart = self.project
+                
+                projectToStart.state = ANProjectState.NonActive.rawValue
+                projectToStart.finished = false
+                projectToStart.finishedStatus = nil
+                
+                ANDataManager.sharedManager.saveContext()
+            }
+            
+            
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            
+            finishActionMenu.addAction(finishSuccessAction)
+            
+            finishActionMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(finishActionMenu, animated: true, completion: nil)
+            
+            
+            
+        }
+        
+        
+    }
+    
+    
+    @IBAction func clearParticipants(sender: UIBarButtonItem) {
+        
+        SweetAlert().showAlert("Are you sure?", subTitle: "Participants list will be cleared", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, clear list", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                
+                print("Cancel Button  Pressed", terminator: "")
+            }
+            else {
+                
+                let projectToClear = self.project
+                
+                let participants = projectToClear.workers?.allObjects as! [Person]
+                
+                for person in participants {
+                    projectToClear.remove(workerObject: person)
+                }
+                
+                let managedObjectContext = ANDataManager.sharedManager.context
+
+                
+                if managedObjectContext.hasChanges {
+                    do {
+                        try managedObjectContext.save()
+                    } catch {
+                        let nserror = error as NSError
+                        NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
+                        abort()
+                    }
+                }
+                
+                SweetAlert().showAlert("Deleted!", subTitle: "Participants list was cleared", style: AlertStyle.Success)
+                
+                self.projectParticipants = self.project.workers?.allObjects as! [Person]
+
+                self.tableView.reloadData()
+            }
+        }
+        
+    }
+    
+    
+    
+    @IBAction func deleteButtonPressed(sender: UIBarButtonItem) {
+        
+        SweetAlert().showAlert("Are you sure?", subTitle: "Project will be permanently deleted!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, delete it!", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                
+                print("Cancel Button  Pressed", terminator: "")
+            }
+            else {
+                
+                let projectToRemove = self.project
+                
+                
+                let managedObjectContext = ANDataManager.sharedManager.context
+                
+                managedObjectContext.deleteObject(projectToRemove)
+                
+                if managedObjectContext.hasChanges {
+                    do {
+                        try managedObjectContext.save()
+                    } catch {
+                        let nserror = error as NSError
+                        NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
+                        abort()
+                    }
+                }
+                
+                SweetAlert().showAlert("Deleted!", subTitle: "Project has been deleted!", style: AlertStyle.Success)
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
+    
+    
     @IBAction func addButtonPressed(sender: AnyObject) {
         print("addButtonPressed")
         
@@ -217,13 +376,38 @@ class ANProjectDetailsViewController: UITableViewController {
     }
     
     
-    // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    // MARK: - NAVIGATION
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "EditItem" {
+            
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! ANNewProjectTableViewController
+            
+            controller.itemToEdit = project
+            
+            controller.delegate = self
+
+        }
+    }
+    
+    
+}
+
+
+
+// MARK: - UITableViewDataSource
+
+extension ANProjectDetailsViewController: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sectionsCount
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
         case ANSectionType.PersonProject.rawValue:
@@ -244,7 +428,7 @@ class ANProjectDetailsViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdPersonProject = "personProjectsCell"
         let cellIdSeparator = "separatorCell"
         let cellIdAddbutton = "AddCell"
@@ -254,6 +438,13 @@ class ANProjectDetailsViewController: UITableViewController {
         case ANSectionType.PersonProject.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
             configurePersonProjectCell(cell, forIndexPath: indexPath)
+            
+            if project.finished?.boolValue == true {
+                cell.selectionStyle = .None
+            } else {
+                cell.selectionStyle = .Default
+            }
+            
             return cell
             
         case ANSectionType.Separator.rawValue:
@@ -269,7 +460,7 @@ class ANProjectDetailsViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)  as! ANPersonCell
             configurePersonCell(cell, atIndexPath: indexPath)
             return cell
-
+            
         case ANSectionType.Person.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPerson, forIndexPath: indexPath)  as! ANPersonCell
             configurePersonCell(cell, atIndexPath: indexPath)
@@ -284,12 +475,16 @@ class ANProjectDetailsViewController: UITableViewController {
         
     }
     
-    
-    
-    // MARK: - UITableViewDelegate
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+}
 
+
+
+// MARK: - UITableViewDelegate
+
+extension ANProjectDetailsViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         
         switch indexPath.section {
         case ANSectionType.PersonProject.rawValue:
@@ -306,12 +501,12 @@ class ANProjectDetailsViewController: UITableViewController {
             break
             
         }
-
+        
         return UITableViewAutomaticDimension
     }
     
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         switch indexPath.section {
         case ANSectionType.PersonProject.rawValue:
@@ -332,28 +527,28 @@ class ANProjectDetailsViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == ANSectionType.PersonProject.rawValue {
+        if indexPath.section == ANSectionType.PersonProject.rawValue && project.finished?.boolValue == false {
             
             // === Variant - instantiate ANEditProjectTableViewController ===
             /*
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
-            
-            vc.delegate = self
-            
-            vc.itemToEdit = project
-            
-            navigationController?.pushViewController(vc, animated: true)
-            */
+             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
+             
+             vc.delegate = self
+             
+             vc.itemToEdit = project
+             
+             navigationController?.pushViewController(vc, animated: true)
+             */
             
             performSegueWithIdentifier("EditItem", sender: self)
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
-        
-//            transitToParticipantsSelection()
             
-        
+            //            transitToParticipantsSelection()
+            
+            
         } else if indexPath.section == ANSectionType.Person.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANPersonDetailsViewController") as! ANPersonDetailsViewController
@@ -368,7 +563,7 @@ class ANProjectDetailsViewController: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if indexPath.section != ANSectionType.Person.rawValue  {
             return false
         } else {
@@ -376,7 +571,7 @@ class ANProjectDetailsViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
             
@@ -394,27 +589,6 @@ class ANProjectDetailsViewController: UITableViewController {
             
         }
     }
-    
-    
-    
-    // MARK: - SEGUES
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "EditItem" {
-            
-            let navigationController = segue.destinationViewController as! UINavigationController
-            
-            let controller = navigationController.topViewController as! ANNewProjectTableViewController
-            
-            controller.itemToEdit = project
-            
-            controller.delegate = self
-
-        }
-    }
-    
-    
 }
 
 
