@@ -2437,7 +2437,19 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rj-sI-df0">
                                 <rect key="frame" x="0.0" y="512" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="UTU-RZ-l41"/>
+                                    <barButtonItem systemItem="flexibleSpace" id="UTU-RZ-l41"/>
+                                    <barButtonItem systemItem="action" id="Qgm-lt-24t">
+                                        <connections>
+                                            <action selector="actionButtonPressed:" destination="f6H-xJ-Shf" id="L86-V5-7ma"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A9s-Wz-Xv0"/>
+                                    <barButtonItem systemItem="trash" id="L0m-Rz-ykI">
+                                        <connections>
+                                            <action selector="deleteButtonPressed:" destination="f6H-xJ-Shf" id="npk-QI-uf5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="O87-7f-soQ"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -3758,8 +3770,8 @@
         <image name="tab_projects4" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HAq-02-e0h"/>
-        <segue reference="sUM-40-rOZ"/>
+        <segue reference="5Cs-aT-ifr"/>
+        <segue reference="dKJ-np-hQ8"/>
         <segue reference="ecb-Py-8p9"/>
     </inferredMetricsTieBreakers>
 </document>

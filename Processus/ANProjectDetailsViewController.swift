@@ -164,6 +164,84 @@ class ANProjectDetailsViewController: UIViewController {
     
     // MARK: - ACTIONS
     
+    
+    @IBAction func actionButtonPressed(sender: UIBarButtonItem) {
+        
+        let finishActionMenu = UIAlertController(title: nil, message: "Project finished", preferredStyle: .ActionSheet)
+        
+        let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+            
+            let projectToFinish = self.project
+            
+            projectToFinish.state = ANProjectState.NonActive.rawValue
+            projectToFinish.finished = true
+            projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
+            
+            ANDataManager.sharedManager.saveContext()
+        }
+        
+        
+        let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
+            
+            let projectToFinish = self.project
+
+            projectToFinish.state = ANProjectState.NonActive.rawValue
+            projectToFinish.finished = true
+            projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
+            
+            ANDataManager.sharedManager.saveContext()
+        })
+        
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        finishActionMenu.addAction(finishSuccessAction)
+        finishActionMenu.addAction(finishFailureAction)
+        
+        finishActionMenu.addAction(cancelAction)
+        
+        
+        self.presentViewController(finishActionMenu, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    @IBAction func deleteButtonPressed(sender: UIBarButtonItem) {
+        
+        SweetAlert().showAlert("Are you sure?", subTitle: "Project will be permanently deleted!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, delete it!", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                
+                print("Cancel Button  Pressed", terminator: "")
+            }
+            else {
+                
+                let projectToRemove = self.project
+                
+                
+                let managedObjectContext = ANDataManager.sharedManager.context
+                
+                managedObjectContext.deleteObject(projectToRemove)
+                
+                if managedObjectContext.hasChanges {
+                    do {
+                        try managedObjectContext.save()
+                    } catch {
+                        let nserror = error as NSError
+                        NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
+                        abort()
+                    }
+                }
+                
+                SweetAlert().showAlert("Deleted!", subTitle: "Project has been deleted!", style: AlertStyle.Success)
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
+    
+    
     @IBAction func addButtonPressed(sender: AnyObject) {
         print("addButtonPressed")
         
