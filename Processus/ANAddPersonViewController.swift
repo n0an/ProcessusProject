@@ -104,7 +104,9 @@ class ANAddPersonViewController: UITableViewController {
         person.lastName     = textFields[1].text!
         person.email        = textFields[2].text!
         person.phoneNumber  = textFields[3].text!
-        person.image        = UIImagePNGRepresentation(avatarImageView.image!)
+        
+        person.image        = UIImageJPEGRepresentation(avatarImageView.image!, 1.0)
+
         
         ANDataManager.sharedManager.saveContext()
         

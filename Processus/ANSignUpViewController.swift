@@ -234,7 +234,9 @@ class ANSignUpViewController: UIViewController {
         
         user["group"] = groupTextField.text
         
-        let imageData = UIImagePNGRepresentation(imageView.image!)
+
+        let imageData  = UIImageJPEGRepresentation(imageView.image!, 1.0)
+
         let imageFile = PFFile(name: "profileImage.png", data: imageData!)
         
         user["image"] = imageFile

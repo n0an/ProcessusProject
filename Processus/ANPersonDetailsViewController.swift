@@ -244,7 +244,10 @@ class ANPersonDetailsViewController: UITableViewController {
             person.email        = newPersonEmail
             person.phoneNumber  = newPersonPhoneNumber
             
-            person.image = UIImagePNGRepresentation(cell.avatarImageView.image!)
+//            person.image = UIImagePNGRepresentation(cell.avatarImageView.image!)
+            
+            person.image = UIImageJPEGRepresentation(cell.avatarImageView.image!, 1.0)
+
             
             ANDataManager.sharedManager.saveContext()
             
