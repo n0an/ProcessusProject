@@ -70,12 +70,18 @@ class ANProjectDetailsViewController: UIViewController {
         ANDataManager.sharedManager.saveContext()
         
         delegate?.projectEditingDidEndForProject(project)
+        
+        
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         refreshClearParticipantsButton()
+        
+        // jumping toolBar issue fixed
+        tabBarController?.tabBar.frame.origin = CGPoint(x: 0, y: CGRectGetMaxY(view.bounds))
         
     }
     

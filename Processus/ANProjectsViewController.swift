@@ -85,6 +85,14 @@ class ANProjectsViewController: UIViewController {
     }
     
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // jumping toolBar issue fixed
+        tabBarController?.tabBar.frame.origin = CGPoint(x: 0, y: CGRectGetMaxY(view.bounds) - (tabBarController?.tabBar.frame.height)!)
+
+    }
+    
     
     
     // MARK: - HELPER METHODS
