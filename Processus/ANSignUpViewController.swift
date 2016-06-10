@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ANSignUpViewController: UIViewController {
+class ANSignUpViewController: UITableViewController {
     
     // MARK: - OUTLETS
     
@@ -53,13 +53,13 @@ class ANSignUpViewController: UIViewController {
         tapGestureRecognizer.numberOfTapsRequired = 1
         
         
-        contentView.addGestureRecognizer(tapViewGestureRecognizer)
+        view.addGestureRecognizer(tapViewGestureRecognizer)
         
         imageView.addGestureRecognizer(tapGestureRecognizer)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+//        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         
     }
@@ -70,18 +70,18 @@ class ANSignUpViewController: UIViewController {
         
         groupInfoButton.hidden = true
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
-            scrollVIew.scrollEnabled = true
-        } else {
-            scrollVIew.scrollEnabled = false
-            
-        }
+//        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
+//            tableView.scrollEnabled = true
+//        } else {
+//            tableView.scrollEnabled = false
+//            
+//        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        setScrollViewContentSize()
+//        setScrollViewContentSize()
     }
 
     
@@ -89,12 +89,12 @@ class ANSignUpViewController: UIViewController {
     
     func keyboardWillShow(notification: NSNotification) {
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6Plus.rawValue {
             
-            scrollVIew.scrollEnabled = true
-            updateBottomConstraint(notification, showing: true)
+            tableView.scrollEnabled = true
+//            updateBottomConstraint(notification, showing: true)
             
-            setScrollViewContentSize()
+//            setScrollViewContentSize()
 
         }
         
@@ -102,12 +102,15 @@ class ANSignUpViewController: UIViewController {
     
     func keyboardWillHide(notification: NSNotification) {
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
-            scrollVIew.scrollEnabled = false
-            updateBottomConstraint(notification, showing: false)
+        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
+            tableView.scrollEnabled = true
             
-            setScrollViewContentSize()
+//            updateBottomConstraint(notification, showing: false)
+            
+//            setScrollViewContentSize()
 
+        } else {
+            tableView.scrollEnabled = false
         }
         
     }
