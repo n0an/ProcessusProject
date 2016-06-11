@@ -3591,15 +3591,13 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem systemItem="flexibleSpace" id="vk0-gf-q9D"/>
-                                    <barButtonItem systemItem="camera" id="rjM-Sa-HXC">
-                                        <color key="tintColor" red="0.12494860200000001" green="0.12322676809999999" blue="0.58627158720000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <barButtonItem image="photoCamera" id="rjM-Sa-HXC">
                                         <connections>
                                             <action selector="actionCameraButtonPressed:" destination="esb-nH-wq5" id="KHv-0B-y1p"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="99" systemItem="fixedSpace" id="8mJ-3i-Ayu"/>
-                                    <barButtonItem systemItem="organize" id="jAk-hz-aLS">
-                                        <color key="tintColor" red="0.12494860200000001" green="0.12322676809999999" blue="0.58627158720000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <barButtonItem image="photoLibrary" id="jAk-hz-aLS">
                                         <connections>
                                             <action selector="actionFolderButtonPressed:" destination="esb-nH-wq5" id="rxP-zU-bFw"/>
                                         </connections>
@@ -3817,6 +3815,8 @@
         <image name="arrowLeft03" width="14" height="24"/>
         <image name="arrowRight03" width="14" height="24"/>
         <image name="box_set" width="64" height="55"/>
+        <image name="photoCamera" width="34" height="25"/>
+        <image name="photoLibrary" width="33" height="25"/>
         <image name="questionMark" width="30" height="30"/>
         <image name="tab_collab" width="25" height="24"/>
         <image name="tab_collab_f" width="25" height="24"/>
