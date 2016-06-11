@@ -2447,7 +2447,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="A9s-Wz-Xv0"/>
-                                    <barButtonItem systemItem="stop" id="4aY-Zm-zzA">
+                                    <barButtonItem image="removeParticipants1" id="4aY-Zm-zzA">
                                         <connections>
                                             <action selector="clearParticipants:" destination="f6H-xJ-Shf" id="170-w9-8PC"/>
                                         </connections>
@@ -3831,6 +3831,7 @@
         <image name="photoCamera" width="34" height="25"/>
         <image name="photoLibrary" width="33" height="25"/>
         <image name="questionMark" width="30" height="30"/>
+        <image name="removeParticipants1" width="21" height="23"/>
         <image name="tab_collab" width="25" height="24"/>
         <image name="tab_collab_f" width="25" height="24"/>
         <image name="tab_people3" width="24" height="24"/>
