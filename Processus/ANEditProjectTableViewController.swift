@@ -109,13 +109,6 @@ class ANEditProjectTableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = rightButton
         
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANNewProjectTableViewController.didTapView))
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        
-        self.view.addGestureRecognizer(tapGestureRecognizer)
-
-
 
     }
     
@@ -135,9 +128,6 @@ class ANEditProjectTableViewController: UITableViewController {
     
     // MARK: - HELPER METHODS
     
-    func didTapView() {
-        self.view.endEditing(true)
-    }
     
     func resetTextFields() {
         customerTitleTextField.text = customerName
@@ -367,9 +357,6 @@ class ANEditProjectTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        customerTitleTextField.resignFirstResponder()
-        projectTitleTextField.resignFirstResponder()
-        
         if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             
             if !datePickerVisible {
@@ -384,6 +371,10 @@ class ANEditProjectTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        customerTitleTextField.resignFirstResponder()
+        projectTitleTextField.resignFirstResponder()
+        
         if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             return indexPath
         } else {

@@ -108,12 +108,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
         
         ANConfigurator.sharedConfigurator.customizeSlider(progressSlider)
-        
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANNewProjectTableViewController.didTapView))
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        
-        self.view.addGestureRecognizer(tapGestureRecognizer)
+
 
     }
     
@@ -126,10 +121,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
 
     
     // MARK: - HELPER METHODS
-    
-    func didTapView() {
-        view.endEditing(true)
-    }
+
     
     func showDatePicker() {
         datePickerVisible = true
@@ -421,9 +413,6 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        customerTitleTextField.resignFirstResponder()
-        projectTitleTextField.resignFirstResponder()
-        
         if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             
             if !datePickerVisible {
@@ -445,6 +434,10 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        customerTitleTextField.resignFirstResponder()
+        projectTitleTextField.resignFirstResponder()
+        
         if isItDatePickerCellForSection(indexPath.section, andRow: indexPath.row) {
             return indexPath
         
