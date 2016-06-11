@@ -193,7 +193,7 @@ class ANProjectDetailsViewController: UIViewController {
         
         
         if self.project.finished?.boolValue == false {
-            let finishActionMenu = UIAlertController(title: nil, message: "Project finished", preferredStyle: .ActionSheet)
+            let finishActionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             
             let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
                 

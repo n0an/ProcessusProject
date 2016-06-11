@@ -250,7 +250,7 @@ extension ANProjectsViewController: UITableViewDelegate {
         
         let finishAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Finish") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
-            let finishActionMenu = UIAlertController(title: nil, message: "Project finished:", preferredStyle: .ActionSheet)
+            let finishActionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             
             let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
                 

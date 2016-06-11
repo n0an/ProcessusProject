@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+import MessageUI
+
 class ANPeopleViewController: UIViewController {
     
     // MARK: - OUTLETS
@@ -213,8 +215,42 @@ extension ANPeopleViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let allShareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Contact") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let allShareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Email") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
+            let personToContact = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+            
+            if let emailTo = personToContact.email {
+                if MFMailComposeViewController.canSendMail() {
+                    let mailComposeVC = MFMailComposeViewController()
+                    
+                    mailComposeVC.mailComposeDelegate = self
+                    mailComposeVC.setToRecipients([emailTo])
+                    
+                    let subjectSuffix: String
+                    let personName = personToContact.firstName
+                    if personName != nil {
+                        subjectSuffix = ", \(personName!)!"
+                    } else {
+                        subjectSuffix = "!"
+                    }
+                    
+                    
+                    mailComposeVC.setSubject("Hey" + subjectSuffix)
+                    
+                    
+//                    mailComposeVC.navigationBar.tintColor = UIColor.whiteColor()
+                    
+                    self.presentViewController(mailComposeVC, animated: true, completion: {
+                        //                    UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+                    })
+                    
+                    
+                }
+            }
+
+            
+            // Contact ways for future releases
+            /*
             let allShareActionMenu = UIAlertController(title: nil, message: "Contact with", preferredStyle: .ActionSheet)
             
             let emailShareAction = UIAlertAction(title: "Email", style: .Default, handler: nil)
@@ -229,6 +265,7 @@ extension ANPeopleViewController: UITableViewDelegate {
             
             
             self.presentViewController(allShareActionMenu, animated: true, completion: nil)
+            */
         }
         
         // Creating our own Delete button
@@ -347,6 +384,48 @@ extension ANPeopleViewController: ANPersonDetailsVCDelegate {
     }
     
 }
+
+
+
+
+extension ANPeopleViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultSaved.rawValue:
+            print("Message saved")
+        case MFMailComposeResultCancelled.rawValue:
+            print("Message canceled")
+        case MFMailComposeResultSent.rawValue:
+            print("Message was sent")
+        case MFMailComposeResultFailed.rawValue:
+            print("Message was not sent: \(error?.localizedDescription)")
+        default:
+            break
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
