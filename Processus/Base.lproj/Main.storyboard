@@ -1444,7 +1444,7 @@
         <scene sceneID="T2e-pA-XtM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FHh-uF-bXr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Проекты" image="tab_projects4" id="VNE-sT-rk7"/>
+                    <tabBarItem key="tabBarItem" title="Проекты" image="tab_projects4" selectedImage="tab_projects4_f" id="VNE-sT-rk7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="25d-H7-Mv8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3823,6 +3823,7 @@
         <image name="tab_people3" width="24" height="24"/>
         <image name="tab_people3_f" width="24" height="24"/>
         <image name="tab_projects4" width="23" height="24"/>
+        <image name="tab_projects4_f" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="dKJ-np-hQ8"/>
