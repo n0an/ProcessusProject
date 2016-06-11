@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    
         let configuration = ParseClientConfiguration {
             $0.applicationId = "processusAppIdId"
-            $0.server = "http://162.243.201.223:1337/parse"
+            $0.server = "http://188.166.13.241:1337/parse"
         }
         Parse.initializeWithConfiguration(configuration)
         
