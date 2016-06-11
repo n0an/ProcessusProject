@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8150" systemVersion="15A204g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8122"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,8 +16,94 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ECL-yz-0Gk">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Projects" id="QxM-eI-V91">
+                                        <barButtonItem key="leftBarButtonItem" title="Finished" id="A5y-zN-fbx"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="v78-d1-Po8"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uO7-8R-x1M">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Projects" image="tab_projects4_f" id="2b1-Hl-Oeg"/>
+                                    <tabBarItem title="Callegues" image="tab_people3" id="C18-WE-6kP"/>
+                                    <tabBarItem title="Calendar" image="calendar" id="kHZ-CX-rYW"/>
+                                    <tabBarItem title="Collaboration" image="tab_collab" id="d9r-iu-vtW"/>
+                                </items>
+                            </tabBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bgi-q2-eOR">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dummyCell1" id="JJC-GG-O1l">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JJC-GG-O1l" id="44T-Kr-Xl2">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dummyCell2" id="1Zz-lF-EZq">
+                                        <rect key="frame" x="0.0" y="108" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Zz-lF-EZq" id="LVZ-Tb-RD3">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dummyCell3" id="qxL-cr-eCA">
+                                        <rect key="frame" x="0.0" y="188" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qxL-cr-eCA" id="gFO-rm-OD0">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dummyCell4" id="nhr-Us-QWC">
+                                        <rect key="frame" x="0.0" y="268" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhr-Us-QWC" id="4V9-Mo-PKQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dummyCell5" id="Klo-Yh-MPW">
+                                        <rect key="frame" x="0.0" y="348" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Klo-Yh-MPW" id="1QM-fH-Ici">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dummyCell6" id="6Dg-Fw-M81">
+                                        <rect key="frame" x="0.0" y="428" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Dg-Fw-M81" id="gRT-1B-0uL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ECL-yz-0Gk" secondAttribute="trailing" id="3Kj-RJ-QTB"/>
+                            <constraint firstItem="uO7-8R-x1M" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="4Yb-MR-vbg"/>
+                            <constraint firstItem="uO7-8R-x1M" firstAttribute="top" secondItem="Bgi-q2-eOR" secondAttribute="bottom" id="4uY-is-mqX"/>
+                            <constraint firstAttribute="trailing" secondItem="Bgi-q2-eOR" secondAttribute="trailing" id="KjM-v5-2Qd"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="uO7-8R-x1M" secondAttribute="bottom" id="N4l-7y-E8U"/>
+                            <constraint firstItem="ECL-yz-0Gk" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Whv-3A-Cev"/>
+                            <constraint firstItem="ECL-yz-0Gk" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="dS9-MP-FD8"/>
+                            <constraint firstItem="Bgi-q2-eOR" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="far-Vv-Ku6"/>
+                            <constraint firstAttribute="trailing" secondItem="uO7-8R-x1M" secondAttribute="trailing" id="ktb-Dj-UVQ"/>
+                            <constraint firstItem="Bgi-q2-eOR" firstAttribute="top" secondItem="ECL-yz-0Gk" secondAttribute="bottom" id="tiX-rk-OVY"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +111,10 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calendar" width="25" height="22"/>
+        <image name="tab_collab" width="25" height="24"/>
+        <image name="tab_people3" width="24" height="24"/>
+        <image name="tab_projects4_f" width="23" height="24"/>
+    </resources>
 </document>

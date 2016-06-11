@@ -8,7 +8,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Проекты-->
+        <!--Projects-->
         <scene sceneID="Lxd-L7-0fM">
             <objects>
                 <viewController id="RPl-5l-sxh" customClass="ANProjectsViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +174,7 @@
                             <constraint firstItem="Pt6-bc-ByQ" firstAttribute="top" secondItem="MsV-e8-ydA" secondAttribute="bottom" id="sOM-zf-hwQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Проекты" id="fx2-Sc-Qgj">
+                    <navigationItem key="navigationItem" title="Projects" id="fx2-Sc-Qgj">
                         <barButtonItem key="leftBarButtonItem" title="Finished" id="31p-on-ATu">
                             <connections>
                                 <segue destination="XdH-hP-pgd" kind="show" id="xJv-pN-hs0"/>
@@ -1421,11 +1421,11 @@
             </objects>
             <point key="canvasLocation" x="3721" y="2169"/>
         </scene>
-        <!--Коллеги-->
+        <!--Coallegues-->
         <scene sceneID="45e-Hu-cH1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pQi-Yx-vn5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Коллеги" image="tab_people3" selectedImage="tab_people3_f" id="J2s-zG-Yy2"/>
+                    <tabBarItem key="tabBarItem" title="Coallegues" image="tab_people3" selectedImage="tab_people3_f" id="J2s-zG-Yy2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uRP-Ot-GC2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1440,11 +1440,11 @@
             </objects>
             <point key="canvasLocation" x="2905" y="1443"/>
         </scene>
-        <!--Проекты-->
+        <!--Projects-->
         <scene sceneID="T2e-pA-XtM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FHh-uF-bXr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Проекты" image="tab_projects4" selectedImage="tab_projects4_f" id="VNE-sT-rk7"/>
+                    <tabBarItem key="tabBarItem" title="Projects" image="tab_projects4" selectedImage="tab_projects4_f" id="VNE-sT-rk7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="25d-H7-Mv8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
