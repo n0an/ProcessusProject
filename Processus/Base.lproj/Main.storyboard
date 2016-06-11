@@ -3114,11 +3114,11 @@
             </objects>
             <point key="canvasLocation" x="3737" y="-1614"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Calendar-->
         <scene sceneID="PVQ-ej-rV4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fg6-AV-Eip" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="ZpJ-hh-lbe"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" selectedImage="calendar_f" id="ZpJ-hh-lbe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wbz-10-ABY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3828,6 +3828,8 @@
         <image name="arrowLeft03" width="14" height="24"/>
         <image name="arrowRight03" width="14" height="24"/>
         <image name="box_set" width="64" height="55"/>
+        <image name="calendar" width="25" height="22"/>
+        <image name="calendar_f" width="25" height="22"/>
         <image name="photoCamera" width="34" height="25"/>
         <image name="photoLibrary" width="33" height="25"/>
         <image name="questionMark" width="30" height="30"/>
