@@ -3282,18 +3282,24 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfL-oA-BVY">
                                                     <rect key="frame" x="250" y="10" width="100" height="100"/>
                                                     <subviews>
-                                                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="2bR-lO-08e">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImage2" translatesAutoresizingMaskIntoConstraints="NO" id="2bR-lO-08e">
+                                                            <rect key="frame" x="15" y="15" width="70" height="70"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="8SB-iN-2Ji"/>
+                                                                <constraint firstAttribute="height" constant="70" id="x8x-sy-gub"/>
+                                                            </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstItem="2bR-lO-08e" firstAttribute="centerX" secondItem="CfL-oA-BVY" secondAttribute="centerX" id="2QN-md-VfP"/>
                                                         <constraint firstAttribute="trailing" secondItem="2bR-lO-08e" secondAttribute="trailing" id="36F-Kz-jWe"/>
                                                         <constraint firstItem="2bR-lO-08e" firstAttribute="leading" secondItem="CfL-oA-BVY" secondAttribute="leading" id="Irj-Os-hF2"/>
                                                         <constraint firstAttribute="width" secondItem="CfL-oA-BVY" secondAttribute="height" multiplier="1:1" id="KMJ-tl-RSJ"/>
                                                         <constraint firstAttribute="width" constant="100" id="SbC-ie-qtM"/>
                                                         <constraint firstItem="2bR-lO-08e" firstAttribute="top" secondItem="CfL-oA-BVY" secondAttribute="top" id="lzT-L8-Be6"/>
                                                         <constraint firstAttribute="bottom" secondItem="2bR-lO-08e" secondAttribute="bottom" id="qSb-rL-WmH"/>
+                                                        <constraint firstItem="2bR-lO-08e" firstAttribute="centerY" secondItem="CfL-oA-BVY" secondAttribute="centerY" id="s43-pT-n97"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -3301,6 +3307,14 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="36F-Kz-jWe"/>
+                                                            <exclude reference="Irj-Os-hF2"/>
+                                                            <exclude reference="lzT-L8-Be6"/>
+                                                            <exclude reference="qSb-rL-WmH"/>
+                                                        </mask>
+                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -3810,7 +3824,6 @@
         <image name="SelectParticipants" width="28" height="31"/>
         <image name="SelectProjects" width="28" height="31"/>
         <image name="WarningSign" width="20" height="20"/>
-        <image name="add" width="80" height="80"/>
         <image name="addImage2" width="76" height="76"/>
         <image name="arrowLeft03" width="14" height="24"/>
         <image name="arrowRight03" width="14" height="24"/>
