@@ -562,7 +562,7 @@
             </objects>
             <point key="canvasLocation" x="4501" y="-806"/>
         </scene>
-        <!--Coallegues-->
+        <!--Colleagues-->
         <scene sceneID="ptE-DT-syZ">
             <objects>
                 <viewController id="nJk-Q5-QTh" customClass="ANPeopleViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
@@ -662,7 +662,7 @@
                             <constraint firstItem="KJW-TX-mao" firstAttribute="top" secondItem="GEF-jC-4xg" secondAttribute="top" id="oV3-N1-xKy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Coallegues" id="h7t-Yz-mU4">
+                    <navigationItem key="navigationItem" title="Colleagues" id="h7t-Yz-mU4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Skv-3Z-jwL">
                             <connections>
                                 <action selector="addColleaguePressed:" destination="nJk-Q5-QTh" id="mdY-VG-oMr"/>
@@ -678,7 +678,7 @@
             </objects>
             <point key="canvasLocation" x="3703" y="1506"/>
         </scene>
-        <!--Edit coallegue info-->
+        <!--Edit colleague info-->
         <scene sceneID="0Gx-Ta-ooT">
             <objects>
                 <tableViewController storyboardIdentifier="ANPersonDetailsViewController" hidesBottomBarWhenPushed="YES" id="Jyg-A5-1OD" customClass="ANPersonDetailsViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
@@ -907,7 +907,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="19.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects of coallegue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK1-v1-62w">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects of colleague" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK1-v1-62w">
                                             <rect key="frame" x="237" y="2" width="126.5" height="16"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                             <nil key="highlightedColor"/>
@@ -1104,7 +1104,7 @@
                             <outlet property="delegate" destination="Jyg-A5-1OD" id="Q2X-9B-l4O"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Edit coallegue info" id="Zr4-Ug-tBw">
+                    <navigationItem key="navigationItem" title="Edit colleague info" id="Zr4-Ug-tBw">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QLV-hd-kBo"/>
                     </navigationItem>
                 </tableViewController>
@@ -1251,7 +1251,7 @@
             </objects>
             <point key="canvasLocation" x="5368" y="1506"/>
         </scene>
-        <!--Add coallegue-->
+        <!--Add colleague-->
         <scene sceneID="ACz-xd-X1S">
             <objects>
                 <tableViewController id="x3j-vE-Wyf" customClass="ANAddPersonViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
@@ -1521,7 +1521,7 @@
                             <outlet property="delegate" destination="x3j-vE-Wyf" id="Enp-YS-Nm2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add coallegue" id="itW-6P-3DQ">
+                    <navigationItem key="navigationItem" title="Add colleague" id="itW-6P-3DQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ztO-Ig-6IW">
                             <connections>
                                 <action selector="cancel" destination="x3j-vE-Wyf" id="gTI-5n-V9s"/>
@@ -1550,11 +1550,11 @@
             </objects>
             <point key="canvasLocation" x="3721" y="2247"/>
         </scene>
-        <!--Coallegues-->
+        <!--Colleagues-->
         <scene sceneID="45e-Hu-cH1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pQi-Yx-vn5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Coallegues" image="tab_people3" selectedImage="tab_people3_f" id="J2s-zG-Yy2"/>
+                    <tabBarItem key="tabBarItem" title="Colleagues" image="tab_people3" selectedImage="tab_people3_f" id="J2s-zG-Yy2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uRP-Ot-GC2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1588,7 +1588,7 @@
             </objects>
             <point key="canvasLocation" x="1321" y="-806"/>
         </scene>
-        <!--Coallegues-->
+        <!--Colleagues-->
         <scene sceneID="ry8-Uq-ret">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="Jxf-uh-3Vk" customClass="ANUsersViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
@@ -1661,7 +1661,7 @@
                             <constraint firstItem="Zv3-17-lfg" firstAttribute="leading" secondItem="Rnm-xw-WBd" secondAttribute="leading" id="QbY-Ya-hJ3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Coallegues" id="x8i-XJ-aOg">
+                    <navigationItem key="navigationItem" title="Colleagues" id="x8i-XJ-aOg">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Q73-ac-mza">
                             <connections>
                                 <action selector="logoutButtonPressed:" destination="Jxf-uh-3Vk" id="ImU-WF-Vtn"/>
@@ -1731,7 +1731,7 @@
                                                     <action selector="loginButtonPressed:" destination="WSZ-SZ-OlU" eventType="touchUpInside" id="ZEp-I5-EFd"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collaboration with coallegues" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4v-L0-sk8">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collaboration with colleagues" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4v-L0-sk8">
                                                 <rect key="frame" x="8" y="53" width="584" height="24"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2158,10 +2158,10 @@
             </objects>
             <point key="canvasLocation" x="6169" y="1506"/>
         </scene>
-        <!--Coallegues Selection-->
+        <!--Colleagues Selection-->
         <scene sceneID="2D7-zD-7Jr">
             <objects>
-                <viewController storyboardIdentifier="ANPeopleSelectionViewController" id="IaJ-rT-f5W" userLabel="Coallegues Selection" customClass="ANPeopleSelectionViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ANPeopleSelectionViewController" id="IaJ-rT-f5W" userLabel="Colleagues Selection" customClass="ANPeopleSelectionViewController" customModule="Processus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="er2-Er-oZe"/>
                         <viewControllerLayoutGuide type="bottom" id="31O-nf-j1o"/>
@@ -3550,7 +3550,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="coallegues group (company)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gy1-P7-QJu">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="colleagues group (company)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gy1-P7-QJu">
                                                     <rect key="frame" x="90" y="10" width="420" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -3659,7 +3659,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you know Group Identifier of your coallegues group - enter it to this field" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id5-KW-M21">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you know Group Identifier of your colleagues group - enter it to this field" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id5-KW-M21">
                                 <rect key="frame" x="20" y="115" width="560" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3667,14 +3667,14 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7EP-VL-0HO">
                                 <rect key="frame" x="20" y="143" width="560" height="59.5"/>
-                                <string key="text">Otherwise, you may create new Group Identifier and encourage your coallegues for using it. It this case your coallegues should enter created Group Identifier to corresponding field during their signing up process.</string>
+                                <string key="text">Otherwise, you may create a new Group Identifier and encourage your colleagues for using it. In this case your colleagues should enter created Group Identifier to corresponding field during their signing up process.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEa-8p-S7v">
                                 <rect key="frame" x="20" y="211" width="560" height="59.5"/>
-                                <string key="text">You may create as many accounts as you need. You man create accounts with different Group Identifiers - to have possibility to collaborate with various coallegues groups</string>
+                                <string key="text">You may create as many accounts as you need. You may create accounts with different Group Identifiers - to have possibility to collaborate with various colleagues groups</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
