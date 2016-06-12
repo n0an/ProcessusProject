@@ -42,7 +42,13 @@ class ANAddPersonViewController: UITableViewController {
         
         avatarImageView.addGestureRecognizer(tapGesture)
         
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        firstNameTextField.becomeFirstResponder()
     }
     
     
@@ -114,6 +120,19 @@ class ANAddPersonViewController: UITableViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        textFields.forEach{
+            $0.resignFirstResponder()
+        }
+        
+        
+        return indexPath
+    }
+    
+    
 
     
 }
