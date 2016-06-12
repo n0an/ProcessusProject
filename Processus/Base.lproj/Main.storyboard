@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pMD-jR-gdf">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -41,7 +40,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designing LAN/WLAN for office building" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6y-Ve-Tew">
-                                                    <rect key="frame" x="8" y="33" width="268" height="38.5"/>
+                                                    <rect key="frame" x="8" y="33" width="466" height="38.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -111,6 +110,7 @@
                                                 <constraint firstItem="BaP-jf-ci6" firstAttribute="leading" secondItem="NYL-8b-XkJ" secondAttribute="leadingMargin" id="36G-bc-pjO"/>
                                                 <constraint firstItem="BaP-jf-ci6" firstAttribute="top" secondItem="NYL-8b-XkJ" secondAttribute="topMargin" id="3G4-5Y-1Sc"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="CNw-zz-Mms" secondAttribute="trailing" id="47D-RF-FG6"/>
+                                                <constraint firstItem="FT4-wg-m26" firstAttribute="leading" secondItem="Q6y-Ve-Tew" secondAttribute="trailing" constant="16" id="4kx-oK-1kX"/>
                                                 <constraint firstItem="CNw-zz-Mms" firstAttribute="centerY" secondItem="NYL-8b-XkJ" secondAttribute="centerY" id="5OL-J8-oqm"/>
                                                 <constraint firstItem="Q6y-Ve-Tew" firstAttribute="top" secondItem="BaP-jf-ci6" secondAttribute="bottom" constant="4" id="6yQ-Fr-Bif"/>
                                                 <constraint firstItem="v9M-BX-gAv" firstAttribute="trailing" secondItem="NYL-8b-XkJ" secondAttribute="trailingMargin" id="7TS-cu-BKM"/>
@@ -123,7 +123,6 @@
                                                 <constraint firstItem="v9M-BX-gAv" firstAttribute="leading" secondItem="BaP-jf-ci6" secondAttribute="trailing" constant="18" id="Rid-WA-Bco"/>
                                                 <constraint firstItem="CNw-zz-Mms" firstAttribute="leading" secondItem="Q6y-Ve-Tew" secondAttribute="trailing" constant="13" id="Sjr-er-0es"/>
                                                 <constraint firstItem="FT4-wg-m26" firstAttribute="leading" secondItem="BaP-jf-ci6" secondAttribute="trailing" constant="2" id="U8R-AH-IBv"/>
-                                                <constraint firstItem="AfY-ed-Ugg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q6y-Ve-Tew" secondAttribute="trailing" constant="8" id="fOU-vJ-7HW"/>
                                                 <constraint firstAttribute="bottom" secondItem="CNw-zz-Mms" secondAttribute="bottom" id="gJ0-ow-jBn"/>
                                                 <constraint firstAttribute="bottom" secondItem="Q6y-Ve-Tew" secondAttribute="bottom" constant="8" id="ihJ-rQ-iYd"/>
                                                 <constraint firstAttribute="trailing" secondItem="qYB-Po-njP" secondAttribute="trailing" constant="8" id="oEx-g2-oPk"/>
@@ -991,7 +990,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designing LAN/WLAN for office building" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esc-yD-Cua">
-                                            <rect key="frame" x="8" y="33" width="268" height="38.5"/>
+                                            <rect key="frame" x="8" y="33" width="466" height="38.5"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1060,7 +1059,6 @@
                                         <constraint firstItem="esc-yD-Cua" firstAttribute="leading" secondItem="VnS-FJ-wpE" secondAttribute="leading" constant="8" id="2rT-kQ-78m"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="35K-Qh-zqc" secondAttribute="trailing" id="56W-79-7rh"/>
                                         <constraint firstItem="HSH-hx-zJN" firstAttribute="leading" secondItem="kn2-fv-Iwu" secondAttribute="trailing" constant="8" id="5jN-5L-mrs"/>
-                                        <constraint firstItem="kn2-fv-Iwu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="esc-yD-Cua" secondAttribute="trailing" constant="8" id="9A2-Oz-ayR"/>
                                         <constraint firstItem="35K-Qh-zqc" firstAttribute="centerY" secondItem="VnS-FJ-wpE" secondAttribute="centerY" id="9k2-7D-wGS"/>
                                         <constraint firstItem="p5x-F7-cr7" firstAttribute="top" secondItem="VnS-FJ-wpE" secondAttribute="topMargin" id="EWr-Kw-a0t"/>
                                         <constraint firstAttribute="bottom" secondItem="HSH-hx-zJN" secondAttribute="bottom" constant="7.5" id="NRp-7l-nEO"/>
@@ -1076,6 +1074,7 @@
                                         <constraint firstItem="p5x-F7-cr7" firstAttribute="leading" secondItem="VnS-FJ-wpE" secondAttribute="leadingMargin" id="g0n-qP-BrV"/>
                                         <constraint firstItem="Cys-ui-RFN" firstAttribute="centerY" secondItem="ptd-1a-Au3" secondAttribute="centerY" id="hPj-Tb-0vx"/>
                                         <constraint firstAttribute="trailing" secondItem="Qlv-iC-t5M" secondAttribute="trailing" constant="8" id="kto-IF-dsc"/>
+                                        <constraint firstItem="Cys-ui-RFN" firstAttribute="leading" secondItem="esc-yD-Cua" secondAttribute="trailing" constant="16" id="oII-Zf-yg0"/>
                                         <constraint firstItem="esc-yD-Cua" firstAttribute="top" secondItem="p5x-F7-cr7" secondAttribute="bottom" constant="4" id="sJo-ZR-oTZ"/>
                                         <constraint firstItem="Qlv-iC-t5M" firstAttribute="top" secondItem="ptd-1a-Au3" secondAttribute="bottom" constant="2" id="uWv-3n-J6j"/>
                                         <constraint firstItem="ptd-1a-Au3" firstAttribute="leading" secondItem="Cys-ui-RFN" secondAttribute="trailing" constant="1" id="yWR-Ut-B2U"/>
@@ -2309,7 +2308,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designing LAN/WLAN for office building" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsq-Dd-vQ5">
-                                                    <rect key="frame" x="8" y="33" width="268" height="38.5"/>
+                                                    <rect key="frame" x="8" y="33" width="466" height="38.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2386,7 +2385,7 @@
                                                 <constraint firstItem="HGI-ua-HIp" firstAttribute="centerY" secondItem="xuq-Z8-8sD" secondAttribute="centerY" id="2jq-yf-4ZO"/>
                                                 <constraint firstItem="HGI-ua-HIp" firstAttribute="leading" secondItem="Qyx-jd-wsL" secondAttribute="trailing" constant="8" id="3rl-Ig-15o"/>
                                                 <constraint firstAttribute="trailing" secondItem="Gn2-uO-JyR" secondAttribute="trailing" constant="8" id="59P-wk-3NR"/>
-                                                <constraint firstItem="xuq-Z8-8sD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsq-Dd-vQ5" secondAttribute="trailing" constant="8" id="869-bS-R0f"/>
+                                                <constraint firstItem="mXP-91-4Hk" firstAttribute="leading" secondItem="tsq-Dd-vQ5" secondAttribute="trailing" constant="16" id="6GQ-2S-t09"/>
                                                 <constraint firstItem="TqN-ev-wac" firstAttribute="top" secondItem="pIK-AU-oW2" secondAttribute="top" id="8EW-3c-JSW"/>
                                                 <constraint firstAttribute="bottom" secondItem="HGI-ua-HIp" secondAttribute="bottom" constant="9.5" id="E6l-kb-4mt"/>
                                                 <constraint firstAttribute="bottom" secondItem="tsq-Dd-vQ5" secondAttribute="bottom" constant="8" id="FNX-O8-ow8"/>
@@ -3989,8 +3988,8 @@
         <image name="tab_projects4_f" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sUM-40-rOZ"/>
+        <segue reference="dKJ-np-hQ8"/>
+        <segue reference="TrO-Q6-zW5"/>
         <segue reference="ecb-Py-8p9"/>
-        <segue reference="HAq-02-e0h"/>
     </inferredMetricsTieBreakers>
 </document>
