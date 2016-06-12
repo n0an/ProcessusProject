@@ -470,6 +470,13 @@ class ANPersonDetailsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        let indexP = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        
+        cell.textFields.forEach{
+            $0.resignFirstResponder()
+        }
+        
         if indexPath.section == ANSectionType.PersonProject.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
