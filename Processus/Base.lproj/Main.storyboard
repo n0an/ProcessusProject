@@ -866,16 +866,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-uD-BCa">
-                                            <rect key="frame" x="120" y="4" width="360" height="35"/>
+                                            <rect key="frame" x="90" y="4" width="420" height="35"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYI-fm-ewf">
-                                                    <rect key="frame" x="113" y="2" width="134" height="31"/>
+                                                    <rect key="frame" x="8" y="2" width="404" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="134" id="mfI-Ue-Cfi"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="Add Projects" image="SelectProjects"/>
+                                                    <state key="normal" title="Select Projects" image="SelectProjects"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="mfI-Ue-Cfi"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
                                                         <action selector="addButtonPressed:" destination="Jyg-A5-1OD" eventType="touchUpInside" id="Bdt-44-wSw"/>
                                                     </connections>
@@ -883,7 +888,9 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="JYI-fm-ewf" firstAttribute="leading" secondItem="s0b-uD-BCa" secondAttribute="leading" constant="8" id="fw3-X8-cOi"/>
                                                 <constraint firstItem="JYI-fm-ewf" firstAttribute="centerX" secondItem="s0b-uD-BCa" secondAttribute="centerX" id="mz9-5s-efK"/>
+                                                <constraint firstAttribute="trailing" secondItem="JYI-fm-ewf" secondAttribute="trailing" constant="8" id="uq5-IY-g6v"/>
                                                 <constraint firstItem="JYI-fm-ewf" firstAttribute="centerY" secondItem="s0b-uD-BCa" secondAttribute="centerY" id="xpU-Qu-pay"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -895,7 +902,7 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="s0b-uD-BCa" firstAttribute="width" secondItem="rGj-Ge-eSh" secondAttribute="width" multiplier="0.6" id="BRu-Bo-Jka"/>
+                                        <constraint firstItem="s0b-uD-BCa" firstAttribute="width" secondItem="rGj-Ge-eSh" secondAttribute="width" multiplier="0.7" id="BRu-Bo-Jka"/>
                                         <constraint firstItem="s0b-uD-BCa" firstAttribute="centerX" secondItem="rGj-Ge-eSh" secondAttribute="centerX" id="C6m-Fq-6se"/>
                                         <constraint firstAttribute="bottom" secondItem="s0b-uD-BCa" secondAttribute="bottom" constant="4.5" id="REa-6S-Mg3"/>
                                         <constraint firstItem="s0b-uD-BCa" firstAttribute="top" secondItem="rGj-Ge-eSh" secondAttribute="top" constant="4" id="hlp-zb-eQk"/>
@@ -1587,6 +1594,7 @@
                                                 <color key="backgroundColor" red="0.054901960784313725" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="136" id="Ayf-jJ-rgZ"/>
+                                                    <constraint firstAttribute="height" constant="30" id="vUG-Af-abv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Login">
@@ -2326,16 +2334,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTu-dt-43k">
-                                                    <rect key="frame" x="120" y="4" width="360" height="35"/>
+                                                    <rect key="frame" x="90" y="4" width="420" height="35"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8S-fn-FCA">
-                                                            <rect key="frame" x="100" y="2" width="159" height="31"/>
+                                                            <rect key="frame" x="8" y="2" width="404" height="31"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="159" id="CEu-eA-NxW"/>
                                                             </constraints>
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" title="Add Participants" image="SelectParticipants"/>
+                                                            <state key="normal" title="Select Participants" image="SelectParticipants"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="CEu-eA-NxW"/>
+                                                                </mask>
+                                                            </variation>
                                                             <connections>
                                                                 <action selector="addButtonPressed:" destination="f6H-xJ-Shf" eventType="touchUpInside" id="wBR-b5-YTa"/>
                                                             </connections>
@@ -2344,6 +2357,8 @@
                                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="s8S-fn-FCA" firstAttribute="centerY" secondItem="TTu-dt-43k" secondAttribute="centerY" id="1GA-je-vR1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="s8S-fn-FCA" secondAttribute="trailing" constant="8" id="XMX-A5-v1g"/>
+                                                        <constraint firstItem="s8S-fn-FCA" firstAttribute="leading" secondItem="TTu-dt-43k" secondAttribute="leading" constant="8" id="mQJ-lF-dAa"/>
                                                         <constraint firstItem="s8S-fn-FCA" firstAttribute="centerX" secondItem="TTu-dt-43k" secondAttribute="centerX" id="mgA-9g-1UJ"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -2355,7 +2370,7 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TTu-dt-43k" firstAttribute="width" secondItem="AEh-rg-ko0" secondAttribute="width" multiplier="0.6" id="0MM-Ky-wst"/>
+                                                <constraint firstItem="TTu-dt-43k" firstAttribute="width" secondItem="AEh-rg-ko0" secondAttribute="width" multiplier="0.7" id="0MM-Ky-wst"/>
                                                 <constraint firstAttribute="bottom" secondItem="TTu-dt-43k" secondAttribute="bottom" constant="4.5" id="N5y-H2-iFj"/>
                                                 <constraint firstItem="TTu-dt-43k" firstAttribute="centerX" secondItem="AEh-rg-ko0" secondAttribute="centerX" id="OzG-IA-yhn"/>
                                                 <constraint firstItem="TTu-dt-43k" firstAttribute="top" secondItem="AEh-rg-ko0" secondAttribute="top" constant="4" id="nZ5-hW-4EI"/>
@@ -3449,10 +3464,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oil-bP-8MN">
-                                                    <rect key="frame" x="223" y="15" width="155" height="30"/>
+                                                    <rect key="frame" x="200.5" y="15" width="200" height="30"/>
                                                     <color key="backgroundColor" red="0.054901960780000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="155" id="giz-6W-O0q"/>
+                                                        <constraint firstAttribute="height" constant="30" id="fTj-S3-AGO"/>
+                                                        <constraint firstAttribute="width" constant="200" id="giz-6W-O0q"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <state key="normal" title="Sign Up">
@@ -3849,8 +3865,8 @@
         <image name="tab_projects4_f" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HAq-02-e0h"/>
         <segue reference="sUM-40-rOZ"/>
         <segue reference="ecb-Py-8p9"/>
+        <segue reference="HAq-02-e0h"/>
     </inferredMetricsTieBreakers>
 </document>

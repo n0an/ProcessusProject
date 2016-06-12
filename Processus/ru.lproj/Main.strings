@@ -84,10 +84,10 @@
 "J55-54-Y9P.text" = "ОАО \"ТНК-BP\"";
 
 /* Class = "UIButton"; normalTitle = "Add Projects"; ObjectID = "JYI-fm-ewf"; */
-"JYI-fm-ewf.normalTitle" = "Добавить проекты";
+"JYI-fm-ewf.normalTitle" = "Выбрать проекты";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Jyk-0G-IPw"; */
-"Jyk-0G-IPw.normalTitle" = "Логин";
+"Jyk-0G-IPw.normalTitle" = "Войти";
 
 /* Class = "UILabel"; text = "Projects count:"; ObjectID = "LgZ-Ei-i1G"; */
 "LgZ-Ei-i1G.text" = "Количество проектов:";
@@ -264,7 +264,7 @@
 "gsh-GK-emd.text" = "Сообщение...";
 
 /* Class = "UITextField"; placeholder = "coallegues group (company)"; ObjectID = "gy1-P7-QJu"; */
-"gy1-P7-QJu.placeholder" = "группа коллег (название компании)";
+"gy1-P7-QJu.placeholder" = "группа коллег (компания)";
 
 /* Class = "UINavigationItem"; title = "Coallegues"; ObjectID = "h7t-Yz-mU4"; */
 "h7t-Yz-mU4.title" = "Коллеги";
@@ -363,7 +363,7 @@
 "rdn-wN-y1z.text" = "Степень готовности:";
 
 /* Class = "UIButton"; normalTitle = "Add Participants"; ObjectID = "s8S-fn-FCA"; */
-"s8S-fn-FCA.normalTitle" = "Добавить участников";
+"s8S-fn-FCA.normalTitle" = "Выбрать участников";
 
 /* Class = "UILabel"; text = "7"; ObjectID = "sBS-Ox-SUG"; */
 "sBS-Ox-SUG.text" = "7";
