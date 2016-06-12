@@ -197,7 +197,7 @@ class ANLoginViewController: UIViewController {
                 print("Can't login")
                 print("error: \(error?.localizedDescription)")
                 
-                SweetAlert().showAlert("Error!", subTitle: error!.localizedDescription, style: AlertStyle.Error)
+                SweetAlert().showAlert(NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), subTitle: error!.localizedDescription, style: AlertStyle.Error)
                 
                 return
             }

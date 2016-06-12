@@ -82,7 +82,12 @@ CHAT_ALERT_MESSAGE1 = "Please fill ";
 CHAT_ALERT_MESSAGE2 = " field";
 
 
+// ANSignUpVievController
 
+CHAT_ERROR_EMAIL_FIELD = "Email";
+CHAT_ERROR_GROUP_FIELD = "Group";
+
+SIGNUP_ALERT_TITLE = "Can't sign up";
 
 
 

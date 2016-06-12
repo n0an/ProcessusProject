@@ -371,17 +371,11 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
                     
                     print("message saved")
                     
+       
                     
+//                    PFCloud.callFunctionInBackground("hello", withParameters: nil)
                     
-                    
-                    
-                    PFCloud.callFunctionInBackground("hello", withParameters: nil)
-                    
-                    
-                    
-                    
-                    
-                    
+     
                     
                     self.messageTextView.text = ""
                     self.promptLabel.hidden = false
