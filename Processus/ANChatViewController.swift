@@ -33,7 +33,7 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
     var currentUserImage: UIImage?
     var recipientImage: UIImage?
     
-    
+    var timer: NSTimer!
     
     // MARK: - viewDidLoad
 
@@ -55,6 +55,7 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
         
         chatScrollView.addGestureRecognizer(tapGestureRecognizer)
         
+        timer = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: #selector(ANChatViewController.updateViaTimer), userInfo: nil, repeats: true)
         
         
     }
@@ -101,7 +102,9 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    
+    override func viewWillDisappear(animated: Bool) {
+        timer.invalidate()
+    }
     
     
     // MARK: - NOTIFICATIONS
@@ -166,6 +169,11 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    
+    func updateViaTimer() {
+        print("timer clocked")
+        updateChat()
+    }
     
     
     func updateChat() {
