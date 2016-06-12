@@ -180,7 +180,7 @@
 "Uum-Fm-RCQ.segmentTitles[2]" = "Активно";
 
 /* Class = "UITextField"; placeholder = "Enter Last Name"; ObjectID = "Uvx-RS-beR"; */
-"Uvx-RS-beR.placeholder" = "Введите имя";
+"Uvx-RS-beR.placeholder" = "Введите фамилию";
 
 /* Class = "UITabBarItem"; title = "Projects"; ObjectID = "VNE-sT-rk7"; */
 "VNE-sT-rk7.title" = "Проекты";

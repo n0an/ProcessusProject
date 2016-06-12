@@ -428,7 +428,7 @@ class ANPersonDetailsViewController: UITableViewController {
         
         switch indexPath.section {
         case ANSectionType.PersonInfo.rawValue:
-            return 160
+            return 256
         case ANSectionType.Separator.rawValue:
             return 20
         case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
