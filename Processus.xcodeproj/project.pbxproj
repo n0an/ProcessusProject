@@ -97,7 +97,6 @@
 		186B7CA21D042D3400C039C0 /* ANPhotoAddingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPhotoAddingViewController.swift; sourceTree = "<group>"; };
 		186B7CA41D0452E500C039C0 /* ANGroupInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANGroupInfoViewController.swift; sourceTree = "<group>"; };
 		18D5B7CB1D0D449200CB5B01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		18D5B7CC1D0D449200CB5B01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		18D5B7CE1D0D4CF500CB5B01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18D5B7D21D0D4D8000CB5B01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
@@ -503,7 +502,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				182988431CE4FA9D00BC5272 /* Base */,
-				18D5B7CC1D0D449200CB5B01 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
