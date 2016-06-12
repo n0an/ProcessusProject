@@ -90,6 +90,10 @@ CHAT_ERROR_GROUP_FIELD = "Group";
 SIGNUP_ALERT_TITLE = "Can't sign up";
 
 
+// ANPhotoAddingViewController
+
+CAMERA_ALERT_TITLE = "Error";
+CAMERA_ALERT_MESSAGE = "Device has no camera";
 
 
 
