@@ -1,0 +1,21 @@
+
+/* Class = "UITabBarItem"; title = "Projects"; ObjectID = "2b1-Hl-Oeg"; */
+"2b1-Hl-Oeg.title" = "Projects";
+
+/* Class = "UITabBarItem"; title = "Callegues"; ObjectID = "C18-WE-6kP"; */
+"C18-WE-6kP.title" = "Callegues";
+
+/* Class = "UISearchBar"; placeholder = "Search"; ObjectID = "ENk-cw-tc5"; */
+"ENk-cw-tc5.placeholder" = "Search";
+
+/* Class = "UIBarButtonItem"; title = "Finished"; ObjectID = "QYv-sY-MyT"; */
+"QYv-sY-MyT.title" = "Finished";
+
+/* Class = "UITabBarItem"; title = "Collaboration"; ObjectID = "d9r-iu-vtW"; */
+"d9r-iu-vtW.title" = "Collaboration";
+
+/* Class = "UITabBarItem"; title = "Calendar"; ObjectID = "kHZ-CX-rYW"; */
+"kHZ-CX-rYW.title" = "Calendar";
+
+/* Class = "UINavigationItem"; title = "Projects"; ObjectID = "myQ-Ex-jg2"; */
+"myQ-Ex-jg2.title" = "Projects";
