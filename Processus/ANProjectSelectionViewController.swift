@@ -37,7 +37,7 @@ class ANProjectSelectionViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Select Projects"
+        title = NSLocalizedString("PROJECTSELECTIONVC_TITLE", comment: "")
         
 //        dateFormatter = NSDateFormatter()
 //        dateFormatter.dateFormat = "dd.MM.YYYY"
