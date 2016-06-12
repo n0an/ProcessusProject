@@ -37,7 +37,7 @@ class ANProjectDetailsViewController: UIViewController {
     
     weak var delegate: ANProjectDetailsVCDelegate?
     
-    var dateFormatter: NSDateFormatter!
+//    var dateFormatter: NSDateFormatter!
     
     var sectionsCount = 3
     var selectCellShowed = false
@@ -55,12 +55,14 @@ class ANProjectDetailsViewController: UIViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        let rightButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
+//        let rightButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
+        
+        let rightButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
         
         navigationItem.rightBarButtonItem = rightButton
         
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YYYY"
+//        dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "dd.MM.YYYY"
         
         tableView.allowsSelectionDuringEditing = true
         
@@ -123,7 +125,7 @@ class ANProjectDetailsViewController: UIViewController {
     func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
         
 
-        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
         
         if let completedRatio = project.completedRatio?.intValue {
             cell.completedRatioLabel.text = "\(completedRatio) %"
@@ -193,9 +195,9 @@ class ANProjectDetailsViewController: UIViewController {
         
         
         if self.project.finished?.boolValue == false {
-            let finishActionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let finishActionMenu = UIAlertController(title: nil, message:NSLocalizedString("ACTION_DETAILS_FINISH_TITLE", comment: ""), preferredStyle: .ActionSheet)
             
-            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+            let finishSuccessAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_SUCCESS_ACTION", comment: ""), style: .Default) { (action: UIAlertAction) in
                 
                 let projectToFinish = self.project
                 
@@ -207,7 +209,7 @@ class ANProjectDetailsViewController: UIViewController {
             }
             
             
-            let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
+            let finishFailureAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_FAILURE_ACTION", comment: ""), style: .Default, handler: { (action: UIAlertAction) in
                 
                 let projectToFinish = self.project
                 
@@ -220,7 +222,7 @@ class ANProjectDetailsViewController: UIViewController {
             
             
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_CANCEL_ACTION", comment: ""), style: .Cancel, handler: nil)
             
             finishActionMenu.addAction(finishSuccessAction)
             finishActionMenu.addAction(finishFailureAction)
@@ -235,9 +237,9 @@ class ANProjectDetailsViewController: UIViewController {
         
         if self.project.finished?.boolValue == true {
 
-            let finishActionMenu = UIAlertController(title: nil, message: "Start project", preferredStyle: .ActionSheet)
+            let finishActionMenu = UIAlertController(title: nil, message: NSLocalizedString("ACTION_DETAILS_START_TITLE", comment: ""), preferredStyle: .ActionSheet)
             
-            let finishSuccessAction = UIAlertAction(title: "Start", style: .Default) { (action: UIAlertAction) in
+            let finishSuccessAction = UIAlertAction(title: NSLocalizedString("ACTION_DETAILS_START_ACTION", comment: ""), style: .Default) { (action: UIAlertAction) in
                 
                 let projectToStart = self.project
                 
@@ -250,7 +252,7 @@ class ANProjectDetailsViewController: UIViewController {
             
             
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_CANCEL_ACTION", comment: ""), style: .Cancel, handler: nil)
             
             finishActionMenu.addAction(finishSuccessAction)
             
@@ -269,7 +271,7 @@ class ANProjectDetailsViewController: UIViewController {
     
     @IBAction func clearParticipants(sender: UIBarButtonItem) {
         
-        SweetAlert().showAlert("Are you sure?", subTitle: "Participants list will be cleared", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, clear list", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+        SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("CLEAR_PARTICIPANTS_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("CLEAR_PARTICIPANTS_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
             if isOtherButton == true {
                 
                 print("Cancel Button  Pressed", terminator: "")
@@ -297,7 +299,7 @@ class ANProjectDetailsViewController: UIViewController {
                     }
                 }
                 
-                SweetAlert().showAlert("Deleted!", subTitle: "Participants list was cleared", style: AlertStyle.Success)
+                SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("CLEAR_PARTICIPANTS_ALERT_RESULT_TITLE", comment: ""), style: AlertStyle.Success)
                 
                 self.projectParticipants = self.project.workers?.allObjects as! [Person]
                 
@@ -313,7 +315,7 @@ class ANProjectDetailsViewController: UIViewController {
     
     @IBAction func deleteButtonPressed(sender: UIBarButtonItem) {
         
-        SweetAlert().showAlert("Are you sure?", subTitle: "Project will be permanently deleted!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, delete it!", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+        SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_PROJECT_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
             if isOtherButton == true {
                 
                 print("Cancel Button  Pressed", terminator: "")
@@ -337,7 +339,7 @@ class ANProjectDetailsViewController: UIViewController {
                     }
                 }
                 
-                SweetAlert().showAlert("Deleted!", subTitle: "Project has been deleted!", style: AlertStyle.Success)
+                SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ACTION_RESULT_TITLE", comment: ""), style: AlertStyle.Success)
                 
                 self.navigationController?.popViewControllerAnimated(true)
             }

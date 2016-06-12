@@ -22,8 +22,6 @@ DELETE_ALERT_OTHER_BUTTON = "Yes, remove please";
 DELETE_ACTION_RESULT = "Deleted!";
 DELETE_ACTION_RESULT_TITLE = "Contact has been removed";
 
-
-
 // ANPersonDetailsViewController & ANAddPersonViewController
 
 ERROR_FIRSTNAME_FIELD = "First Name";
@@ -33,6 +31,39 @@ ERROR_EMAIL = "Email";
 SAVE_ALERT_TITLE = "Oops!";
 SAVE_ALERT_MESSAGE1 = "Saving failed, because ";
 SAVE_ALERT_MESSAGE2 = " field is empty";
+
+
+
+
+// *********** PROJECT BRANCH ***********
+
+// ANProjectsViewController
+
+ACTION_FINISH_TITLE = "Finish";
+ACTION_FINISH_SUCCESS_ACTION = "Success";
+ACTION_FINISH_FAILURE_ACTION = "Stop project";
+ACTION_FINISH_CANCEL_ACTION = "Cancel";
+
+DELETE_PROJECT_ALERT_MESSAGE = "Project will be permanently deleted!";
+DELETE_PROJECT_ALERT_OTHER_BUTTON = "Yes, delete it!";
+DELETE_PROJECT_ACTION_RESULT_TITLE = "Project has been deleted!";
+
+
+// ANProjectDetailsViewController
+ACTION_DETAILS_FINISH_TITLE = "Finish project";
+ACTION_DETAILS_START_TITLE = "Start project";
+ACTION_DETAILS_START_ACTION = "Start";
+
+CLEAR_PARTICIPANTS_ALERT_MESSAGE = "Participants list will be cleared";
+CLEAR_PARTICIPANTS_ALERT_OTHER_BUTTON = "Yes, clear list";
+CLEAR_PARTICIPANTS_ALERT_RESULT_TITLE = "Participants list was cleared";
+
+
+
+
+
+
+
 
 
 
