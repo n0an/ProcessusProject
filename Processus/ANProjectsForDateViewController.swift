@@ -23,9 +23,7 @@ protocol ANProjectsForDateViewControllerDelegate: class {
 
 class ANProjectsForDateViewController: UIViewController {
     
-    
-    // TODO: - add Project ftr
-    
+
     
     // MARK: - OUTLETS
     
@@ -85,15 +83,15 @@ class ANProjectsForDateViewController: UIViewController {
         
         let dateProjectsTuple = self.delegate.iterateDateWithDirection(direction)
         
-        let components = calend.components([.Month, .Day], fromDate: dateProjectsTuple.date)
+//        let components = calend.components([.Month, .Day], fromDate: dateProjectsTuple.date)
         
-        print("dateProjectsTuple.date = \(dateProjectsTuple.date)")
-        
-        
-        print("dateProjectsTuple.day = \(components.day)")
-        print("dateProjectsTuple.month = \(components.month)")
-        
-        print("dateProjectsTuple.projects.count = \(dateProjectsTuple.projects.count)")
+//        print("dateProjectsTuple.date = \(dateProjectsTuple.date)")
+//        
+//        
+//        print("dateProjectsTuple.day = \(components.day)")
+//        print("dateProjectsTuple.month = \(components.month)")
+//        
+//        print("dateProjectsTuple.projects.count = \(dateProjectsTuple.projects.count)")
         
         
         myProjects = dateProjectsTuple.projects
@@ -329,7 +327,7 @@ extension ANProjectsForDateViewController: UITableViewDelegate {
 
 extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
     func projectEditingDidEndForProject(project: Project) {
-        print("projectEditingDidEndForProject")
+//        print("projectEditingDidEndForProject")
         
         myProjects = delegate.refreshDate()
         
@@ -344,12 +342,12 @@ extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
 
 extension ANProjectsForDateViewController: ANNewProjectTableViewControllerDelegate {
     func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
-        print("projectDetailsVCDidCancel")
+//        print("projectDetailsVCDidCancel")
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
-        print("projectDetailsVC didFinishAddingItem")
+//        print("projectDetailsVC didFinishAddingItem")
         controller.dismissViewControllerAnimated(true, completion: nil)
         
         myProjects = delegate.refreshDate()
@@ -359,7 +357,7 @@ extension ANProjectsForDateViewController: ANNewProjectTableViewControllerDelega
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
-        print("projectDetailsVC didFinishEditingItem")
+//        print("projectDetailsVC didFinishEditingItem")
         
     }
 }

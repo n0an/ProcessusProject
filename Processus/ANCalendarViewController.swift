@@ -176,7 +176,7 @@ extension ANCalendarViewController: FSCalendarDataSource {
     
     
     func calendarCurrentMonthDidChange(calendar: FSCalendar) {
-        print("calendarCurrentMonthDidChange")
+//        print("calendarCurrentMonthDidChange")
     }
     
     
@@ -187,12 +187,12 @@ extension ANCalendarViewController: FSCalendarDataSource {
 extension ANCalendarViewController: FSCalendarDelegate {
     
     func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
-        print("date selected = \(date)")
+//        print("date selected = \(date)")
         
-        let components = calend.components([.Month, .Day], fromDate: date)
+//        let components = calend.components([.Month, .Day], fromDate: date)
         
-        print("components.day = \(components.day)")
-        print("components.month = \(components.month)")
+//        print("components.day = \(components.day)")
+//        print("components.month = \(components.month)")
 
         selectedDate = date
         

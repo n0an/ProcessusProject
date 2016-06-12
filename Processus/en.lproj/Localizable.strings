@@ -70,6 +70,32 @@ PEOPLESELECTIONVC_TITLE = "Select Participants";
 
 
 
+// *********** CHATS FEATURE ***********
+
+// ANLoginViewController
+
+CHAT_ERROR_LOGIN_FIELD = "Login";
+CHAT_ERROR_PASSWORD_FIELD = "Password";
+
+CHAT_ALERT_TITLE = "Error";
+CHAT_ALERT_MESSAGE1 = "Please fill ";
+CHAT_ALERT_MESSAGE2 = " field";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
