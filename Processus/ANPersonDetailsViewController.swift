@@ -45,7 +45,7 @@ class ANPersonDetailsViewController: UITableViewController {
     var newPersonPhoneNumber: String!
     
 
-    var dateFormatter: NSDateFormatter!
+//    var dateFormatter: NSDateFormatter!
     
     var person: Person!
     
@@ -73,8 +73,8 @@ class ANPersonDetailsViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = editButtonItem()
         
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YYYY"
+//        dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "dd.MM.YYYY"
         
         tableView.allowsSelectionDuringEditing = true
         
@@ -217,16 +217,16 @@ class ANPersonDetailsViewController: UITableViewController {
             
             var error = ""
             if cell.textFields[0].text == "" {
-                error = "First Name"
+                error = NSLocalizedString("ERROR_FIRSTNAME_FIELD", comment: "")
             } else if cell.textFields[1].text == "" {
-                error = "Last Name"
+                error = NSLocalizedString("ERROR_LASTNAME_FIELD", comment: "")
             } else if cell.textFields[2].text == "" {
-                error = "Email"
+                error = NSLocalizedString("ERROR_EMAIL", comment: "")
             }
             
             if error != "" {
                 
-                let alertController = UIAlertController(title: "Ого!", message: "Сохранение не удалось, так как поле " + error + " не заполнено", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
                 
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
                 
@@ -282,7 +282,7 @@ class ANPersonDetailsViewController: UITableViewController {
         
         let project = personProjects[indexPath.row]
         
-        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
         
         if let participantsCount = project.workers?.allObjects.count {
             cell.participantsCountLabel.text = "\(participantsCount)"

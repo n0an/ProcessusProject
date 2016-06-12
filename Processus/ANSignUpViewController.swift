@@ -206,18 +206,18 @@ class ANSignUpViewController: UITableViewController {
         // Show alert with error, if any field is empty when SignUp pressed
         var error = ""
         if textFields[0].text == "" {
-            error = "Login"
+            error = NSLocalizedString("CHAT_ERROR_LOGIN_FIELD", comment: "")
         } else if textFields[1].text == "" {
-            error = "Password"
+            error = NSLocalizedString("CHAT_ERROR_PASSWORD_FIELD", comment: "")
         } else if textFields[2].text == "" {
-            error = "Email"
+            error = NSLocalizedString("CHAT_ERROR_EMAIL_FIELD", comment: "")
         } else if textFields[3].text == "" {
-            error = "Group"
+            error = NSLocalizedString("CHAT_ERROR_GROUP_FIELD", comment: "")
         }
         
         if error != "" {
             
-            let alertController = UIAlertController(title: "Can't sign up", message: "Please fill " + error + " field", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("SIGNUP_ALERT_TITLE", comment: ""), message: NSLocalizedString("CHAT_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("CHAT_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
             
@@ -252,13 +252,13 @@ class ANSignUpViewController: UITableViewController {
                 installation["user"] = PFUser.currentUser()
                 installation.saveInBackground()
                 
-                print("SUCCESS SIGN UP!!")
+//                print("SUCCESS SIGN UP!!")
                 
                 self.performSegueWithIdentifier("toUsersSegue2", sender: self)
                 
             } else {
                 
-                SweetAlert().showAlert("Error!", subTitle: error!.localizedDescription, style: AlertStyle.Error)
+                SweetAlert().showAlert(NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), subTitle: error!.localizedDescription, style: AlertStyle.Error)
                 
                 return
             }

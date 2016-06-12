@@ -170,16 +170,16 @@ class ANLoginViewController: UIViewController {
         var error = ""
         
         if loginTextField.text == "" {
-            error = "Login"
+            error = NSLocalizedString("CHAT_ERROR_LOGIN_FIELD", comment: "")
             
         } else if passwordTextField.text == "" {
-            error = "Password"
+            error = NSLocalizedString("CHAT_ERROR_PASSWORD_FIELD", comment: "")
             
         }
         
         if error != "" {
             
-            let alertController = UIAlertController(title: "Error", message: "Please fill " + error + " field", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), message: NSLocalizedString("CHAT_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("CHAT_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
             
@@ -197,7 +197,7 @@ class ANLoginViewController: UIViewController {
                 print("Can't login")
                 print("error: \(error?.localizedDescription)")
                 
-                SweetAlert().showAlert("Error!", subTitle: error!.localizedDescription, style: AlertStyle.Error)
+                SweetAlert().showAlert(NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), subTitle: error!.localizedDescription, style: AlertStyle.Error)
                 
                 return
             }

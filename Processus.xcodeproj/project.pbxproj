@@ -47,6 +47,7 @@
 		186B7CA11D03404B00C039C0 /* ANChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA01D03404B00C039C0 /* ANChatViewController.swift */; };
 		186B7CA31D042D3500C039C0 /* ANPhotoAddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA21D042D3400C039C0 /* ANPhotoAddingViewController.swift */; };
 		186B7CA51D0452E500C039C0 /* ANGroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B7CA41D0452E500C039C0 /* ANGroupInfoViewController.swift */; };
+		18D5B7CD1D0D4CF500CB5B01 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18D5B7CF1D0D4CF500CB5B01 /* Localizable.strings */; };
 		18E032961D00BD7F004E6371 /* ANProjectsForDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */; };
 		18E9818A1CFAE535002C390D /* ANTextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */; };
 		8FF50206C970CBDDF21EBDD9 /* Pods_Processus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53BAB9EB5F6FFE884C7DE5 /* Pods_Processus.framework */; };
@@ -95,6 +96,9 @@
 		186B7CA01D03404B00C039C0 /* ANChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANChatViewController.swift; sourceTree = "<group>"; };
 		186B7CA21D042D3400C039C0 /* ANPhotoAddingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPhotoAddingViewController.swift; sourceTree = "<group>"; };
 		186B7CA41D0452E500C039C0 /* ANGroupInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANGroupInfoViewController.swift; sourceTree = "<group>"; };
+		18D5B7CB1D0D449200CB5B01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		18D5B7CE1D0D4CF500CB5B01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		18D5B7D21D0D4D8000CB5B01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18E032951D00BD7F004E6371 /* ANProjectsForDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectsForDateViewController.swift; sourceTree = "<group>"; };
 		18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTextFieldsChecker.swift; sourceTree = "<group>"; };
 		4B6220E0DF4F1853631F8E9B /* Pods-Processus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Processus/Pods-Processus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 				18E981891CFAE535002C390D /* ANTextFieldsChecker.swift */,
 				185B0B7D1CFF3E05002E8AA8 /* ANAnimator.swift */,
 				185B0B791CFE112C002E8AA8 /* ANConfigurator.swift */,
+				18D5B7CF1D0D4CF500CB5B01 /* Localizable.strings */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				182988441CE4FA9D00BC5272 /* LaunchScreen.storyboard in Resources */,
+				18D5B7CD1D0D4CF500CB5B01 /* Localizable.strings in Resources */,
 				182988411CE4FA9D00BC5272 /* Assets.xcassets in Resources */,
 				1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */,
 			);
@@ -487,6 +493,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1829883E1CE4FA9D00BC5272 /* Base */,
+				18D5B7CB1D0D449200CB5B01 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -497,6 +504,15 @@
 				182988431CE4FA9D00BC5272 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		18D5B7CF1D0D4CF500CB5B01 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18D5B7CE1D0D4CF500CB5B01 /* ru */,
+				18D5B7D21D0D4D8000CB5B01 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

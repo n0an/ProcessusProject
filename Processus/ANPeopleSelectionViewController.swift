@@ -36,9 +36,12 @@ class ANPeopleSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Select Participants"
+        title = NSLocalizedString("PEOPLESELECTIONVC_TITLE", comment: "")
         
-        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
+//        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
+        
+        
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
 

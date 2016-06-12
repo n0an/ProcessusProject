@@ -248,11 +248,11 @@ extension ANProjectsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let finishAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Finish") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let finishAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: NSLocalizedString("ACTION_FINISH_TITLE", comment: "")) { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
             let finishActionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             
-            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default) { (action: UIAlertAction) in
+            let finishSuccessAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_SUCCESS_ACTION", comment: ""), style: .Default) { (action: UIAlertAction) in
                 
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 
@@ -265,7 +265,7 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             
 
-            let finishFailureAction = UIAlertAction(title: "Stop project", style: .Default, handler: { (action: UIAlertAction) in
+            let finishFailureAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_FAILURE_ACTION", comment: ""), style: .Default, handler: { (action: UIAlertAction) in
                 
                 let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
                 
@@ -278,7 +278,7 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             
 
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_CANCEL_ACTION", comment: ""), style: .Cancel, handler: nil)
             
             finishActionMenu.addAction(finishSuccessAction)
             finishActionMenu.addAction(finishFailureAction)
@@ -291,10 +291,10 @@ extension ANProjectsViewController: UITableViewDelegate {
         
         // Creating our own Delete button
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
             
-            SweetAlert().showAlert("Are you sure?", subTitle: "Project will be permanently deleted!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, delete it!", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_PROJECT_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
                 if isOtherButton == true {
                     
                     print("Cancel Button  Pressed", terminator: "")
@@ -318,7 +318,7 @@ extension ANProjectsViewController: UITableViewDelegate {
                         }
                     }
                     
-                    SweetAlert().showAlert("Deleted!", subTitle: "Project has been deleted!", style: AlertStyle.Success)
+                    SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ACTION_RESULT_TITLE", comment: ""), style: AlertStyle.Success)
                 }
             }
             

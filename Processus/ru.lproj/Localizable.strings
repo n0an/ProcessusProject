@@ -1,0 +1,102 @@
+/* 
+  Localizable.strings
+  Processus
+
+  Created by Anton Novoselov on 12/06/16.
+  Copyright © 2016 Anton Novoselov. All rights reserved.
+*/
+
+
+// *********** PERSON BRANCH ***********
+
+// ANPeopleViewController
+
+EMAIL_SUBJECT = "Привет";
+
+DELETE_ACTION = "Удалить";
+DELETE_ALERT = "Вы уверены?";
+DELETE_ALERT_MESSAGE = "Контакт будет удален!";
+DELETE_ALERT_BUTTON = "Отмена";
+DELETE_ALERT_OTHER_BUTTON = "Да, удалить";
+DELETE_ACTION_RESULT = "Удалено!";
+DELETE_ACTION_RESULT_TITLE = "Контакт был удален";
+
+// ANPersonDetailsViewController & ANAddPersonViewController
+
+ERROR_FIRSTNAME_FIELD = "Имя";
+ERROR_LASTNAME_FIELD = "Фамилия";
+ERROR_EMAIL = "Email";
+
+SAVE_ALERT_TITLE = "Хм..!";
+SAVE_ALERT_MESSAGE1 = "Сохранение не удалось, так как поле ";
+SAVE_ALERT_MESSAGE2 = " не заполнено";
+
+// ANProjectSelectionViewController
+PROJECTSELECTIONVC_TITLE = "Выберите проекты";
+
+
+
+// *********** PROJECT BRANCH ***********
+
+// ANProjectsViewController
+
+ACTION_FINISH_TITLE = "Завершить";
+ACTION_FINISH_SUCCESS_ACTION = "Успешное завершение";
+ACTION_FINISH_FAILURE_ACTION = "Остановить проект";
+ACTION_FINISH_CANCEL_ACTION = "Отмена";
+
+DELETE_PROJECT_ALERT_MESSAGE = "Проект будет удален!";
+DELETE_PROJECT_ALERT_OTHER_BUTTON = "Да, удалить";
+DELETE_PROJECT_ACTION_RESULT_TITLE = "Проект был удален!";
+
+// ANProjectDetailsViewController
+ACTION_DETAILS_FINISH_TITLE = "Завершить проект";
+ACTION_DETAILS_START_TITLE = "Возобновить проект";
+ACTION_DETAILS_START_ACTION = "Старт";
+
+CLEAR_PARTICIPANTS_ALERT_MESSAGE = "Список участников будет очищен";
+CLEAR_PARTICIPANTS_ALERT_OTHER_BUTTON = "Да, очистить список";
+CLEAR_PARTICIPANTS_ALERT_RESULT_TITLE = "Список участников был очищен";
+
+// ANNewProjectTableViewController
+ERROR_CUSTOMER_NAME_FIELD = "Наименование Заказчика";
+ERROR_PROJECT_TITLE_FIELD = "Название проекта";
+
+NEWPROJECTVC_TITLE = "Редактировать проект";
+
+// ANPeopleSelectionViewController
+PEOPLESELECTIONVC_TITLE = "Выбрать участников";
+
+
+
+// *********** CHATS FEATURE ***********
+
+// ANLoginViewController
+
+CHAT_ERROR_LOGIN_FIELD = "Логин";
+CHAT_ERROR_PASSWORD_FIELD = "Пароль";
+
+CHAT_ALERT_TITLE = "Ошибка";
+CHAT_ALERT_MESSAGE1 = "Пожалуйста, заполните поле ";
+CHAT_ALERT_MESSAGE2 = "";
+
+
+// ANSignUpVievController
+
+CHAT_ERROR_EMAIL_FIELD = "Email";
+CHAT_ERROR_GROUP_FIELD = "Группа";
+
+SIGNUP_ALERT_TITLE = "Невозможно создать учетную запись";
+
+
+// ANPhotoAddingViewController
+
+CAMERA_ALERT_TITLE = "Ошибка";
+CAMERA_ALERT_MESSAGE = "У Вашего устройства нет камеры";
+
+
+
+
+
+
+

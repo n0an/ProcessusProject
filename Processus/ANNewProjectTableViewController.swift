@@ -79,7 +79,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
         super.viewDidLoad()
         
         if let item = itemToEdit {
-            title = "Edit Project"
+            title = NSLocalizedString("NEWPROJECTVC_TITLE", comment: "")
 
             customerTitleTextField.text = item.customer
             
@@ -248,14 +248,14 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
     func checkForSave() -> Bool {
         var error = ""
         if customerTitleTextField.text == "" {
-            error = "Customer Name"
+            error = NSLocalizedString("ERROR_CUSTOMER_NAME_FIELD", comment: "")
         } else if projectTitleTextField.text == "" {
-            error = "Project Title"
+            error = NSLocalizedString("ERROR_PROJECT_TITLE_FIELD", comment: "")
         }
         
         if error != "" {
             
-            let alertController = UIAlertController(title: "Ого!", message: "Сохранение не удалось, так как поле " + error + " не заполнено", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
             

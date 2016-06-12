@@ -75,16 +75,16 @@ class ANAddPersonViewController: UITableViewController {
         var error = ""
         
         if textFields[0].text == "" {
-            error = "First Name"
+            error = NSLocalizedString("ERROR_FIRSTNAME_FIELD", comment: "")
         } else if textFields[1].text == "" {
-            error = "Last Name"
+            error = NSLocalizedString("ERROR_LASTNAME_FIELD", comment: "")
         } else if textFields[2].text == "" {
-            error = "Email"
+            error = NSLocalizedString("ERROR_EMAIL", comment: "")
         }
 
         if error != "" {
             
-            let alertController = UIAlertController(title: "Ого!", message: "Сохранение не удалось, так как поле " + error + " не заполнено", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
             

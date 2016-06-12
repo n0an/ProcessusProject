@@ -29,7 +29,7 @@ class ANProjectSelectionViewController: UITableViewController {
     
     weak var delegate: ANProjectSelectionViewControllerDelegate!
     
-    var dateFormatter: NSDateFormatter!
+//    var dateFormatter: NSDateFormatter!
 
     
     // MARK: - viewDidLoad
@@ -37,12 +37,14 @@ class ANProjectSelectionViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Select Projects"
+        title = NSLocalizedString("PROJECTSELECTIONVC_TITLE", comment: "")
         
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YYYY"
+//        dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "dd.MM.YYYY"
         
-        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
+        
+//        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
         
@@ -72,7 +74,7 @@ class ANProjectSelectionViewController: UITableViewController {
         
         let project = allProjects[indexPath.row]
 
-        cell.projectDueDateLabel.text = dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
         
         if (person.projects!.containsObject(project)) {
 

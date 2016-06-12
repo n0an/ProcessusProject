@@ -235,7 +235,7 @@ extension ANPeopleViewController: UITableViewDelegate {
                     }
                     
                     
-                    mailComposeVC.setSubject("Hey" + subjectSuffix)
+                    mailComposeVC.setSubject(NSLocalizedString("EMAIL_SUBJECT", comment: "") + subjectSuffix)
                     
                     
 //                    mailComposeVC.navigationBar.tintColor = UIColor.whiteColor()
@@ -270,12 +270,12 @@ extension ANPeopleViewController: UITableViewDelegate {
         
         // Creating our own Delete button
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
             
             
             
-            SweetAlert().showAlert("Are you sure?", subTitle: "Contact will be permanently removed!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, remove please", otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
                 if isOtherButton == true {
                     
                     print("Cancel Button  Pressed", terminator: "")
@@ -300,7 +300,7 @@ extension ANPeopleViewController: UITableViewDelegate {
                     }
 
                     
-                    SweetAlert().showAlert("Deleted!", subTitle: "Contact has been removed", style: AlertStyle.Success)
+                    SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("DELETE_ACTION_RESULT_TITLE", comment: ""), style: AlertStyle.Success)
                 }
             }
 

@@ -58,7 +58,7 @@ class ANPhotoAddingViewController: UIViewController, UINavigationControllerDeleg
     
     func showAlertNoCameraDeviceFound() {
         
-        let alertNoCamera = UIAlertController(title: "Error", message: "Device has no camera", preferredStyle: .Alert)
+        let alertNoCamera = UIAlertController(title: NSLocalizedString("CAMERA_ALERT_TITLE", comment: ""), message: NSLocalizedString("CAMERA_ALERT_MESSAGE", comment: ""), preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         
