@@ -8,6 +8,37 @@
 
 
 
+// *********** PERSON BRANCH ***********
+
+// ANPeopleViewController
+
+EMAIL_SUBJECT = "Hey";
+
+DELETE_ACTION = "Delete";
+DELETE_ALERT = "Are you sure?";
+DELETE_ALERT_MESSAGE = "Contact will be permanently removed!";
+DELETE_ALERT_BUTTON = "Cancel";
+DELETE_ALERT_OTHER_BUTTON = "Yes, remove please";
+DELETE_ACTION_RESULT = "Deleted!";
+DELETE_ACTION_RESULT_TITLE = "Contact has been removed";
+
+
+
+// ANPersonDetailsViewController & ANAddPersonViewController
+
+ERROR_FIRSTNAME_FIELD = "First Name";
+ERROR_LASTNAME_FIELD = "Last Name";
+ERROR_EMAIL = "Email";
+
+SAVE_ALERT_TITLE = "Oops!";
+SAVE_ALERT_MESSAGE1 = "Saving failed, because ";
+SAVE_ALERT_MESSAGE2 = " field is empty";
+
+
+
+
+
+
 
 
 
