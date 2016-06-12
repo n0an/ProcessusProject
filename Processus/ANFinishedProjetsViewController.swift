@@ -130,7 +130,15 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
         
         if let sectionInfo = fetchedResultsController?.sections?[section] {
             
-            return sectionInfo.name
+            let displayedTitle: String
+            
+            if sectionInfo.name == ProjectFinishedStatus.Success.rawValue {
+                displayedTitle = NSLocalizedString("PROJECT_FINISH_STATUS_SUCCESS", comment: "")
+            } else {
+                displayedTitle = NSLocalizedString("PROJECT_FINISH_STATUS_FAILURE", comment: "")
+            }
+            
+            return displayedTitle
         }
         
         return nil
@@ -173,7 +181,17 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
         guard let sectionInfo = fetchedResultsController?.sections?[section] else {return nil}
 
         
-        statusLabel.text = sectionInfo.name
+        let displayedTitle: String
+        
+        if sectionInfo.name == ProjectFinishedStatus.Success.rawValue {
+            displayedTitle = NSLocalizedString("PROJECT_FINISH_STATUS_SUCCESS", comment: "")
+        } else {
+            displayedTitle = NSLocalizedString("PROJECT_FINISH_STATUS_FAILURE", comment: "")
+        }
+
+        
+        
+        statusLabel.text = displayedTitle
         
         paddingView.layer.cornerRadius = 10
         paddingView.layer.masksToBounds = true

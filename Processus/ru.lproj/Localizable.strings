@@ -7,6 +7,14 @@
 */
 
 
+// *********** UTILS ***********
+
+// ANConfigurator
+
+PROJECT_FINISH_STATUS_SUCCESS = "Успешно завершены";
+PROJECT_FINISH_STATUS_FAILURE = "Остановлены";
+
+
 // *********** PERSON BRANCH ***********
 
 // ANPeopleViewController
