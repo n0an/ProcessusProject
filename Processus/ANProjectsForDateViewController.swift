@@ -83,17 +83,6 @@ class ANProjectsForDateViewController: UIViewController {
         
         let dateProjectsTuple = self.delegate.iterateDateWithDirection(direction)
         
-//        let components = calend.components([.Month, .Day], fromDate: dateProjectsTuple.date)
-        
-//        print("dateProjectsTuple.date = \(dateProjectsTuple.date)")
-//        
-//        
-//        print("dateProjectsTuple.day = \(components.day)")
-//        print("dateProjectsTuple.month = \(components.month)")
-//        
-//        print("dateProjectsTuple.projects.count = \(dateProjectsTuple.projects.count)")
-        
-        
         myProjects = dateProjectsTuple.projects
         displayedDate = dateProjectsTuple.date
         
@@ -149,20 +138,6 @@ class ANProjectsForDateViewController: UIViewController {
         } else if segue.identifier == "showProjectDetails" {
             
             
-            // === Variant - go directly to ANNewProjectTableViewController, withod IntermediateVC ===
-            /*
-             let navigationController = segue.destinationViewController as! UINavigationController
-             
-             let controller = navigationController.topViewController as! ANNewProjectTableViewController
-             
-             if let clickedIndexPath = tableView.indexPathForCell(sender as! ANPersonProjectCell) {
-             guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
-             
-             controller.itemToEdit = project
-             }
-             */
-            
-            
             let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
             
             destinationVC.delegate = self
@@ -214,7 +189,6 @@ extension ANProjectsForDateViewController: UITableViewDataSource {
             cell.participantsCountLabel.text = "\(participantsCount)"
         }
         
-//        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
         ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
 
         
@@ -264,58 +238,7 @@ extension ANProjectsForDateViewController: UITableViewDelegate {
         
         return true
     }
-    
-    
-    
-//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-//        
-//        let finishAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Finish") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
-//            
-//            let finishActionMenu = UIAlertController(title: nil, message: "Project finished:", preferredStyle: .ActionSheet)
-//            
-//            let finishSuccessAction = UIAlertAction(title: "Success", style: .Default, handler: nil)
-//            
-//            let finishFailureAction = UIAlertAction(title: "Failure", style: .Default, handler: nil)
-//            
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-//            
-//            finishActionMenu.addAction(finishSuccessAction)
-//            finishActionMenu.addAction(finishFailureAction)
-//            
-//            finishActionMenu.addAction(cancelAction)
-//            
-//            
-//            self.presentViewController(finishActionMenu, animated: true, completion: nil)
-//        }
-//        
-//        // Creating our own Delete button
-//        
-//        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
-//            
-//            let projectToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
-//            
-//            let managedObjectContext = ANDataManager.sharedManager.context
-//            
-//            managedObjectContext.deleteObject(projectToRemove)
-//            
-//            if managedObjectContext.hasChanges {
-//                do {
-//                    try managedObjectContext.save()
-//                } catch {
-//                    let nserror = error as NSError
-//                    NSLog("deleting error occured: \(nserror), \(nserror.localizedDescription)")
-//                    abort()
-//                }
-//            }
-//            
-//        }
-//        
-//        finishAction.backgroundColor = UIColor(red: 50/255, green: 70/255, blue: 181/255, alpha: 1.0)
-//        deleteAction.backgroundColor = UIColor.redColor()
-//        
-//        return [deleteAction, finishAction]
-//        
-//    }
+
     
     
 }
@@ -327,7 +250,6 @@ extension ANProjectsForDateViewController: UITableViewDelegate {
 
 extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
     func projectEditingDidEndForProject(project: Project) {
-//        print("projectEditingDidEndForProject")
         
         myProjects = delegate.refreshDate()
         
@@ -342,12 +264,12 @@ extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
 
 extension ANProjectsForDateViewController: ANNewProjectTableViewControllerDelegate {
     func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
-//        print("projectDetailsVCDidCancel")
+
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
-//        print("projectDetailsVC didFinishAddingItem")
+
         controller.dismissViewControllerAnimated(true, completion: nil)
         
         myProjects = delegate.refreshDate()
@@ -357,7 +279,7 @@ extension ANProjectsForDateViewController: ANNewProjectTableViewControllerDelega
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
-//        print("projectDetailsVC didFinishEditingItem")
+
         
     }
 }

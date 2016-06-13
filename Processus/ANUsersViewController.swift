@@ -32,8 +32,6 @@ class ANUsersViewController: UIViewController {
         currentUserName = PFUser.currentUser()!.username!
         currentGroup = PFUser.currentUser()?.objectForKey("group") as! String
         
-        print("currentUserName = \(currentUserName)")
-        print("currentGroup = \(currentGroup)")
         
         let predicate = NSPredicate(format: "username != %@ AND group == %@", currentUserName, currentGroup)
         

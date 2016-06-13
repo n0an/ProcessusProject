@@ -40,10 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         
-        // ** register push user notification migrated to ANLoginVC viewDidLoad
-        
-//        application.applicationIconBadgeNumber = 0;
-        
         return true
     }
     
@@ -72,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         
         
-        NSNotificationCenter.defaultCenter().postNotificationName("updateChatNow", object: nil)
+//        NSNotificationCenter.defaultCenter().postNotificationName("updateChatNow", object: nil)
     }
     
     

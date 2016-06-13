@@ -38,9 +38,6 @@ class ANPeopleSelectionViewController: UIViewController {
 
         title = NSLocalizedString("PEOPLESELECTIONVC_TITLE", comment: "")
         
-//        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
-        
-        
         let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
@@ -70,10 +67,10 @@ class ANPeopleSelectionViewController: UIViewController {
         
         
         if project.workers!.containsObject(person) {
-//            cell.accessoryType = .Checkmark
+
             cell.checkMarkImageView.image = UIImage(named: "box_set")
         } else {
-//            cell.accessoryType = .None
+
             cell.checkMarkImageView.image = UIImage(named: "box_empty")
 
         }

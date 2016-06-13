@@ -43,7 +43,7 @@ class ANTextFieldsChecker {
     
     func handlePhoneNumberForTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
         
-        print("replacementString = \(replacementString)")
+//        print("replacementString = \(replacementString)")
         let validationSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
         let components = replacementString.componentsSeparatedByCharactersInSet(validationSet)
         
@@ -56,7 +56,7 @@ class ANTextFieldsChecker {
         let currentString = textField.text! as NSString
         var newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString) as NSString
         
-        print("new string = \(newString)")
+//        print("new string = \(newString)")
         
         
         // **  PURIFYING NEWSTRING FROM SYMBOLS ( ) - + THAT WE ADDED BY OURSELVES BELOW IN METHOD
@@ -64,7 +64,7 @@ class ANTextFieldsChecker {
         
         newString = validComponents.joinWithSeparator("")
         
-        print("new string fixed = \(newString)")
+//        print("new string fixed = \(newString)")
         
         if newString.length > localNumberMaxLength + areaCodeMaxLength + countryCodeMaxLength {
             return false

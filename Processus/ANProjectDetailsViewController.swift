@@ -37,7 +37,6 @@ class ANProjectDetailsViewController: UIViewController {
     
     weak var delegate: ANProjectDetailsVCDelegate?
     
-//    var dateFormatter: NSDateFormatter!
     
     var sectionsCount = 3
     var selectCellShowed = false
@@ -55,14 +54,9 @@ class ANProjectDetailsViewController: UIViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-//        let rightButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
-        
         let rightButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
         
         navigationItem.rightBarButtonItem = rightButton
-        
-//        dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "dd.MM.YYYY"
         
         tableView.allowsSelectionDuringEditing = true
         
@@ -74,7 +68,6 @@ class ANProjectDetailsViewController: UIViewController {
         delegate?.projectEditingDidEndForProject(project)
         
         
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,7 +75,6 @@ class ANProjectDetailsViewController: UIViewController {
         
         refreshClearParticipantsButton()
         
-        // jumping toolBar issue fixed
         tabBarController?.tabBar.frame.origin = CGPoint(x: 0, y: CGRectGetMaxY(view.bounds))
         
     }
@@ -106,21 +98,6 @@ class ANProjectDetailsViewController: UIViewController {
 
     }
     
-    func dueDateSoonForProject(project: Project) -> Bool {
-        
-        let currentDate = NSDate()
-        
-        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        print(timeLeft)
-        
-        // If there're less than 5 days befor deadline - activate warning sign
-        if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {
-            return true
-        }
-        
-        return false
-        
-    }
     
     func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
         
@@ -131,8 +108,6 @@ class ANProjectDetailsViewController: UIViewController {
             cell.completedRatioLabel.text = "\(completedRatio) %"
         }
 
-        
-//        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
         ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
 
         
@@ -274,7 +249,7 @@ class ANProjectDetailsViewController: UIViewController {
         SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("CLEAR_PARTICIPANTS_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("CLEAR_PARTICIPANTS_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
             if isOtherButton == true {
                 
-                print("Cancel Button  Pressed", terminator: "")
+                
             }
             else {
                 
@@ -318,7 +293,7 @@ class ANProjectDetailsViewController: UIViewController {
         SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_PROJECT_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
             if isOtherButton == true {
                 
-                print("Cancel Button  Pressed", terminator: "")
+                
             }
             else {
                 
@@ -348,7 +323,7 @@ class ANProjectDetailsViewController: UIViewController {
     
     
     @IBAction func addButtonPressed(sender: AnyObject) {
-        print("addButtonPressed")
+        
         
         transitToParticipantsSelection()
     }
@@ -561,22 +536,11 @@ extension ANProjectDetailsViewController: UITableViewDelegate {
         
         if indexPath.section == ANSectionType.PersonProject.rawValue && project.finished?.boolValue == false {
             
-            // === Variant - instantiate ANEditProjectTableViewController ===
-            /*
-             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
-             
-             vc.delegate = self
-             
-             vc.itemToEdit = project
-             
-             navigationController?.pushViewController(vc, animated: true)
-             */
             
             performSegueWithIdentifier("EditItem", sender: self)
             
         } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
             
-            //            transitToParticipantsSelection()
             
             
         } else if indexPath.section == ANSectionType.Person.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {
@@ -640,19 +604,6 @@ extension ANProjectDetailsViewController: ANPeopleSelectionViewControllerDelegat
 }
 
 
-// === Variant - instantiate ANEditProjectTableViewController ===
-/*
-// MARK: - ANEditProjectTableViewControllerDelegate
-
-extension ANProjectDetailsViewController: ANEditProjectTableViewControllerDelegate {
-    
-    func projectEditingDidEndForProject(project: Project) {
-        
-        tableView.reloadData()
-    }
-    
-}
-*/
 
 // MARK: - ANNewProjectTableViewControllerDelegate
 

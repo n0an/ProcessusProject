@@ -48,7 +48,7 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANChatViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANChatViewController.updateChat), name: "updateChatNow", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANChatViewController.updateChat), name: "updateChatNow", object: nil)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ANChatViewController.didTapScrollView))
         tapGestureRecognizer.numberOfTapsRequired = 1
@@ -171,7 +171,7 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
     
     
     func updateViaTimer() {
-        print("timer clocked")
+        
         updateChat()
     }
     
@@ -347,7 +347,7 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
         didTapScrollView()
         
         if messageTextView.text.isEmpty {
-            print("No text in the message")
+            
         } else {
             let messageDB = PFObject(className: "Message")
             
@@ -359,32 +359,7 @@ class ANChatViewController: UIViewController, UITextViewDelegate {
                 
                 if success {
                     
-//                    let userQuery: PFQuery = PFUser.query()!
-//                    userQuery.whereKey("username", equalTo: recipientNickname)
-//                    
-//                    let pushQuery = PFInstallation.query()!
-//                    pushQuery.whereKey("user", matchesQuery: userQuery)
-//                    
-//                    let push: PFPush = PFPush()
-//                    push.setQuery(pushQuery)
-//                    push.setMessage("Processus: New message!")
-//                    
-//                    do {
-//                        try push.sendPush()
-//                        print("notification has sent")
-//                        
-//                    } catch let error as NSError {
-//                        print("notification error: \(error.localizedDescription)")
-//                    }
-                    
-                    print("message saved")
-                    
        
-                    
-//                    PFCloud.callFunctionInBackground("hello", withParameters: nil)
-                    
-     
-                    
                     self.messageTextView.text = ""
                     self.promptLabel.hidden = false
                     

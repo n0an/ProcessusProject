@@ -57,10 +57,6 @@ class ANSignUpViewController: UITableViewController {
         
         imageView.addGestureRecognizer(tapGestureRecognizer)
 
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-//        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
         
     }
     
@@ -69,97 +65,14 @@ class ANSignUpViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         groupInfoButton.hidden = true
-        
-//        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
-//            tableView.scrollEnabled = true
-//        } else {
-//            tableView.scrollEnabled = false
-//            
-//        }
+
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-//        setScrollViewContentSize()
-    }
 
-    
-    // MARK: - NOTIFICATIONS
-    
-    func keyboardWillShow(notification: NSNotification) {
-        
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6Plus.rawValue {
-            
-            tableView.scrollEnabled = true
-//            updateBottomConstraint(notification, showing: true)
-            
-//            setScrollViewContentSize()
-
-        }
-        
     }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
-            tableView.scrollEnabled = true
-            
-//            updateBottomConstraint(notification, showing: false)
-            
-//            setScrollViewContentSize()
-
-        } else {
-            tableView.scrollEnabled = false
-        }
-        
-    }
-
-    
-    // MARK: - HELPER METHODS
-    
-    func setScrollViewContentSize() {
-        
-        var contentRect = CGRectZero
-        
-        for view in contentView.subviews {
-            contentRect = CGRectUnion(contentRect, view.frame)
-        }
-        
-        scrollVIew.contentSize = CGSizeMake(CGRectGetWidth(view.frame), CGRectGetHeight(contentRect))
-        
-    }
-    
-    
-    func updateBottomConstraint(notification: NSNotification, showing: Bool) {
-        
-        if let
-            userInfo = notification.userInfo,
-            frame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue,
-            animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
-            
-            let newFrame = view.convertRect(frame, fromView: (UIApplication.sharedApplication().delegate?.window)!)
-            
-            let diff = showing ? 49 : 0
-            
-            bottomConstraint.constant = CGRectGetHeight(view.frame) - newFrame.origin.y - CGFloat(diff)
-            
-            UIView.animateWithDuration(animationDuration, animations: {
-                self.view.layoutIfNeeded()
-                
-                if showing {
-                    let scrollViewOffset: CGPoint = CGPointMake(0, self.scrollVIew.contentSize.height - self.scrollVIew.bounds.height)
-                    
-                    self.scrollVIew.setContentOffset(scrollViewOffset, animated: true)
-                }
-                
-                
-            })
-            
-        }
-        
-    }
-
 
     
     
@@ -252,7 +165,6 @@ class ANSignUpViewController: UITableViewController {
                 installation["user"] = PFUser.currentUser()
                 installation.saveInBackground()
                 
-//                print("SUCCESS SIGN UP!!")
                 
                 self.performSegueWithIdentifier("toUsersSegue2", sender: self)
                 

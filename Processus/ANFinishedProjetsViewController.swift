@@ -237,7 +237,6 @@ extension ANFinishedProjetsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        //        guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
@@ -274,7 +273,7 @@ extension ANFinishedProjetsViewController: UITableViewDelegate {
 
 extension ANFinishedProjetsViewController: ANProjectDetailsVCDelegate {
     func projectEditingDidEndForProject(project: Project) {
-        print("projectEditingDidEndForProject")
+        
     }
 }
 
