@@ -1,0 +1,414 @@
+
+/* Class = "UILabel"; text = "Project state:"; ObjectID = "1PH-6M-QDd"; */
+"1PH-6M-QDd.text" = "Статус:";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "1R0-j8-tQT"; */
+"1R0-j8-tQT.text" = "7";
+
+/* Class = "UILabel"; text = "Last Name:"; ObjectID = "2VH-Dp-8nw"; */
+"2VH-Dp-8nw.text" = "Фамилия:";
+
+/* Class = "UILabel"; text = "Anton Novoselov"; ObjectID = "2ss-pa-uUF"; */
+"2ss-pa-uUF.text" = "Anton Novoselov";
+
+/* Class = "UIBarButtonItem"; title = "Finished"; ObjectID = "31p-on-ATu"; */
+"31p-on-ATu.title" = "Завершенные";
+
+/* Class = "UILabel"; text = "Please, choose a photo from the library, or make a new shot"; ObjectID = "43w-ar-Tc1"; */
+"43w-ar-Tc1.text" = "Пожалуйста, выберите фото из библиотеки, или сделайте новый снимок";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "4fD-Yl-pEc"; */
+"4fD-Yl-pEc.text" = "7";
+
+/* Class = "UITextField"; placeholder = "Enter Last Name"; ObjectID = "5QZ-ry-CwK"; */
+"5QZ-ry-CwK.placeholder" = "Введите фамилию";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "6XB-qm-VVo"; */
+"6XB-qm-VVo.normalTitle" = "Создать учетную запись";
+
+/* Class = "UILabel"; text = "01.09.2016"; ObjectID = "6di-JS-kG3"; */
+"6di-JS-kG3.text" = "01.09.2016";
+
+/* Class = "UITextField"; placeholder = "Enter First Name"; ObjectID = "6il-07-G5v"; */
+"6il-07-G5v.placeholder" = "Введите имя";
+
+/* Class = "UILabel"; text = "Otherwise, you may create new Group Identifier and encourage your coallegues for using it. It this case your coallegues should enter created Group Identifier to corresponding field during their signing up process."; ObjectID = "7EP-VL-0HO"; */
+"7EP-VL-0HO.text" = "В другом случае, Вы можете создать новый Идентификатор Группы и попросить Ваших коллег использовать его при регистрации.";
+
+/* Class = "UILabel"; text = "Email:"; ObjectID = "7sk-8Y-DnA"; */
+"7sk-8Y-DnA.text" = "Email:";
+
+/* Class = "UILabel"; text = "Project:"; ObjectID = "AJ6-dF-vjb"; */
+"AJ6-dF-vjb.text" = "Название проекта:";
+
+/* Class = "UITextField"; placeholder = "project title"; ObjectID = "AL9-us-uQu"; */
+"AL9-us-uQu.placeholder" = "название проекта";
+
+/* Class = "UILabel"; text = "Project state:"; ObjectID = "AfA-Or-vah"; */
+"AfA-Or-vah.text" = "Состояние:";
+
+/* Class = "UILabel"; text = "Participants:"; ObjectID = "AfY-ed-Ugg"; */
+"AfY-ed-Ugg.text" = "Участников:";
+
+/* Class = "UILabel"; text = "Projects count:"; ObjectID = "Alp-oK-lxM"; */
+"Alp-oK-lxM.text" = "Количество проектов:";
+
+/* Class = "UILabel"; text = "Due date:"; ObjectID = "B40-Ga-gr7"; */
+"B40-Ga-gr7.text" = "Срок выполнения:";
+
+/* Class = "UILabel"; text = "Customer:"; ObjectID = "B51-RA-Zoa"; */
+"B51-RA-Zoa.text" = "Заказчик:";
+
+/* Class = "UILabel"; text = "ОАО \"ТНК-BP\""; ObjectID = "BaP-jf-ci6"; */
+"BaP-jf-ci6.text" = "ОАО \"ТНК-BP\"";
+
+/* Class = "UITableViewSection"; headerTitle = "Contact Information"; ObjectID = "CMc-Dw-xcl"; */
+"CMc-Dw-xcl.headerTitle" = "Контактная информация";
+
+/* Class = "UINavigationItem"; title = "Date"; ObjectID = "Fnw-PP-1eL"; */
+"Fnw-PP-1eL.title" = "Дата";
+
+/* Class = "UILabel"; text = "Project state:"; ObjectID = "H02-zr-fUM"; */
+"H02-zr-fUM.text" = "Состояние:";
+
+/* Class = "UILabel"; text = "100%"; ObjectID = "HGI-ua-HIp"; */
+"HGI-ua-HIp.text" = "100%";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "HSH-hx-zJN"; */
+"HSH-hx-zJN.text" = "7";
+
+/* Class = "UITabBarItem"; title = "Coallegues"; ObjectID = "J2s-zG-Yy2"; */
+"J2s-zG-Yy2.title" = "Коллеги";
+
+/* Class = "UILabel"; text = "ОАО \"ТНК-BP\""; ObjectID = "J55-54-Y9P"; */
+"J55-54-Y9P.text" = "ОАО \"ТНК-BP\"";
+
+/* Class = "UIButton"; normalTitle = "Add Projects"; ObjectID = "JYI-fm-ewf"; */
+"JYI-fm-ewf.normalTitle" = "Выбрать проекты";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Jyk-0G-IPw"; */
+"Jyk-0G-IPw.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = "Projects count:"; ObjectID = "LgZ-Ei-i1G"; */
+"LgZ-Ei-i1G.text" = "Количество проектов:";
+
+/* Class = "UITextField"; placeholder = "login"; ObjectID = "Lk8-rz-wTY"; */
+"Lk8-rz-wTY.placeholder" = "логин";
+
+/* Class = "UILabel"; text = "Customer:"; ObjectID = "M8E-Oy-d8k"; */
+"M8E-Oy-d8k.text" = "Заказчик:";
+
+/* Class = "UILabel"; text = "Participants:"; ObjectID = "N0G-iY-eKB"; */
+"N0G-iY-eKB.text" = "Участников:";
+
+/* Class = "UINavigationItem"; title = "Edit project"; ObjectID = "NDo-iR-EiE"; */
+"NDo-iR-EiE.title" = "Редактировать проект";
+
+/* Class = "UITabBarItem"; title = "Collaboration"; ObjectID = "NQL-Kz-P0a"; */
+"NQL-Kz-P0a.title" = "Чат с коллегами";
+
+/* Class = "UINavigationItem"; title = "New project"; ObjectID = "Nad-G0-Re4"; */
+"Nad-G0-Re4.title" = "Новый проект";
+
+/* Class = "UITextField"; placeholder = "Enter First Name"; ObjectID = "NhO-Mz-4EQ"; */
+"NhO-Mz-4EQ.placeholder" = "Введите имя";
+
+/* Class = "UIBarButtonItem"; title = "Show"; ObjectID = "OA9-hB-eDf"; */
+"OA9-hB-eDf.title" = "Показать";
+
+/* Class = "UINavigationItem"; title = "New project"; ObjectID = "OBx-gm-z5D"; */
+"OBx-gm-z5D.title" = "Новый проект";
+
+/* Class = "UILabel"; text = "Project Participants"; ObjectID = "OHT-k3-KPR"; */
+"OHT-k3-KPR.text" = "Участники проекта";
+
+/* Class = "UILabel"; text = "100 %"; ObjectID = "OKR-IC-LUs"; */
+"OKR-IC-LUs.text" = "100 %";
+
+/* Class = "UITextField"; placeholder = "customer"; ObjectID = "PdZ-xm-XbU"; */
+"PdZ-xm-XbU.placeholder" = "наименование заказчика";
+
+/* Class = "UILabel"; text = "Designing LAN/WLAN for office building"; ObjectID = "Q6y-Ve-Tew"; */
+"Q6y-Ve-Tew.text" = "Designing LAN/WLAN for office building";
+
+/* Class = "UIBarButtonItem"; title = "Logout"; ObjectID = "Q73-ac-mza"; */
+"Q73-ac-mza.title" = "Выйти";
+
+/* Class = "UILabel"; text = "ОАО \"ТНК-BP\""; ObjectID = "Qyx-jd-wsL"; */
+"Qyx-jd-wsL.text" = "ОАО \"ТНК-BP\"";
+
+/* Class = "UILabel"; text = "First Name:"; ObjectID = "RD5-0s-RXE"; */
+"RD5-0s-RXE.text" = "Имя:";
+
+/* Class = "UITextField"; placeholder = "project title"; ObjectID = "RFh-CU-8Kl"; */
+"RFh-CU-8Kl.placeholder" = "название проекта";
+
+/* Class = "UITextField"; placeholder = "Enter Phone Number"; ObjectID = "RWQ-Xj-QpR"; */
+"RWQ-Xj-QpR.placeholder" = "Введите номер телефона";
+
+/* Class = "UILabel"; text = "Anton Novoselov"; ObjectID = "Snd-Zl-eae"; */
+"Snd-Zl-eae.text" = "Anton Novoselov";
+
+/* Class = "UINavigationItem"; title = "Photo preview"; ObjectID = "T5I-KI-7Ti"; */
+"T5I-KI-7Ti.title" = "Фото";
+
+/* Class = "UILabel"; text = "You may create as many accounts as you need. You man create accounts with different Group Identifiers - to have possibility to collaborate with various coallegues groups"; ObjectID = "TEa-8p-S7v"; */
+"TEa-8p-S7v.text" = "Вы можете создавать любое количество учетных записей с различными Идентификаторами Группы, чтобы иметь возможность общаться с различными группами Ваших коллег";
+
+/* Class = "UILabel"; text = "01.09.2016"; ObjectID = "TL2-ut-TiH"; */
+"TL2-ut-TiH.text" = "01.09.2016";
+
+/* Class = "UISegmentedControl"; U84-hK-Lg0.segmentTitles[0] = "Nonactive"; ObjectID = "U84-hK-Lg0"; */
+"U84-hK-Lg0.segmentTitles[0]" = "Неактивно";
+
+/* Class = "UISegmentedControl"; U84-hK-Lg0.segmentTitles[1] = "Waiting"; ObjectID = "U84-hK-Lg0"; */
+"U84-hK-Lg0.segmentTitles[1]" = "Ожидание";
+
+/* Class = "UISegmentedControl"; U84-hK-Lg0.segmentTitles[2] = "Active"; ObjectID = "U84-hK-Lg0"; */
+"U84-hK-Lg0.segmentTitles[2]" = "Активно";
+
+/* Class = "UILabel"; text = "Email:"; ObjectID = "Uns-yl-1hJ"; */
+"Uns-yl-1hJ.text" = "Email:";
+
+/* Class = "UISegmentedControl"; Uum-Fm-RCQ.segmentTitles[0] = "Nonactive"; ObjectID = "Uum-Fm-RCQ"; */
+"Uum-Fm-RCQ.segmentTitles[0]" = "Неактивно";
+
+/* Class = "UISegmentedControl"; Uum-Fm-RCQ.segmentTitles[1] = "Wating"; ObjectID = "Uum-Fm-RCQ"; */
+"Uum-Fm-RCQ.segmentTitles[1]" = "Ожидание";
+
+/* Class = "UISegmentedControl"; Uum-Fm-RCQ.segmentTitles[2] = "Active"; ObjectID = "Uum-Fm-RCQ"; */
+"Uum-Fm-RCQ.segmentTitles[2]" = "Активно";
+
+/* Class = "UITextField"; placeholder = "Enter Last Name"; ObjectID = "Uvx-RS-beR"; */
+"Uvx-RS-beR.placeholder" = "Введите фамилию";
+
+/* Class = "UITabBarItem"; title = "Projects"; ObjectID = "VNE-sT-rk7"; */
+"VNE-sT-rk7.title" = "Проекты";
+
+/* Class = "UILabel"; text = "Designing LAN/WLAN for office building"; ObjectID = "Vnb-KY-3a7"; */
+"Vnb-KY-3a7.text" = "Designing LAN/WLAN for office building";
+
+/* Class = "UITextField"; placeholder = "Enter Email"; ObjectID = "WDJ-zc-639"; */
+"WDJ-zc-639.placeholder" = "Введите Email";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "WDo-77-ulG"; */
+"WDo-77-ulG.text" = "0";
+
+/* Class = "UILabel"; text = "Group Identifier"; ObjectID = "WNm-gx-pf3"; */
+"WNm-gx-pf3.text" = "Идентификатор Группы";
+
+/* Class = "UITextField"; placeholder = "Enter Email"; ObjectID = "WOo-Lb-YtZ"; */
+"WOo-Lb-YtZ.placeholder" = "Введите Email";
+
+/* Class = "UITextField"; placeholder = "customer"; ObjectID = "Xf2-AN-rsS"; */
+"Xf2-AN-rsS.placeholder" = "наименование заказчика";
+
+/* Class = "UILabel"; text = "ОАО \"ТНК-BP\""; ObjectID = "Xnv-M7-OHI"; */
+"Xnv-M7-OHI.text" = "ОАО \"ТНК-BP\"";
+
+/* Class = "UILabel"; text = "Anton Novoselov"; ObjectID = "YY7-qi-N6V"; */
+"YY7-qi-N6V.text" = "Anton Novoselov";
+
+/* Class = "UILabel"; text = "No projects due with selected date"; ObjectID = "YiS-yd-IH3"; */
+"YiS-yd-IH3.text" = "Нет проектов со сроком выполнения в выбранную дату";
+
+/* Class = "UILabel"; text = "Designing LAN/WLAN for office building"; ObjectID = "YsB-jf-klI"; */
+"YsB-jf-klI.text" = "Designing LAN/WLAN for office building";
+
+/* Class = "UILabel"; text = "30/12/1983"; ObjectID = "ZY0-LA-URl"; */
+"ZY0-LA-URl.text" = "30/12/1983";
+
+/* Class = "UITabBarItem"; title = "Calendar"; ObjectID = "ZpJ-hh-lbe"; */
+"ZpJ-hh-lbe.title" = "Календарь";
+
+/* Class = "UINavigationItem"; title = "Edit coallegue info"; ObjectID = "Zr4-Ug-tBw"; */
+"Zr4-Ug-tBw.title" = "Редактировать информацию о коллеге";
+
+/* Class = "UILabel"; text = "Should remind:"; ObjectID = "Zxd-Qd-dX0"; */
+"Zxd-Qd-dX0.text" = "Напомнить:";
+
+/* Class = "UILabel"; text = "Participants:"; ObjectID = "b1U-kE-kyL"; */
+"b1U-kE-kyL.text" = "Участников:";
+
+/* Class = "UILabel"; text = "Phone Number:"; ObjectID = "b8H-WT-cvZ"; */
+"b8H-WT-cvZ.text" = "Номер телефона:";
+
+/* Class = "UILabel"; text = "30/12/1983"; ObjectID = "b9L-DR-MTQ"; */
+"b9L-DR-MTQ.text" = "30/12/1983";
+
+/* Class = "UILabel"; text = "100 %"; ObjectID = "cAc-S5-dvo"; */
+"cAc-S5-dvo.text" = "100 %";
+
+/* Class = "UILabel"; text = "01.09.2016"; ObjectID = "cCy-GJ-kPG"; */
+"cCy-GJ-kPG.text" = "01.09.2016";
+
+/* Class = "UILabel"; text = "Due date:"; ObjectID = "dHS-Dq-1ns"; */
+"dHS-Dq-1ns.text" = "Срок выполнения:";
+
+/* Class = "UITableViewSection"; headerTitle = "Name"; ObjectID = "dwI-Vr-ywe"; */
+"dwI-Vr-ywe.headerTitle" = "Имя";
+
+/* Class = "UILabel"; text = "Designing LAN/WLAN for office building"; ObjectID = "esc-yD-Cua"; */
+"esc-yD-Cua.text" = "Designing LAN/WLAN for office building";
+
+/* Class = "UILabel"; text = "Collaboration with coallegues"; ObjectID = "f4v-L0-sk8"; */
+"f4v-L0-sk8.text" = "Чат с коллегами";
+
+/* Class = "UINavigationItem"; title = "Коллеги"; ObjectID = "fcc-L3-TqK"; */
+"fcc-L3-TqK.title" = "Коллеги";
+
+/* Class = "UINavigationItem"; title = "Projects"; ObjectID = "fx2-Sc-Qgj"; */
+"fx2-Sc-Qgj.title" = "Проекты";
+
+/* Class = "UILabel"; text = "Message..."; ObjectID = "gsh-GK-emd"; */
+"gsh-GK-emd.text" = "Сообщение...";
+
+/* Class = "UITextField"; placeholder = "coallegues group (company)"; ObjectID = "gy1-P7-QJu"; */
+"gy1-P7-QJu.placeholder" = "группа коллег (компания)";
+
+/* Class = "UINavigationItem"; title = "Coallegues"; ObjectID = "h7t-Yz-mU4"; */
+"h7t-Yz-mU4.title" = "Коллеги";
+
+/* Class = "UILabel"; text = "ОАО \"ТНК-BP\""; ObjectID = "iAD-ec-m9S"; */
+"iAD-ec-m9S.text" = "ОАО \"ТНК-BP\"";
+
+/* Class = "UILabel"; text = "If you know Group Identifier of your coallegues group - enter it to this field"; ObjectID = "id5-KW-M21"; */
+"id5-KW-M21.text" = "Если Вы знаете Идентификатор Группы, созданный ранее Вашими коллегами - введите его в это поле";
+
+/* Class = "UINavigationItem"; title = "Add coallegue"; ObjectID = "itW-6P-3DQ"; */
+"itW-6P-3DQ.title" = "Добавить коллегу";
+
+/* Class = "UILabel"; text = "01.09.2016"; ObjectID = "jhI-cg-MRO"; */
+"jhI-cg-MRO.text" = "01.09.2016";
+
+/* Class = "UILabel"; text = "Last Name:"; ObjectID = "kJm-Dc-CSm"; */
+"kJm-Dc-CSm.text" = "Фамилия:";
+
+/* Class = "UILabel"; text = "Should remind:"; ObjectID = "kNp-JW-mUx"; */
+"kNp-JW-mUx.text" = "Напомнить:";
+
+/* Class = "UITextField"; placeholder = "customer"; ObjectID = "khC-k9-HcW"; */
+"khC-k9-HcW.placeholder" = "наименование заказчика";
+
+/* Class = "UILabel"; text = "Due date:"; ObjectID = "klM-oJ-HIb"; */
+"klM-oJ-HIb.text" = "Срок выполнения:";
+
+/* Class = "UILabel"; text = "Participants:"; ObjectID = "kn2-fv-Iwu"; */
+"kn2-fv-Iwu.text" = "Участников:";
+
+/* Class = "UILabel"; text = "Project:"; ObjectID = "knr-oj-HbW"; */
+"knr-oj-HbW.text" = "Проект:";
+
+/* Class = "UITextField"; placeholder = "email"; ObjectID = "ktN-Jm-u8f"; */
+"ktN-Jm-u8f.placeholder" = "email";
+
+/* Class = "UINavigationItem"; title = "Finished projects"; ObjectID = "lJk-iM-7G1"; */
+"lJk-iM-7G1.title" = "Завершенные проекты";
+
+/* Class = "UILabel"; text = "Readiness:"; ObjectID = "lNT-sf-nH7"; */
+"lNT-sf-nH7.text" = "Степень готовности:";
+
+/* Class = "UITextField"; placeholder = "login"; ObjectID = "leW-hX-mL6"; */
+"leW-hX-mL6.placeholder" = "логин";
+
+/* Class = "UILabel"; text = "Readiness:"; ObjectID = "mFh-wD-wsj"; */
+"mFh-wD-wsj.text" = "Степень готовности:";
+
+/* Class = "UILabel"; text = "First Name:"; ObjectID = "ms1-ex-EnG"; */
+"ms1-ex-EnG.text" = "Имя:";
+
+/* Class = "UILabel"; text = "Projects of coallegue"; ObjectID = "nK1-v1-62w"; */
+"nK1-v1-62w.text" = "Проекты коллеги";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "ne2-mc-oGr"; */
+"ne2-mc-oGr.text" = "7";
+
+/* Class = "UILabel"; text = "Projects count:"; ObjectID = "ngE-CG-W2N"; */
+"ngE-CG-W2N.text" = "Количество проектов:";
+
+/* Class = "UILabel"; text = "Should remind:"; ObjectID = "o5w-F2-Zao"; */
+"o5w-F2-Zao.text" = "Напомнить:";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "oLf-fM-7At"; */
+"oLf-fM-7At.placeholder" = "пароль";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "oil-bP-8MN"; */
+"oil-bP-8MN.normalTitle" = "Создать учетную запись";
+
+/* Class = "UILabel"; text = "ОАО \"ТНК-BP\""; ObjectID = "p5x-F7-cr7"; */
+"p5x-F7-cr7.text" = "ОАО \"ТНК-BP\"";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "pJl-jm-tiE"; */
+"pJl-jm-tiE.title" = "Title";
+
+/* Class = "UILabel"; text = "Project:"; ObjectID = "pJz-RS-3OS"; */
+"pJz-RS-3OS.text" = "Название проекта:";
+
+/* Class = "UILabel"; text = "01.09.2016"; ObjectID = "ptd-1a-Au3"; */
+"ptd-1a-Au3.text" = "01.09.2016";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "qYB-Po-njP"; */
+"qYB-Po-njP.text" = "7";
+
+/* Class = "UISegmentedControl"; rXf-fQ-MnX.segmentTitles[0] = "Nonactive"; ObjectID = "rXf-fQ-MnX"; */
+"rXf-fQ-MnX.segmentTitles[0]" = "Неактивно";
+
+/* Class = "UISegmentedControl"; rXf-fQ-MnX.segmentTitles[1] = "Wating"; ObjectID = "rXf-fQ-MnX"; */
+"rXf-fQ-MnX.segmentTitles[1]" = "Ожидание";
+
+/* Class = "UISegmentedControl"; rXf-fQ-MnX.segmentTitles[2] = "Active"; ObjectID = "rXf-fQ-MnX"; */
+"rXf-fQ-MnX.segmentTitles[2]" = "Активно";
+
+/* Class = "UILabel"; text = "Readiness:"; ObjectID = "rdn-wN-y1z"; */
+"rdn-wN-y1z.text" = "Степень готовности:";
+
+/* Class = "UIButton"; normalTitle = "Add Participants"; ObjectID = "s8S-fn-FCA"; */
+"s8S-fn-FCA.normalTitle" = "Выбрать участников";
+
+/* Class = "UILabel"; text = "7"; ObjectID = "sBS-Ox-SUG"; */
+"sBS-Ox-SUG.text" = "7";
+
+/* Class = "UILabel"; text = "Anton Novoselov"; ObjectID = "tXI-5d-NW7"; */
+"tXI-5d-NW7.text" = "Anton Novoselov";
+
+/* Class = "UILabel"; text = "Designing LAN/WLAN for office building"; ObjectID = "tsq-Dd-vQ5"; */
+"tsq-Dd-vQ5.text" = "Designing LAN/WLAN for office building";
+
+/* Class = "UINavigationItem"; title = "Chat"; ObjectID = "uIV-Ex-3AQ"; */
+"uIV-Ex-3AQ.title" = "Чат";
+
+/* Class = "UILabel"; text = "Customer:"; ObjectID = "uPA-vM-6sq"; */
+"uPA-vM-6sq.text" = "Заказчик:";
+
+/* Class = "UITextField"; placeholder = "project title"; ObjectID = "uWY-VD-xAV"; */
+"uWY-VD-xAV.placeholder" = "название проекта";
+
+/* Class = "UILabel"; text = "100 %"; ObjectID = "upI-Rx-BZ6"; */
+"upI-Rx-BZ6.text" = "100 %";
+
+/* Class = "UILabel"; text = "01.09.2016"; ObjectID = "v9M-BX-gAv"; */
+"v9M-BX-gAv.text" = "01.09.2016";
+
+/* Class = "UILabel"; text = "Phone:"; ObjectID = "vsj-Jf-RrK"; */
+"vsj-Jf-RrK.text" = "Номер телефона:";
+
+/* Class = "UINavigationItem"; title = "Coallegues"; ObjectID = "x8i-XJ-aOg"; */
+"x8i-XJ-aOg.title" = "Коллеги";
+
+/* Class = "UIButton"; normalTitle = "Go"; ObjectID = "xkZ-b6-0eI"; */
+"xkZ-b6-0eI.normalTitle" = "Go";
+
+/* Class = "UITextField"; placeholder = "Enter Phone Number"; ObjectID = "xrW-Yt-7xC"; */
+"xrW-Yt-7xC.placeholder" = "Введите номер телефона";
+
+/* Class = "UILabel"; text = "Done:"; ObjectID = "xuq-Z8-8sD"; */
+"xuq-Z8-8sD.text" = "Выполнено:";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "xxg-fy-ujm"; */
+"xxg-fy-ujm.placeholder" = "пароль";
+
+/* Class = "UILabel"; text = "Designing LAN/WLAN for office building"; ObjectID = "y9I-1h-WZD"; */
+"y9I-1h-WZD.text" = "Designing LAN/WLAN for office building";
+
+/* Class = "UILabel"; text = "30/12/1983"; ObjectID = "zzn-Og-kc5"; */
+"zzn-Og-kc5.text" = "30/12/1983";
