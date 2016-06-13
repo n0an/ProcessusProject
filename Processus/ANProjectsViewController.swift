@@ -38,12 +38,9 @@ class ANProjectsViewController: UIViewController {
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 80
         
-//        navigationItem.leftBarButtonItem = editButtonItem()
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
-//        tableView.tableFooterView = UIView(frame: CGRectZero) // FAIL WITH SEARCHCONTROLLER
-
         
         let fetchRequest = NSFetchRequest(entityName: "Project")
         let dueDateDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
@@ -113,7 +110,7 @@ class ANProjectsViewController: UIViewController {
     
     @IBAction func addProjectPressed(sender: UIBarButtonItem) {
         
-        print("addProjectPressed")
+        
     }
     
     
@@ -130,20 +127,6 @@ class ANProjectsViewController: UIViewController {
             controller.delegate = self
             
         } else if segue.identifier == "showProjectDetails" {
-            
-            
-            // === Variant - go directly to ANNewProjectTableViewController, withod IntermediateVC ===
-            /*
-             let navigationController = segue.destinationViewController as! UINavigationController
-             
-             let controller = navigationController.topViewController as! ANNewProjectTableViewController
-             
-             if let clickedIndexPath = tableView.indexPathForCell(sender as! ANPersonProjectCell) {
-             guard let project = fetchedResultsController?.objectAtIndexPath(clickedIndexPath) as? Project else {return}
-             
-             controller.itemToEdit = project
-             }
-             */
             
             
             let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
@@ -217,14 +200,7 @@ extension ANProjectsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-//        guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
-//        
-//        if editingStyle == .Delete {
-//            let context = ANDataManager.sharedManager.context
-//            context.deleteObject(project)
-//            
-//            ANDataManager.sharedManager.saveContext()
-//        }
+
     }
     
     
@@ -297,7 +273,7 @@ extension ANProjectsViewController: UITableViewDelegate {
             SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_PROJECT_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
                 if isOtherButton == true {
                     
-                    print("Cancel Button  Pressed", terminator: "")
+                    
                 }
                 else {
                     
@@ -396,7 +372,7 @@ extension ANProjectsViewController: UISearchResultsUpdating {
 
 extension ANProjectsViewController: ANProjectDetailsVCDelegate {
     func projectEditingDidEndForProject(project: Project) {
-        print("projectEditingDidEndForProject")
+        
     }
 }
 
@@ -406,18 +382,18 @@ extension ANProjectsViewController: ANProjectDetailsVCDelegate {
 
 extension ANProjectsViewController: ANNewProjectTableViewControllerDelegate {
     func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
-        print("projectDetailsVCDidCancel")
+        
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
-        print("projectDetailsVC didFinishAddingItem")
+        
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
     func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
-        print("projectDetailsVC didFinishEditingItem")
+        
         
     }
 }

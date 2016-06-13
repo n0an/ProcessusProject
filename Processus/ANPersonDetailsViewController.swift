@@ -45,7 +45,6 @@ class ANPersonDetailsViewController: UITableViewController {
     var newPersonPhoneNumber: String!
     
 
-//    var dateFormatter: NSDateFormatter!
     
     var person: Person!
     
@@ -73,8 +72,6 @@ class ANPersonDetailsViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = editButtonItem()
         
-//        dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "dd.MM.YYYY"
         
         tableView.allowsSelectionDuringEditing = true
         
@@ -82,7 +79,7 @@ class ANPersonDetailsViewController: UITableViewController {
     }
     
     deinit {
-        print("deinit")
+        
         delegate?.personEditingDidEndForPerson(person)
     }
     
@@ -90,22 +87,6 @@ class ANPersonDetailsViewController: UITableViewController {
     
     // MARK: - HELPER METHODS
     
-    func dueDateSoonForProject(project: Project) -> Bool {
-        
-        let currentDate = NSDate()
-        
-        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        print(timeLeft)
-        
-        // If there're less than 5 days befor deadline - activate warning sign
-        if timeLeft < 5 * 24 * 3600  && timeLeft > 0 {
-            return true
-        }
-        
-        return false
-        
-    }
-
     
     func updateInitialCredentials() {
         // Saving initial credentials
@@ -244,8 +225,6 @@ class ANPersonDetailsViewController: UITableViewController {
             person.email        = newPersonEmail
             person.phoneNumber  = newPersonPhoneNumber
             
-//            person.image = UIImagePNGRepresentation(cell.avatarImageView.image!)
-            
             person.image = UIImageJPEGRepresentation(cell.avatarImageView.image!, 1.0)
 
             
@@ -288,7 +267,6 @@ class ANPersonDetailsViewController: UITableViewController {
             cell.participantsCountLabel.text = "\(participantsCount)"
         }
         
-//        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
         ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
 
     }
@@ -297,7 +275,6 @@ class ANPersonDetailsViewController: UITableViewController {
     // MARK: - ACTIONS
     
     @IBAction func addButtonPressed(sender: AnyObject) {
-        print("addButtonPressed")
         
         transitToProjectSelection()
     }
@@ -588,7 +565,6 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
 extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegate {
     
     func projectSelectionDidFinish(selectedProjects: [Project]) {
-        print("projectSelectionDidFinish")
         
         personProjects = selectedProjects
         

@@ -15,7 +15,6 @@ class ANGroupInfoViewController: UIViewController {
         
         let backButton = UIBarButtonItem(title: "OK", style: .Plain, target: self, action: #selector(ANGroupInfoViewController.backPressed(_:)))
         
-        
         self.navigationItem.rightBarButtonItem = backButton
         
     }

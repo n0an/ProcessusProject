@@ -29,7 +29,6 @@ class ANProjectSelectionViewController: UITableViewController {
     
     weak var delegate: ANProjectSelectionViewControllerDelegate!
     
-//    var dateFormatter: NSDateFormatter!
 
     
     // MARK: - viewDidLoad
@@ -39,12 +38,7 @@ class ANProjectSelectionViewController: UITableViewController {
         
         title = NSLocalizedString("PROJECTSELECTIONVC_TITLE", comment: "")
         
-//        dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "dd.MM.YYYY"
-        
         let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
-        
-//        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
         
@@ -53,22 +47,6 @@ class ANProjectSelectionViewController: UITableViewController {
     
     // MARK: - HELPER METHODS
     
-    func dueDateSoonForProject(project: Project) -> Bool {
-        
-        let currentDate = NSDate()
-        
-        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
-        print(timeLeft)
-        
-        // If there're less than 5 days befor deadline - activate warning sign
-        if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {
-            return true
-        }
-        
-        return false
-        
-    }
-
     
     func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
         
@@ -86,10 +64,7 @@ class ANProjectSelectionViewController: UITableViewController {
 
         }
         
-//        ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project)
         ANConfigurator.sharedConfigurator.configureProjectCell(cell, forProject: project, viewWidth: view.bounds.width)
-
-
         
     }
 

@@ -87,8 +87,6 @@ class ANEditProjectTableViewController: UITableViewController {
             shouldRemindSwitch.on = (item.shouldRemind?.boolValue)!
 
             
-            // shouldRemindSwitch.on = item.shouldRemind
-            
             // Saving initial credentials
             customerName    = item.customer
             projectTitle    = item.name
@@ -101,9 +99,6 @@ class ANEditProjectTableViewController: UITableViewController {
         
         ANConfigurator.sharedConfigurator.customizeSlider(progressSlider)
 
-        
-        
-//        let rightButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
         
         let rightButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(ANEditProjectTableViewController.editPressed(_:)))
         
@@ -121,7 +116,6 @@ class ANEditProjectTableViewController: UITableViewController {
     
     deinit {
         
-        print("ANEditProjectTableViewController deinit")
         
         delegate?.projectEditingDidEndForProject(itemToEdit!)
     }
@@ -276,9 +270,7 @@ class ANEditProjectTableViewController: UITableViewController {
                 return
             }
             
-            // if no error - save it!
-            
-
+        
             save()
             
         }
@@ -293,15 +285,12 @@ class ANEditProjectTableViewController: UITableViewController {
     
     @IBAction func actionProgressSliderValueChanged(sender: UISlider) {
         
-        print("actionProgressSliderValueChanged")
-        
         updateProgressLabel()
         
     }
     
     
     @IBAction func actionStateSegmControlValueChanged(sender: UISegmentedControl) {
-        print("actionStateSegmControlValueChanged")
         
         updateStateView()
         

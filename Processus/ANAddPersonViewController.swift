@@ -10,11 +10,6 @@ import UIKit
 import CoreData
 
 
-
-//let localNumberMaxLength = 7
-//let areaCodeMaxLength = 3
-//let countryCodeMaxLength = 3
-
 class ANAddPersonViewController: UITableViewController {
 
     // MARK: - OUTLETS
@@ -70,7 +65,7 @@ class ANAddPersonViewController: UITableViewController {
     }
     
     @IBAction func cancel() {
-//        performSegueWithIdentifier("unwindBackToHomeScreen", sender: self)
+
         self.dismissViewControllerAnimated(true, completion: nil)
 
     }

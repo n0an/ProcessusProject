@@ -35,13 +35,9 @@ class ANPeopleViewController: UIViewController {
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
         
-//        navigationItem.leftBarButtonItem = editButtonItem()
-        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
-//        tableView.tableFooterView = UIView(frame: CGRectZero) // FAIL WITH SEARCHCONTROLLER
-        
-        
+
         
         // Loading data from DB
         
@@ -62,21 +58,6 @@ class ANPeopleViewController: UIViewController {
             print("There was a problem fetching.")
         }
         
-        /*
-        let fetchRequest = NSFetchRequest(entityName: "Person")
-        let sortDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        
-        do {
-            try myColleagues = ANDataManager.sharedManager.context.executeFetchRequest(fetchRequest) as! [Person]
-
-        } catch {
-            let error = error as NSError
-            print("Fetch non successful. error occured: \(error.localizedDescription)")
-        }
-        */
         
         myColleagues = fetchedResultsController.fetchedObjects as! [Person]
         
@@ -237,11 +218,7 @@ extension ANPeopleViewController: UITableViewDelegate {
                     
                     mailComposeVC.setSubject(NSLocalizedString("EMAIL_SUBJECT", comment: "") + subjectSuffix)
                     
-                    
-//                    mailComposeVC.navigationBar.tintColor = UIColor.whiteColor()
-                    
                     self.presentViewController(mailComposeVC, animated: true, completion: {
-                        //                    UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
                     })
                     
                     
@@ -249,23 +226,6 @@ extension ANPeopleViewController: UITableViewDelegate {
             }
 
             
-            // Contact ways for future releases
-            /*
-            let allShareActionMenu = UIAlertController(title: nil, message: "Contact with", preferredStyle: .ActionSheet)
-            
-            let emailShareAction = UIAlertAction(title: "Email", style: .Default, handler: nil)
-            let facebookShareAction = UIAlertAction(title: "Facebook", style: .Default, handler: nil)
-            let vkShareAction = UIAlertAction(title: "VK", style: .Default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            
-            allShareActionMenu.addAction(emailShareAction)
-            allShareActionMenu.addAction(facebookShareAction)
-            allShareActionMenu.addAction(vkShareAction)
-            allShareActionMenu.addAction(cancelAction)
-            
-            
-            self.presentViewController(allShareActionMenu, animated: true, completion: nil)
-            */
         }
         
         // Creating our own Delete button
@@ -273,12 +233,10 @@ extension ANPeopleViewController: UITableViewDelegate {
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             
             
-            
-            
             SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
                 if isOtherButton == true {
                     
-                    print("Cancel Button  Pressed", terminator: "")
+//                    print("Cancel Button  Pressed", terminator: "")
                 }
                 else {
                     
