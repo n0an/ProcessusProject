@@ -258,7 +258,8 @@ class ANProjectDetailsViewController: UIViewController {
                 let participants = projectToClear.workers?.allObjects as! [Person]
                 
                 for person in participants {
-                    projectToClear.remove(workerObject: person)
+                    projectToClear?.removeFromWorkers(person)
+//                    projectToClear.remove(workerObject: person) // Swift 2 OLD
                 }
                 
                 let managedObjectContext = ANDataManager.sharedManager.context
@@ -571,7 +572,8 @@ extension ANProjectDetailsViewController: UITableViewDelegate {
             
             let person = projectParticipants[indexPath.row]
             
-            project.remove(workerObject: person)
+//            project.remove(workerObject: person) // Swift 2 OLD
+            project.removeFromWorkers(person)
             
             projectParticipants = project.workers?.allObjects as! [Person]
             

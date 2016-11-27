@@ -113,9 +113,11 @@ class ANProjectSelectionViewController: UITableViewController {
         
         
         if (person.projects!.contains(project)) {
-            person.remove(projectObject: project)
+            person.removeFromProjects(project)
+//            person.remove(projectObject: project) // Swift 2 OLD
         } else {
-            person.add(projectObject: project)
+            person.addToProjects(project)
+//            person.add(projectObject: project) // Swift 2 OLD
         }
         
         selectedProjects = person.projects?.allObjects as! [Project]

@@ -133,10 +133,14 @@ class ANPeopleSelectionViewController: UIViewController {
         
         if project.workers!.contains(person) {
             
-            project.remove(workerObject: person)
+            project.removeFromWorkers(person)
+            
+//            project.remove(workerObject: person) // Swift 2 OLD
             
         } else {
-            project.add(workerObject: person)
+            
+            project.addToWorkers(person)
+//            project.add(workerObject: person) // Swift 2 OLD
         }
 
         selectedPeople = project.workers?.allObjects as! [Person]

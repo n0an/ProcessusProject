@@ -487,7 +487,9 @@ class ANPersonDetailsViewController: UITableViewController {
             
             let project = personProjects[indexPath.row]
             
-            person.remove(projectObject: project)
+            person.removeFromProjects(project)
+            
+//            person.remove(projectObject: project) // Swift 2 Old
             
             personProjects = person.projects?.allObjects as! [Project]
             
