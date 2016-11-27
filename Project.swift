@@ -20,21 +20,21 @@ class Project: NSManagedObject {
     // MARK: - CORE DATA ADDON FOR RELATIONSHIPS MANIPULATION
     
     func remove(workerObject person: Person) {
-        mutableSetValueForKey("workers").removeObject(person)
+        mutableSetValue(forKey: "workers").remove(person)
     }
     
     func add(workerObject person: Person) {
-        mutableSetValueForKey("workers").addObject(person)
+        mutableSetValue(forKey: "workers").add(person)
     }
 
     
     // MARK: - PRIVATE METHODS
     
-    private func notificationForThisItem() -> UILocalNotification? {
-        let allNotifications = UIApplication.sharedApplication().scheduledLocalNotifications!
+    fileprivate func notificationForThisItem() -> UILocalNotification? {
+        let allNotifications = UIApplication.shared.scheduledLocalNotifications!
         
         for notification in allNotifications {
-            if let number = notification.userInfo?["ProjectID"] as? Int where number == projectId {
+            if let number = notification.userInfo?["ProjectID"] as? Int, number == projectId {
                 return notification
             }
         }
@@ -48,7 +48,7 @@ class Project: NSManagedObject {
         if let notification = notificationForThisItem() {
             print("Removing existing notification \(notification)")
             
-            UIApplication.sharedApplication().cancelLocalNotification(notification)
+            UIApplication.shared.cancelLocalNotification(notification)
         }
     }
     
@@ -61,25 +61,25 @@ class Project: NSManagedObject {
         let existingNotification = notificationForThisItem()
         if let notification = existingNotification {
             print("Found an existing notification \(notification)")
-            UIApplication.sharedApplication().cancelLocalNotification(notification)
+            UIApplication.shared.cancelLocalNotification(notification)
         }
         
-        if shouldRemind!.boolValue && dueDate!.compare(NSDate()) != .OrderedAscending {
+        if shouldRemind!.boolValue && dueDate!.compare(Date()) != .orderedAscending {
             
             let localNotification = UILocalNotification()
-            localNotification.fireDate = dueDate
+            localNotification.fireDate = dueDate as Date?
             
-            localNotification.timeZone = NSTimeZone.defaultTimeZone()
+            localNotification.timeZone = TimeZone.current
             
             localNotification.alertBody = name
             
             localNotification.soundName = UILocalNotificationDefaultSoundName
             
-            localNotification.userInfo = ["ProjectID": projectId!.integerValue]
+            localNotification.userInfo = ["ProjectID": projectId!.intValue]
             
-            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            UIApplication.shared.scheduleLocalNotification(localNotification)
             
-            print("Scheduled notification \(localNotification) for projectId \(projectId!.integerValue)")
+            print("Scheduled notification \(localNotification) for projectId \(projectId!.intValue)")
 
         }
         

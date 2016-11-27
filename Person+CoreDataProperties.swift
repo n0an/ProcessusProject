@@ -19,7 +19,7 @@ extension Person {
     @NSManaged var lastName: String?
     @NSManaged var personId: String?
     @NSManaged var phoneNumber: String?
-    @NSManaged var image: NSData?
+    @NSManaged var image: Data?
     @NSManaged var projects: NSSet?
 
 }

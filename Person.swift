@@ -19,11 +19,11 @@ class Person: NSManagedObject {
     // MARK: - CORE DATA ADDON FOR RELATIONSHIPS MANIPULATION
 
     func remove(projectObject project: Project) {
-        mutableSetValueForKey("projects").removeObject(project)
+        mutableSetValue(forKey: "projects").remove(project)
     }
     
     func add(projectObject project: Project) {
-        mutableSetValueForKey("projects").addObject(project)
+        mutableSetValue(forKey: "projects").add(project)
     }
     
     

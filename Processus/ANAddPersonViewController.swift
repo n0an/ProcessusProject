@@ -8,6 +8,30 @@
 
 import UIKit
 import CoreData
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 class ANAddPersonViewController: UITableViewController {
@@ -33,14 +57,14 @@ class ANAddPersonViewController: UITableViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ANAddPersonViewController.avatarImageViewTapped(_:)))
         
-        avatarImageView.userInteractionEnabled = true
+        avatarImageView.isUserInteractionEnabled = true
         
         avatarImageView.addGestureRecognizer(tapGesture)
         
         tableView.allowsSelection = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         firstNameTextField.becomeFirstResponder()
@@ -50,23 +74,23 @@ class ANAddPersonViewController: UITableViewController {
     
     // MARK: - Actions
     
-    func avatarImageViewTapped(sender: UITapGestureRecognizer) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+    func avatarImageViewTapped(_ sender: UITapGestureRecognizer) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             
-            let navController = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingNavController") as! UINavigationController
+            let navController = storyboard?.instantiateViewController(withIdentifier: "ANPhotoAddingNavController") as! UINavigationController
             
             let destVC = navController.viewControllers[0] as! ANPhotoAddingViewController
             
             destVC.delegate = self
             
-            presentViewController(navController, animated: true, completion: nil)
+            present(navController, animated: true, completion: nil)
             
         }
     }
     
     @IBAction func cancel() {
 
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
 
     }
     
@@ -85,13 +109,13 @@ class ANAddPersonViewController: UITableViewController {
 
         if error != "" {
             
-            let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
             
             alertController.addAction(okAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             
             return
         }
@@ -99,7 +123,7 @@ class ANAddPersonViewController: UITableViewController {
         
         let context = ANDataManager.sharedManager.context
         
-        let person = NSEntityDescription.insertNewObjectForEntityForName("Person", inManagedObjectContext: context) as! Person
+        let person = NSEntityDescription.insertNewObject(forEntityName: "Person", into: context) as! Person
         
         person.firstName    = textFields[0].text!
         person.lastName     = textFields[1].text!
@@ -112,12 +136,12 @@ class ANAddPersonViewController: UITableViewController {
         ANDataManager.sharedManager.saveContext()
         
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
         textFields.forEach{
             $0.resignFirstResponder()
@@ -139,23 +163,23 @@ class ANAddPersonViewController: UITableViewController {
 // MARK: - UITextFieldDelegate
 
 extension ANAddPersonViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField === textFields.last{
             
             textField.resignFirstResponder()
             
         } else {
-            let index = textFields.indexOf(textField)
+            let index = textFields.index(of: textField)
             let textField = textFields[index! + 1]
             textField.becomeFirstResponder()
             
@@ -165,9 +189,9 @@ extension ANAddPersonViewController: UITextFieldDelegate {
     }
     
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        doneBarButton.enabled = (textFields[0].text?.characters.count > 0)
+        doneBarButton.isEnabled = (textFields[0].text?.characters.count > 0)
         
         switch textField.tag {
         case 108:
@@ -196,7 +220,7 @@ extension ANAddPersonViewController: UITextFieldDelegate {
 // MARK: - ANPhotoAddingVCDelegate
 
 extension ANAddPersonViewController: ANPhotoAddingVCDelegate {
-    func photoSelectionDidEnd(photo: UIImage) {
+    func photoSelectionDidEnd(_ photo: UIImage) {
         
         avatarImageView.image = photo
         

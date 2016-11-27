@@ -10,11 +10,11 @@ import UIKit
 import CoreData
 
 enum ANProjectState: Int {
-    case NonActive = 0, Frozen, Active
+    case nonActive = 0, frozen, active
 }
 
 protocol ANPersonDetailsVCDelegate: class {
-    func personEditingDidEndForPerson(person: Person)
+    func personEditingDidEndForPerson(_ person: Person)
 }
 
 class ANPersonDetailsViewController: UITableViewController {
@@ -23,14 +23,14 @@ class ANPersonDetailsViewController: UITableViewController {
     // MARK: - ATTRIBUTES
     
     enum ANSectionType: Int {
-        case PersonInfo = 0
-        case Separator
-        case Addbutton
-        case PersonProject
+        case personInfo = 0
+        case separator
+        case addbutton
+        case personProject
     }
     
     enum ANFieldType: Int {
-        case FirstName = 0, LastName, Email, PhoneNumber
+        case firstName = 0, lastName, email, phoneNumber
     }
     
     var personFirstName: String!
@@ -66,11 +66,11 @@ class ANPersonDetailsViewController: UITableViewController {
         
         personProjects = person.projects?.allObjects as! [Project]
 
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        navigationItem.rightBarButtonItem = editButtonItem()
+        navigationItem.rightBarButtonItem = editButtonItem
         
         
         tableView.allowsSelectionDuringEditing = true
@@ -102,7 +102,7 @@ class ANPersonDetailsViewController: UITableViewController {
     }
     
     func transitToProjectSelection() {
-        let fetchRequest = NSFetchRequest(entityName: "Project")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
         let dueDateDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
         let customerDescriptor = NSSortDescriptor(key: "customer", ascending: true)
         
@@ -110,14 +110,14 @@ class ANPersonDetailsViewController: UITableViewController {
         
         fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
         
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANProjectSelectionViewController") as! ANProjectSelectionViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ANProjectSelectionViewController") as! ANProjectSelectionViewController
         
         vc.person = person
         vc.selectedProjects = personProjects
         vc.delegate = self
         
         do {
-            let allProjects = try context.executeFetchRequest(fetchRequest) as! [Project]
+            let allProjects = try context.fetch(fetchRequest) as! [Project]
             
             vc.allProjects = allProjects
             
@@ -128,14 +128,14 @@ class ANPersonDetailsViewController: UITableViewController {
         
         let navController = UINavigationController(rootViewController: vc)
         
-        self.presentViewController(navController, animated: true, completion: nil)
+        self.present(navController, animated: true, completion: nil)
     }
     
     
     func resetTextFields() {
         
-        let indexP = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        let indexP = IndexPath(row: 0, section: 0)
+        let cell = tableView.cellForRow(at: indexP) as! ANPersonInfoCell
         
         cell.textFields[0].text = personFirstName
         cell.textFields[1].text = personLastName
@@ -146,13 +146,13 @@ class ANPersonDetailsViewController: UITableViewController {
     
     
     // MARK: - Saving Context
-    override func setEditing(editing: Bool, animated: Bool) {
+    override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
         tableView.setEditing(editing, animated: true)
         
-        let indexP = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        let indexP = IndexPath(row: 0, section: 0)
+        let cell = tableView.cellForRow(at: indexP) as! ANPersonInfoCell
         
         if editing {
             
@@ -161,18 +161,18 @@ class ANPersonDetailsViewController: UITableViewController {
             
             tableView.beginUpdates()
             
-            tableView.insertSections(NSIndexSet(index: 2), withRowAnimation: .Fade)
+            tableView.insertSections(IndexSet(integer: 2), with: .fade)
             
             tableView.endUpdates()
 
             
             cell.textFields.first?.becomeFirstResponder()
-            cell.avatarImageView.userInteractionEnabled = true
+            cell.avatarImageView.isUserInteractionEnabled = true
             
             
-            let selectCellIndexP = NSIndexPath(forRow: 0, inSection: 2)
+            let selectCellIndexP = IndexPath(row: 0, section: 2)
             
-            let selectCell = tableView.cellForRowAtIndexPath(selectCellIndexP) as! ANPersonAddProjectCell
+            let selectCell = tableView.cellForRow(at: selectCellIndexP) as! ANPersonAddProjectCell
 
             
             ANAnimator.sharedAnimator.animateSelectRowView(selectCell.addProjectsView)
@@ -185,12 +185,12 @@ class ANPersonDetailsViewController: UITableViewController {
             
             tableView.beginUpdates()
             
-            tableView.deleteSections(NSIndexSet(index: 2), withRowAnimation: .Fade)
+            tableView.deleteSections(IndexSet(integer: 2), with: .fade)
             
             tableView.endUpdates()
             
 
-            cell.avatarImageView.userInteractionEnabled = false
+            cell.avatarImageView.isUserInteractionEnabled = false
             
             cell.textFields.forEach{
                 $0.resignFirstResponder()
@@ -207,13 +207,13 @@ class ANPersonDetailsViewController: UITableViewController {
             
             if error != "" {
                 
-                let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
+                let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .alert)
                 
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
                 
                 alertController.addAction(okAction)
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
                 
                 resetTextFields()
                 
@@ -238,7 +238,7 @@ class ANPersonDetailsViewController: UITableViewController {
     
     
     
-    func configurePersonInfoCell(cell: ANPersonInfoCell, forIndexPath indexPath: NSIndexPath) {
+    func configurePersonInfoCell(_ cell: ANPersonInfoCell, forIndexPath indexPath: IndexPath) {
 
         cell.firstNameTextField.text = person.firstName
         cell.lastNameTextField.text = person.lastName
@@ -246,7 +246,7 @@ class ANPersonDetailsViewController: UITableViewController {
         cell.phoneNumberTextField.text = person.phoneNumber
         
         if let imageData = person.image {
-            cell.avatarImageView.image = UIImage(data: imageData)
+            cell.avatarImageView.image = UIImage(data: imageData as Data)
         }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ANAddPersonViewController.avatarImageViewTapped(_:)))
@@ -257,11 +257,11 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
-    func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
+    func configurePersonProjectCell(_ cell: ANPersonProjectCell, forIndexPath indexPath: IndexPath) {
         
         let project = personProjects[indexPath.row]
         
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
         
         if let participantsCount = project.workers?.allObjects.count {
             cell.participantsCountLabel.text = "\(participantsCount)"
@@ -274,16 +274,16 @@ class ANPersonDetailsViewController: UITableViewController {
     
     // MARK: - ACTIONS
     
-    @IBAction func addButtonPressed(sender: AnyObject) {
+    @IBAction func addButtonPressed(_ sender: AnyObject) {
         
         transitToProjectSelection()
     }
     
-    @IBAction func actionEditingDidEnd(sender: UITextField) {
+    @IBAction func actionEditingDidEnd(_ sender: UITextField) {
         
         switch sender.tag {
                     
-        case ANFieldType.PhoneNumber.rawValue:
+        case ANFieldType.phoneNumber.rawValue:
             newPersonPhoneNumber = sender.text
             
         default:
@@ -293,19 +293,19 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
-    @IBAction func actionInfoChanged(sender: UITextField) {
+    @IBAction func actionInfoChanged(_ sender: UITextField) {
         
         switch sender.tag {
-        case ANFieldType.FirstName.rawValue:
+        case ANFieldType.firstName.rawValue:
             newPersonFirstName = sender.text
 
-        case ANFieldType.LastName.rawValue:
+        case ANFieldType.lastName.rawValue:
             newPersonLastName = sender.text
 
-        case ANFieldType.Email.rawValue:
+        case ANFieldType.email.rawValue:
             newPersonEmail = sender.text
 
-        case ANFieldType.PhoneNumber.rawValue:
+        case ANFieldType.phoneNumber.rawValue:
             newPersonPhoneNumber = sender.text
 
         default:
@@ -314,16 +314,16 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
-    func avatarImageViewTapped(sender: UITapGestureRecognizer) {
+    func avatarImageViewTapped(_ sender: UITapGestureRecognizer) {
         
         
-        let navController = storyboard?.instantiateViewControllerWithIdentifier("ANPhotoAddingNavController") as! UINavigationController
+        let navController = storyboard?.instantiateViewController(withIdentifier: "ANPhotoAddingNavController") as! UINavigationController
         
         let destVC = navController.viewControllers[0] as! ANPhotoAddingViewController
         
         destVC.delegate = self
         
-        presentViewController(navController, animated: true, completion: nil)
+        present(navController, animated: true, completion: nil)
 
     }
 
@@ -331,23 +331,23 @@ class ANPersonDetailsViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionsCount
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
-        case ANSectionType.PersonInfo.rawValue:
+        case ANSectionType.personInfo.rawValue:
             return 1
-        case ANSectionType.Separator.rawValue:
+        case ANSectionType.separator.rawValue:
             return 1
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
+        case ANSectionType.addbutton.rawValue where selectCellShowed == true:
             return 1
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
+        case ANSectionType.addbutton.rawValue where selectCellShowed == false:
             return personProjects.count
-        case ANSectionType.PersonProject.rawValue:
+        case ANSectionType.personProject.rawValue:
             return personProjects.count
         default:
             break
@@ -356,7 +356,7 @@ class ANPersonDetailsViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdPersonInfo = "personInfoCell"
         let cellIdSeparator = "separatorCell"
@@ -364,28 +364,28 @@ class ANPersonDetailsViewController: UITableViewController {
         let cellIdAddbutton = "ANPersonAddProjectCell"
         
         switch indexPath.section {
-        case ANSectionType.PersonInfo.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonInfo, forIndexPath: indexPath) as! ANPersonInfoCell
+        case ANSectionType.personInfo.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdPersonInfo, for: indexPath) as! ANPersonInfoCell
             configurePersonInfoCell(cell, forIndexPath: indexPath)
             return cell
             
-        case ANSectionType.Separator.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdSeparator, forIndexPath: indexPath)
+        case ANSectionType.separator.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdSeparator, for: indexPath)
             return cell
             
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdAddbutton, forIndexPath: indexPath) as! ANPersonAddProjectCell
+        case ANSectionType.addbutton.rawValue where selectCellShowed == true:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdAddbutton, for: indexPath) as! ANPersonAddProjectCell
             
             
             return cell
             
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
+        case ANSectionType.addbutton.rawValue where selectCellShowed == false:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdPersonProject, for: indexPath) as! ANPersonProjectCell
             configurePersonProjectCell(cell, forIndexPath: indexPath)
             return cell
             
-        case ANSectionType.PersonProject.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
+        case ANSectionType.personProject.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdPersonProject, for: indexPath) as! ANPersonProjectCell
             configurePersonProjectCell(cell, forIndexPath: indexPath)
             return cell
             
@@ -400,19 +400,19 @@ class ANPersonDetailsViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         
         switch indexPath.section {
-        case ANSectionType.PersonInfo.rawValue:
+        case ANSectionType.personInfo.rawValue:
             return 256
-        case ANSectionType.Separator.rawValue:
+        case ANSectionType.separator.rawValue:
             return 20
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
+        case ANSectionType.addbutton.rawValue where selectCellShowed == true:
             return 44
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
+        case ANSectionType.addbutton.rawValue where selectCellShowed == false:
             return 80
-        case ANSectionType.PersonProject.rawValue:
+        case ANSectionType.personProject.rawValue:
             return 80
         default:
             break
@@ -423,18 +423,18 @@ class ANPersonDetailsViewController: UITableViewController {
 
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath.section {
-        case ANSectionType.PersonInfo.rawValue:
+        case ANSectionType.personInfo.rawValue:
             return 160
-        case ANSectionType.Separator.rawValue:
+        case ANSectionType.separator.rawValue:
             return 20
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == true:
+        case ANSectionType.addbutton.rawValue where selectCellShowed == true:
             return 44
-        case ANSectionType.Addbutton.rawValue where selectCellShowed == false:
+        case ANSectionType.addbutton.rawValue where selectCellShowed == false:
             return 80
-        case ANSectionType.PersonProject.rawValue:
+        case ANSectionType.personProject.rawValue:
             return 80
         default:
             break
@@ -445,18 +445,18 @@ class ANPersonDetailsViewController: UITableViewController {
     
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let indexP = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        let indexP = IndexPath(row: 0, section: 0)
+        let cell = tableView.cellForRow(at: indexP) as! ANPersonInfoCell
         
         cell.textFields.forEach{
             $0.resignFirstResponder()
         }
         
-        if indexPath.section == ANSectionType.PersonProject.rawValue || (indexPath.section == ANSectionType.Addbutton.rawValue && !selectCellShowed) {
+        if indexPath.section == ANSectionType.personProject.rawValue || (indexPath.section == ANSectionType.addbutton.rawValue && !selectCellShowed) {
             
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ANEditProjectTableViewController") as! ANEditProjectTableViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ANEditProjectTableViewController") as! ANEditProjectTableViewController
             
             vc.delegate = self
             
@@ -464,15 +464,15 @@ class ANPersonDetailsViewController: UITableViewController {
             
             navigationController?.pushViewController(vc, animated: true)
             
-        } else if indexPath.section == ANSectionType.Addbutton.rawValue && selectCellShowed {
+        } else if indexPath.section == ANSectionType.addbutton.rawValue && selectCellShowed {
 //            transitToProjectSelection()
         }
         
         
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section != ANSectionType.PersonProject.rawValue  {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section != ANSectionType.personProject.rawValue  {
             return false
         } else {
             return true
@@ -481,9 +481,9 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
             
             let project = personProjects[indexPath.row]
             
@@ -493,7 +493,7 @@ class ANPersonDetailsViewController: UITableViewController {
             
             tableView.beginUpdates()
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
             tableView.endUpdates()
             
@@ -507,21 +507,21 @@ class ANPersonDetailsViewController: UITableViewController {
 // MARK: - UITextFieldDelegate
 
 extension ANPersonDetailsViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        return editing
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return isEditing
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        let indexP = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        let indexP = IndexPath(row: 0, section: 0)
+        let cell = tableView.cellForRow(at: indexP) as! ANPersonInfoCell
         
         if textField === cell.textFields.last{
             
             textField.resignFirstResponder()
             
         } else {
-            let index = cell.textFields.indexOf(textField)
+            let index = cell.textFields.index(of: textField)
             let textField = cell.textFields[index! + 1]
             textField.becomeFirstResponder()
             
@@ -530,16 +530,16 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
         return false
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
         
         switch textField.tag {
-        case ANFieldType.Email.rawValue:
+        case ANFieldType.email.rawValue:
             let checkResult = ANTextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
             
             return checkResult
             
-        case ANFieldType.PhoneNumber.rawValue:
+        case ANFieldType.phoneNumber.rawValue:
             
             newPersonPhoneNumber = textField.text
             
@@ -564,7 +564,7 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
 
 extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegate {
     
-    func projectSelectionDidFinish(selectedProjects: [Project]) {
+    func projectSelectionDidFinish(_ selectedProjects: [Project]) {
         
         personProjects = selectedProjects
         
@@ -579,7 +579,7 @@ extension ANPersonDetailsViewController: ANProjectSelectionViewControllerDelegat
 
 extension ANPersonDetailsViewController: ANEditProjectTableViewControllerDelegate {
     
-    func projectEditingDidEndForProject(project: Project) {
+    func projectEditingDidEndForProject(_ project: Project) {
         
         tableView.reloadData()
     }
@@ -592,10 +592,10 @@ extension ANPersonDetailsViewController: ANEditProjectTableViewControllerDelegat
 // MARK: - ANPhotoAddingVCDelegate
 
 extension ANPersonDetailsViewController: ANPhotoAddingVCDelegate {
-    func photoSelectionDidEnd(photo: UIImage) {
+    func photoSelectionDidEnd(_ photo: UIImage) {
         
-        let indexP = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexP) as! ANPersonInfoCell
+        let indexP = IndexPath(row: 0, section: 0)
+        let cell = tableView.cellForRow(at: indexP) as! ANPersonInfoCell
         
         cell.avatarImageView.image = photo
         

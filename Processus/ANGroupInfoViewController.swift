@@ -13,16 +13,16 @@ class ANGroupInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backButton = UIBarButtonItem(title: "OK", style: .Plain, target: self, action: #selector(ANGroupInfoViewController.backPressed(_:)))
+        let backButton = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(ANGroupInfoViewController.backPressed(_:)))
         
         self.navigationItem.rightBarButtonItem = backButton
         
     }
     
     
-    func backPressed(sender: UIBarButtonItem) {
+    func backPressed(_ sender: UIBarButtonItem) {
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
 

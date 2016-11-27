@@ -22,12 +22,12 @@ class ANCalendarViewController: UIViewController {
     
     let calend = ANConfigurator.sharedConfigurator.calendar
     
-    var allDueDates: [NSDate] = []
+    var allDueDates: [Date] = []
     var allProjects: [Project] = []
     
     var projectsForSegue: [Project] = []
     
-    var selectedDate: NSDate!
+    var selectedDate: Date!
     
     
     // MARK: - viewDidLoad
@@ -35,11 +35,11 @@ class ANCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         getAllProjectsAndDueDates()
@@ -47,7 +47,7 @@ class ANCalendarViewController: UIViewController {
         fsCalendar.reloadData()
         
         if selectedDate == nil {
-            showButton.enabled = false
+            showButton.isEnabled = false
         }
 
     }
@@ -60,7 +60,7 @@ class ANCalendarViewController: UIViewController {
         allProjects = []
         allDueDates = []
         
-        let fetchRequest = NSFetchRequest(entityName: "Project")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
         
         let dueDateDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
         let customerDescriptor = NSSortDescriptor(key: "customer", ascending: true)
@@ -70,12 +70,12 @@ class ANCalendarViewController: UIViewController {
         fetchRequest.sortDescriptors = [dueDateDescriptor, customerDescriptor]
         
         do {
-            let allProj = try context.executeFetchRequest(fetchRequest) as! [Project]
+            let allProj = try context.fetch(fetchRequest) as! [Project]
             allProjects = allProj
             
             for project in allProj {
                 let dueDate = project.dueDate!
-                allDueDates.append(dueDate)
+                allDueDates.append(dueDate as Date)
             }
             
         } catch {
@@ -86,13 +86,13 @@ class ANCalendarViewController: UIViewController {
     }
     
     
-    func isEventForDate(date: NSDate) -> Bool {
+    func isEventForDate(_ date: Date) -> Bool {
         
-        let components = calend.components([.Month, .Day], fromDate: date)
+        let components = (calend as NSCalendar).components([.month, .day], from: date)
         
         for dueDate in allDueDates {
             
-            let dueDateComponents = calend.components([.Month, .Day], fromDate: dueDate)
+            let dueDateComponents = (calend as NSCalendar).components([.month, .day], from: dueDate)
             
             if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
                 return true
@@ -104,15 +104,15 @@ class ANCalendarViewController: UIViewController {
     }
     
     
-    func getSelectedProjectsForDate(date: NSDate) -> [Project] {
+    func getSelectedProjectsForDate(_ date: Date) -> [Project] {
         
         var selectedProjects: [Project] = []
         
-        let components = calend.components([.Month, .Day], fromDate: date)
+        let components = (calend as NSCalendar).components([.month, .day], from: date)
         
         for project in allProjects {
             
-            let dueDateComponents = calend.components([.Month, .Day], fromDate: project.dueDate!)
+            let dueDateComponents = (calend as NSCalendar).components([.month, .day], from: project.dueDate! as Date)
             
             if components.day == dueDateComponents.day && components.month == dueDateComponents.month {
                 selectedProjects.append(project)
@@ -128,28 +128,28 @@ class ANCalendarViewController: UIViewController {
     
     // MARK: - ACTIONS
 
-    @IBAction func showButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func showButtonPressed(_ sender: UIBarButtonItem) {
         
         let selectedProjects = getSelectedProjectsForDate(selectedDate)
         
         projectsForSegue = selectedProjects
-        performSegueWithIdentifier("showDate", sender: nil)
+        performSegue(withIdentifier: "showDate", sender: nil)
 
     }
     
     
-    @IBAction func actionToolBarButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func actionToolBarButtonPressed(_ sender: UIBarButtonItem) {
         
     }
     
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showDate" {
             
-            let destinationVC = segue.destinationViewController as! ANProjectsForDateViewController
+            let destinationVC = segue.destination as! ANProjectsForDateViewController
             
             destinationVC.displayedDate = selectedDate
             
@@ -169,13 +169,13 @@ class ANCalendarViewController: UIViewController {
 
 extension ANCalendarViewController: FSCalendarDataSource {
     
-    func calendar(calendar: FSCalendar, hasEventForDate date: NSDate) -> Bool {
+    func calendar(_ calendar: FSCalendar, hasEventFor date: Date) -> Bool {
         
         return isEventForDate(date)
     }
     
     
-    func calendarCurrentMonthDidChange(calendar: FSCalendar) {
+    func calendarCurrentMonthDidChange(_ calendar: FSCalendar) {
 
     }
     
@@ -186,11 +186,11 @@ extension ANCalendarViewController: FSCalendarDataSource {
 
 extension ANCalendarViewController: FSCalendarDelegate {
     
-    func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date) {
 
         selectedDate = date
         
-        showButton.enabled = true
+        showButton.isEnabled = true
         
     }
     
@@ -198,18 +198,18 @@ extension ANCalendarViewController: FSCalendarDelegate {
 
 
 extension ANCalendarViewController: ANProjectsForDateViewControllerDelegate {
-    func iterateDateWithDirection(direction: ANDateIterationDirection) -> (date: NSDate, projects: [Project]) {
+    func iterateDateWithDirection(_ direction: ANDateIterationDirection) -> (date: Date, projects: [Project]) {
         
         getAllProjectsAndDueDates()
         
-        let iteratedDate: NSDate
+        let iteratedDate: Date
         
-        if direction == .Next {
+        if direction == .next {
             
-            iteratedDate = NSDate(timeInterval: 24*3600, sinceDate: selectedDate)
+            iteratedDate = Date(timeInterval: 24*3600, since: selectedDate)
         
         } else {
-            iteratedDate = NSDate(timeInterval: -24*3600, sinceDate: selectedDate)
+            iteratedDate = Date(timeInterval: -24*3600, since: selectedDate)
         }
         
         selectedDate = iteratedDate

@@ -9,13 +9,13 @@
 import UIKit
 
 enum ANDateIterationDirection {
-    case Previous
-    case Next
+    case previous
+    case next
 }
 
 protocol ANProjectsForDateViewControllerDelegate: class {
     
-    func iterateDateWithDirection(direction: ANDateIterationDirection) -> (date: NSDate, projects: [Project])
+    func iterateDateWithDirection(_ direction: ANDateIterationDirection) -> (date: Date, projects: [Project])
     
     func refreshDate() -> [Project]
     
@@ -38,7 +38,7 @@ class ANProjectsForDateViewController: UIViewController {
 
     var myProjects: [Project]!
     
-    var displayedDate: NSDate!
+    var displayedDate: Date!
     
     weak var delegate: ANProjectsForDateViewControllerDelegate!
     
@@ -54,7 +54,7 @@ class ANProjectsForDateViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         updateView()
@@ -63,11 +63,11 @@ class ANProjectsForDateViewController: UIViewController {
     
     // MARK: - HELPER METHODS
 
-    func dueDateSoonForProject(project: Project) -> Bool {
+    func dueDateSoonForProject(_ project: Project) -> Bool {
         
-        let currentDate = NSDate()
+        let currentDate = Date()
         
-        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
+        let timeLeft = project.dueDate!.timeIntervalSince(currentDate)
         
         // If there're less than 5 days befor deadline - activate warning sign
         if timeLeft < 5 * 24 * 3600 && timeLeft > 0 {
@@ -78,7 +78,7 @@ class ANProjectsForDateViewController: UIViewController {
         
     }
     
-    func iterateDateWithDirection(direction: ANDateIterationDirection) {
+    func iterateDateWithDirection(_ direction: ANDateIterationDirection) {
         
         
         let dateProjectsTuple = self.delegate.iterateDateWithDirection(direction)
@@ -92,17 +92,17 @@ class ANProjectsForDateViewController: UIViewController {
     
     func updateView() {
         
-        let stringDate = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(displayedDate)
+        let stringDate = ANConfigurator.sharedConfigurator.dateFormatter.string(from: displayedDate)
         
         title = "\(stringDate)"
         
         
         if myProjects.isEmpty {
-            noProjectsLabel.hidden = false
-            tableView.hidden = true
+            noProjectsLabel.isHidden = false
+            tableView.isHidden = true
         } else {
-            noProjectsLabel.hidden = true
-            tableView.hidden = false
+            noProjectsLabel.isHidden = true
+            tableView.isHidden = false
             tableView.reloadData()
         }
 
@@ -111,23 +111,23 @@ class ANProjectsForDateViewController: UIViewController {
     
     // MARK: - ACTIONS
     
-    @IBAction func actionNextPressed(button: UIBarButtonItem) {
-        iterateDateWithDirection(.Next)
+    @IBAction func actionNextPressed(_ button: UIBarButtonItem) {
+        iterateDateWithDirection(.next)
     }
     
-    @IBAction func actionPreviousPressed(button: UIBarButtonItem) {
-        iterateDateWithDirection(.Previous)
+    @IBAction func actionPreviousPressed(_ button: UIBarButtonItem) {
+        iterateDateWithDirection(.previous)
     }
 
 
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "AddItem" {
             
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let controller = navigationController.topViewController as! ANNewProjectTableViewController
             
@@ -138,7 +138,7 @@ class ANProjectsForDateViewController: UIViewController {
         } else if segue.identifier == "showProjectDetails" {
             
             
-            let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
+            let destinationVC = segue.destination as! ANProjectDetailsViewController
             
             destinationVC.delegate = self
             
@@ -163,26 +163,26 @@ class ANProjectsForDateViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension ANProjectsForDateViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return myProjects.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId = "personProjectsCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonProjectCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ANPersonProjectCell
         
         
         let project = myProjects[indexPath.row]
         
         
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
         
         
         if let participantsCount = project.workers?.allObjects.count {
@@ -202,21 +202,21 @@ extension ANProjectsForDateViewController: UITableViewDataSource {
 
 extension ANProjectsForDateViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         let project = myProjects[indexPath.row]
 
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
             let context = ANDataManager.sharedManager.context
-            context.deleteObject(project)
+            context.delete(project)
             
             ANDataManager.sharedManager.saveContext()
             
-            myProjects.removeAtIndex(indexPath.row)
+            myProjects.remove(at: indexPath.row)
             
             tableView.beginUpdates()
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
             tableView.endUpdates()
             
@@ -226,14 +226,14 @@ extension ANProjectsForDateViewController: UITableViewDelegate {
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         
         return true
@@ -249,7 +249,7 @@ extension ANProjectsForDateViewController: UITableViewDelegate {
 // MARK: - ANProjectDetailsVCDelegate
 
 extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
-    func projectEditingDidEndForProject(project: Project) {
+    func projectEditingDidEndForProject(_ project: Project) {
         
         myProjects = delegate.refreshDate()
         
@@ -263,14 +263,14 @@ extension ANProjectsForDateViewController: ANProjectDetailsVCDelegate {
 // MARK: - ANNewProjectTableViewControllerDelegate
 
 extension ANProjectsForDateViewController: ANNewProjectTableViewControllerDelegate {
-    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
+    func projectDetailsVCDidCancel(_ controller: ANNewProjectTableViewController) {
 
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
+    func projectDetailsVC(_ controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
 
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
         
         myProjects = delegate.refreshDate()
 
@@ -278,7 +278,7 @@ extension ANProjectsForDateViewController: ANNewProjectTableViewControllerDelega
 
     }
     
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
+    func projectDetailsVC(_ controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
 
         
     }

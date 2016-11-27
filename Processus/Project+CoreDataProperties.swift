@@ -17,7 +17,7 @@ extension Project {
     @NSManaged var completedRatio: NSNumber?
     @NSManaged var customer: String?
     @NSManaged var descript: String?
-    @NSManaged var dueDate: NSDate?
+    @NSManaged var dueDate: Date?
     @NSManaged var name: String?
     @NSManaged var projectId: NSNumber?
     @NSManaged var shouldRemind: NSNumber?

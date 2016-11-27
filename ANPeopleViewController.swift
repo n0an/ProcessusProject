@@ -25,7 +25,7 @@ class ANPeopleViewController: UIViewController {
     
     var myColleagues: [Person] = []
     
-    private var fetchedResultsController: NSFetchedResultsController!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
     // MARK: - viewDidLoad
 
@@ -35,13 +35,13 @@ class ANPeopleViewController: UIViewController {
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
 
         
         // Loading data from DB
         
-        let fetchRequest = NSFetchRequest(entityName: "Person")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
         let firstNameDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
         let lastNameDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
         
@@ -70,14 +70,14 @@ class ANPeopleViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.tintColor = UIColor.whiteColor()
+        searchController.searchBar.tintColor = UIColor.white
         
         
     }
     
     // MARK: - HELPER METHODS
     
-    override func setEditing(editing: Bool, animated: Bool) {
+    override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
         tableView.setEditing(editing, animated: true)
@@ -87,7 +87,7 @@ class ANPeopleViewController: UIViewController {
     
     // MARK: - ACTIONS
     
-    @IBAction func addColleaguePressed(sender: UIBarButtonItem) {
+    @IBAction func addColleaguePressed(_ sender: UIBarButtonItem) {
         
     }
     
@@ -96,18 +96,18 @@ class ANPeopleViewController: UIViewController {
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard segue.identifier == "showPersonDetails" else {return}
         
         guard let indexPath = self.tableView.indexPathForSelectedRow else {return}
         
-        let destinationVC = segue.destinationViewController as! ANPersonDetailsViewController
+        let destinationVC = segue.destination as! ANPersonDetailsViewController
 
  
         destinationVC.delegate = self
         
-        destinationVC.person = searchController.active ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
+        destinationVC.person = searchController.isActive ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
         
     }
     
@@ -117,13 +117,13 @@ class ANPeopleViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension ANPeopleViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchController.active {
+        if searchController.isActive {
             return searchResultsArray.count
         }
         
@@ -132,23 +132,23 @@ extension ANPeopleViewController: UITableViewDataSource {
     
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId = "ANPersonCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ANPersonCell
         
         
-        let person = searchController.active ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
+        let person = searchController.isActive ? searchResultsArray[indexPath.row] : myColleagues[indexPath.row]
         
         
-        if let firstName = person.firstName, lastName = person.lastName {
+        if let firstName = person.firstName, let lastName = person.lastName {
             cell.fullNameLabel.text = "\(firstName) \(lastName)"
 
         }
         
         if let imageData = person.image {
-            cell.avatarImageView.image = UIImage(data: imageData)
+            cell.avatarImageView.image = UIImage(data: imageData as Data)
         }
         
         if let projectsCount = person.projects?.allObjects.count {
@@ -166,27 +166,27 @@ extension ANPeopleViewController: UITableViewDataSource {
 
 extension ANPeopleViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        if searchController.active {
+        if searchController.isActive {
             return false
         }
         
@@ -194,11 +194,11 @@ extension ANPeopleViewController: UITableViewDelegate {
     }
     
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let allShareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Email") { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let allShareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Email") { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
-            let personToContact = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+            let personToContact = self.fetchedResultsController.object(at: indexPath) as! Person
             
             if let emailTo = personToContact.email {
                 if MFMailComposeViewController.canSendMail() {
@@ -218,7 +218,7 @@ extension ANPeopleViewController: UITableViewDelegate {
                     
                     mailComposeVC.setSubject(NSLocalizedString("EMAIL_SUBJECT", comment: "") + subjectSuffix)
                     
-                    self.presentViewController(mailComposeVC, animated: true, completion: {
+                    self.present(mailComposeVC, animated: true, completion: {
                     })
                     
                     
@@ -230,22 +230,22 @@ extension ANPeopleViewController: UITableViewDelegate {
         
         // Creating our own Delete button
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             
-            SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_ALERT_MESSAGE", comment: ""), style: AlertStyle.warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
                 if isOtherButton == true {
                     
 //                    print("Cancel Button  Pressed", terminator: "")
                 }
                 else {
                     
-                    let personToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+                    let personToRemove = self.fetchedResultsController.object(at: indexPath) as! Person
                     
                     
                     let managedObjectContext = ANDataManager.sharedManager.context
                     
-                    managedObjectContext.deleteObject(personToRemove)
+                    managedObjectContext.delete(personToRemove)
                     
                     if managedObjectContext.hasChanges {
                         do {
@@ -258,7 +258,7 @@ extension ANPeopleViewController: UITableViewDelegate {
                     }
 
                     
-                    SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("DELETE_ACTION_RESULT_TITLE", comment: ""), style: AlertStyle.Success)
+                    SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("DELETE_ACTION_RESULT_TITLE", comment: ""), style: AlertStyle.success)
                 }
             }
 
@@ -266,7 +266,7 @@ extension ANPeopleViewController: UITableViewDelegate {
         }
         
         allShareAction.backgroundColor = UIColor(red: 184/255, green: 226/255, blue: 181/255, alpha: 1.0)
-        deleteAction.backgroundColor = UIColor.redColor()
+        deleteAction.backgroundColor = UIColor.red
         
         return [deleteAction, allShareAction]
         
@@ -280,19 +280,19 @@ extension ANPeopleViewController: UITableViewDelegate {
 
 extension ANPeopleViewController: NSFetchedResultsControllerDelegate {
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         switch type {
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Update:
-            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
         default:
             tableView.reloadData()
         }
@@ -300,7 +300,7 @@ extension ANPeopleViewController: NSFetchedResultsControllerDelegate {
         myColleagues = controller.fetchedObjects as! [Person]
     }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
     
@@ -310,7 +310,7 @@ extension ANPeopleViewController: NSFetchedResultsControllerDelegate {
 // MARK: - UISearchResultsUpdating
 
 extension ANPeopleViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         let searchText = searchController.searchBar.text
         filterContentFor(searchText!)
@@ -318,10 +318,10 @@ extension ANPeopleViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
     
-    func filterContentFor(searchText: String) {
+    func filterContentFor(_ searchText: String) {
         
         searchResultsArray = myColleagues.filter({ (person: Person) -> Bool in
-            let matchedFName = person.fullName.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)
+            let matchedFName = person.fullName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive, range: nil, locale: nil)
             
             return matchedFName != nil
         })
@@ -335,7 +335,7 @@ extension ANPeopleViewController: UISearchResultsUpdating {
 // MARK: - ANPersonDetailsVCDelegate
 
 extension ANPeopleViewController: ANPersonDetailsVCDelegate {
-    func personEditingDidEndForPerson(person: Person) {
+    func personEditingDidEndForPerson(_ person: Person) {
         ANDataManager.sharedManager.saveContext()
         
         tableView.reloadData()
@@ -348,21 +348,21 @@ extension ANPeopleViewController: ANPersonDetailsVCDelegate {
 
 extension ANPeopleViewController: MFMailComposeViewControllerDelegate {
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result.rawValue {
-        case MFMailComposeResultSaved.rawValue:
+        case MFMailComposeResult.saved.rawValue:
             print("Message saved")
-        case MFMailComposeResultCancelled.rawValue:
+        case MFMailComposeResult.cancelled.rawValue:
             print("Message canceled")
-        case MFMailComposeResultSent.rawValue:
+        case MFMailComposeResult.sent.rawValue:
             print("Message was sent")
-        case MFMailComposeResultFailed.rawValue:
+        case MFMailComposeResult.failed.rawValue:
             print("Message was not sent: \(error?.localizedDescription)")
         default:
             break
         }
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     
