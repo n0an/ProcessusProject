@@ -12,7 +12,7 @@ import CoreData
 
 protocol ANPeopleSelectionViewControllerDelegate: class {
     
-    func participantsSelectionDidFinish(selectedParticipants: [Person])
+    func participantsSelectionDidFinish(_ selectedParticipants: [Person])
     
 }
 
@@ -38,7 +38,7 @@ class ANPeopleSelectionViewController: UIViewController {
 
         title = NSLocalizedString("PEOPLESELECTIONVC_TITLE", comment: "")
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
 
@@ -46,7 +46,7 @@ class ANPeopleSelectionViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
         
         let person = allPeople[indexPath.row]
         
@@ -56,7 +56,7 @@ class ANPeopleSelectionViewController: UIViewController {
         guard let cell = cell as? ANPersonCell else {return}
         
         if let imageData = person.image {
-            cell.avatarImageView.image = UIImage(data: imageData)
+            cell.avatarImageView.image = UIImage(data: imageData as Data)
         }
         
         if let projectsCount = person.projects?.allObjects.count {
@@ -66,7 +66,7 @@ class ANPeopleSelectionViewController: UIViewController {
         cell.fullNameLabel.text = "\(firstName) \(lastName)"
         
         
-        if project.workers!.containsObject(person) {
+        if project.workers!.contains(person) {
 
             cell.checkMarkImageView.image = UIImage(named: "box_set")
         } else {
@@ -81,34 +81,34 @@ class ANPeopleSelectionViewController: UIViewController {
     
     // MARK: - ACTIONS
     
-    func savePressed(sender: UIBarButtonItem) {
+    func savePressed(_ sender: UIBarButtonItem) {
         
         delegate?.participantsSelectionDidFinish(selectedPeople)
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return allPeople.count
     }
     
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         
         let cellId = "ANPersonCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ANPersonCell
         
         configureCell(cell, atIndexPath: indexPath)
         
@@ -119,24 +119,28 @@ class ANPeopleSelectionViewController: UIViewController {
     
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
         
         let person = allPeople[indexPath.row]
         
-        if project.workers!.containsObject(person) {
+        if project.workers!.contains(person) {
             
-            project.remove(workerObject: person)
+            project.removeFromWorkers(person)
+            
+//            project.remove(workerObject: person) // Swift 2 OLD
             
         } else {
-            project.add(workerObject: person)
+            
+            project.addToWorkers(person)
+//            project.add(workerObject: person) // Swift 2 OLD
         }
 
         selectedPeople = project.workers?.allObjects as! [Person]

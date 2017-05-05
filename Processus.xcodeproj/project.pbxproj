@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */; };
-		180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */; };
 		180D63681CF9F84000AAD93A /* ANPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D63671CF9F84000AAD93A /* ANPersonCell.swift */; };
-		18248E071D073B0900162633 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18248E061D073B0900162633 /* Project+CoreDataProperties.swift */; };
 		18248E091D073CD900162633 /* ANFinishedProjetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18248E081D073CD900162633 /* ANFinishedProjetsViewController.swift */; };
 		1829883A1CE4FA9D00BC5272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988391CE4FA9D00BC5272 /* AppDelegate.swift */; };
 		1829883F1CE4FA9D00BC5272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1829883D1CE4FA9D00BC5272 /* Main.storyboard */; };
@@ -19,8 +17,6 @@
 		1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1829884B1CE4FB9400BC5272 /* Model.xcdatamodeld */; };
 		182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */; };
 		182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988711CE502BF00BC5272 /* ANPeopleViewController.swift */; };
-		182988781CE5052F00BC5272 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988741CE5052F00BC5272 /* Project.swift */; };
-		1829887A1CE5052F00BC5272 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988761CE5052F00BC5272 /* Person.swift */; };
 		1829887E1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */; };
 		182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */; };
 		182988821CE6743600BC5272 /* ANPersonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */; };
@@ -30,6 +26,10 @@
 		182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988901CE76B5E00BC5272 /* ANProjectInfoTextCell.swift */; };
 		182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */; };
 		182988951CE76B7B00BC5272 /* ANProjectInfoStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */; };
+		18394D651DEB0527005367F3 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18394D611DEB0527005367F3 /* Person+CoreDataClass.swift */; };
+		18394D661DEB0527005367F3 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18394D621DEB0527005367F3 /* Person+CoreDataProperties.swift */; };
+		18394D671DEB0527005367F3 /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18394D631DEB0527005367F3 /* Project+CoreDataClass.swift */; };
+		18394D681DEB0527005367F3 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18394D641DEB0527005367F3 /* Project+CoreDataProperties.swift */; };
 		184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */; };
 		184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */; };
 		184898551CF619B500EA2EC5 /* ANPersonAddProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */; };
@@ -55,9 +55,7 @@
 
 /* Begin PBXFileReference section */
 		180D63611CF8B07F00AAD93A /* ANProjectDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectDetailsViewController.swift; sourceTree = "<group>"; };
-		180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		180D63671CF9F84000AAD93A /* ANPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonCell.swift; sourceTree = "<group>"; };
-		18248E061D073B0900162633 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18248E081D073CD900162633 /* ANFinishedProjetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANFinishedProjetsViewController.swift; sourceTree = "<group>"; };
 		182988361CE4FA9D00BC5272 /* Processus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Processus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182988391CE4FA9D00BC5272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,8 +66,6 @@
 		1829884C1CE4FB9400BC5272 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1829886F1CE4FF7F00BC5272 /* ANDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANDataManager.swift; sourceTree = "<group>"; };
 		182988711CE502BF00BC5272 /* ANPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ANPeopleViewController.swift; path = ../ANPeopleViewController.swift; sourceTree = "<group>"; };
-		182988741CE5052F00BC5272 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = ../Project.swift; sourceTree = "<group>"; };
-		182988761CE5052F00BC5272 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = ../Person.swift; sourceTree = "<group>"; };
 		1829887D1CE5167B00BC5272 /* ANTableViewFetchedResultsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDelegate.swift; sourceTree = "<group>"; };
 		1829887F1CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANTableViewFetchedResultsDisplayer.swift; sourceTree = "<group>"; };
 		182988811CE6743600BC5272 /* ANPersonDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonDetailsViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +75,10 @@
 		182988901CE76B5E00BC5272 /* ANProjectInfoTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoTextCell.swift; sourceTree = "<group>"; };
 		182988921CE76B7000BC5272 /* ANProjectInfoProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoProgressCell.swift; sourceTree = "<group>"; };
 		182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANProjectInfoStateCell.swift; sourceTree = "<group>"; };
+		18394D611DEB0527005367F3 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataClass.swift"; path = "../Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		18394D621DEB0527005367F3 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		18394D631DEB0527005367F3 /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataClass.swift"; path = "../Project+CoreDataClass.swift"; sourceTree = "<group>"; };
+		18394D641DEB0527005367F3 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		184898501CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNewProjectTableViewController.swift; sourceTree = "<group>"; };
 		184898521CF60B8500EA2EC5 /* ANAddPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANAddPersonViewController.swift; sourceTree = "<group>"; };
 		184898541CF619B500EA2EC5 /* ANPersonAddProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANPersonAddProjectCell.swift; sourceTree = "<group>"; };
@@ -199,10 +199,9 @@
 		1829887C1CE5128800BC5272 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				182988741CE5052F00BC5272 /* Project.swift */,
-				18248E061D073B0900162633 /* Project+CoreDataProperties.swift */,
-				180D63651CF9E2D300AAD93A /* Person+CoreDataProperties.swift */,
-				182988761CE5052F00BC5272 /* Person.swift */,
+				18394D691DEB054C005367F3 /* Generated */,
+				18394D611DEB0527005367F3 /* Person+CoreDataClass.swift */,
+				18394D631DEB0527005367F3 /* Project+CoreDataClass.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -257,6 +256,15 @@
 				182988941CE76B7B00BC5272 /* ANProjectInfoStateCell.swift */,
 			);
 			name = ProjectCell;
+			sourceTree = "<group>";
+		};
+		18394D691DEB054C005367F3 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				18394D621DEB0527005367F3 /* Person+CoreDataProperties.swift */,
+				18394D641DEB0527005367F3 /* Project+CoreDataProperties.swift */,
+			);
+			name = Generated;
 			sourceTree = "<group>";
 		};
 		186B7C931D03266400C039C0 /* Chats feauture */ = {
@@ -338,6 +346,8 @@
 					182988351CE4FA9D00BC5272 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 358V8FBM3U;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -404,7 +414,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D2BD50E578BB3FE441AB4F4F /* [CP] Copy Pods Resources */ = {
@@ -459,29 +469,29 @@
 				182988701CE4FF7F00BC5272 /* ANDataManager.swift in Sources */,
 				186B7C951D03267900C039C0 /* ANUsersViewController.swift in Sources */,
 				186B7C921D031F1300C039C0 /* ANSignUpViewController.swift in Sources */,
-				180D63661CF9E2D300AAD93A /* Person+CoreDataProperties.swift in Sources */,
 				184898531CF60B8500EA2EC5 /* ANAddPersonViewController.swift in Sources */,
 				186B7CA51D0452E500C039C0 /* ANGroupInfoViewController.swift in Sources */,
 				185B0B7E1CFF3E05002E8AA8 /* ANAnimator.swift in Sources */,
+				18394D661DEB0527005367F3 /* Person+CoreDataProperties.swift in Sources */,
 				184F5FC61CF76878004DB11D /* ANEditProjectTableViewController.swift in Sources */,
 				182988931CE76B7000BC5272 /* ANProjectInfoProgressCell.swift in Sources */,
 				182988861CE7347800BC5272 /* ANPersonProjectCell.swift in Sources */,
 				186B7C8E1D02EF6900C039C0 /* SweetAlert.swift in Sources */,
-				18248E071D073B0900162633 /* Project+CoreDataProperties.swift in Sources */,
 				1829888D1CE7547300BC5272 /* ANProjectsViewController.swift in Sources */,
 				182988721CE502BF00BC5272 /* ANPeopleViewController.swift in Sources */,
 				1829884D1CE4FB9400BC5272 /* Model.xcdatamodeld in Sources */,
 				185B0B7C1CFF3C83002E8AA8 /* ANProjectAddPersonCell.swift in Sources */,
+				18394D671DEB0527005367F3 /* Project+CoreDataClass.swift in Sources */,
+				18394D681DEB0527005367F3 /* Project+CoreDataProperties.swift in Sources */,
 				182988801CE516D000BC5272 /* ANTableViewFetchedResultsDisplayer.swift in Sources */,
 				184898511CF4B4AA00EA2EC5 /* ANNewProjectTableViewController.swift in Sources */,
 				186B7CA31D042D3500C039C0 /* ANPhotoAddingViewController.swift in Sources */,
 				180D63621CF8B07F00AAD93A /* ANProjectDetailsViewController.swift in Sources */,
-				1829887A1CE5052F00BC5272 /* Person.swift in Sources */,
 				186B7C901D0319AA00C039C0 /* ANLoginViewController.swift in Sources */,
 				184F5FC81CF789F6004DB11D /* ANPeopleSelectionViewController.swift in Sources */,
+				18394D651DEB0527005367F3 /* Person+CoreDataClass.swift in Sources */,
 				182988911CE76B5E00BC5272 /* ANProjectInfoTextCell.swift in Sources */,
 				186B7CA11D03404B00C039C0 /* ANChatViewController.swift in Sources */,
-				182988781CE5052F00BC5272 /* Project.swift in Sources */,
 				182988841CE733D600BC5272 /* ANPersonInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,8 +621,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: nantog@gmail.com (T9AJNB68MF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nantog@gmail.com (T9AJNB68MF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Processus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -620,6 +631,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.Processus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -629,8 +642,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Anton Novoselov (358V8FBM3U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Anton Novoselov (358V8FBM3U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Processus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -638,6 +652,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.Processus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

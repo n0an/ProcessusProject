@@ -21,11 +21,11 @@ class ANConfigurator {
     
     // MARK: - PRIVATE METHODS
     
-    private func dueDateSoonForProject(project: Project) -> Bool {
+    fileprivate func dueDateSoonForProject(_ project: Project) -> Bool {
         
-        let currentDate = NSDate()
+        let currentDate = Date()
         
-        let timeLeft = project.dueDate!.timeIntervalSinceDate(currentDate)
+        let timeLeft = project.dueDate!.timeIntervalSince(currentDate)
         
         
         // If there're less than 5 days befor deadline - activate warning sign
@@ -38,21 +38,21 @@ class ANConfigurator {
     }
     
     
-    private func coloredImage(image: UIImage, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIImage! {
+    fileprivate func coloredImage(_ image: UIImage, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIImage! {
         
-        let rect = CGRect(origin: CGPointZero, size: image.size)
+        let rect = CGRect(origin: CGPoint.zero, size: image.size)
         
         UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
         
         let context = UIGraphicsGetCurrentContext()
         
-        image.drawInRect(rect)
+        image.draw(in: rect)
         
         
-        CGContextSetRGBFillColor(context, red, green, blue, alpha)
-        CGContextSetBlendMode(context, CGBlendMode.SourceAtop)
+        context?.setFillColor(red: red, green: green, blue: blue, alpha: alpha)
+        context?.setBlendMode(CGBlendMode.sourceAtop)
         
-        CGContextFillRect(context, rect)
+        context?.fill(rect)
         
         let result = UIGraphicsGetImageFromCurrentImageContext()
         
@@ -67,9 +67,9 @@ class ANConfigurator {
     
     
 
-    lazy var dateFormatter: NSDateFormatter = {
+    lazy var dateFormatter: DateFormatter = {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "dd.MM.YYYY"
         
@@ -77,8 +77,8 @@ class ANConfigurator {
     }()
     
 
-    lazy var calendar: NSCalendar = {
-        let calendar = NSCalendar.currentCalendar()
+    lazy var calendar: Calendar = {
+        let calendar = Calendar.current
 
         return calendar
     }()
@@ -88,29 +88,29 @@ class ANConfigurator {
     
     // MARK: - PUBLIC METHODS
 
-    func customizeSlider(slider: UISlider) {
+    func customizeSlider(_ slider: UISlider) {
         // Custom Slider
         let thumbImageNormal = UIImage(named: "SliderThumb-Normal")
-        slider.setThumbImage(thumbImageNormal, forState: .Normal)
+        slider.setThumbImage(thumbImageNormal, for: UIControlState())
         
         let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")
-        slider.setThumbImage(thumbImageHighlighted, forState: .Highlighted)
+        slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
         
         let insets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
         
         if let trackLeftImage = UIImage(named: "SliderTrackLeft1") {
-            let trackLeftResizable = trackLeftImage.resizableImageWithCapInsets(insets)
-            slider.setMinimumTrackImage(trackLeftResizable, forState: .Normal)
+            let trackLeftResizable = trackLeftImage.resizableImage(withCapInsets: insets)
+            slider.setMinimumTrackImage(trackLeftResizable, for: UIControlState())
         }
         if let trackRightImage = UIImage(named: "SliderTrackRight1") {
-            let trackRightResizable = trackRightImage.resizableImageWithCapInsets(insets)
-            slider.setMaximumTrackImage(trackRightResizable, forState: .Normal)
+            let trackRightResizable = trackRightImage.resizableImage(withCapInsets: insets)
+            slider.setMaximumTrackImage(trackRightResizable, for: UIControlState())
         }
 
     }
     
     
-    func configureProjectCell(cell: ANPersonProjectCell, forProject project: Project, viewWidth: CGFloat) {
+    func configureProjectCell(_ cell: ANPersonProjectCell, forProject project: Project, viewWidth: CGFloat) {
         
         
         cell.customerNameLabel.text = project.customer
@@ -119,13 +119,13 @@ class ANConfigurator {
         
         var stateColor = UIColor()
         
-        switch project.state!.integerValue {
-        case ANProjectState.NonActive.rawValue:
-            stateColor = UIColor.redColor()
-        case ANProjectState.Frozen.rawValue:
-            stateColor = UIColor.yellowColor()
-        case ANProjectState.Active.rawValue:
-            stateColor = UIColor.greenColor()
+        switch project.state!.intValue {
+        case ANProjectState.nonActive.rawValue:
+            stateColor = UIColor.red
+        case ANProjectState.frozen.rawValue:
+            stateColor = UIColor.yellow
+        case ANProjectState.active.rawValue:
+            stateColor = UIColor.green
         default:
             break
         }
@@ -138,16 +138,16 @@ class ANConfigurator {
         
         if dueDateSoonForProject(project) {
             
-            cell.dueDateSoonImageView.hidden = false
+            cell.dueDateSoonImageView.isHidden = false
             cell.projectDueDateLabel.textColor = UIColor(red: 170.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
         } else {
             
-            cell.dueDateSoonImageView.hidden = true
-            cell.projectDueDateLabel.textColor = UIColor.blackColor()
+            cell.dueDateSoonImageView.isHidden = true
+            cell.projectDueDateLabel.textColor = UIColor.black
         }
         
         if project.shouldRemind!.boolValue {
-            cell.alarmImageView.hidden = false
+            cell.alarmImageView.isHidden = false
             
             if dueDateSoonForProject(project) {
                 
@@ -160,7 +160,7 @@ class ANConfigurator {
             }
             
         } else {
-            cell.alarmImageView.hidden = true
+            cell.alarmImageView.isHidden = true
         }
 
         
@@ -179,7 +179,7 @@ class ANConfigurator {
             viewToRemove.removeFromSuperview()
         }
         
-        cell.contentView.insertSubview(progressView, atIndex: 0)
+        cell.contentView.insertSubview(progressView, at: 0)
         progressView.tag = 111
         
         

@@ -22,7 +22,7 @@ class ANProjectsViewController: UIViewController {
     
     var searchController: UISearchController!
 
-    private var fetchedResultsController: NSFetchedResultsController!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
     var searchResultsArray: [Project] = []
     
@@ -39,10 +39,10 @@ class ANProjectsViewController: UIViewController {
         tableView.rowHeight = 80
         
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         
-        let fetchRequest = NSFetchRequest(entityName: "Project")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
         let dueDateDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
         let customerDescriptor = NSSortDescriptor(key: "customer", ascending: true)
         
@@ -77,16 +77,16 @@ class ANProjectsViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.tintColor = UIColor.whiteColor()
+        searchController.searchBar.tintColor = UIColor.white
 
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // jumping toolBar issue fixed
-        tabBarController?.tabBar.frame.origin = CGPoint(x: 0, y: CGRectGetMaxY(view.bounds) - (tabBarController?.tabBar.frame.height)!)
+        tabBarController?.tabBar.frame.origin = CGPoint(x: 0, y: view.bounds.maxY - (tabBarController?.tabBar.frame.height)!)
 
     }
     
@@ -94,7 +94,7 @@ class ANProjectsViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     
-    override func setEditing(editing: Bool, animated: Bool) {
+    override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
         tableView.setEditing(editing, animated: true)
@@ -104,11 +104,11 @@ class ANProjectsViewController: UIViewController {
     
     // MARK: - ACTIONS
     
-    @IBAction func unwindBackToHomeScreen(segue: UIStoryboardSegue) {
+    @IBAction func unwindBackToHomeScreen(_ segue: UIStoryboardSegue) {
         
     }
     
-    @IBAction func addProjectPressed(sender: UIBarButtonItem) {
+    @IBAction func addProjectPressed(_ sender: UIBarButtonItem) {
         
         
     }
@@ -116,11 +116,11 @@ class ANProjectsViewController: UIViewController {
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "AddItem" {
             
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let controller = navigationController.topViewController as! ANNewProjectTableViewController
             
@@ -129,13 +129,13 @@ class ANProjectsViewController: UIViewController {
         } else if segue.identifier == "showProjectDetails" {
             
             
-            let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
+            let destinationVC = segue.destination as! ANProjectDetailsViewController
             
             destinationVC.delegate = self
             
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
             
-            guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
+            guard let project = fetchedResultsController?.object(at: indexPath) as? Project else {return}
             
             destinationVC.project = project
             
@@ -153,30 +153,30 @@ class ANProjectsViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension ANProjectsViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchController.active {
+        if searchController.isActive {
             return searchResultsArray.count
         }
         
         return myProjects.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId = "personProjectsCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonProjectCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ANPersonProjectCell
         
         
-        let project = searchController.active ? searchResultsArray[indexPath.row] : myProjects[indexPath.row]
+        let project = searchController.isActive ? searchResultsArray[indexPath.row] : myProjects[indexPath.row]
         
         
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
         
         
         if let participantsCount = project.workers?.allObjects.count {
@@ -198,22 +198,22 @@ extension ANProjectsViewController: UITableViewDataSource {
 
 extension ANProjectsViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
 
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
 
     }
     
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        if searchController.active {
+        if searchController.isActive {
             return false
         }
         
@@ -222,17 +222,17 @@ extension ANProjectsViewController: UITableViewDelegate {
 
     
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let finishAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: NSLocalizedString("ACTION_FINISH_TITLE", comment: "")) { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let finishAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: NSLocalizedString("ACTION_FINISH_TITLE", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
-            let finishActionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let finishActionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            let finishSuccessAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_SUCCESS_ACTION", comment: ""), style: .Default) { (action: UIAlertAction) in
+            let finishSuccessAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_SUCCESS_ACTION", comment: ""), style: .default) { (action: UIAlertAction) in
                 
-                let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                let projectToFinish = self.fetchedResultsController.object(at: indexPath) as! Project
                 
-                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.state = ANProjectState.nonActive.rawValue
                 projectToFinish.finished = true
                 projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
                 
@@ -241,11 +241,11 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             
 
-            let finishFailureAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_FAILURE_ACTION", comment: ""), style: .Default, handler: { (action: UIAlertAction) in
+            let finishFailureAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_FAILURE_ACTION", comment: ""), style: .default, handler: { (action: UIAlertAction) in
                 
-                let projectToFinish = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                let projectToFinish = self.fetchedResultsController.object(at: indexPath) as! Project
                 
-                projectToFinish.state = ANProjectState.NonActive.rawValue
+                projectToFinish.state = ANProjectState.nonActive.rawValue
                 projectToFinish.finished = true
                 projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
                 
@@ -254,7 +254,7 @@ extension ANProjectsViewController: UITableViewDelegate {
             
             
 
-            let cancelAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_CANCEL_ACTION", comment: ""), style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("ACTION_FINISH_CANCEL_ACTION", comment: ""), style: .cancel, handler: nil)
             
             finishActionMenu.addAction(finishSuccessAction)
             finishActionMenu.addAction(finishFailureAction)
@@ -262,27 +262,27 @@ extension ANProjectsViewController: UITableViewDelegate {
             finishActionMenu.addAction(cancelAction)
             
             
-            self.presentViewController(finishActionMenu, animated: true, completion: nil)
+            self.present(finishActionMenu, animated: true, completion: nil)
         }
         
         // Creating our own Delete button
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             
-            SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ALERT_MESSAGE", comment: ""), style: AlertStyle.Warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_PROJECT_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ALERT_MESSAGE", comment: ""), style: AlertStyle.warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_PROJECT_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
                 if isOtherButton == true {
                     
                     
                 }
                 else {
                     
-                    let projectToRemove = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+                    let projectToRemove = self.fetchedResultsController.object(at: indexPath) as! Project
                     
                     
                     let managedObjectContext = ANDataManager.sharedManager.context
                     
-                    managedObjectContext.deleteObject(projectToRemove)
+                    managedObjectContext.delete(projectToRemove)
                     
                     if managedObjectContext.hasChanges {
                         do {
@@ -294,14 +294,14 @@ extension ANProjectsViewController: UITableViewDelegate {
                         }
                     }
                     
-                    SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ACTION_RESULT_TITLE", comment: ""), style: AlertStyle.Success)
+                    SweetAlert().showAlert(NSLocalizedString("DELETE_ACTION_RESULT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ACTION_RESULT_TITLE", comment: ""), style: AlertStyle.success)
                 }
             }
             
         }
         
         finishAction.backgroundColor = UIColor(red: 50/255, green: 70/255, blue: 181/255, alpha: 1.0)
-        deleteAction.backgroundColor = UIColor.redColor()
+        deleteAction.backgroundColor = UIColor.red
         
         return [deleteAction, finishAction]
         
@@ -315,19 +315,19 @@ extension ANProjectsViewController: UITableViewDelegate {
 
 extension ANProjectsViewController: NSFetchedResultsControllerDelegate {
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         switch type {
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Update:
-            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
         default:
             tableView.reloadData()
         }
@@ -335,7 +335,7 @@ extension ANProjectsViewController: NSFetchedResultsControllerDelegate {
         myProjects = controller.fetchedObjects as! [Project]
     }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
     
@@ -347,7 +347,7 @@ extension ANProjectsViewController: NSFetchedResultsControllerDelegate {
 // MARK: - UISearchResultsUpdating
 
 extension ANProjectsViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         let searchText = searchController.searchBar.text
         filterContentFor(searchText!)
@@ -355,10 +355,10 @@ extension ANProjectsViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
     
-    func filterContentFor(searchText: String) {
+    func filterContentFor(_ searchText: String) {
         
         searchResultsArray = myProjects.filter({ (project: Project) -> Bool in
-            let matchedFName = project.fullName.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)
+            let matchedFName = project.fullName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive, range: nil, locale: nil)
             
             return matchedFName != nil
         })
@@ -371,7 +371,7 @@ extension ANProjectsViewController: UISearchResultsUpdating {
 // MARK: - ANProjectDetailsVCDelegate
 
 extension ANProjectsViewController: ANProjectDetailsVCDelegate {
-    func projectEditingDidEndForProject(project: Project) {
+    func projectEditingDidEndForProject(_ project: Project) {
         
     }
 }
@@ -381,18 +381,18 @@ extension ANProjectsViewController: ANProjectDetailsVCDelegate {
 // MARK: - ANNewProjectTableViewControllerDelegate
 
 extension ANProjectsViewController: ANNewProjectTableViewControllerDelegate {
-    func projectDetailsVCDidCancel(controller: ANNewProjectTableViewController) {
+    func projectDetailsVCDidCancel(_ controller: ANNewProjectTableViewController) {
         
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
+    func projectDetailsVC(_ controller: ANNewProjectTableViewController, didFinishAddingItem item: Project) {
         
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
         
     }
     
-    func projectDetailsVC(controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
+    func projectDetailsVC(_ controller: ANNewProjectTableViewController, didFinishEditingItem item: Project) {
         
         
     }

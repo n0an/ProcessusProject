@@ -18,9 +18,9 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
     
     // MARK: - ATTRIBUTES
     
-    private var fetchedResultsController: NSFetchedResultsController?
+    fileprivate var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
     
-    private var fetchedResultsDelegate: NSFetchedResultsControllerDelegate?
+    fileprivate var fetchedResultsDelegate: NSFetchedResultsControllerDelegate?
     
     
     // MARK: - viewDidLoad
@@ -33,10 +33,10 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
         tableView.rowHeight = 80
         
         
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         
-        let fetchRequest = NSFetchRequest(entityName: "Project")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
         
         let finishedStatusDescriptor = NSSortDescriptor(key: "finishedStatus", ascending: false)
         
@@ -65,15 +65,15 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
     
     // MARK: - HELPER METHODS
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
         
         guard let cell = cell as? ANPersonProjectCell else {return}
         
-        guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
+        guard let project = fetchedResultsController?.object(at: indexPath) as? Project else {return}
         
         cell.customerNameLabel.text = project.customer
         cell.projectNameLabel.text = project.name
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
         let cellColor: UIColor
         
@@ -100,11 +100,11 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
 // MARK: - UITableViewDataSource
 extension ANFinishedProjetsViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let sections = fetchedResultsController?.sections else {return 0}
         
@@ -113,11 +113,11 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
         return currentSection.numberOfObjects
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId = "personProjectsCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
         configureCell(cell, atIndexPath: indexPath)
         
@@ -125,7 +125,7 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
     }
     
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         
         if let sectionInfo = fetchedResultsController?.sections?[section] {
@@ -145,11 +145,11 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
         
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         
         let view = UIView()
-        view.backgroundColor = UIColor.clearColor()
+        view.backgroundColor = UIColor.clear
         let paddingView = UIView()
         
         view.addSubview(paddingView)
@@ -163,20 +163,20 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
         
         let constraints:[NSLayoutConstraint] = [
             
-            paddingView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-            paddingView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor),
+            paddingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            paddingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            statusLabel.centerXAnchor.constraintEqualToAnchor(paddingView.centerXAnchor),
-            statusLabel.centerYAnchor.constraintEqualToAnchor(paddingView.centerYAnchor),
+            statusLabel.centerXAnchor.constraint(equalTo: paddingView.centerXAnchor),
+            statusLabel.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor),
             
-            paddingView.heightAnchor.constraintEqualToAnchor(statusLabel.heightAnchor, constant: 5),
-            paddingView.widthAnchor.constraintEqualToAnchor(statusLabel.widthAnchor, constant: 10),
+            paddingView.heightAnchor.constraint(equalTo: statusLabel.heightAnchor, constant: 5),
+            paddingView.widthAnchor.constraint(equalTo: statusLabel.widthAnchor, constant: 10),
             
-            view.heightAnchor.constraintEqualToAnchor(paddingView.heightAnchor)
+            view.heightAnchor.constraint(equalTo: paddingView.heightAnchor)
             
         ]
         
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
         
         guard let sectionInfo = fetchedResultsController?.sections?[section] else {return nil}
 
@@ -222,23 +222,23 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
 
 extension ANFinishedProjetsViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
+        guard let project = fetchedResultsController?.object(at: indexPath) as? Project else {return}
         
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
             let context = ANDataManager.sharedManager.context
-            context.deleteObject(project)
+            context.delete(project)
             
             ANDataManager.sharedManager.saveContext()
         }
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
@@ -246,18 +246,18 @@ extension ANFinishedProjetsViewController: UITableViewDelegate {
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showProjectDetails" {
             
             
-            let destinationVC = segue.destinationViewController as! ANProjectDetailsViewController
+            let destinationVC = segue.destination as! ANProjectDetailsViewController
             
             destinationVC.delegate = self
             
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
             
-            guard let project = fetchedResultsController?.objectAtIndexPath(indexPath) as? Project else {return}
+            guard let project = fetchedResultsController?.object(at: indexPath) as? Project else {return}
             
             destinationVC.project = project
             
@@ -272,7 +272,7 @@ extension ANFinishedProjetsViewController: UITableViewDelegate {
 // MARK: - ANProjectDetailsVCDelegate
 
 extension ANFinishedProjetsViewController: ANProjectDetailsVCDelegate {
-    func projectEditingDidEndForProject(project: Project) {
+    func projectEditingDidEndForProject(_ project: Project) {
         
     }
 }

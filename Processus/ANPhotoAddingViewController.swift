@@ -10,7 +10,7 @@ import UIKit
 
 protocol ANPhotoAddingVCDelegate: class {
     
-    func photoSelectionDidEnd(photo: UIImage)
+    func photoSelectionDidEnd(_ photo: UIImage)
     
 }
 
@@ -37,17 +37,17 @@ class ANPhotoAddingViewController: UIViewController, UINavigationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hintLabel.hidden = false
-        doneButton.enabled = false
+        hintLabel.isHidden = false
+        doneButton.isEnabled = false
         
-        if !UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            cameraButton.enabled = false
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            cameraButton.isEnabled = false
             showAlertNoCameraDeviceFound()
         }
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         
@@ -58,53 +58,53 @@ class ANPhotoAddingViewController: UIViewController, UINavigationControllerDeleg
     
     func showAlertNoCameraDeviceFound() {
         
-        let alertNoCamera = UIAlertController(title: NSLocalizedString("CAMERA_ALERT_TITLE", comment: ""), message: NSLocalizedString("CAMERA_ALERT_MESSAGE", comment: ""), preferredStyle: .Alert)
+        let alertNoCamera = UIAlertController(title: NSLocalizedString("CAMERA_ALERT_TITLE", comment: ""), message: NSLocalizedString("CAMERA_ALERT_MESSAGE", comment: ""), preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alertNoCamera.addAction(okAction)
         
-        presentViewController(alertNoCamera, animated: true, completion: nil)
+        present(alertNoCamera, animated: true, completion: nil)
         
     }
 
     
     // MARK: - ACTIONS
 
-    @IBAction func actionCameraButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func actionCameraButtonPressed(_ sender: UIBarButtonItem) {
         
         let cameraVC = UIImagePickerController()
-        cameraVC.sourceType = .Camera
+        cameraVC.sourceType = .camera
         
         cameraVC.delegate = self
         
-        presentViewController(cameraVC, animated: true, completion: nil)
+        present(cameraVC, animated: true, completion: nil)
         
         
     }
     
-    @IBAction func actionFolderButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func actionFolderButtonPressed(_ sender: UIBarButtonItem) {
         
         let photosVC = UIImagePickerController()
-        photosVC.sourceType = .PhotoLibrary
+        photosVC.sourceType = .photoLibrary
         
         photosVC.delegate = self
         
         photosVC.allowsEditing = true
         
-        presentViewController(photosVC, animated: true, completion: nil)
+        present(photosVC, animated: true, completion: nil)
         
     }
     
-    @IBAction func actionCancelPressed(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func actionCancelPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func actionDonePressed(sender: UIBarButtonItem) {
+    @IBAction func actionDonePressed(_ sender: UIBarButtonItem) {
         
         delegate.photoSelectionDidEnd(selectedPhoto)
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 
@@ -114,16 +114,16 @@ class ANPhotoAddingViewController: UIViewController, UINavigationControllerDeleg
 
 extension ANPhotoAddingViewController: UIImagePickerControllerDelegate {
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
         selectedPhoto = image
         
         photoPreviewImageView.image = image
         
-        doneButton.enabled = true
-        hintLabel.hidden = true
+        doneButton.isEnabled = true
+        hintLabel.isHidden = true
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
     

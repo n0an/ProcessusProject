@@ -29,15 +29,15 @@ class ANUsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        currentUserName = PFUser.currentUser()!.username!
-        currentGroup = PFUser.currentUser()?.objectForKey("group") as! String
+        currentUserName = PFUser.current()!.username!
+        currentGroup = PFUser.current()?.object(forKey: "group") as! String
         
         
         let predicate = NSPredicate(format: "username != %@ AND group == %@", currentUserName, currentGroup)
         
         let query = PFQuery(className: "_User", predicate: predicate)
         
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) in
+        query.findObjectsInBackground { (objects: [PFObject]?, error: NSError?) in
             let users = objects as! [PFUser]
             
             for user in users {
@@ -47,23 +47,23 @@ class ANUsersViewController: UIViewController {
                 
                 self.tableView.reloadData()
             }
-        }
+        } as! ([PFObject]?, Error?) -> Void
 
 
     }
 
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         self.navigationItem.hidesBackButton = true
     }
     
     // MARK: - ACTIONS
-    @IBAction func logoutButtonPressed(sender: AnyObject) {
+    @IBAction func logoutButtonPressed(_ sender: AnyObject) {
         
         PFUser.logOut()
         
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
 }
@@ -75,19 +75,19 @@ class ANUsersViewController: UIViewController {
 
 extension ANUsersViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nicknamesArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId = "ANPersonCell"
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ANPersonCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ANPersonCell
         
         cell.fullNameLabel.text = nicknamesArray[indexPath.row]
         
-        imageFileArray[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
+        imageFileArray[indexPath.row].getDataInBackground { (imageData: Data?, error: NSError?) in
             if error == nil {
                 let image = UIImage(data: imageData!)
                 cell.avatarImageView.image = image
@@ -104,21 +104,21 @@ extension ANUsersViewController: UITableViewDataSource {
 
 extension ANUsersViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ANPersonCell
+        let cell = tableView.cellForRow(at: indexPath) as! ANPersonCell
         
         recipientNickname = cell.fullNameLabel.text!
 
-        self.performSegueWithIdentifier("toChatSegue", sender: self)
+        self.performSegue(withIdentifier: "toChatSegue", sender: self)
 
     }
 

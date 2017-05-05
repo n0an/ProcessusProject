@@ -2,24 +2,43 @@
 //  Person+CoreDataProperties.swift
 //  Processus
 //
-//  Created by Anton Novoselov on 28/05/16.
+//  Created by Anton Novoselov on 27/11/2016.
 //  Copyright © 2016 Anton Novoselov. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 import Foundation
 import CoreData
 
+
 extension Person {
 
-    @NSManaged var email: String?
-    @NSManaged var firstName: String?
-    @NSManaged var lastName: String?
-    @NSManaged var personId: String?
-    @NSManaged var phoneNumber: String?
-    @NSManaged var image: NSData?
-    @NSManaged var projects: NSSet?
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Person> {
+        return NSFetchRequest<Person>(entityName: "Person");
+    }
+
+    @NSManaged public var email: String?
+    @NSManaged public var firstName: String?
+    @NSManaged public var image: NSData?
+    @NSManaged public var lastName: String?
+    @NSManaged public var personId: String?
+    @NSManaged public var phoneNumber: String?
+    @NSManaged public var projects: NSSet?
+
+}
+
+// MARK: Generated accessors for projects
+extension Person {
+
+    @objc(addProjectsObject:)
+    @NSManaged public func addToProjects(_ value: Project)
+
+    @objc(removeProjectsObject:)
+    @NSManaged public func removeFromProjects(_ value: Project)
+
+    @objc(addProjects:)
+    @NSManaged public func addToProjects(_ values: NSSet)
+
+    @objc(removeProjects:)
+    @NSManaged public func removeFromProjects(_ values: NSSet)
 
 }

@@ -12,7 +12,7 @@ import CoreData
 
 protocol ANProjectSelectionViewControllerDelegate: class {
     
-    func projectSelectionDidFinish(selectedProjects: [Project])
+    func projectSelectionDidFinish(_ selectedProjects: [Project])
     
 }
 
@@ -38,7 +38,7 @@ class ANProjectSelectionViewController: UITableViewController {
         
         title = NSLocalizedString("PROJECTSELECTIONVC_TITLE", comment: "")
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ANProjectSelectionViewController.savePressed(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
         
@@ -48,13 +48,13 @@ class ANProjectSelectionViewController: UITableViewController {
     // MARK: - HELPER METHODS
     
     
-    func configurePersonProjectCell(cell: ANPersonProjectCell, forIndexPath indexPath: NSIndexPath) {
+    func configurePersonProjectCell(_ cell: ANPersonProjectCell, forIndexPath indexPath: IndexPath) {
         
         let project = allProjects[indexPath.row]
 
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
-        if (person.projects!.containsObject(project)) {
+        if (person.projects!.contains(project)) {
 
             cell.checkMarkImageView.image = UIImage(named: "box_set")
             
@@ -71,32 +71,32 @@ class ANProjectSelectionViewController: UITableViewController {
     
     // MARK: - ACTIONS
     
-    func savePressed(sender: UIBarButtonItem) {
+    func savePressed(_ sender: UIBarButtonItem) {
         
         delegate.projectSelectionDidFinish(selectedProjects)
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     
     // MARK: - UITableViewDataSource
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return allProjects.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdPersonProject = "personProjectsCell"
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdPersonProject, forIndexPath: indexPath) as! ANPersonProjectCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdPersonProject, for: indexPath) as! ANPersonProjectCell
         
         configurePersonProjectCell(cell, forIndexPath: indexPath)
         
@@ -105,17 +105,19 @@ class ANProjectSelectionViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
         
         let project = allProjects[indexPath.row]
         
         
-        if (person.projects!.containsObject(project)) {
-            person.remove(projectObject: project)
+        if (person.projects!.contains(project)) {
+            person.removeFromProjects(project)
+//            person.remove(projectObject: project) // Swift 2 OLD
         } else {
-            person.add(projectObject: project)
+            person.addToProjects(project)
+//            person.add(projectObject: project) // Swift 2 OLD
         }
         
         selectedProjects = person.projects?.allObjects as! [Project]
