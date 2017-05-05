@@ -52,7 +52,7 @@ class ANProjectSelectionViewController: UITableViewController {
         
         let project = allProjects[indexPath.row]
 
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
         if (person.projects!.contains(project)) {
 

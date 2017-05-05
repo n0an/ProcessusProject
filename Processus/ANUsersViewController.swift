@@ -47,7 +47,7 @@ class ANUsersViewController: UIViewController {
                 
                 self.tableView.reloadData()
             }
-        }
+        } as! ([PFObject]?, Error?) -> Void
 
 
     }

@@ -182,7 +182,7 @@ extension ANProjectsForDateViewController: UITableViewDataSource {
         let project = myProjects[indexPath.row]
         
         
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
         
         if let participantsCount = project.workers?.allObjects.count {

@@ -73,7 +73,7 @@ class ANFinishedProjetsViewController: UIViewController, ANTableViewFetchedResul
         
         cell.customerNameLabel.text = project.customer
         cell.projectNameLabel.text = project.name
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
         let cellColor: UIColor
         

@@ -225,7 +225,7 @@ class ANPersonDetailsViewController: UITableViewController {
             person.email        = newPersonEmail
             person.phoneNumber  = newPersonPhoneNumber
             
-            person.image = UIImageJPEGRepresentation(cell.avatarImageView.image!, 1.0)
+            person.image = UIImageJPEGRepresentation(cell.avatarImageView.image!, 1.0) as? NSData
 
             
             ANDataManager.sharedManager.saveContext()
@@ -261,7 +261,7 @@ class ANPersonDetailsViewController: UITableViewController {
         
         let project = personProjects[indexPath.row]
         
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
         if let participantsCount = project.workers?.allObjects.count {
             cell.participantsCountLabel.text = "\(participantsCount)"
