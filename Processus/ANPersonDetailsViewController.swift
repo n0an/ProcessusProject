@@ -523,7 +523,7 @@ extension ANPersonDetailsViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
             
         } else {
-            let index = cell.textFields.index(of: textField)
+            let index = cell.textFields.firstIndex(of: textField)
             let textField = cell.textFields[index! + 1]
             textField.becomeFirstResponder()
             

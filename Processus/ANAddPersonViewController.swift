@@ -179,7 +179,7 @@ extension ANAddPersonViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
             
         } else {
-            let index = textFields.index(of: textField)
+            let index = textFields.firstIndex(of: textField)
             let textField = textFields[index! + 1]
             textField.becomeFirstResponder()
             
