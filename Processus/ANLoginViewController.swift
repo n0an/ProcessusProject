@@ -35,20 +35,20 @@ class ANLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let user = PFUser.currentUser() {
-            if user.authenticated {
-                self.performSegueWithIdentifier("toUsersSegue1", sender: nil)
+        if let user = PFUser.current() {
+            if user.isAuthenticated {
+                self.performSegue(withIdentifier: "toUsersSegue1", sender: nil)
             }
         }
         
         // ** REGISTERING FOR PUSH NOTIFICATIONS
-        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        let userNotificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
+        let settings = UIUserNotificationSettings(types: userNotificationTypes, categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
         
         
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(ANLoginViewController.didTapView))
         tapGestureRecognizer.numberOfTapsRequired = 1
@@ -56,27 +56,27 @@ class ANLoginViewController: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ANLoginViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ANLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ANLoginViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
         
     }
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
-            scrollVIew.scrollEnabled = true
+        if UIScreen.main.bounds.height < ANiOSScreenHeights.iPhone5.rawValue {
+            scrollVIew.isScrollEnabled = true
         } else {
-            scrollVIew.scrollEnabled = false
+            scrollVIew.isScrollEnabled = false
             
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         setScrollViewContentSize()
@@ -84,11 +84,11 @@ class ANLoginViewController: UIViewController {
     
     // MARK: - NOTIFICATIONS
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
+        if UIScreen.main.bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
             
-            scrollVIew.scrollEnabled = true
+            scrollVIew.isScrollEnabled = true
             updateBottomConstraint(notification, showing: true)
             
             setScrollViewContentSize()
@@ -97,10 +97,10 @@ class ANLoginViewController: UIViewController {
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(_ notification: Notification) {
         
-        if UIScreen.mainScreen().bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
-            scrollVIew.scrollEnabled = false
+        if UIScreen.main.bounds.height < ANiOSScreenHeights.iPhone6.rawValue {
+            scrollVIew.isScrollEnabled = false
             updateBottomConstraint(notification, showing: false)
 
             setScrollViewContentSize()
@@ -114,35 +114,35 @@ class ANLoginViewController: UIViewController {
     
     func setScrollViewContentSize() {
         
-        var contentRect = CGRectZero
+        var contentRect = CGRect.zero
         
         for view in contentView.subviews {
-            contentRect = CGRectUnion(contentRect, view.frame)
+            contentRect = contentRect.union(view.frame)
         }
         
-        scrollVIew.contentSize = CGSizeMake(CGRectGetWidth(view.frame), CGRectGetHeight(contentRect))
+        scrollVIew.contentSize = CGSize(width: view.frame.width, height: contentRect.height)
         
     }
     
-    func updateBottomConstraint(notification: NSNotification, showing: Bool) {
+    func updateBottomConstraint(_ notification: Notification, showing: Bool) {
         
         
         if let
             userInfo = notification.userInfo,
-            frame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue,
-            animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
+            let frame = (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue,
+            let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue {
             
-            let newFrame = view.convertRect(frame, fromView: (UIApplication.sharedApplication().delegate?.window)!)
+            let newFrame = view.convert(frame, from: (UIApplication.shared.delegate?.window)!)
             
             let diff = showing ? 49 : 0
             
-            bottomConstraint.constant = CGRectGetHeight(view.frame) - newFrame.origin.y - CGFloat(diff)
+            bottomConstraint.constant = view.frame.height - newFrame.origin.y - CGFloat(diff)
             
-            UIView.animateWithDuration(animationDuration, animations: {
+            UIView.animate(withDuration: animationDuration, animations: {
                 self.view.layoutIfNeeded()
                 
                 if showing {
-                    let scrollViewOffset: CGPoint = CGPointMake(0, self.scrollVIew.contentSize.height - self.scrollVIew.bounds.height)
+                    let scrollViewOffset: CGPoint = CGPoint(x: 0, y: self.scrollVIew.contentSize.height - self.scrollVIew.bounds.height)
                     
                     self.scrollVIew.setContentOffset(scrollViewOffset, animated: true)
                 }
@@ -161,7 +161,7 @@ class ANLoginViewController: UIViewController {
         self.view.endEditing(true)
     }
 
-    @IBAction func loginButtonPressed(sender: AnyObject) {
+    @IBAction func loginButtonPressed(_ sender: AnyObject) {
         
         loginTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -179,35 +179,35 @@ class ANLoginViewController: UIViewController {
         
         if error != "" {
             
-            let alertController = UIAlertController(title: NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), message: NSLocalizedString("CHAT_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("CHAT_ALERT_MESSAGE2", comment: ""), preferredStyle: .Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), message: NSLocalizedString("CHAT_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("CHAT_ALERT_MESSAGE2", comment: ""), preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
             
             alertController.addAction(okAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             
             
             return
         }
         
-        PFUser.logInWithUsernameInBackground(loginTextField.text!, password: passwordTextField.text!) { (user: PFUser?, error: NSError?) in
+        PFUser.logInWithUsername(inBackground: loginTextField.text!, password: passwordTextField.text!) { (user: PFUser?, error: NSError?) in
             
             guard error == nil else {
                 print("Can't login")
                 print("error: \(error?.localizedDescription)")
                 
-                SweetAlert().showAlert(NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), subTitle: error!.localizedDescription, style: AlertStyle.Error)
+                SweetAlert().showAlert(NSLocalizedString("CHAT_ALERT_TITLE", comment: ""), subTitle: error!.localizedDescription, style: AlertStyle.error)
                 
                 return
             }
             
-            let installation: PFInstallation = PFInstallation.currentInstallation()
-            installation["user"] = PFUser.currentUser()
+            let installation: PFInstallation = PFInstallation.current()
+            installation["user"] = PFUser.current()
             
             installation.saveInBackground()
             
-            self.performSegueWithIdentifier("toUsersSegue1", sender: self)
+            self.performSegue(withIdentifier: "toUsersSegue1", sender: self)
             
             
         }
@@ -215,7 +215,7 @@ class ANLoginViewController: UIViewController {
         
     }
     
-    @IBAction func createAccButtonPressed(sender: AnyObject) {
+    @IBAction func createAccButtonPressed(_ sender: AnyObject) {
     }
     
 
@@ -228,7 +228,7 @@ class ANLoginViewController: UIViewController {
 
 extension ANLoginViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == passwordTextField {
             textField.resignFirstResponder()

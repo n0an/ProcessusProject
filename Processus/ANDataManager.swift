@@ -17,27 +17,27 @@ class ANDataManager {
     
     static let sharedManager = ANDataManager()
     
-    lazy var storesDirectory: NSURL = {
+    lazy var storesDirectory: URL = {
         
-        let fm = NSFileManager.defaultManager()
+        let fm = FileManager.default
         
-        let urls = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
         
-        return urls.last! as NSURL
+        return urls.last! as URL
 
     }()
     
-    lazy var localStoreURL: NSURL = {
-        let url = self.storesDirectory.URLByAppendingPathComponent("Processus.sqlite")
+    lazy var localStoreURL: URL = {
+        let url = self.storesDirectory.appendingPathComponent("Processus.sqlite")
         return url
     }()
     
     
-    lazy var modelURL: NSURL = {
+    lazy var modelURL: URL = {
         
-        let bundle = NSBundle.mainBundle()
+        let bundle = Bundle.main
         
-        if let url = bundle.URLForResource("Model", withExtension: "momd") {
+        if let url = bundle.url(forResource: "Model", withExtension: "momd") {
             return url
         }
         print("CRITICAL - Managed Object Model file not found")
@@ -48,7 +48,7 @@ class ANDataManager {
     
     
     lazy var model: NSManagedObjectModel = {
-        return NSManagedObjectModel(contentsOfURL:self.modelURL)!
+        return NSManagedObjectModel(contentsOf:self.modelURL)!
     }()
     
     
@@ -58,7 +58,7 @@ class ANDataManager {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
         
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: self.localStoreURL, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.localStoreURL, options: nil)
         } catch {
             print("Could not add the peristent store")
             abort()
@@ -69,7 +69,7 @@ class ANDataManager {
     
     
     lazy var context: NSManagedObjectContext = {
-        let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         mainContext.persistentStoreCoordinator = self.coordinator
         
         return mainContext
@@ -78,9 +78,9 @@ class ANDataManager {
     
     // MARK: - PRIVATE METHODS
     
-    private func getAllObjectsForName(name: String) -> [AnyObject] {
+    fileprivate func getAllObjectsForName(_ name: String) -> [AnyObject] {
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         
         let description = NSEntityDescription()
         description.name = name
@@ -90,7 +90,7 @@ class ANDataManager {
         var resultArray: [AnyObject] = []
         
         do {
-            resultArray = try context.executeFetchRequest(request)
+            resultArray = try context.fetch(request)
         } catch {
             print("error")
         }
@@ -98,7 +98,7 @@ class ANDataManager {
         return resultArray
     }
     
-    private func printArray(array: [AnyObject]) {
+    fileprivate func printArray(_ array: [AnyObject]) {
         
         for object in array {
             
@@ -150,7 +150,7 @@ class ANDataManager {
         
         for project in allProjects {
 
-            if let numProjectID = project.projectId?.integerValue {
+            if let numProjectID = project.projectId?.intValue {
                 
                 if numProjectID > itemID {
                     itemID = numProjectID

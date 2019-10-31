@@ -1,11 +1,11 @@
 PODS:
-  - Bolts/Tasks (1.7.0)
-  - Crashlytics (3.7.1):
+  - Bolts/Tasks (1.8.4)
+  - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - FSCalendar (2.1.1)
-  - Parse (1.13.0):
-    - Bolts/Tasks (~> 1.6)
+  - Fabric (1.6.11)
+  - FSCalendar (2.5.1)
+  - Parse (1.14.2):
+    - Bolts/Tasks (~> 1.8)
 
 DEPENDENCIES:
   - Crashlytics
@@ -14,12 +14,12 @@ DEPENDENCIES:
   - Parse
 
 SPEC CHECKSUMS:
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FSCalendar: 04dc531f06fbde8a8e5b7394e9d4edebd45a591f
-  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FSCalendar: 8efeb4b92240937204165c7743f4375923112fb5
+  Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
 
 PODFILE CHECKSUM: 6011ac5f558cafb845f90748a109693e355d8170
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0

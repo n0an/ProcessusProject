@@ -13,26 +13,26 @@ class ANTextFieldsChecker {
     
     static let sharedChecker = ANTextFieldsChecker()
     
-    private let localNumberMaxLength = 7
-    private let areaCodeMaxLength = 3
-    private let countryCodeMaxLength = 3
+    fileprivate let localNumberMaxLength = 7
+    fileprivate let areaCodeMaxLength = 3
+    fileprivate let countryCodeMaxLength = 3
     
-    func handleEmailTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
+    func handleEmailTextField(_ textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
         
-        var illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
+        var illegalCharactersSet = CharacterSet.init(charactersIn: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
         
         let currentString = textField.text! as NSString
         
-        let newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString)
+        let newString = currentString.replacingCharacters(in: range, with: replacementString)
         
         if currentString.length == 0 && replacementString == "@" {
             return false
         }
         
-        if currentString .containsString("@") {
-            illegalCharactersSet = NSCharacterSet.init(charactersInString: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
+        if currentString .contains("@") {
+            illegalCharactersSet = CharacterSet.init(charactersIn: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
         }
-        let components = replacementString.componentsSeparatedByCharactersInSet(illegalCharactersSet)
+        let components = replacementString.components(separatedBy: illegalCharactersSet)
         if components.count > 1 {
             return false
         }
@@ -41,11 +41,11 @@ class ANTextFieldsChecker {
     }
     
     
-    func handlePhoneNumberForTextField(textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
+    func handlePhoneNumberForTextField(_ textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
         
 //        print("replacementString = \(replacementString)")
-        let validationSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
-        let components = replacementString.componentsSeparatedByCharactersInSet(validationSet)
+        let validationSet = CharacterSet.decimalDigits.inverted
+        let components = replacementString.components(separatedBy: validationSet)
         
         // **  CHECKING - IF USER ENTERS NOT NUMBER, FORBID ENTERING
         if components.count > 1 {
@@ -54,15 +54,15 @@ class ANTextFieldsChecker {
         
         // **  GETTING NEWSTRING, USER TRYING TO ENTER
         let currentString = textField.text! as NSString
-        var newString = currentString.stringByReplacingCharactersInRange(range, withString: replacementString) as NSString
+        var newString = currentString.replacingCharacters(in: range, with: replacementString) as NSString
         
 //        print("new string = \(newString)")
         
         
         // **  PURIFYING NEWSTRING FROM SYMBOLS ( ) - + THAT WE ADDED BY OURSELVES BELOW IN METHOD
-        let validComponents = newString.componentsSeparatedByCharactersInSet(validationSet)
+        let validComponents = newString.components(separatedBy: validationSet)
         
-        newString = validComponents.joinWithSeparator("")
+        newString = validComponents.joined(separator: "") as NSString
         
 //        print("new string fixed = \(newString)")
         
@@ -83,12 +83,12 @@ class ANTextFieldsChecker {
         
         if localNumberLength > 0 {
             
-            let number = newString.substringFromIndex(newString.length - localNumberLength)
+            let number = newString.substring(from: newString.length - localNumberLength)
             
-            resultString.appendString(number)
+            resultString.append(number)
             
             if resultString.length > 3 {
-                resultString.insertString("-", atIndex: 3)
+                resultString.insert("-", at: 3)
             }
         }
         
@@ -103,11 +103,11 @@ class ANTextFieldsChecker {
             
             let areaRange = NSMakeRange(newString.length - localNumberMaxLength - areaCodeLength, areaCodeLength)
             
-            var area = newString.substringWithRange(areaRange)
+            var area = newString.substring(with: areaRange)
             
             area = "(\(area)) "
             
-            resultString.insertString(area, atIndex: 0)
+            resultString.insert(area, at: 0)
         }
         
         /* INTERNATIONAL NUMBER
@@ -120,11 +120,11 @@ class ANTextFieldsChecker {
             
             let countryCodeRange = NSMakeRange(0, countryCodeLength)
             
-            var countryCode = newString.substringWithRange(countryCodeRange)
+            var countryCode = newString.substring(with: countryCodeRange)
             
             countryCode = "+\(countryCode) "
             
-            resultString.insertString(countryCode, atIndex: 0)
+            resultString.insert(countryCode, at: 0)
             
         }
         

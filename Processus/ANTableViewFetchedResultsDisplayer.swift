@@ -12,7 +12,7 @@ import UIKit
 
 
 protocol ANTableViewFetchedResultsDisplayer {
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath)
+    func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath)
 }
 
 
