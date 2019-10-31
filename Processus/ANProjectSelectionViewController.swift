@@ -71,7 +71,7 @@ class ANProjectSelectionViewController: UITableViewController {
     
     // MARK: - ACTIONS
     
-    func savePressed(_ sender: UIBarButtonItem) {
+    @objc func savePressed(_ sender: UIBarButtonItem) {
         
         delegate.projectSelectionDidFinish(selectedProjects)
         

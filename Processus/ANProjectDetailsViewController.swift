@@ -102,7 +102,7 @@ class ANProjectDetailsViewController: UIViewController {
     func configurePersonProjectCell(_ cell: ANPersonProjectCell, forIndexPath indexPath: IndexPath) {
         
 
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
         if let completedRatio = project.completedRatio?.int32Value {
             cell.completedRatioLabel.text = "\(completedRatio) %"
@@ -176,7 +176,7 @@ class ANProjectDetailsViewController: UIViewController {
                 
                 let projectToFinish = self.project
                 
-                projectToFinish?.state = ANProjectState.nonActive.rawValue
+                projectToFinish?.state = ANProjectState.nonActive.rawValue as NSNumber
                 projectToFinish?.finished = true
                 projectToFinish?.finishedStatus = ProjectFinishedStatus.Success.rawValue
                 
@@ -188,7 +188,7 @@ class ANProjectDetailsViewController: UIViewController {
                 
                 let projectToFinish = self.project
                 
-                projectToFinish?.state = ANProjectState.nonActive.rawValue
+                projectToFinish?.state = ANProjectState.nonActive.rawValue as NSNumber
                 projectToFinish?.finished = true
                 projectToFinish?.finishedStatus = ProjectFinishedStatus.Failure.rawValue
                 
@@ -218,7 +218,7 @@ class ANProjectDetailsViewController: UIViewController {
                 
                 let projectToStart = self.project
                 
-                projectToStart?.state = ANProjectState.nonActive.rawValue
+                projectToStart?.state = ANProjectState.nonActive.rawValue as NSNumber
                 projectToStart?.finished = false
                 projectToStart?.finishedStatus = nil
                 
@@ -255,7 +255,7 @@ class ANProjectDetailsViewController: UIViewController {
                 
                 let projectToClear = self.project
                 
-                let participants = projectToClear.workers?.allObjects as! [Person]
+                let participants = projectToClear!.workers?.allObjects as! [Person]
                 
                 for person in participants {
                     projectToClear?.removeFromWorkers(person)
@@ -303,7 +303,7 @@ class ANProjectDetailsViewController: UIViewController {
                 
                 let managedObjectContext = ANDataManager.sharedManager.context
                 
-                managedObjectContext.delete(projectToRemove)
+                managedObjectContext.delete(projectToRemove!)
                 
                 if managedObjectContext.hasChanges {
                     do {
@@ -334,7 +334,7 @@ class ANProjectDetailsViewController: UIViewController {
         tableView.setEditing(!isEditingMode, animated: true)
         isEditingMode = !isEditingMode
         
-        var buttonItem: UIBarButtonSystemItem
+        var buttonItem: UIBarButtonItem.SystemItem
         
         if isEditingMode {
             buttonItem = .done
@@ -506,7 +506,7 @@ extension ANProjectDetailsViewController: UITableViewDelegate {
             
         }
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     
@@ -527,7 +527,7 @@ extension ANProjectDetailsViewController: UITableViewDelegate {
             break
             
         }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     
@@ -566,7 +566,7 @@ extension ANProjectDetailsViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
             

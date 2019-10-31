@@ -222,7 +222,7 @@ extension ANFinishedProjetsViewController: UITableViewDataSource {
 
 extension ANFinishedProjetsViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         guard let project = fetchedResultsController?.object(at: indexPath) as? Project else {return}
         

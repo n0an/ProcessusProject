@@ -257,7 +257,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
             
             alertController.addAction(okAction)
             
@@ -301,7 +301,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             editingProject.customer         = customerTitleTextField.text
             editingProject.name             = projectTitleTextField.text
-            editingProject.dueDate          = dueDate
+            editingProject.dueDate          = dueDate as NSDate
             editingProject.shouldRemind     = shouldRemindSwitch.isOn as NSNumber?
             
             editingProject.completedRatio   = progressSlider.value as NSNumber?
@@ -320,7 +320,7 @@ class ANNewProjectTableViewController: UITableViewController, UITextFieldDelegat
             
             newProject.customer         = customerTitleTextField.text
             newProject.name             = projectTitleTextField.text
-            newProject.dueDate          = dueDate
+            newProject.dueDate          = dueDate as NSDate
             newProject.shouldRemind     = shouldRemindSwitch.isOn as NSNumber?
             
             newProject.completedRatio   = progressSlider.value as NSNumber?

@@ -33,7 +33,7 @@ class ANPeopleViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -171,10 +171,10 @@ extension ANPeopleViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
     }
     
@@ -196,7 +196,7 @@ extension ANPeopleViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let allShareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Email") { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let allShareAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Email") { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             let personToContact = self.fetchedResultsController.object(at: indexPath) as! Person
             
@@ -230,7 +230,7 @@ extension ANPeopleViewController: UITableViewDelegate {
         
         // Creating our own Delete button
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             
             SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_ALERT_MESSAGE", comment: ""), style: AlertStyle.warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in

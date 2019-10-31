@@ -202,7 +202,7 @@ extension ANProjectsForDateViewController: UITableViewDataSource {
 
 extension ANProjectsForDateViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         let project = myProjects[indexPath.row]
 

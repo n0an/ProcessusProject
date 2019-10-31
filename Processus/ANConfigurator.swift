@@ -91,7 +91,7 @@ class ANConfigurator {
     func customizeSlider(_ slider: UISlider) {
         // Custom Slider
         let thumbImageNormal = UIImage(named: "SliderThumb-Normal")
-        slider.setThumbImage(thumbImageNormal, for: UIControlState())
+        slider.setThumbImage(thumbImageNormal, for: UIControl.State())
         
         let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")
         slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
@@ -100,11 +100,11 @@ class ANConfigurator {
         
         if let trackLeftImage = UIImage(named: "SliderTrackLeft1") {
             let trackLeftResizable = trackLeftImage.resizableImage(withCapInsets: insets)
-            slider.setMinimumTrackImage(trackLeftResizable, for: UIControlState())
+            slider.setMinimumTrackImage(trackLeftResizable, for: UIControl.State())
         }
         if let trackRightImage = UIImage(named: "SliderTrackRight1") {
             let trackRightResizable = trackRightImage.resizableImage(withCapInsets: insets)
-            slider.setMaximumTrackImage(trackRightResizable, for: UIControlState())
+            slider.setMaximumTrackImage(trackRightResizable, for: UIControl.State())
         }
 
     }

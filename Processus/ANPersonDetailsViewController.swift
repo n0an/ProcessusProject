@@ -209,7 +209,7 @@ class ANPersonDetailsViewController: UITableViewController {
                 
                 let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .alert)
                 
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
                 
                 alertController.addAction(okAction)
                 
@@ -225,7 +225,7 @@ class ANPersonDetailsViewController: UITableViewController {
             person.email        = newPersonEmail
             person.phoneNumber  = newPersonPhoneNumber
             
-            person.image = UIImageJPEGRepresentation(cell.avatarImageView.image!, 1.0) as? NSData
+            person.image = cell.avatarImageView.image!.jpegData(compressionQuality: 1.0) as? NSData
 
             
             ANDataManager.sharedManager.saveContext()
@@ -419,7 +419,7 @@ class ANPersonDetailsViewController: UITableViewController {
             
         }
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
 
     }
     
@@ -440,7 +440,7 @@ class ANPersonDetailsViewController: UITableViewController {
             break
             
         }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     
@@ -481,7 +481,7 @@ class ANPersonDetailsViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
             

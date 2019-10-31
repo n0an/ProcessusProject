@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import Parse
+//import Parse
 
 
 class ANProjectsViewController: UIViewController {
@@ -176,7 +176,7 @@ extension ANProjectsViewController: UITableViewDataSource {
         let project = searchController.isActive ? searchResultsArray[indexPath.row] : myProjects[indexPath.row]
         
         
-        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate!)
+        cell.projectDueDateLabel.text = ANConfigurator.sharedConfigurator.dateFormatter.string(from: project.dueDate! as Date)
         
         
         if let participantsCount = project.workers?.allObjects.count {
@@ -198,7 +198,7 @@ extension ANProjectsViewController: UITableViewDataSource {
 
 extension ANProjectsViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
 
     }
@@ -224,7 +224,7 @@ extension ANProjectsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let finishAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: NSLocalizedString("ACTION_FINISH_TITLE", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let finishAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: NSLocalizedString("ACTION_FINISH_TITLE", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             let finishActionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
@@ -232,7 +232,7 @@ extension ANProjectsViewController: UITableViewDelegate {
                 
                 let projectToFinish = self.fetchedResultsController.object(at: indexPath) as! Project
                 
-                projectToFinish.state = ANProjectState.nonActive.rawValue
+                projectToFinish.state = ANProjectState.nonActive.rawValue as NSNumber
                 projectToFinish.finished = true
                 projectToFinish.finishedStatus = ProjectFinishedStatus.Success.rawValue
                 
@@ -245,7 +245,7 @@ extension ANProjectsViewController: UITableViewDelegate {
                 
                 let projectToFinish = self.fetchedResultsController.object(at: indexPath) as! Project
                 
-                projectToFinish.state = ANProjectState.nonActive.rawValue
+                projectToFinish.state = ANProjectState.nonActive.rawValue as NSNumber
                 projectToFinish.finished = true
                 projectToFinish.finishedStatus = ProjectFinishedStatus.Failure.rawValue
                 
@@ -267,7 +267,7 @@ extension ANProjectsViewController: UITableViewDelegate {
         
         // Creating our own Delete button
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: NSLocalizedString("DELETE_ACTION", comment: "")) { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             
             SweetAlert().showAlert(NSLocalizedString("DELETE_ALERT", comment: ""), subTitle: NSLocalizedString("DELETE_PROJECT_ALERT_MESSAGE", comment: ""), style: AlertStyle.warning, buttonTitle:NSLocalizedString("DELETE_ALERT_BUTTON", comment: ""), buttonColor:UIColor.colorFromRGB(0xD0D0D0) , otherButtonTitle:  NSLocalizedString("DELETE_PROJECT_ALERT_OTHER_BUTTON", comment: ""), otherButtonColor: UIColor.colorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in

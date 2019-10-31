@@ -33,7 +33,7 @@ class ANAnimator {
                                    delay: 0.1,
                                    usingSpringWithDamping: 0.7,
                                    initialSpringVelocity: 0.5,
-                                   options: UIViewAnimationOptions(),
+                                   options: UIView.AnimationOptions(),
                                    animations: {
                                     let scaleAnimation = CGAffineTransform(scaleX: 1.0, y: 1.0)
                                     

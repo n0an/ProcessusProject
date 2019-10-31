@@ -20,7 +20,7 @@ class ANGroupInfoViewController: UIViewController {
     }
     
     
-    func backPressed(_ sender: UIBarButtonItem) {
+    @objc func backPressed(_ sender: UIBarButtonItem) {
         
         dismiss(animated: true, completion: nil)
         

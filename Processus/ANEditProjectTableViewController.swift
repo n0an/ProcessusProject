@@ -136,7 +136,7 @@ class ANEditProjectTableViewController: UITableViewController {
             
             editingProject.customer         = customerTitleTextField.text
             editingProject.name             = projectTitleTextField.text
-            editingProject.dueDate          = dueDate
+            editingProject.dueDate          = dueDate as NSDate
             
             editingProject.completedRatio   = progressSlider.value as NSNumber?
             editingProject.state            = stateControl.selectedSegmentIndex as NSNumber?
@@ -226,11 +226,11 @@ class ANEditProjectTableViewController: UITableViewController {
     
     // MARK: - ACTIONS
     
-    func editPressed(_ sender: UIBarButtonItem) {
+    @objc func editPressed(_ sender: UIBarButtonItem) {
         
         isEditingMode = !isEditingMode
         
-        var buttonItem: UIBarButtonSystemItem
+        var buttonItem: UIBarButtonItem.SystemItem
         
         if isEditingMode {
             buttonItem = .done
@@ -259,7 +259,7 @@ class ANEditProjectTableViewController: UITableViewController {
                 
                 let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .alert)
                 
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
                 
                 alertController.addAction(okAction)
                 

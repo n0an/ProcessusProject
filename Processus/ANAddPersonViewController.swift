@@ -74,8 +74,8 @@ class ANAddPersonViewController: UITableViewController {
     
     // MARK: - Actions
     
-    func avatarImageViewTapped(_ sender: UITapGestureRecognizer) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+    @objc func avatarImageViewTapped(_ sender: UITapGestureRecognizer) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
             
             let navController = storyboard?.instantiateViewController(withIdentifier: "ANPhotoAddingNavController") as! UINavigationController
             
@@ -111,7 +111,7 @@ class ANAddPersonViewController: UITableViewController {
             
             let alertController = UIAlertController(title: NSLocalizedString("SAVE_ALERT_TITLE", comment: ""), message: NSLocalizedString("SAVE_ALERT_MESSAGE1", comment: "") + error + NSLocalizedString("SAVE_ALERT_MESSAGE2", comment: ""), preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
             
             alertController.addAction(okAction)
             
@@ -130,7 +130,7 @@ class ANAddPersonViewController: UITableViewController {
         person.email        = textFields[2].text!
         person.phoneNumber  = textFields[3].text!
         
-        person.image        = UIImageJPEGRepresentation(avatarImageView.image!, 1.0)
+        person.image        = avatarImageView.image!.jpegData(compressionQuality: 1.0) as! NSData
 
         
         ANDataManager.sharedManager.saveContext()
